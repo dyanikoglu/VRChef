@@ -4,12 +4,6 @@ using System.Collections;
 public class ToolUser : MonoBehaviour {
 
 	public Material capMaterial;
-
-	// Use this for initialization
-	void Start () {
-
-		
-	}
 	
 	void Update(){
 
@@ -20,19 +14,20 @@ public class ToolUser : MonoBehaviour {
 
 				GameObject victim = hit.collider.gameObject;
 
-				GameObject[] pieces = BLINDED_AM_ME.MeshCut.Cut(victim, transform.position, transform.right, capMaterial);
+                MeshCut cutter = gameObject.AddComponent<MeshCut>();
 
-				if(!pieces[1].GetComponent<Rigidbody>())
-					pieces[1].AddComponent<Rigidbody>();
+				cutter.BeginCut(victim, transform.position, transform.right, capMaterial);
 
-				Destroy(pieces[1], 1);
+				//if(!pieces[1].GetComponent<Rigidbody>())
+				//	pieces[1].AddComponent<Rigidbody>();
+
+				//Destroy(pieces[1], 1);
 			}
 
 		}
 	}
 
 	void OnDrawGizmosSelected() {
-
 		Gizmos.color = Color.green;
 
 		Gizmos.DrawLine(transform.position, transform.position + transform.forward * 5.0f);
@@ -43,5 +38,4 @@ public class ToolUser : MonoBehaviour {
 		Gizmos.DrawLine(transform.position,  transform.position + -transform.up * 0.5f);
 
 	}
-
 }

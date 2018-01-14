@@ -54,16 +54,23 @@ public class SharpAreaCollision : MonoBehaviour {
         if (canSlice && collision.gameObject.CompareTag("Choppable"))
         {
             canSlice = false;
-            GameObject[] pieces = BLINDED_AM_ME.MeshCut.Cut(collision.gameObject, gameObject.transform.position, gameObject.transform.up, mat);
+
+            MeshCut cutter = gameObject.AddComponent<MeshCut>();
+
+            cutter.BeginCut(victim, transform.position, transform.right, capMaterial);
+
+            GameObject[] pieces = MeshCut.Cut(collision.gameObject, gameObject.transform.position, gameObject.transform.up, mat);
 
             foreach (GameObject piece in pieces)
             {
                 Rigidbody rb;
-                if(piece.GetComponent<Rigidbody>()) {
+                if (piece.GetComponent<Rigidbody>())
+                {
                     rb = piece.GetComponent<Rigidbody>();
                 }
 
-                else {
+                else
+                {
                     rb = piece.AddComponent<Rigidbody>();
                 }
 
