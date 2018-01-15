@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using CielaSpike;
+using VRTK;
 
 public class CanBeChopped: MonoBehaviour
 {
@@ -186,6 +187,11 @@ public class CanBeChopped: MonoBehaviour
 
         HandleCollisions(leftSideObj);
         HandleCollisions(rightSideObj);
+        CanBeChopped cbc = rightSideObj.AddComponent<CanBeChopped>();
+        cbc.capMaterial = this.capMaterial;
+
+        VRTK_InteractableObject vrtk_io = rightSideObj.AddComponent<VRTK_InteractableObject>();
+        vrtk_io.isGrabbable = true;
 
         yield return Ninja.JumpBack;
 
@@ -194,6 +200,8 @@ public class CanBeChopped: MonoBehaviour
 
     private void HandleCollisions(GameObject piece)
     {
+        piece.layer = 8;
+
         Rigidbody rb;
         if (piece.GetComponent<Rigidbody>())
         {
@@ -212,19 +220,19 @@ public class CanBeChopped: MonoBehaviour
             DestroyImmediate(piece.GetComponent<Collider>());
         }
 
-        float a = Time.realtimeSinceStartup;
-
         MeshCollider mc = piece.AddComponent<MeshCollider>();
+        mc.cookingOptions = MeshColliderCookingOptions.CookForFasterSimulation;
         mc.convex = true;
-
-        print(Time.realtimeSinceStartup - a);
 
         if (colliderError)
         {
+            piece.layer = 9;
             colliderError = false;
 
             DestroyImmediate(piece.GetComponent<MeshCollider>());
+            piece.AddComponent<BoxCollider>();
         }
+
 
         rb.isKinematic = false;
     }
