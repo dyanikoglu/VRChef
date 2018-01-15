@@ -18,6 +18,10 @@ public class CanBeChopped: MonoBehaviour
     private Vector3 anchorPoint;
     private Vector3 normalDirection;
     public Material capMaterial;
+    public bool canBeChopped = false;
+
+    private Vector3 collisionStartPoint;
+    private Vector3 collisionEndPoint;
 
     void OnEnable()
     {
@@ -49,6 +53,7 @@ public class CanBeChopped: MonoBehaviour
     /// </summary>
     IEnumerator Cut()
     {
+        print("Slice");
         yield return Ninja.JumpToUnity;
 
         // set the blade relative to victim
@@ -72,7 +77,6 @@ public class CanBeChopped: MonoBehaviour
 
         _leftSide = new Mesh_Maker();
         _rightSide = new Mesh_Maker();
-
 
         bool[] sides = new bool[3];
         int[] indices;
@@ -164,22 +168,23 @@ public class CanBeChopped: MonoBehaviour
 
         // assign the game objects
 
-        gameObject.name = "left side";
-        gameObject.GetComponent<MeshFilter>().mesh = left_HalfMesh;
-
-        GameObject leftSideObj = gameObject;
+        GameObject leftSideObj = new GameObject("left side", typeof(MeshFilter), typeof(MeshRenderer));
+        leftSideObj.transform.position = gameObject.transform.position;
+        leftSideObj.transform.rotation = gameObject.transform.rotation;
+        leftSideObj.GetComponent<MeshFilter>().mesh = left_HalfMesh;
 
         GameObject rightSideObj = new GameObject("right side", typeof(MeshFilter), typeof(MeshRenderer));
         rightSideObj.transform.position = gameObject.transform.position;
         rightSideObj.transform.rotation = gameObject.transform.rotation;
         rightSideObj.GetComponent<MeshFilter>().mesh = right_HalfMesh;
 
-        if (gameObject.transform.parent != null)
-        {
-            rightSideObj.transform.parent = gameObject.transform.parent;
-        }
+        //if (gameObject.transform.parent != null)
+        //{
+        //    rightSideObj.transform.parent = gameObject.transform.parent;
+        //}
 
         rightSideObj.transform.localScale = gameObject.transform.localScale;
+        leftSideObj.transform.localScale = gameObject.transform.localScale;
 
         // assign mats
         leftSideObj.GetComponent<MeshRenderer>().materials = mats;
@@ -189,18 +194,63 @@ public class CanBeChopped: MonoBehaviour
         HandleCollisions(rightSideObj);
         CanBeChopped cbc = rightSideObj.AddComponent<CanBeChopped>();
         cbc.capMaterial = this.capMaterial;
+        cbc = leftSideObj.AddComponent<CanBeChopped>();
+        cbc.capMaterial = this.capMaterial;
 
         VRTK_InteractableObject vrtk_io = rightSideObj.AddComponent<VRTK_InteractableObject>();
         vrtk_io.isGrabbable = true;
+        vrtk_io = leftSideObj.AddComponent<VRTK_InteractableObject>();
+        vrtk_io.isGrabbable = true;
+
+        Destroy(this.gameObject);
 
         yield return Ninja.JumpBack;
 
         yield break;
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.collider.gameObject.GetComponent<CanChop>() && canBeChopped)
+        {
+            GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+
+            //Vector3 avg = Vector3.zero;
+            //foreach(ContactPoint p in collision.contacts)
+            //{
+            //    avg += p.point;
+            //}
+
+            //avg /= collision.contacts.Length;
+
+            //collisionStartPoint = avg;
+        }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.collider.gameObject.GetComponent<CanChop>() && canBeChopped)
+        {
+            canBeChopped = false;
+            GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+
+            //Vector3 avg = Vector3.zero;
+            //foreach (ContactPoint p in collision.contacts)
+            //{
+            //    avg += p.point;
+            //}
+
+            //avg /= collision.contacts.Length;
+
+            //collisionEndPoint = avg;
+
+            BeginSlice(collision.collider.gameObject.transform.position, collision.collider.gameObject.transform.up );
+        }
+    }
+
     private void HandleCollisions(GameObject piece)
     {
-        piece.layer = 8;
+        //piece.layer = 8;
 
         Rigidbody rb;
         if (piece.GetComponent<Rigidbody>())
@@ -226,13 +276,12 @@ public class CanBeChopped: MonoBehaviour
 
         if (colliderError)
         {
-            piece.layer = 9;
+            //piece.layer = 9;
             colliderError = false;
 
             DestroyImmediate(piece.GetComponent<MeshCollider>());
             piece.AddComponent<BoxCollider>();
         }
-
 
         rb.isKinematic = false;
     }
@@ -559,4 +608,6 @@ public class CanBeChopped: MonoBehaviour
                 _capMatSub);
         }
     }
+
+    
 }
