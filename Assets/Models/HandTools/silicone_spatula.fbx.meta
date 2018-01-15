@@ -1,36 +1,24 @@
 fileFormatVersion: 2
-guid: df2445fee2d2a004b8d506abf432cabc
-timeCreated: 1516011687
+guid: fc5b54d2145248c41bfe7f032efcf08d
+timeCreated: 1516015693
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
     100000: //RootNode
-    100002: Mortaio
-    100004: Pestello
-    100006: Plane001
-    100008: TPhotometricLight001
-    100010: TPhotometricLight001.Target
+    100002: "\u041F\u043B\u043E\u0441\u043A\u043E\u0441\u0442\u044C"
+    100004: "\u041F\u043B\u043E\u0441\u043A\u043E\u0441\u0442\u044C.002"
     400000: //RootNode
-    400002: Mortaio
-    400004: Pestello
-    400006: Plane001
-    400008: TPhotometricLight001
-    400010: TPhotometricLight001.Target
-    2100000: 01 - Default
-    2100002: No Name
-    2300000: Mortaio
-    2300002: Pestello
-    2300004: Plane001
-    3300000: Mortaio
-    3300002: Pestello
-    3300004: Plane001
-    4300000: Mortaio
-    4300002: Pestello
-    4300004: Plane001
-    7400000: Take 001
-    9500000: //RootNode
-    10800000: TPhotometricLight001
+    400002: "\u041F\u043B\u043E\u0441\u043A\u043E\u0441\u0442\u044C"
+    400004: "\u041F\u043B\u043E\u0441\u043A\u043E\u0441\u0442\u044C.002"
+    2100000: "\u043B\u043E\u043F\u0430\u0442\u043A\u0430.001"
+    2100002: "\u0440\u0443\u0447\u043A\u0430"
+    2300000: "\u041F\u043B\u043E\u0441\u043A\u043E\u0441\u0442\u044C"
+    2300002: "\u041F\u043B\u043E\u0441\u043A\u043E\u0441\u0442\u044C.002"
+    3300000: "\u041F\u043B\u043E\u0441\u043A\u043E\u0441\u0442\u044C"
+    3300002: "\u041F\u043B\u043E\u0441\u043A\u043E\u0441\u0442\u044C.002"
+    4300000: "\u041F\u043B\u043E\u0441\u043A\u043E\u0441\u0442\u044C.002"
+    4300002: "\u041F\u043B\u043E\u0441\u043A\u043E\u0441\u0442\u044C"
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -105,7 +93,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  animationType: 0
   humanoidOversampling: 1
   additionalBone: 0
   userData: 

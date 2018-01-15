@@ -1,38 +1,18 @@
 fileFormatVersion: 2
-guid: 420a4a1f45bfd0548b2aab1a2fc4f6f8
-timeCreated: 1516011656
+guid: e34ddb947a728e944be4bfd0535837b6
+timeCreated: 1516046859
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
-    100000: PotatoA
-    100002: PotatoB
-    100004: PotatoC
-    100006: PotatoD
-    100008: PotatoE
-    100010: //RootNode
-    400000: PotatoA
-    400002: PotatoB
-    400004: PotatoC
-    400006: PotatoD
-    400008: PotatoE
-    400010: //RootNode
-    2100000: Potato
-    2300000: PotatoA
-    2300002: PotatoB
-    2300004: PotatoC
-    2300006: PotatoD
-    2300008: PotatoE
-    3300000: PotatoA
-    3300002: PotatoB
-    3300004: PotatoC
-    3300006: PotatoD
-    3300008: PotatoE
-    4300000: PotatoC
-    4300002: PotatoB
-    4300004: PotatoD
-    4300006: PotatoE
-    4300008: PotatoA
+    100000: //RootNode
+    400000: //RootNode
+    2100000: Stub__Color_jpg
+    2100002: Skin__Color_jpg
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: Orange
+    7400000: Default Take
     9500000: //RootNode
   externalObjects: {}
   materials:

@@ -1,16 +1,16 @@
 fileFormatVersion: 2
-guid: c14ac1d56578042439d658068d70de35
-timeCreated: 1516013739
+guid: 9faf072ec74c0eb45b702d10ec5c87e1
+timeCreated: 1516014073
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
     100000: //RootNode
     400000: //RootNode
-    2100000: Bowl
+    2100000: Potato
     2300000: //RootNode
     3300000: //RootNode
-    4300000: Bowl
+    4300000: PotatoA
   externalObjects: {}
   materials:
     importMaterials: 1
