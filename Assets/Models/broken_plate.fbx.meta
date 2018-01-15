@@ -1,0 +1,172 @@
+fileFormatVersion: 2
+guid: a764e791281b22546b54af9bfec88e28
+timeCreated: 1516042080
+licenseType: Free
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: low-plate_cell
+    100004: low-plate_cell.001
+    100006: low-plate_cell.002
+    100008: low-plate_cell.003
+    100010: low-plate_cell.004
+    100012: low-plate_cell.005
+    100014: low-plate_cell.006
+    100016: low-plate_cell.008
+    100018: low-plate_cell.009
+    100020: low-plate_cell.010
+    100022: low-plate_cell.011
+    100024: low-plate_cell.012
+    100026: low-plate_cell.013
+    100028: low-plate_cell.015
+    100030: low-plate_cell.016
+    100032: low-plate_cell.019
+    400000: //RootNode
+    400002: low-plate_cell
+    400004: low-plate_cell.001
+    400006: low-plate_cell.002
+    400008: low-plate_cell.003
+    400010: low-plate_cell.004
+    400012: low-plate_cell.005
+    400014: low-plate_cell.006
+    400016: low-plate_cell.008
+    400018: low-plate_cell.009
+    400020: low-plate_cell.010
+    400022: low-plate_cell.011
+    400024: low-plate_cell.012
+    400026: low-plate_cell.013
+    400028: low-plate_cell.015
+    400030: low-plate_cell.016
+    400032: low-plate_cell.019
+    2300000: low-plate_cell
+    2300002: low-plate_cell.001
+    2300004: low-plate_cell.002
+    2300006: low-plate_cell.003
+    2300008: low-plate_cell.004
+    2300010: low-plate_cell.005
+    2300012: low-plate_cell.006
+    2300014: low-plate_cell.008
+    2300016: low-plate_cell.009
+    2300018: low-plate_cell.010
+    2300020: low-plate_cell.011
+    2300022: low-plate_cell.012
+    2300024: low-plate_cell.013
+    2300026: low-plate_cell.015
+    2300028: low-plate_cell.016
+    2300030: low-plate_cell.019
+    3300000: low-plate_cell
+    3300002: low-plate_cell.001
+    3300004: low-plate_cell.002
+    3300006: low-plate_cell.003
+    3300008: low-plate_cell.004
+    3300010: low-plate_cell.005
+    3300012: low-plate_cell.006
+    3300014: low-plate_cell.008
+    3300016: low-plate_cell.009
+    3300018: low-plate_cell.010
+    3300020: low-plate_cell.011
+    3300022: low-plate_cell.012
+    3300024: low-plate_cell.013
+    3300026: low-plate_cell.015
+    3300028: low-plate_cell.016
+    3300030: low-plate_cell.019
+    4300000: low-plate_cell
+    4300002: low-plate_cell.001
+    4300004: low-plate_cell.002
+    4300006: low-plate_cell.003
+    4300008: low-plate_cell.004
+    4300010: low-plate_cell.005
+    4300012: low-plate_cell.006
+    4300014: low-plate_cell.008
+    4300016: low-plate_cell.009
+    4300018: low-plate_cell.010
+    4300020: low-plate_cell.011
+    4300022: low-plate_cell.012
+    4300024: low-plate_cell.013
+    4300026: low-plate_cell.015
+    4300028: low-plate_cell.016
+    4300030: low-plate_cell.019
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: plates
+    second: {fileID: 2100000, guid: c384d9c5691aea44e992a33588d69fad, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

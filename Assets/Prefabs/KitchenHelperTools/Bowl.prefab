@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 23318927767586438}
   - component: {fileID: 114248859426784092}
   m_Layer: 0
-  m_Name: bowl
+  m_Name: Bowl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
