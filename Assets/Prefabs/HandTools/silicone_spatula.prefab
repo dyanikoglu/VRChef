@@ -54,6 +54,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4776560419754668}
   - component: {fileID: 114109005721826842}
+  - component: {fileID: 114247532249267068}
   m_Layer: 0
   m_Name: silicone_spatula
   m_TagString: Untagged
@@ -216,3 +217,14 @@ MonoBehaviour:
   objectHighlighter: {fileID: 0}
   touchHighlightColor: {r: 0, g: 0, b: 0, a: 0}
   usingState: 0
+--- !u!114 &114247532249267068
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1722249322518450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08e7c5a07a0cbd041b9fbb2d6ee1ceb3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
