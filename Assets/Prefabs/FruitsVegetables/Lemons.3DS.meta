@@ -1,0 +1,147 @@
+fileFormatVersion: 2
+guid: b7b16b5c74e29214db202e3c3ebc91dc
+timeCreated: 1515950844
+licenseType: Free
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: Camera01
+    100002: Camera01.target
+    100004: desk
+    100006: Direct01.target
+    100008: leaf_01
+    100010: leaf_02
+    100012: leaf_03
+    100014: leaf_04
+    100016: LEMON_01
+    100018: LEMON_02
+    100020: LEMON_slic
+    100022: //RootNode
+    100024: plate
+    400000: Camera01
+    400002: Camera01.target
+    400004: desk
+    400006: Direct01.target
+    400008: leaf_01
+    400010: leaf_02
+    400012: leaf_03
+    400014: leaf_04
+    400016: LEMON_01
+    400018: LEMON_02
+    400020: LEMON_slic
+    400022: //RootNode
+    400024: plate
+    2100000: 06 - Default
+    2100002: 'Material #1'
+    2100004: 'Material #2'
+    2100006: 'Material #3'
+    2100008: leaf_standart
+    2100010: desk1
+    2100012: plate
+    2300000: desk
+    2300002: leaf_01
+    2300004: leaf_02
+    2300006: leaf_03
+    2300008: leaf_04
+    2300010: LEMON_01
+    2300012: LEMON_02
+    2300014: LEMON_slic
+    2300016: plate
+    3300000: desk
+    3300002: leaf_01
+    3300004: leaf_02
+    3300006: leaf_03
+    3300008: leaf_04
+    3300010: LEMON_01
+    3300012: LEMON_02
+    3300014: LEMON_slic
+    3300016: plate
+    4300000: LEMON_01
+    4300002: LEMON_slic
+    4300004: leaf_01
+    4300006: desk
+    4300008: LEMON_02
+    4300010: leaf_04
+    4300012: plate
+    4300014: leaf_03
+    4300016: leaf_02
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
