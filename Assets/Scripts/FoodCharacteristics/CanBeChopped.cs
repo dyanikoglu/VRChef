@@ -1,61 +1,47 @@
-﻿//    MIT License
-//    
-//    Copyright (c) 2017 Dustin Whirle & Doğa Can YANIKOĞLU
-//    
-//    Permission is hereby granted, free of charge, to any person obtaining a copy
-//    of this software and associated documentation files (the "Software"), to deal
-//    in the Software without restriction, including without limitation the rights
-//    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-//    copies of the Software, and to permit persons to whom the Software is
-//    furnished to do so, subject to the following conditions:
-//    
-//    The above copyright notice and this permission notice shall be included in all
-//    copies or substantial portions of the Software.
-//    
-//    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-//    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-//    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-//    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-//    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-//    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-//    SOFTWARE.
-
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using CielaSpike;
 
-public class MeshCut: MonoBehaviour
+public class CanBeChopped: MonoBehaviour
 {
     private static Mesh_Maker _leftSide = new Mesh_Maker();
     private static Mesh_Maker _rightSide = new Mesh_Maker();
-
     private static Plane _blade;
     private static Mesh _victim_mesh;
-
-    // capping stuff
     private static List<Vector3> _new_vertices = new List<Vector3>();
-
     private static int _capMatSub = 1;
 
-    private GameObject victim;
+    private bool colliderError = false;
+
     private Vector3 anchorPoint;
     private Vector3 normalDirection;
-    private Material capMaterial;
+    public Material capMaterial;
 
-    public GameObject left_obj;
-    public GameObject right_obj;
-
-    public void BeginSlice(GameObject victim, Vector3 anchorPoint, Vector3 normalDirection, Material capMaterial)
+    void OnEnable()
     {
-        this.victim = victim;
+        Application.logMessageReceived += HandleLog;
+    }
+    void OnDisable()
+    {
+        Application.logMessageReceived -= HandleLog;
+    }
+
+    void HandleLog(string logString, string stackTrace, LogType type)
+    {
+        if (logString.StartsWith("[Physics.PhysX]"))
+        {
+            colliderError = true;
+        }
+    }
+
+    public void BeginSlice(Vector3 anchorPoint, Vector3 normalDirection)
+    {
         this.anchorPoint = anchorPoint;
         this.normalDirection = normalDirection;
-        this.capMaterial = capMaterial;
 
         this.StartCoroutineAsync(Cut());
     }
-
 
     /// <summary>
     /// Cut the specified victim
@@ -65,11 +51,11 @@ public class MeshCut: MonoBehaviour
         yield return Ninja.JumpToUnity;
 
         // set the blade relative to victim
-        _blade = new Plane(victim.transform.InverseTransformDirection(-normalDirection),
-            victim.transform.InverseTransformPoint(anchorPoint));
+        _blade = new Plane(gameObject.transform.InverseTransformDirection(-normalDirection),
+            gameObject.transform.InverseTransformPoint(anchorPoint));
 
         // get the victims mesh
-        _victim_mesh = victim.GetComponent<MeshFilter>().mesh;
+        _victim_mesh = gameObject.GetComponent<MeshFilter>().mesh;
 
         Vector3[] victim_vertices = _victim_mesh.vertices;
         Vector3[] victim_normals = _victim_mesh.normals;
@@ -151,7 +137,7 @@ public class MeshCut: MonoBehaviour
 
         yield return Ninja.JumpToUnity;
         // The capping Material will be at the end
-        Material[] mats = victim.GetComponent<MeshRenderer>().sharedMaterials;
+        Material[] mats = gameObject.GetComponent<MeshRenderer>().sharedMaterials;
         if (mats[mats.Length - 1].name != capMaterial.name)
         {
             Material[] newMats = new Material[mats.Length + 1];
@@ -166,6 +152,7 @@ public class MeshCut: MonoBehaviour
         Capping();
 
         yield return Ninja.JumpToUnity;
+
         // Left Mesh
         Mesh left_HalfMesh = _leftSide.GetMesh();
         left_HalfMesh.name = "Split Mesh Left";
@@ -176,33 +163,70 @@ public class MeshCut: MonoBehaviour
 
         // assign the game objects
 
-        victim.name = "left side";
-        victim.GetComponent<MeshFilter>().mesh = left_HalfMesh;
+        gameObject.name = "left side";
+        gameObject.GetComponent<MeshFilter>().mesh = left_HalfMesh;
 
-        GameObject leftSideObj = victim;
+        GameObject leftSideObj = gameObject;
 
         GameObject rightSideObj = new GameObject("right side", typeof(MeshFilter), typeof(MeshRenderer));
-        rightSideObj.transform.position = victim.transform.position;
-        rightSideObj.transform.rotation = victim.transform.rotation;
+        rightSideObj.transform.position = gameObject.transform.position;
+        rightSideObj.transform.rotation = gameObject.transform.rotation;
         rightSideObj.GetComponent<MeshFilter>().mesh = right_HalfMesh;
 
-        if (victim.transform.parent != null)
+        if (gameObject.transform.parent != null)
         {
-            rightSideObj.transform.parent = victim.transform.parent;
+            rightSideObj.transform.parent = gameObject.transform.parent;
         }
 
-        rightSideObj.transform.localScale = victim.transform.localScale;
-
+        rightSideObj.transform.localScale = gameObject.transform.localScale;
 
         // assign mats
         leftSideObj.GetComponent<MeshRenderer>().materials = mats;
         rightSideObj.GetComponent<MeshRenderer>().materials = mats;
+
+        HandleCollisions(leftSideObj);
+        HandleCollisions(rightSideObj);
+
         yield return Ninja.JumpBack;
 
-        left_obj = leftSideObj;
-        right_obj = rightSideObj;
-
         yield break;
+    }
+
+    private void HandleCollisions(GameObject piece)
+    {
+        Rigidbody rb;
+        if (piece.GetComponent<Rigidbody>())
+        {
+            rb = piece.GetComponent<Rigidbody>();
+        }
+
+        else
+        {
+            rb = piece.AddComponent<Rigidbody>();
+        }
+
+        rb.isKinematic = true;
+
+        if (piece.GetComponent<Collider>())
+        {
+            DestroyImmediate(piece.GetComponent<Collider>());
+        }
+
+        float a = Time.realtimeSinceStartup;
+
+        MeshCollider mc = piece.AddComponent<MeshCollider>();
+        mc.convex = true;
+
+        print(Time.realtimeSinceStartup - a);
+
+        if (colliderError)
+        {
+            colliderError = false;
+
+            DestroyImmediate(piece.GetComponent<MeshCollider>());
+        }
+
+        rb.isKinematic = false;
     }
 
     private void Cut_this_Face(
