@@ -4,8 +4,8 @@ using System.Collections.Generic;
 using CielaSpike;
 using VRTK;
 using VRTK.GrabAttachMechanics;
-
-public class CanBeChopped: MonoBehaviour
+    
+public class CanBeChopped : FoodCharacteristic
 {
     private Mesh_Maker _leftSide = new Mesh_Maker();
     private Mesh_Maker _rightSide = new Mesh_Maker();
@@ -13,64 +13,75 @@ public class CanBeChopped: MonoBehaviour
     private Mesh _victim_mesh;
     private List<Vector3> _new_vertices = new List<Vector3>();
     private int _capMatSub = 1;
+    private Vector3 _anchorPoint;
+    private Vector3 _normalDirection;
+    private bool _canBeChopped = false;
+    private bool _colliderError = false;
+    private List<Vector3> capVertTracker = new List<Vector3>();
+    private List<Vector3> capVertpolygon = new List<Vector3>();
 
-    private bool colliderError = false;
-
-    private Vector3 anchorPoint;
-    private Vector3 normalDirection;
     public Material capMaterial;
-    public bool canBeChopped = false;
+    public int sliceTimeout = 1;
+    public bool startAsChoppable = false;
+    public float colliderSkinWidth = 0.001f;
+    public float newPieceMassMultiplier = 0.5f;
+    public bool detachChildrenOnSlice = true;
 
-    private Vector3 collisionStartPoint;
-    private Vector3 collisionEndPoint;
 
     private void Start()
     {
-        StartCoroutine(EnableSlicing());
-    }
-
-    IEnumerator EnableSlicing()
-    {
-        yield return new WaitForSeconds(1);
-        canBeChopped = true;
-    }
-
-    void OnEnable()
-    {
-        Application.logMessageReceived += HandleLog;
-    }
-    void OnDisable()
-    {
-        Application.logMessageReceived -= HandleLog;
-    }
-
-    void HandleLog(string logString, string stackTrace, LogType type)
-    {
-        if (logString.StartsWith("[Physics.PhysX]"))
+        if (!startAsChoppable)
         {
-            colliderError = true;
+            StartCoroutine(SliceTimeout());
+        }
+        else
+        {
+            _canBeChopped = true;
         }
     }
 
-    public void BeginSlice(Vector3 anchorPoint, Vector3 normalDirection)
+    private IEnumerator SliceTimeout()
     {
-        this.anchorPoint = anchorPoint;
-        this.normalDirection = normalDirection;
-
-        this.StartCoroutineAsync(Cut());
-        StartCoroutine(EnableSlicing());
+        yield return new WaitForSeconds(sliceTimeout);
+        _canBeChopped = true;
     }
 
-    /// <summary>
-    /// Cut the specified victim
-    /// </summary>
+    private void BeginSlice(Vector3 anchorPoint, Vector3 normalDirection)
+    {
+        this._anchorPoint = anchorPoint;
+        this._normalDirection = normalDirection;
+
+        if (detachChildrenOnSlice && transform.childCount != 0)
+        {
+            foreach (Transform child in transform)
+            {
+                // If this is a child with mesh, detach it from the parent.
+                if (child.GetComponent<MeshFilter>())
+                {
+                    child.parent = null;
+                    MeshCollider cmc = child.gameObject.AddComponent<MeshCollider>();
+                    cmc.cookingOptions = MeshColliderCookingOptions.InflateConvexMesh;
+                    cmc.skinWidth = colliderSkinWidth;
+                    cmc.convex = true;
+                    child.gameObject.AddComponent<Rigidbody>();
+                }
+            }
+        }
+
+        // Run the cpu-heavy object cutting process async from script execution. This multithreaded solution resolves most of freezing problems in game. 
+        this.StartCoroutineAsync(Cut());
+        
+        StartCoroutine(SliceTimeout());
+    }
+
     IEnumerator Cut()
     {
+        // Jump to main thread for running UNITY API calls
         yield return Ninja.JumpToUnity;
 
         // set the blade relative to victim
-        _blade = new Plane(gameObject.transform.InverseTransformDirection(-normalDirection),
-            gameObject.transform.InverseTransformPoint(anchorPoint));
+        _blade = new Plane(gameObject.transform.InverseTransformDirection(-_normalDirection),
+            gameObject.transform.InverseTransformPoint(_anchorPoint));
 
         // get the victims mesh
         _victim_mesh = gameObject.GetComponent<MeshFilter>().mesh;
@@ -82,6 +93,7 @@ public class CanBeChopped: MonoBehaviour
 
         int subMeshCount = _victim_mesh.subMeshCount;
 
+        // Jump back to background thread to do heavy processes.
         yield return Ninja.JumpBack;
 
         // reset values
@@ -96,7 +108,8 @@ public class CanBeChopped: MonoBehaviour
 
 
         // go throught the submeshes
-        for (int sub = 0; sub < subMeshCount; sub++) {
+        for (int sub = 0; sub < subMeshCount; sub++)
+        {
 
             yield return Ninja.JumpToUnity;
             indices = _victim_mesh.GetTriangles(sub);
@@ -151,8 +164,9 @@ public class CanBeChopped: MonoBehaviour
             }
         }
 
-
+        // Jump to main thread for running UNITY API calls
         yield return Ninja.JumpToUnity;
+
         // The capping Material will be at the end
         Material[] mats = gameObject.GetComponent<MeshRenderer>().sharedMaterials;
         if (mats[mats.Length - 1].name != capMaterial.name)
@@ -200,16 +214,20 @@ public class CanBeChopped: MonoBehaviour
         leftSideObj.GetComponent<MeshRenderer>().materials = mats;
         rightSideObj.GetComponent<MeshRenderer>().materials = mats;
 
+        // Handle new colliders of left & right pieces
         HandleCollisions(leftSideObj);
         HandleCollisions(rightSideObj);
+
+        // Create required components & set parameters on right piece
         CanBeChopped cbc = rightSideObj.AddComponent<CanBeChopped>();
         cbc.capMaterial = this.capMaterial;
 
         VRTK_InteractableObject vrtk_io = rightSideObj.AddComponent<VRTK_InteractableObject>();
-        VRTK_ChildOfControllerGrabAttach vrtk_ga = rightSideObj.AddComponent<VRTK_ChildOfControllerGrabAttach>();
+        VRTK_ChildOfControllerGrabAttach vrtk_ccga = rightSideObj.AddComponent<VRTK_ChildOfControllerGrabAttach>();
         vrtk_io.isGrabbable = true;
-        vrtk_ga.precisionGrab = true;
+        vrtk_ccga.precisionGrab = true;
 
+        // End thread
         yield return Ninja.JumpBack;
 
         yield break;
@@ -217,7 +235,8 @@ public class CanBeChopped: MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.collider.gameObject.GetComponent<CanChop>() && canBeChopped)
+        // Freeze this object when knife collides.
+        if (collision.collider.gameObject.GetComponent<CanChop>() && _canBeChopped)
         {
             GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
         }
@@ -225,52 +244,40 @@ public class CanBeChopped: MonoBehaviour
 
     private void OnCollisionExit(Collision collision)
     {
-        if (collision.collider.gameObject.GetComponent<CanChop>() && canBeChopped)
+        // Unfreeze this object when knife collision ends, also begin slicing process.
+        if (collision.collider.gameObject.GetComponent<CanChop>() && _canBeChopped)
         {
-            canBeChopped = false;
+            // Block new chopping requests until current one ends.
+            _canBeChopped = false;
+
             GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
 
-            BeginSlice(collision.collider.gameObject.transform.position, collision.collider.gameObject.transform.up );
+            // Slice object using knife's current position & rotation
+            BeginSlice(collision.collider.gameObject.transform.position, collision.collider.gameObject.transform.up);
         }
     }
 
     private void HandleCollisions(GameObject piece)
     {
-        Rigidbody rb;
-        if (piece.GetComponent<Rigidbody>())
+        if (!piece.GetComponent<Rigidbody>())
         {
-            rb = piece.GetComponent<Rigidbody>();
+            Rigidbody rb = piece.AddComponent<Rigidbody>();
+            rb.mass = GetComponent<Rigidbody>().mass * newPieceMassMultiplier;
         }
 
-        else
-        {
-            rb = piece.AddComponent<Rigidbody>();
-            rb.mass = 500;
-            rb.drag = 2.5f;
-        }
-
-        rb.isKinematic = true;
-
+        // Reset mesh collider
         if (piece.GetComponent<Collider>())
         {
-            DestroyImmediate(piece.GetComponent<Collider>());
+            Destroy(piece.GetComponent<Collider>());
         }
 
         MeshCollider mc = piece.AddComponent<MeshCollider>();
-        mc.cookingOptions = MeshColliderCookingOptions.CookForFasterSimulation;
+        mc.skinWidth = colliderSkinWidth;
+        mc.cookingOptions = MeshColliderCookingOptions.InflateConvexMesh;
         mc.convex = true;
-
-        if (colliderError)
-        {
-            colliderError = false;
-
-            DestroyImmediate(piece.GetComponent<MeshCollider>());
-            piece.AddComponent<BoxCollider>();
-        }
-
-        rb.isKinematic = false;
     }
 
+    #region ComplexMeshCuttingStuff
     private void Cut_this_Face(
         Vector3[] vertices,
         Vector3[] normals,
@@ -483,9 +490,6 @@ public class CanBeChopped: MonoBehaviour
 
     }
 
-    private List<Vector3> capVertTracker = new List<Vector3>();
-    private List<Vector3> capVertpolygon = new List<Vector3>();
-
     private void Capping()
     {
         capVertTracker.Clear();
@@ -594,5 +598,5 @@ public class CanBeChopped: MonoBehaviour
         }
     }
 
-    
+    #endregion
 }
