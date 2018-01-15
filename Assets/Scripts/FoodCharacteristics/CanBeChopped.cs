@@ -259,11 +259,20 @@ public class CanBeChopped : FoodCharacteristic
 
     private void HandleCollisions(GameObject piece)
     {
+        Rigidbody rb;
+
         if (!piece.GetComponent<Rigidbody>())
         {
-            Rigidbody rb = piece.AddComponent<Rigidbody>();
+            rb = piece.AddComponent<Rigidbody>();
             rb.mass = GetComponent<Rigidbody>().mass * newPieceMassMultiplier;
         }
+
+        else
+        {
+            rb = piece.GetComponent<Rigidbody>();
+        }
+
+        rb.isKinematic = true;
 
         // Reset mesh collider
         if (piece.GetComponent<Collider>())
@@ -273,8 +282,10 @@ public class CanBeChopped : FoodCharacteristic
 
         MeshCollider mc = piece.AddComponent<MeshCollider>();
         mc.skinWidth = colliderSkinWidth;
-        mc.cookingOptions = MeshColliderCookingOptions.InflateConvexMesh;
+        mc.cookingOptions = MeshColliderCookingOptions.InflateConvexMesh | MeshColliderCookingOptions.CookForFasterSimulation | MeshColliderCookingOptions.WeldColocatedVertices | MeshColliderCookingOptions.EnableMeshCleaning;
         mc.convex = true;
+
+        rb.isKinematic = false;
     }
 
     #region ComplexMeshCuttingStuff
