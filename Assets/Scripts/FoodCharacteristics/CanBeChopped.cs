@@ -15,35 +15,39 @@ public class CanBeChopped : FoodCharacteristic
     private int _capMatSub = 1;
     private Vector3 _anchorPoint;
     private Vector3 _normalDirection;
-    private bool _canBeChopped = false;
-    private bool _colliderError = false;
-    private List<Vector3> capVertTracker = new List<Vector3>();
-    private List<Vector3> capVertpolygon = new List<Vector3>();
+    private bool _onDelay = true;
+    private bool _currentlyChoppable;
+    private List<Vector3> _capVertTracker = new List<Vector3>();
+    private List<Vector3> _capVertpolygon = new List<Vector3>();
+    private GameObject _rootObject = null;
+  
 
     public Material capMaterial;
-    public int sliceTimeout = 1;
+    public float sliceTimeout = 0.5f;
     public bool startAsChoppable = false;
     public float colliderSkinWidth = 0.001f;
     public float newPieceMassMultiplier = 0.5f;
     public bool detachChildrenOnSlice = true;
+    public bool canBeChoppedWhileOnHand = true;
+    public GameObject rootObjectAfterSlice;
 
 
     private void Start()
     {
-        if (!startAsChoppable)
+        if (startAsChoppable)
         {
-            StartCoroutine(SliceTimeout());
+            _currentlyChoppable = true;
         }
         else
         {
-            _canBeChopped = true;
+            _currentlyChoppable = false;
         }
     }
 
-    private IEnumerator SliceTimeout()
+    private IEnumerator SliceDelay()
     {
         yield return new WaitForSeconds(sliceTimeout);
-        _canBeChopped = true;
+        _onDelay = true;
     }
 
     private void BeginSlice(Vector3 anchorPoint, Vector3 normalDirection)
@@ -51,6 +55,15 @@ public class CanBeChopped : FoodCharacteristic
         this._anchorPoint = anchorPoint;
         this._normalDirection = normalDirection;
 
+        // Set a root object for all sliced pieces
+        if (this._rootObject == null)
+        {
+            _rootObject = Instantiate(rootObjectAfterSlice, this.transform.position, Quaternion.identity);
+            _rootObject.name = this.gameObject.name + "_Sliced";
+            this.transform.SetParent(_rootObject.transform);
+        }
+
+        // Detach children meshes from object, if it exists
         if (detachChildrenOnSlice && transform.childCount != 0)
         {
             foreach (Transform child in transform)
@@ -58,7 +71,7 @@ public class CanBeChopped : FoodCharacteristic
                 // If this is a child with mesh, detach it from the parent.
                 if (child.GetComponent<MeshFilter>())
                 {
-                    child.parent = null;
+                    child.SetParent(_rootObject.transform);
                     MeshCollider cmc = child.gameObject.AddComponent<MeshCollider>();
                     cmc.cookingOptions = MeshColliderCookingOptions.InflateConvexMesh;
                     cmc.skinWidth = colliderSkinWidth;
@@ -71,9 +84,20 @@ public class CanBeChopped : FoodCharacteristic
         // Run the cpu-heavy object cutting process async from script execution. This multithreaded solution resolves most of freezing problems in game. 
         this.StartCoroutineAsync(Cut());
         
-        StartCoroutine(SliceTimeout());
+        StartCoroutine(SliceDelay());
     }
 
+    public bool ChopAvailability()
+    {
+        if(GetIsGrabbed() && !canBeChoppedWhileOnHand)
+        {
+            return false;
+        }
+
+        return _onDelay && _currentlyChoppable;
+    }
+
+    // TODO Fix capping material UV-Map
     IEnumerator Cut()
     {
         // Jump to main thread for running UNITY API calls
@@ -218,14 +242,23 @@ public class CanBeChopped : FoodCharacteristic
         HandleCollisions(leftSideObj);
         HandleCollisions(rightSideObj);
 
-        // Create required components & set parameters on right piece
+        // Create required components & set parameters on right piece, copy component values to new one.
         CanBeChopped cbc = rightSideObj.AddComponent<CanBeChopped>();
         cbc.capMaterial = this.capMaterial;
+        cbc.sliceTimeout = this.sliceTimeout;
+        cbc.startAsChoppable = this.startAsChoppable;
+        cbc.colliderSkinWidth = this.colliderSkinWidth;
+        cbc.detachChildrenOnSlice = this.detachChildrenOnSlice;
+        cbc.newPieceMassMultiplier = this.newPieceMassMultiplier;
+        cbc.canBeChoppedWhileOnHand = this.canBeChoppedWhileOnHand;
+        cbc._rootObject = this._rootObject;
+        //
+
 
         VRTK_InteractableObject vrtk_io = rightSideObj.AddComponent<VRTK_InteractableObject>();
-        VRTK_ChildOfControllerGrabAttach vrtk_ccga = rightSideObj.AddComponent<VRTK_ChildOfControllerGrabAttach>();
+        VRTK_FixedJointGrabAttach vrtk_fjga = rightSideObj.AddComponent<VRTK_FixedJointGrabAttach>(); 
         vrtk_io.isGrabbable = true;
-        vrtk_ccga.precisionGrab = true;
+        vrtk_fjga.precisionGrab = true;
 
         // End thread
         yield return Ninja.JumpBack;
@@ -235,8 +268,10 @@ public class CanBeChopped : FoodCharacteristic
 
     private void OnCollisionEnter(Collision collision)
     {
+        CanChop slicerComponent = collision.collider.gameObject.GetComponent<CanChop>();
+
         // Freeze this object when knife collides.
-        if (collision.collider.gameObject.GetComponent<CanChop>() && _canBeChopped)
+        if (slicerComponent && slicerComponent.GetComponent<CanChop>().IsToolAvailable() && ChopAvailability())
         {
             GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
         }
@@ -244,11 +279,13 @@ public class CanBeChopped : FoodCharacteristic
 
     private void OnCollisionExit(Collision collision)
     {
+        CanChop slicerComponent = collision.collider.gameObject.GetComponent<CanChop>();
+
         // Unfreeze this object when knife collision ends, also begin slicing process.
-        if (collision.collider.gameObject.GetComponent<CanChop>() && _canBeChopped)
+        if (slicerComponent && slicerComponent.GetComponent<CanChop>().IsToolAvailable() && ChopAvailability())
         {
             // Block new chopping requests until current one ends.
-            _canBeChopped = false;
+            _onDelay = false;
 
             GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
 
@@ -503,17 +540,17 @@ public class CanBeChopped : FoodCharacteristic
 
     private void Capping()
     {
-        capVertTracker.Clear();
+        _capVertTracker.Clear();
 
         for (int i = 0; i < _new_vertices.Count; i++)
-            if (!capVertTracker.Contains(_new_vertices[i]))
+            if (!_capVertTracker.Contains(_new_vertices[i]))
             {
-                capVertpolygon.Clear();
-                capVertpolygon.Add(_new_vertices[i]);
-                capVertpolygon.Add(_new_vertices[i + 1]);
+                _capVertpolygon.Clear();
+                _capVertpolygon.Add(_new_vertices[i]);
+                _capVertpolygon.Add(_new_vertices[i + 1]);
 
-                capVertTracker.Add(_new_vertices[i]);
-                capVertTracker.Add(_new_vertices[i + 1]);
+                _capVertTracker.Add(_new_vertices[i]);
+                _capVertTracker.Add(_new_vertices[i + 1]);
 
 
                 bool isDone = false;
@@ -524,25 +561,25 @@ public class CanBeChopped : FoodCharacteristic
                     for (int k = 0; k < _new_vertices.Count; k += 2)
                     { // go through the pairs
 
-                        if (_new_vertices[k] == capVertpolygon[capVertpolygon.Count - 1] && !capVertTracker.Contains(_new_vertices[k + 1]))
+                        if (_new_vertices[k] == _capVertpolygon[_capVertpolygon.Count - 1] && !_capVertTracker.Contains(_new_vertices[k + 1]))
                         { // if so add the other
 
                             isDone = false;
-                            capVertpolygon.Add(_new_vertices[k + 1]);
-                            capVertTracker.Add(_new_vertices[k + 1]);
+                            _capVertpolygon.Add(_new_vertices[k + 1]);
+                            _capVertTracker.Add(_new_vertices[k + 1]);
 
                         }
-                        else if (_new_vertices[k + 1] == capVertpolygon[capVertpolygon.Count - 1] && !capVertTracker.Contains(_new_vertices[k]))
+                        else if (_new_vertices[k + 1] == _capVertpolygon[_capVertpolygon.Count - 1] && !_capVertTracker.Contains(_new_vertices[k]))
                         {// if so add the other
 
                             isDone = false;
-                            capVertpolygon.Add(_new_vertices[k]);
-                            capVertTracker.Add(_new_vertices[k]);
+                            _capVertpolygon.Add(_new_vertices[k]);
+                            _capVertTracker.Add(_new_vertices[k]);
                         }
                     }
                 }
 
-                FillCap(capVertpolygon);
+                FillCap(_capVertpolygon);
             }
 
     }

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using VRTK;
 
 public class FoodCharacteristic : MonoBehaviour {
 
@@ -13,4 +14,9 @@ public class FoodCharacteristic : MonoBehaviour {
 	void Update () {
 		
 	}
+
+    public bool GetIsGrabbed()
+    {
+        return GetComponent<VRTK_InteractableObject>().IsGrabbed();
+    }
 }

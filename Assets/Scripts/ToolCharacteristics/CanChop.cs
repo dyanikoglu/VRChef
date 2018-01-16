@@ -1,12 +1,19 @@
-﻿public class CanChop : ToolCharacteristic {
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+public class CanChop : ToolCharacteristic {
+    public bool chopOnlyWhileToolOnHand = true;
+
+    public bool IsToolAvailable()
+    {
+        if (chopOnlyWhileToolOnHand && !GetIsGrabbed())
+        {
+            return false;
+        }
+
+        return true;
+    }
+
+    // TODO Override OnGrab event, and add time delay for chopping stuff on first grab.
 }

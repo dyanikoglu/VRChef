@@ -9,18 +9,41 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1996887622363422}
+  m_RootGameObject: {fileID: 1423970086926068}
   m_IsPrefabParent: 1
---- !u!1 &1649220709526520
+--- !u!1 &1423970086926068
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4753932433293272}
-  - component: {fileID: 33140530525958592}
-  - component: {fileID: 23299853850227932}
+  - component: {fileID: 4282117001641132}
+  - component: {fileID: 33712554003082350}
+  - component: {fileID: 23292760606514494}
+  - component: {fileID: 54186711940971072}
+  - component: {fileID: 114514447743051098}
+  - component: {fileID: 114629408866117372}
+  - component: {fileID: 114579180465666692}
+  - component: {fileID: 135579182131881338}
+  - component: {fileID: 114928285996716486}
+  m_Layer: 0
+  m_Name: Tomato
+  m_TagString: Choppable
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1803157172083576
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4365083956845626}
+  - component: {fileID: 33345378969006068}
+  - component: {fileID: 23541906636032644}
   m_Layer: 0
   m_Name: Leaf
   m_TagString: Untagged
@@ -28,96 +51,39 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1996887622363422
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 4034860116930396}
-  - component: {fileID: 33579504764112520}
-  - component: {fileID: 23794746951600718}
-  - component: {fileID: 54570210819884050}
-  - component: {fileID: 114968550097307922}
-  - component: {fileID: 114361749804045520}
-  - component: {fileID: 114554426474951620}
-  - component: {fileID: 114358083289750636}
-  - component: {fileID: 135172786821107078}
-  m_Layer: 0
-  m_Name: Tomato_Prefab
-  m_TagString: Choppable
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4034860116930396
+--- !u!4 &4282117001641132
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1996887622363422}
+  m_GameObject: {fileID: 1423970086926068}
   m_LocalRotation: {x: -0.0063267415, y: -0.7070785, z: -0.7070785, w: 0.0063267415}
-  m_LocalPosition: {x: -0.268, y: 1.219, z: 0.269}
+  m_LocalPosition: {x: -0.268, y: 1.236, z: 0.269}
   m_LocalScale: {x: 1.2535362, y: 1.2535344, z: 1.2535344}
   m_Children:
-  - {fileID: 4753932433293272}
+  - {fileID: 4365083956845626}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -90.00001, y: 0, z: -178.975}
---- !u!4 &4753932433293272
+--- !u!4 &4365083956845626
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1649220709526520}
+  m_GameObject: {fileID: 1803157172083576}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -0, z: 0.0247}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 4034860116930396}
+  m_Father: {fileID: 4282117001641132}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &23299853850227932
+--- !u!23 &23292760606514494
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1649220709526520}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_Materials:
-  - {fileID: 2100000, guid: 414e4f7be9bc1254c8a9befc1acb9b0a, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
---- !u!23 &23794746951600718
-MeshRenderer:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1996887622363422}
+  m_GameObject: {fileID: 1423970086926068}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -146,26 +112,60 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!33 &33140530525958592
+--- !u!23 &23541906636032644
+MeshRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1803157172083576}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 2100000, guid: 414e4f7be9bc1254c8a9befc1acb9b0a, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!33 &33345378969006068
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1649220709526520}
+  m_GameObject: {fileID: 1803157172083576}
   m_Mesh: {fileID: 4300002, guid: ae6df79f0ad69d34b8a3ba149d2ce757, type: 3}
---- !u!33 &33579504764112520
+--- !u!33 &33712554003082350
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1996887622363422}
+  m_GameObject: {fileID: 1423970086926068}
   m_Mesh: {fileID: 4300000, guid: ae6df79f0ad69d34b8a3ba149d2ce757, type: 3}
---- !u!54 &54570210819884050
+--- !u!54 &54186711940971072
 Rigidbody:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1996887622363422}
+  m_GameObject: {fileID: 1423970086926068}
   serializedVersion: 2
   m_Mass: 0.5
   m_Drag: 0
@@ -175,23 +175,43 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114358083289750636
+--- !u!114 &114514447743051098
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1996887622363422}
+  m_GameObject: {fileID: 1423970086926068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 245aa739fea004bcaa2da96fef6f8599, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  capMaterial: {fileID: 2100000, guid: b59228fbdc0bd2a48ab7549e79dd45a5, type: 2}
+  sliceTimeout: 0.5
+  startAsChoppable: 1
+  colliderSkinWidth: 0.0001
+  newPieceMassMultiplier: 0.5
+  detachChildrenOnSlice: 1
+  canBeChoppedWhileOnHand: 1
+  rootObjectAfterSlice: {fileID: 1585260972204234, guid: 5f8fbf704cd6e0d4a92f39272ea99503,
+    type: 2}
+--- !u!114 &114579180465666692
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1423970086926068}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 18055ba762aa3994f9c10208cd088bc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114361749804045520
+--- !u!114 &114629408866117372
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1996887622363422}
+  m_GameObject: {fileID: 1423970086926068}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a3abaf4521bf2344ea21ed3020b98eb2, type: 3}
@@ -218,46 +238,31 @@ MonoBehaviour:
   objectHighlighter: {fileID: 0}
   touchHighlightColor: {r: 0, g: 0, b: 0, a: 0}
   usingState: 0
---- !u!114 &114554426474951620
+--- !u!114 &114928285996716486
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1996887622363422}
+  m_GameObject: {fileID: 1423970086926068}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5ec2ac476f2fc9a45a4e69712580a603, type: 3}
+  m_Script: {fileID: 11500000, guid: 8afa0b205791c9f4496bf2814aeac078, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   precisionGrab: 1
   rightSnapHandle: {fileID: 0}
   leftSnapHandle: {fileID: 0}
-  throwVelocityWithAttachDistance: 1
+  throwVelocityWithAttachDistance: 0
   throwMultiplier: 1
   onGrabCollisionDelay: 0
---- !u!114 &114968550097307922
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1996887622363422}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 245aa739fea004bcaa2da96fef6f8599, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  capMaterial: {fileID: 2100000, guid: b59228fbdc0bd2a48ab7549e79dd45a5, type: 2}
-  sliceTimeout: 1
-  startAsChoppable: 0
-  colliderSkinWidth: 0.001
-  newPieceMassMultiplier: 0.5
-  detachChildrenOnSlice: 1
---- !u!135 &135172786821107078
+  destroyImmediatelyOnThrow: 1
+  breakForce: 1500
+--- !u!135 &135579182131881338
 SphereCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1996887622363422}
+  m_GameObject: {fileID: 1423970086926068}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
