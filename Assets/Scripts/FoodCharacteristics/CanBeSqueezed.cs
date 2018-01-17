@@ -9,6 +9,8 @@ public class CanBeSqueezed : FoodCharacteristic
     private string myTag = "Squeezable";
     public Texture2D original;
     public Texture2D squeezedTexture;
+    private bool canSpin;
+    private GameObject currentSqueezer;
 
     private void Awake()
     {
@@ -19,6 +21,7 @@ public class CanBeSqueezed : FoodCharacteristic
     void Start()
     {
         gameObject.tag = myTag;
+        canSpin = false;
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -26,8 +29,21 @@ public class CanBeSqueezed : FoodCharacteristic
         Debug.Log("collide");
         if (collision.gameObject.CompareTag("Squeezer"))
         {
+            currentSqueezer = collision.gameObject;
             Debug.Log("with squeezer");
-            gameObject.GetComponent<Renderer>().materials[1].mainTexture = squeezedTexture;
+            GetComponent<Renderer>().materials[1].mainTexture = squeezedTexture;
+           // transform.eulerAngles = new Vector3(180, transform.eulerAngles.y, 0);
+            canSpin = true;
+        }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Squeezer"))
+        {
+            Debug.Log("collision end with squeezer");
+            canSpin = false;
+           // currentSqueezer.GetComponent<CapsuleCollider>().isTrigger = false;
         }
     }
 
@@ -35,5 +51,16 @@ public class CanBeSqueezed : FoodCharacteristic
     void Update()
     {
 
+        if ((OVRInput.Get(OVRInput.Button.Four) || OVRInput.Get(OVRInput.Button.Two)))
+        {
+            if (canSpin) //&& GetIsGrabbed())
+            {
+                //currentSqueezer.GetComponent<CapsuleCollider>().isTrigger = false;
+                //transform.eulerAngles = new Vector3(180, transform.eulerAngles.y, 0);
+                transform.Rotate(Vector3.up * Time.deltaTime, 5);
+            }
+        }
+
+       
     }
 }
