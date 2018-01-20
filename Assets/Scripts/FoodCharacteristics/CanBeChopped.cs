@@ -30,6 +30,7 @@ public class CanBeChopped : FoodCharacteristic
     public bool detachChildrenOnSlice = true;
     public bool canBeChoppedWhileOnHand = true;
     public GameObject rootObjectAfterSlice;
+    public AudioClip[] soundBoard;
 
 
     private void Start()
@@ -48,6 +49,8 @@ public class CanBeChopped : FoodCharacteristic
     {
         yield return new WaitForSeconds(sliceTimeout);
         _onDelay = true;
+
+        
     }
 
     private void BeginSlice(Vector3 anchorPoint, Vector3 normalDirection)
@@ -271,9 +274,10 @@ public class CanBeChopped : FoodCharacteristic
         CanChop slicerComponent = collision.collider.gameObject.GetComponent<CanChop>();
 
         // Freeze this object when knife collides.
-        if (slicerComponent && slicerComponent.GetComponent<CanChop>().IsToolAvailable() && ChopAvailability())
+        if (slicerComponent && slicerComponent.IsToolAvailable() && ChopAvailability())
         {
             GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+            slicerComponent.currentChoppingObjectCount++;
         }
     }
 
@@ -282,12 +286,14 @@ public class CanBeChopped : FoodCharacteristic
         CanChop slicerComponent = collision.collider.gameObject.GetComponent<CanChop>();
 
         // Unfreeze this object when knife collision ends, also begin slicing process.
-        if (slicerComponent && slicerComponent.GetComponent<CanChop>().IsToolAvailable() && ChopAvailability())
+        if (slicerComponent && slicerComponent.IsToolAvailable() && ChopAvailability())
         {
             // Block new chopping requests until current one ends.
             _onDelay = false;
 
             GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+
+            slicerComponent.currentChoppingObjectCount--;
 
             // Slice object using knife's current position & rotation
             BeginSlice(collision.collider.gameObject.transform.position, collision.collider.gameObject.transform.up);
