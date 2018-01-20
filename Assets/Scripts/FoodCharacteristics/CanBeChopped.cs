@@ -19,7 +19,8 @@ public class CanBeChopped : FoodCharacteristic
     private List<Vector3> _capVertTracker = new List<Vector3>();
     private List<Vector3> _capVertpolygon = new List<Vector3>();
     private GameObject _rootObject = null;
-    private int prevPlayedSFX = 0;
+    private int _prevPlayedSFX = 0;
+    private bool _startedChopping = false;
 
     public Material capMaterial;
     public float sliceTimeout = 0.5f;
@@ -30,6 +31,12 @@ public class CanBeChopped : FoodCharacteristic
     public bool canBeChoppedWhileOnHand = true;
     public GameObject rootObjectAfterSlice;
     public AudioClip[] choppingSoundBoard;
+    public float smallerAllowedPieceVolume = 0.0001f;
+
+    public void Start()
+    {
+        StartCoroutine(SliceDelay());
+    }
 
     private IEnumerator SliceDelay()
     {
@@ -70,18 +77,7 @@ public class CanBeChopped : FoodCharacteristic
 
         // Run the cpu-heavy object cutting process async from script execution. This multithreaded solution resolves most of freezing problems in game. 
         this.StartCoroutineAsync(Cut());
-
         StartCoroutine(SliceDelay());
-    }
-
-    public bool ChopAvailability()
-    {
-        if (GetIsGrabbed() && !canBeChoppedWhileOnHand)
-        {
-            return false;
-        }
-
-        return _onDelay && currentlyChoppable;
     }
 
     // TODO Fix capping material UV-Map
@@ -239,6 +235,7 @@ public class CanBeChopped : FoodCharacteristic
         cbc.canBeChoppedWhileOnHand = this.canBeChoppedWhileOnHand;
         cbc._rootObject = this._rootObject;
         cbc.choppingSoundBoard = this.choppingSoundBoard;
+        cbc.smallerAllowedPieceVolume = this.smallerAllowedPieceVolume;
         ////
 
         // Sound effects preparation
@@ -265,13 +262,13 @@ public class CanBeChopped : FoodCharacteristic
 
         //// Check if new pieces are too small. If so, prevent chopping them into more smaller parts.
         Renderer rend = GetComponent<Renderer>();
-        if(rend.bounds.size.x * rend.bounds.size.y * rend.bounds.size.z < 0.0001f)
+        if(rend.bounds.size.x * rend.bounds.size.y * rend.bounds.size.z < smallerAllowedPieceVolume)
         {
             currentlyChoppable = false;
         }
 
         rend = rightSideObj.GetComponent<Renderer>();
-        if (rend.bounds.size.x * rend.bounds.size.y * rend.bounds.size.z < 0.0001f)
+        if (rend.bounds.size.x * rend.bounds.size.y * rend.bounds.size.z < smallerAllowedPieceVolume)
         {
             cbc.currentlyChoppable = false;
         }
@@ -639,11 +636,31 @@ public class CanBeChopped : FoodCharacteristic
 
     public int GetPrevPlayedSFX()
     {
-        return prevPlayedSFX;
+        return _prevPlayedSFX;
     }
 
     public void SetOnDelay(bool b)
     {
         _onDelay = b;
+    }
+
+    public void SetStartedChopping(bool b)
+    {
+        _startedChopping = b;
+    }
+
+    public bool GetStartedChopping()
+    {
+        return _startedChopping;
+    }
+
+    public bool ChopAvailability()
+    {
+        if (GetIsGrabbed() && !canBeChoppedWhileOnHand)
+        {
+            return false;
+        }
+
+        return _onDelay && currentlyChoppable;
     }
 }
