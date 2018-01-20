@@ -6,6 +6,11 @@ using VRTK;
 
 public class ToolCharacteristic : MonoBehaviour
 {
+    public AudioClip[] dropSoundBoard;
+    public AudioClip[] grabSoundBoard;
+    public AudioSource dropAudioSource;
+    public AudioSource grabAudioSource;
+
     protected void createTag(string tag)
     {
         // Open tag manager
@@ -51,6 +56,23 @@ public class ToolCharacteristic : MonoBehaviour
     void Update()
     {
 
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        // DROPPING SOUND EFFECT
+        float dropVelocity = GetComponent<Rigidbody>().velocity.magnitude;
+
+        if (!GetIsGrabbed() && dropVelocity > 0.4f)
+        {
+            if (!dropAudioSource.isPlaying && dropSoundBoard.Length != 0)
+            {
+                dropAudioSource.clip = dropSoundBoard[Random.Range(0, dropSoundBoard.Length)];
+                dropAudioSource.volume = Mathf.Clamp(dropVelocity/10f, 0f, 1f);
+                dropAudioSource.Play();
+            }
+        }
+        
     }
 
     public bool GetIsGrabbed()

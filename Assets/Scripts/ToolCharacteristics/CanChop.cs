@@ -7,6 +7,24 @@ public class CanChop : ToolCharacteristic {
 
     public int currentChoppingObjectCount = 0;
 
+    private Vector3 prevFramePosition;
+    private float translationAmount;
+
+    public void Start()
+    {
+        prevFramePosition = transform.position;
+    }
+
+    public void PlaySound(AudioClip ac)
+    {
+        AudioSource auds = GetComponent<AudioSource>();
+        if (!auds.isPlaying)
+        {
+            auds.clip = ac;
+            auds.Play();
+        }
+    }
+
     public bool IsToolAvailable()
     {
         if (chopOnlyWhileToolOnHand && !GetIsGrabbed())
@@ -19,7 +37,13 @@ public class CanChop : ToolCharacteristic {
 
     public void FixedUpdate()
     {
-        print(GetComponent<Rigidbody>().velocity);
+        translationAmount = (transform.position - prevFramePosition).magnitude;
+        prevFramePosition = transform.position;
+    }
+
+    public bool GetIsMoving()
+    {
+        return translationAmount >= 0.0005f;
     }
 
     public bool GetCurrentChoppingState()

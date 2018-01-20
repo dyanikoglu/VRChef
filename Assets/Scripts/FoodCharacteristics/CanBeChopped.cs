@@ -20,6 +20,7 @@ public class CanBeChopped : FoodCharacteristic
     private List<Vector3> _capVertTracker = new List<Vector3>();
     private List<Vector3> _capVertpolygon = new List<Vector3>();
     private GameObject _rootObject = null;
+    private int prevPlayedSFX = 0;
   
 
     public Material capMaterial;
@@ -49,8 +50,6 @@ public class CanBeChopped : FoodCharacteristic
     {
         yield return new WaitForSeconds(sliceTimeout);
         _onDelay = true;
-
-        
     }
 
     private void BeginSlice(Vector3 anchorPoint, Vector3 normalDirection)
@@ -255,6 +254,7 @@ public class CanBeChopped : FoodCharacteristic
         cbc.newPieceMassMultiplier = this.newPieceMassMultiplier;
         cbc.canBeChoppedWhileOnHand = this.canBeChoppedWhileOnHand;
         cbc._rootObject = this._rootObject;
+        cbc.soundBoard = this.soundBoard;
         //
 
 
@@ -278,6 +278,24 @@ public class CanBeChopped : FoodCharacteristic
         {
             GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
             slicerComponent.currentChoppingObjectCount++;
+        }
+    }
+
+    private void OnCollisionStay(Collision collision)
+    {
+        CanChop slicerComponent = collision.collider.gameObject.GetComponent<CanChop>();
+
+        if(slicerComponent && slicerComponent.IsToolAvailable() && ChopAvailability() && slicerComponent.GetIsMoving())
+        {
+            int rand = Random.Range(0, soundBoard.Length);
+
+            if(rand == prevPlayedSFX)
+            {
+                rand++;
+                rand = rand % soundBoard.Length;
+            }
+
+            slicerComponent.PlaySound(soundBoard[rand]);
         }
     }
 
