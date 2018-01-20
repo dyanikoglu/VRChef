@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using CielaSpike;
 using VRTK;
 using VRTK.GrabAttachMechanics;
-    
+
 public class CanBeChopped : FoodCharacteristic
 {
     private Mesh_Maker _leftSide = new Mesh_Maker();
@@ -21,7 +21,7 @@ public class CanBeChopped : FoodCharacteristic
     private List<Vector3> _capVertpolygon = new List<Vector3>();
     private GameObject _rootObject = null;
     private int prevPlayedSFX = 0;
-  
+
 
     public Material capMaterial;
     public float sliceTimeout = 0.5f;
@@ -31,7 +31,7 @@ public class CanBeChopped : FoodCharacteristic
     public bool detachChildrenOnSlice = true;
     public bool canBeChoppedWhileOnHand = true;
     public GameObject rootObjectAfterSlice;
-    public AudioClip[] soundBoard;
+    public AudioClip[] choppingSoundBoard;
 
 
     private void Start()
@@ -51,6 +51,8 @@ public class CanBeChopped : FoodCharacteristic
         yield return new WaitForSeconds(sliceTimeout);
         _onDelay = true;
     }
+
+    
 
     private void BeginSlice(Vector3 anchorPoint, Vector3 normalDirection)
     {
@@ -85,13 +87,13 @@ public class CanBeChopped : FoodCharacteristic
 
         // Run the cpu-heavy object cutting process async from script execution. This multithreaded solution resolves most of freezing problems in game. 
         this.StartCoroutineAsync(Cut());
-        
+
         StartCoroutine(SliceDelay());
     }
 
     public bool ChopAvailability()
     {
-        if(GetIsGrabbed() && !canBeChoppedWhileOnHand)
+        if (GetIsGrabbed() && !canBeChoppedWhileOnHand)
         {
             return false;
         }
@@ -254,14 +256,30 @@ public class CanBeChopped : FoodCharacteristic
         cbc.newPieceMassMultiplier = this.newPieceMassMultiplier;
         cbc.canBeChoppedWhileOnHand = this.canBeChoppedWhileOnHand;
         cbc._rootObject = this._rootObject;
-        cbc.soundBoard = this.soundBoard;
-        //
+        cbc.choppingSoundBoard = this.choppingSoundBoard;
+        ////
+
+        // Sound effects preparation
+        AudioSource asrc = rightSideObj.AddComponent<AudioSource>();
+        asrc.spatialBlend = 1f;
+        asrc.volume = 0.4f;
+        asrc.playOnAwake = false;
+
+        GeneralSoundManager gsm = rightSideObj.AddComponent<GeneralSoundManager>();
+        GeneralSoundManager this_gsm = this.GetComponent<GeneralSoundManager>();
+        gsm.dropSoundBoard = this_gsm.dropSoundBoard;
+        gsm.grabSoundBoard = this_gsm.grabSoundBoard;
+        gsm.dropAudioSource = asrc;
+        gsm.grabAudioSource = asrc;
+        ////
 
 
+        // Other Stuff
         VRTK_InteractableObject vrtk_io = rightSideObj.AddComponent<VRTK_InteractableObject>();
-        VRTK_FixedJointGrabAttach vrtk_fjga = rightSideObj.AddComponent<VRTK_FixedJointGrabAttach>(); 
+        VRTK_FixedJointGrabAttach vrtk_fjga = rightSideObj.AddComponent<VRTK_FixedJointGrabAttach>();
         vrtk_io.isGrabbable = true;
         vrtk_fjga.precisionGrab = true;
+        /////
 
         // End thread
         yield return Ninja.JumpBack;
@@ -285,17 +303,17 @@ public class CanBeChopped : FoodCharacteristic
     {
         CanChop slicerComponent = collision.collider.gameObject.GetComponent<CanChop>();
 
-        if(slicerComponent && slicerComponent.IsToolAvailable() && ChopAvailability() && slicerComponent.GetIsMoving())
+        if (slicerComponent && slicerComponent.IsToolAvailable() && ChopAvailability() && slicerComponent.GetIsMoving())
         {
-            int rand = Random.Range(0, soundBoard.Length);
+            int rand = Random.Range(0, choppingSoundBoard.Length);
 
-            if(rand == prevPlayedSFX)
+            if (rand == prevPlayedSFX)
             {
                 rand++;
-                rand = rand % soundBoard.Length;
+                rand = rand % choppingSoundBoard.Length;
             }
 
-            slicerComponent.PlaySound(soundBoard[rand]);
+            slicerComponent.PlayChoppingSound(choppingSoundBoard[rand]);
         }
     }
 

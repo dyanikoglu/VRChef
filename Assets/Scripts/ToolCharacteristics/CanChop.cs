@@ -1,21 +1,39 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using VRTK;
 
 public class CanChop : ToolCharacteristic {
-    public bool chopOnlyWhileToolOnHand = true;
+    private bool _canChop = true;
+    private Vector3 _prevFramePosition;
+    private float _translationAmount;
 
     public int currentChoppingObjectCount = 0;
-
-    private Vector3 prevFramePosition;
-    private float translationAmount;
+    public bool chopOnlyWhileToolOnHand = true;
+    public float preventChoppingDelayOnGrab = 0.5f;
 
     public void Start()
     {
-        prevFramePosition = transform.position;
+        _prevFramePosition = transform.position;
+
+        GetComponent<VRTK_InteractableObject>().InteractableObjectGrabbed += OnGrab;
     }
 
-    public void PlaySound(AudioClip ac)
+    public void OnGrab(object sender, InteractableObjectEventArgs e)
+    {
+        _canChop = false;
+
+        StartCoroutine(GrabDelay());
+    }
+
+    IEnumerator GrabDelay()
+    {
+        yield return new WaitForSeconds(preventChoppingDelayOnGrab);
+
+        _canChop = true;
+    }
+
+    public void PlayChoppingSound(AudioClip ac)
     {
         AudioSource auds = GetComponent<AudioSource>();
         if (!auds.isPlaying)
@@ -27,23 +45,29 @@ public class CanChop : ToolCharacteristic {
 
     public bool IsToolAvailable()
     {
+        if(!_canChop)
+        {
+            return false;
+        }
+
         if (chopOnlyWhileToolOnHand && !GetIsGrabbed())
         {
             return false;
         }
+
 
         return true;
     }
 
     public void FixedUpdate()
     {
-        translationAmount = (transform.position - prevFramePosition).magnitude;
-        prevFramePosition = transform.position;
+        _translationAmount = (transform.position - _prevFramePosition).magnitude;
+        _prevFramePosition = transform.position;
     }
 
     public bool GetIsMoving()
     {
-        return translationAmount >= 0.0005f;
+        return _translationAmount >= 0.0005f;
     }
 
     public bool GetCurrentChoppingState()
