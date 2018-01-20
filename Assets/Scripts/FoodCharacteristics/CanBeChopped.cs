@@ -16,16 +16,14 @@ public class CanBeChopped : FoodCharacteristic
     private Vector3 _anchorPoint;
     private Vector3 _normalDirection;
     private bool _onDelay = true;
-    private bool _currentlyChoppable;
     private List<Vector3> _capVertTracker = new List<Vector3>();
     private List<Vector3> _capVertpolygon = new List<Vector3>();
     private GameObject _rootObject = null;
     private int prevPlayedSFX = 0;
 
-
     public Material capMaterial;
     public float sliceTimeout = 0.5f;
-    public bool startAsChoppable = false;
+    public bool currentlyChoppable = true;
     public float colliderSkinWidth = 0.001f;
     public float newPieceMassMultiplier = 0.5f;
     public bool detachChildrenOnSlice = true;
@@ -33,28 +31,13 @@ public class CanBeChopped : FoodCharacteristic
     public GameObject rootObjectAfterSlice;
     public AudioClip[] choppingSoundBoard;
 
-
-    private void Start()
-    {
-        if (startAsChoppable)
-        {
-            _currentlyChoppable = true;
-        }
-        else
-        {
-            _currentlyChoppable = false;
-        }
-    }
-
     private IEnumerator SliceDelay()
     {
         yield return new WaitForSeconds(sliceTimeout);
         _onDelay = true;
     }
 
-    
-
-    private void BeginSlice(Vector3 anchorPoint, Vector3 normalDirection)
+    public void BeginSlice(Vector3 anchorPoint, Vector3 normalDirection)
     {
         this._anchorPoint = anchorPoint;
         this._normalDirection = normalDirection;
@@ -98,7 +81,7 @@ public class CanBeChopped : FoodCharacteristic
             return false;
         }
 
-        return _onDelay && _currentlyChoppable;
+        return _onDelay && currentlyChoppable;
     }
 
     // TODO Fix capping material UV-Map
@@ -250,7 +233,6 @@ public class CanBeChopped : FoodCharacteristic
         CanBeChopped cbc = rightSideObj.AddComponent<CanBeChopped>();
         cbc.capMaterial = this.capMaterial;
         cbc.sliceTimeout = this.sliceTimeout;
-        cbc.startAsChoppable = this.startAsChoppable;
         cbc.colliderSkinWidth = this.colliderSkinWidth;
         cbc.detachChildrenOnSlice = this.detachChildrenOnSlice;
         cbc.newPieceMassMultiplier = this.newPieceMassMultiplier;
@@ -281,59 +263,24 @@ public class CanBeChopped : FoodCharacteristic
         vrtk_fjga.precisionGrab = true;
         /////
 
+        //// Check if new pieces are too small. If so, prevent chopping them into more smaller parts.
+        Renderer rend = GetComponent<Renderer>();
+        if(rend.bounds.size.x * rend.bounds.size.y * rend.bounds.size.z < 0.0001f)
+        {
+            currentlyChoppable = false;
+        }
+
+        rend = rightSideObj.GetComponent<Renderer>();
+        if (rend.bounds.size.x * rend.bounds.size.y * rend.bounds.size.z < 0.0001f)
+        {
+            cbc.currentlyChoppable = false;
+        }
+        /////
+
         // End thread
         yield return Ninja.JumpBack;
 
         yield break;
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        CanChop slicerComponent = collision.collider.gameObject.GetComponent<CanChop>();
-
-        // Freeze this object when knife collides.
-        if (slicerComponent && slicerComponent.IsToolAvailable() && ChopAvailability())
-        {
-            GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
-            slicerComponent.currentChoppingObjectCount++;
-        }
-    }
-
-    private void OnCollisionStay(Collision collision)
-    {
-        CanChop slicerComponent = collision.collider.gameObject.GetComponent<CanChop>();
-
-        if (slicerComponent && slicerComponent.IsToolAvailable() && ChopAvailability() && slicerComponent.GetIsMoving())
-        {
-            int rand = Random.Range(0, choppingSoundBoard.Length);
-
-            if (rand == prevPlayedSFX)
-            {
-                rand++;
-                rand = rand % choppingSoundBoard.Length;
-            }
-
-            slicerComponent.PlayChoppingSound(choppingSoundBoard[rand]);
-        }
-    }
-
-    private void OnCollisionExit(Collision collision)
-    {
-        CanChop slicerComponent = collision.collider.gameObject.GetComponent<CanChop>();
-
-        // Unfreeze this object when knife collision ends, also begin slicing process.
-        if (slicerComponent && slicerComponent.IsToolAvailable() && ChopAvailability())
-        {
-            // Block new chopping requests until current one ends.
-            _onDelay = false;
-
-            GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
-
-            slicerComponent.currentChoppingObjectCount--;
-
-            // Slice object using knife's current position & rotation
-            BeginSlice(collision.collider.gameObject.transform.position, collision.collider.gameObject.transform.up);
-        }
     }
 
     private void HandleCollisions(GameObject piece)
@@ -689,4 +636,14 @@ public class CanBeChopped : FoodCharacteristic
     }
 
     #endregion
+
+    public int GetPrevPlayedSFX()
+    {
+        return prevPlayedSFX;
+    }
+
+    public void SetOnDelay(bool b)
+    {
+        _onDelay = b;
+    }
 }

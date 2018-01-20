@@ -1206,7 +1206,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0801f090bd1abf7419ec0c543ce498ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentChoppingObjectCount: 0
   chopOnlyWhileToolOnHand: 1
   preventChoppingDelayOnGrab: 0.5
 --- !u!65 &502988947
@@ -3563,7 +3562,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   capMaterial: {fileID: 2100000, guid: b59228fbdc0bd2a48ab7549e79dd45a5, type: 2}
-  sliceTimeout: 0.95
+  sliceTimeout: 0.6
   startAsChoppable: 1
   colliderSkinWidth: 0.0001
   newPieceMassMultiplier: 0.5

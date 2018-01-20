@@ -8,7 +8,6 @@ public class CanChop : ToolCharacteristic {
     private Vector3 _prevFramePosition;
     private float _translationAmount;
 
-    public int currentChoppingObjectCount = 0;
     public bool chopOnlyWhileToolOnHand = true;
     public float preventChoppingDelayOnGrab = 0.5f;
 
@@ -31,6 +30,52 @@ public class CanChop : ToolCharacteristic {
         yield return new WaitForSeconds(preventChoppingDelayOnGrab);
 
         _canChop = true;
+    }
+
+    public void OnCollisionEnter(Collision collision)
+    {
+        CanBeChopped comp = collision.collider.gameObject.GetComponent<CanBeChopped>();
+
+        // Freeze this object when knife collides.
+        if (comp && IsToolAvailable() && comp.ChopAvailability())
+        {
+            comp.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+        }
+    }
+
+    public void OnCollisionStay(Collision collision)
+    {
+        CanBeChopped comp = collision.collider.gameObject.GetComponent<CanBeChopped>();
+
+        if (comp && IsToolAvailable() && comp.ChopAvailability() && GetIsMoving())
+        {
+            int rand = Random.Range(0, comp.choppingSoundBoard.Length);
+
+            if (rand == comp.GetPrevPlayedSFX())
+            {
+                rand++;
+                rand = rand % comp.choppingSoundBoard.Length;
+            }
+
+            PlayChoppingSound(comp.choppingSoundBoard[rand]);
+        }
+    }
+
+    public void OnCollisionExit(Collision collision)
+    {
+        CanBeChopped comp = collision.collider.gameObject.GetComponent<CanBeChopped>();
+
+        // Unfreeze this object when knife collision ends, also begin slicing process.
+        if (comp && IsToolAvailable() && comp.ChopAvailability())
+        {
+            // Block new chopping requests until current one ends.
+            comp.SetOnDelay(false);
+
+            comp.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+
+            // Slice object using knife's current position & rotation
+            comp.BeginSlice(transform.position, transform.up);
+        }
     }
 
     public void PlayChoppingSound(AudioClip ac)
@@ -68,11 +113,6 @@ public class CanChop : ToolCharacteristic {
     public bool GetIsMoving()
     {
         return _translationAmount >= 0.0005f;
-    }
-
-    public bool GetCurrentChoppingState()
-    {
-        return currentChoppingObjectCount != 0;
     }
 
     // TODO Override OnGrab event, and add time delay for chopping stuff on first grab.
