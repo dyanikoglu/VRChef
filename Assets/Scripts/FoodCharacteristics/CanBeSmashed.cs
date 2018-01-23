@@ -3,42 +3,38 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CanBeSmashed : MonoBehaviour {
-    public GameObject potato;
-    public GameObject mashedPotato;
-    public int smashCount;
+    public GameObject smashable;
+    public GameObject smashed;
+    private int smashCount;
 
     void Start()
     {
-        potato.SetActive(true);
-        mashedPotato.SetActive(false);
+        smashable.SetActive(true);
+        smashed.SetActive(false);
         smashCount = 0;
     }
 
-    void OnTriggerEnter(Collider canSmash)
-    {
-        if (canSmash.gameObject.CompareTag("Smashable"))
-        {
-            Debug.Log("smashed");
-            potato.SetActive(false);
-            mashedPotato.transform.position = potato.transform.position;
-            mashedPotato.transform.rotation = potato.transform.rotation;
-            mashedPotato.SetActive(true);
-        }
-    }
     void OnCollisionEnter(Collision col)
     {
-        if (col.gameObject.name == "silicone_spatula")
+        if (col.gameObject.GetComponent<CanSmash>() != null)
         {
-            if (smashCount >= 5)
+            if (smashCount == 5)
             {
-                potato.SetActive(false);
-                mashedPotato.transform.position = potato.transform.position;
-                mashedPotato.transform.rotation = potato.transform.rotation;
-                mashedPotato.SetActive(true);
+                smashable.SetActive(false);
+                smashed.transform.position = smashable.transform.position;
+                smashed.transform.rotation = smashable.transform.rotation;
+                smashed.SetActive(true);
+                smashCount++;
+            }
+            else if (smashCount == 10){
+                smashed.SetActive(false);
+                smashable.transform.position = smashed.transform.position;
+                smashable.transform.rotation = smashed.transform.rotation;
+                smashable.SetActive(true);
             }
             else
             {
-                smashCount = smashCount + 1;
+                smashCount++;
             }
             
         }
