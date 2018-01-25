@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CanSqueeze : ToolCharacteristic
 {
-    
+
     // Use this for initialization
     void Start()
     {
