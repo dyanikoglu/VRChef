@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class CanBeSmashed : MonoBehaviour {
     public GameObject smashable;
-    public GameObject smashed;
+    public GameObject smashed1;
+    public GameObject smashed2;
     private int smashCount;
 
     void Start()
     {
         smashable.SetActive(true);
-        smashed.SetActive(false);
+        smashed1.SetActive(false);
+        smashed2.SetActive(false);
         smashCount = 0;
     }
 
@@ -18,19 +20,18 @@ public class CanBeSmashed : MonoBehaviour {
     {
         if (col.gameObject.GetComponent<CanSmash>() != null)
         {
-            if (smashCount == 5)
+            if (smashCount == 3)
             {
                 smashable.SetActive(false);
-                smashed.transform.position = smashable.transform.position;
-                smashed.transform.rotation = smashable.transform.rotation;
-                smashed.SetActive(true);
+                smashed1.transform.position = smashable.transform.position;
+                smashed1.transform.rotation = smashable.transform.rotation;
+                smashed1.SetActive(true);
                 smashCount++;
             }
             else if (smashCount == 10){
-                smashed.SetActive(false);
-                smashable.transform.position = smashed.transform.position;
-                smashable.transform.rotation = smashed.transform.rotation;
-                smashable.SetActive(true);
+                smashed1.SetActive(false);
+                //smashed2.transform.position = smashed1.transform.position;
+                smashed2.SetActive(true);
             }
             else
             {

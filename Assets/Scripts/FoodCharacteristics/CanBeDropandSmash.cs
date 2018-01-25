@@ -18,7 +18,6 @@ public class CanBeDropandSmash : MonoBehaviour {
         {
             smashable.SetActive(false);
             smashed.transform.position = smashable.transform.position;
-            smashed.transform.rotation = smashable.transform.rotation;
             smashed.SetActive(true);
         }
    

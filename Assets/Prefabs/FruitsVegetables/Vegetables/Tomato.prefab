@@ -27,13 +27,14 @@ GameObject:
   - component: {fileID: 114579180465666692}
   - component: {fileID: 135579182131881338}
   - component: {fileID: 114928285996716486}
+  - component: {fileID: 114315002273045874}
   m_Layer: 0
   m_Name: Tomato
   m_TagString: Choppable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1803157172083576
 GameObject:
   m_ObjectHideFlags: 0
@@ -57,14 +58,14 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1423970086926068}
-  m_LocalRotation: {x: -0.0063267415, y: -0.7070785, z: -0.7070785, w: 0.0063267415}
-  m_LocalPosition: {x: -0.268, y: 1.236, z: 0.269}
-  m_LocalScale: {x: 1.2535362, y: 1.2535344, z: 1.2535344}
+  m_LocalRotation: {x: 0.78945005, y: -0.029842015, z: 0.009413152, w: -0.6130168}
+  m_LocalPosition: {x: -0.5938, y: 1.2647, z: 0.464}
+  m_LocalScale: {x: 1.5713569, y: 1.5713505, z: 1.5713507}
   m_Children:
   - {fileID: 4365083956845626}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -90.00001, y: 0, z: -178.975}
+  m_LocalEulerAnglesHint: {x: -104.686, y: -11.708984, z: -346.622}
 --- !u!4 &4365083956845626
 Transform:
   m_ObjectHideFlags: 1
@@ -175,6 +176,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &114315002273045874
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1423970086926068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 265c33ce4a564b745827c4f132df5b70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  smashable: {fileID: 1423970086926068}
+  smashed: {fileID: 0}
 --- !u!114 &114514447743051098
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -188,13 +202,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   capMaterial: {fileID: 2100000, guid: b59228fbdc0bd2a48ab7549e79dd45a5, type: 2}
   sliceTimeout: 0.5
-  startAsChoppable: 1
+  currentlyChoppable: 1
   colliderSkinWidth: 0.0001
   newPieceMassMultiplier: 0.5
   detachChildrenOnSlice: 1
   canBeChoppedWhileOnHand: 1
   rootObjectAfterSlice: {fileID: 1585260972204234, guid: 5f8fbf704cd6e0d4a92f39272ea99503,
     type: 2}
+  choppingSoundBoard: []
+  smallerAllowedPieceVolume: 0.0001
 --- !u!114 &114579180465666692
 MonoBehaviour:
   m_ObjectHideFlags: 1
