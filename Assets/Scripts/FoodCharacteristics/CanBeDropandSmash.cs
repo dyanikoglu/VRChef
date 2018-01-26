@@ -5,20 +5,25 @@ using UnityEngine;
 public class CanBeDropandSmash : MonoBehaviour {
     public GameObject smashable;
     public GameObject smashed;
+    public GameObject smashedJuice;
+    public AudioClip smashSound;
 
+    GameObject _smashed;
+    GameObject _smashedJuice;
+    AudioSource source;
     // Use this for initialization
     void Start () {
-        smashable.SetActive(true);
-        smashed.SetActive(false);
+        source = gameObject.AddComponent<AudioSource>();
     }
 
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.relativeVelocity.magnitude > 3 && gameObject==smashable)
         {
-            smashable.SetActive(false);
-            smashed.transform.position = smashable.transform.position;
-            smashed.SetActive(true);
+            _smashed = Instantiate(smashed, transform.position, smashed.transform.rotation);
+            _smashedJuice = Instantiate(smashedJuice, transform.position, smashedJuice.transform.rotation);
+            Destroy(gameObject);
+            AudioSource.PlayClipAtPoint(smashSound, transform.position);
         }
    
     }

@@ -4,34 +4,30 @@ using UnityEngine;
 
 public class CanBeSmashed : MonoBehaviour {
     public GameObject smashable;
-    public GameObject smashed1;
-    public GameObject smashed2;
-    private int smashCount;
+    public GameObject smashed;
+    public AudioClip smashSound;
 
+    private int smashCount;
+    GameObject _smashed;
+    AudioSource source;
+    bool isBoiled=true;
+    bool isPeeled = true;
     void Start()
     {
-        smashable.SetActive(true);
-        smashed1.SetActive(false);
-        smashed2.SetActive(false);
         smashCount = 0;
+        source = gameObject.AddComponent<AudioSource>();
     }
 
     void OnCollisionEnter(Collision col)
     {
-        if (col.gameObject.GetComponent<CanSmash>() != null)
+        if (col.gameObject.GetComponent<CanSmash>() != null && isBoiled && isPeeled)
         {
-            if (smashCount == 3)
+            AudioSource.PlayClipAtPoint(smashSound, transform.position);
+
+            if (smashCount == 4)
             {
-                smashable.SetActive(false);
-                smashed1.transform.position = smashable.transform.position;
-                smashed1.transform.rotation = smashable.transform.rotation;
-                smashed1.SetActive(true);
-                smashCount++;
-            }
-            else if (smashCount == 10){
-                smashed1.SetActive(false);
-                //smashed2.transform.position = smashed1.transform.position;
-                smashed2.SetActive(true);
+                _smashed=Instantiate(smashed, smashed.transform.position,smashed.transform.rotation);
+                Destroy(gameObject);
             }
             else
             {

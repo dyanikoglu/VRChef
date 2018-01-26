@@ -34,7 +34,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1803157172083576
 GameObject:
   m_ObjectHideFlags: 0
@@ -59,7 +59,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1423970086926068}
   m_LocalRotation: {x: 0.78945005, y: -0.029842015, z: 0.009413152, w: -0.6130168}
-  m_LocalPosition: {x: -0.5938, y: 1.2647, z: 0.464}
+  m_LocalPosition: {x: -0.5938, y: 1.224, z: 0.464}
   m_LocalScale: {x: 1.5713569, y: 1.5713505, z: 1.5713507}
   m_Children:
   - {fileID: 4365083956845626}
@@ -188,7 +188,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   smashable: {fileID: 1423970086926068}
-  smashed: {fileID: 0}
+  smashed: {fileID: 1380994513708996, guid: 02bd242a0aea7454da609e3bed814383, type: 2}
+  smashedJuice: {fileID: 1242846290807286, guid: 56d778da2666e1246bc1a72ff6209206,
+    type: 2}
+  smashSound: {fileID: 8300000, guid: 52d2c0298aa8e4f45baddc37b0a43422, type: 3}
 --- !u!114 &114514447743051098
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -243,8 +246,8 @@ MonoBehaviour:
   validDrop: 1
   grabOverrideButton: 0
   allowedGrabControllers: 0
-  grabAttachMechanicScript: {fileID: 0}
-  secondaryGrabActionScript: {fileID: 0}
+  grabAttachMechanicScript: {fileID: 114928285996716486}
+  secondaryGrabActionScript: {fileID: 114579180465666692}
   isUsable: 0
   holdButtonToUse: 1
   useOnlyIfGrabbed: 0
