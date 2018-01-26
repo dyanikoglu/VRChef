@@ -146,7 +146,7 @@ Material:
     - _RimPower: 4
     - _RimTexUV: 0
     - _RimWeight: 1
-    - _Roughness: 0.4
+    - _Roughness: 0.405
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SpecularTint: 0
