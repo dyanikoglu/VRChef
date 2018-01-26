@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: 0746bbcc3e17a7d4ead07f84e57e7265
-timeCreated: 1516863632
-licenseType: Free
+timeCreated: 1516914997
+licenseType: Pro
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
@@ -2791,50 +2791,15 @@ ModelImporter:
     402780: Shelf_006
     402782: Shelf_1
     402784: Shelf_2
-    2100000: chrome_dark_
-    2100002: WHITE
-    2100004: chrome_
-    2100006: vray K_ALU_2
-    2100008: F3
-    2100010: WALL
-    2100012: 16
-    2100014: 4
-    2100016: 3
-    2100018: 1
-    2100020: 2
-    2100022: 9
-    2100024: 7
-    2100026: 8
-    2100028: 10
-    2100030: ALU_matte
-    2100032: chrome
-    2100034: angelo po plastic1
-    2100036: plast 2
-    2100038: ALU_aniso
-    2100040: No Name
-    2100042: plast4
-    2100044: LED 1
-    2100046: anisotropy
-    2100048: LED 2
-    2100050: BAR
-    2100052: wrought iron
-    2100054: 'Material #138'
-    2100056: display
-    2100058: diod green
-    2100060: diod yellow
-    2100062: 23
-    2100064: NET
-    2100066: 17
-    2100068: light_hood
-    2100070: 'Material #2842'
-    2100072: 'Material #2828'
-    2100074: 'Material #2843'
-    2100076: 'Material #2844'
-    2100078: 'Material #2831'
-    2100080: 'Material #2719'
-    2100082: 24
-    2100084: vray winterhalter
-    2100086: vray ovladaci-panel
+    2100000: Metal-6
+    2100002: Metal-3
+    2100004: General
+    2100006: Metal-5
+    2100008: Metal-Scratched
+    2100010: Wall
+    2100012: Metal-1
+    2100014: Metal-4
+    2100016: Plastic
     2300000: Box001
     2300002: Box002
     2300004: Box003
@@ -6478,7 +6443,52 @@ ModelImporter:
     4302424: kitchen_clean_336
     4302426: kitchen_clean_337
     9500000: //RootNode
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: General
+    second: {fileID: 2100000, guid: 39545f9c084dc5d4cacf646838a3f7c6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Metal-1
+    second: {fileID: 2100000, guid: 51eab00a891ef184aace27130268d0b2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Metal-3
+    second: {fileID: 2100000, guid: ee4844a9052cc404b9d83a378213d704, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Metal-4
+    second: {fileID: 2100000, guid: 39545f9c084dc5d4cacf646838a3f7c6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Metal-5
+    second: {fileID: 2100000, guid: b08afe0331f806844832cb2ed546fafe, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Metal-6
+    second: {fileID: 2100000, guid: 51eab00a891ef184aace27130268d0b2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Metal-Scratched
+    second: {fileID: 2100000, guid: 51eab00a891ef184aace27130268d0b2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Plastic
+    second: {fileID: 2100000, guid: da3ff9761cfff0e41abd7267b0f4623f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall
+    second: {fileID: 2100000, guid: b7ee2139bc3b1ce49947bc205e3ab1e0, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
