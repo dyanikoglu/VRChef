@@ -56,7 +56,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _MainTex:
         m_Texture: {fileID: 2800000, guid: 4d9e67cd90ff08240bbd58ca86547f42, type: 3}
-        m_Scale: {x: 1, y: 1}
+        m_Scale: {x: 5, y: 5}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
         m_Texture: {fileID: 0}
@@ -97,7 +97,7 @@ Material:
     - _Ao2Occlusion: 1
     - _BaseColorVertexTint: 0
     - _BumpMode: 0
-    - _BumpScale: 2
+    - _BumpScale: 0.5
     - _Cutoff: 0.5
     - _Decal: 0
     - _DecalAlphaVertexTint: 0
@@ -165,7 +165,7 @@ Material:
     - _WetnessProperties: 0
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 0.1102941, g: 0.1102941, b: 0.1102941, a: 1}
+    - _Color: {r: 0.19852942, g: 0.19852942, b: 0.19852942, a: 1}
     - _DecalColor: {r: 1, g: 1, b: 1, a: 1}
     - _DetailAlbedoMapVelocity: {r: 0, g: 0, b: 0, a: 0}
     - _DissolveGlowColor: {r: 1, g: 1, b: 1, a: 1}

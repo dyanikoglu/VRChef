@@ -8,7 +8,7 @@ Material:
   m_PrefabInternal: {fileID: 0}
   m_Name: Iron_Scuffed
   m_Shader: {fileID: 4800000, guid: 12c5a1911ed698d45920f1c6fa4d6d57, type: 3}
-  m_ShaderKeywords: EFFECT_BUMP
+  m_ShaderKeywords: EFFECT_BUMP _DETAIL_MULX2
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -31,8 +31,8 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
+        m_Texture: {fileID: 2800000, guid: 2381a399f7665bf41a0d71b64b310f47, type: 3}
+        m_Scale: {x: 3, y: 3}
         m_Offset: {x: 0, y: 0}
     - _DetailMask:
         m_Texture: {fileID: 0}
@@ -109,8 +109,8 @@ Material:
     - _DetailMaskStrength: 1
     - _DetailMode: 0
     - _DetailNormalMapScale: 1
-    - _DetailT: 0
-    - _DetailWeight: 1
+    - _DetailT: 1
+    - _DetailWeight: 0.2
     - _Dissolve: 0
     - _DissolveCutoff: 0
     - _DissolveEdgeWidth: 0.01
@@ -146,7 +146,7 @@ Material:
     - _RimPower: 4
     - _RimTexUV: 0
     - _RimWeight: 1
-    - _Roughness: 0.405
+    - _Roughness: 0.2
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SpecularTint: 0
@@ -165,7 +165,7 @@ Material:
     - _WetnessProperties: 0
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 0.6911765, g: 0.6911765, b: 0.6911765, a: 1}
     - _DecalColor: {r: 1, g: 1, b: 1, a: 1}
     - _DetailAlbedoMapVelocity: {r: 0, g: 0, b: 0, a: 0}
     - _DissolveGlowColor: {r: 1, g: 1, b: 1, a: 1}
