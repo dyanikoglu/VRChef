@@ -243,13 +243,6 @@ public class CanBeChopped : FoodCharacteristic
         asrc.spatialBlend = 1f;
         asrc.volume = 0.4f;
         asrc.playOnAwake = false;
-
-        GeneralSoundManager gsm = rightSideObj.AddComponent<GeneralSoundManager>();
-        GeneralSoundManager this_gsm = this.GetComponent<GeneralSoundManager>();
-        gsm.dropSoundBoard = this_gsm.dropSoundBoard;
-        gsm.grabSoundBoard = this_gsm.grabSoundBoard;
-        gsm.dropAudioSource = asrc;
-        gsm.grabAudioSource = asrc;
         ////
 
 
