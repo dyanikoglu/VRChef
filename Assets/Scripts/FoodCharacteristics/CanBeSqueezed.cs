@@ -10,7 +10,7 @@ public class CanBeSqueezed : FoodCharacteristic
     public Texture2D original;
     public Texture2D squeezedTexture;
     public ParticleSystem particleLauncher;
-    public GameObject bowl;
+   // public GameObject bowl;
     private bool canSpin;
     private GameObject currentSqueezer;
     private float rotationAngle;
@@ -34,7 +34,7 @@ public class CanBeSqueezed : FoodCharacteristic
             canSpin = true;
             // currentSqueezer.GetComponent<BoxCollider>().enabled = false;
             currentSqueezer.GetComponent<VRTK.VRTK_InteractableObject>().isGrabbable = false;
-            bowl.GetComponent<VRTK.VRTK_InteractableObject>().isGrabbable = false;
+            currentSqueezer.GetComponent<CanSqueeze>().bowl.GetComponent<VRTK.VRTK_InteractableObject>().isGrabbable = false;
 
         }
     }
@@ -47,8 +47,7 @@ public class CanBeSqueezed : FoodCharacteristic
             canSpin = false;
            // currentSqueezer.GetComponent<BoxCollider>().enabled = true;
             currentSqueezer.GetComponent<VRTK.VRTK_InteractableObject>().isGrabbable = true;
-            bowl.GetComponent<VRTK.VRTK_InteractableObject>().isGrabbable = true;
-
+            currentSqueezer.GetComponent<CanSqueeze>().bowl.GetComponent<VRTK.VRTK_InteractableObject>().isGrabbable = true;
         }
     }
 
