@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Choppable
   - Smashable
+  - Breakable
   layers:
   - Default
   - TransparentFX

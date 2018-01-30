@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using VRTK;
 
 public class BreakableObject : MonoBehaviour {
 
@@ -11,8 +12,8 @@ public class BreakableObject : MonoBehaviour {
     bool isBroken = false;
     AudioSource source;
 
-    public float breakingThreshold = 5.0f;
-    float lastVelocityValue;
+    public float breakingThreshold;
+    float lastVelocityValue = 0f;
 
     // Use this for initialization
     void Start () {
@@ -26,6 +27,8 @@ public class BreakableObject : MonoBehaviour {
         rigidBody.isKinematic = false;
 
         source = gameObject.AddComponent<AudioSource>();
+
+
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -35,23 +38,31 @@ public class BreakableObject : MonoBehaviour {
         {
             Break();
         }
-        else if (collision.gameObject.tag == "Player" /*&& collision.relativeVelocity.magnitude >= 0.1f*/)
+        else if (collision.gameObject.tag == "Breakable" && lastVelocityValue >= breakingThreshold/2)
         {
-            Debug.Log(collision.relativeVelocity.magnitude);
-            //Break();
+            Break();
         }
-
     }
 
-    private void FixedUpdate()
-
-    {
-        lastVelocityValue = GetComponent<Rigidbody>().velocity.magnitude;
-
-    }
-
-    // Update is called once per frame
     void Update () {
+
+        /* when an object is grabbed, it is moved by with hand only instead of moved by physics rules.
+         * Therefore we cannot reach velocity of object. To handle this problem we get controllers' velocity.
+         * Once user holds 2 objects with 2 hand and collide them, we will use this velocity to decide
+         * whether objects will break or not.
+         */
+
+        if (GetComponent<VRTK_InteractableObject>().GetGrabbingObject())
+        {
+            if (GetComponent<VRTK_InteractableObject>().GetGrabbingObject().name == "RightController")
+            {
+                lastVelocityValue = OVRInput.GetLocalControllerVelocity(OVRInput.Controller.RTouch).magnitude;
+            }
+            else if (GetComponent<VRTK_InteractableObject>().GetGrabbingObject().name == "LeftController")
+            {
+                lastVelocityValue = OVRInput.GetLocalControllerVelocity(OVRInput.Controller.LTouch).magnitude;
+            }
+        }
     }
 
     void Break()
@@ -73,7 +84,7 @@ public class BreakableObject : MonoBehaviour {
             if (childRigidbody)
             {
                 // give a realistic weight to fragments equally.
-                childRigidbody.mass = GetComponent<Rigidbody>().mass / fragmentCount * 2;
+                childRigidbody.mass = GetComponent<Rigidbody>().mass / fragmentCount * 6;
                 // apply physics
                 childRigidbody.useGravity = true;
                 childRigidbody.isKinematic = false;
@@ -81,9 +92,6 @@ public class BreakableObject : MonoBehaviour {
                 // to get rid of this effect, set velocity of fragment 0.
                 childRigidbody.velocity = Vector3.zero;
                 childRigidbody.angularVelocity = Vector3.zero;
-                // Sometimes although their velocity is zero they are turning around. To prevent 
-                // this freeze their rotation. 
-                //childRigidbody.freezeRotation = true;
             }
         }
         // remove the original object

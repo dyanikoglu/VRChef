@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 33654633506735666}
   - component: {fileID: 23466533510332986}
   - component: {fileID: 114704582593145892}
+  - component: {fileID: 114372918247375276}
   m_Layer: 0
   m_Name: Plate
   m_TagString: Untagged
@@ -83,6 +84,38 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1693844055887274}
   m_Mesh: {fileID: 4300000, guid: 67f9e8fd050836343b32d9d6b7bc102a, type: 3}
+--- !u!114 &114372918247375276
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1693844055887274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3abaf4521bf2344ea21ed3020b98eb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  disableWhenIdle: 1
+  allowedNearTouchControllers: 0
+  allowedTouchControllers: 0
+  ignoredColliders: []
+  isGrabbable: 1
+  holdButtonToGrab: 1
+  stayGrabbedOnTeleport: 1
+  validDrop: 1
+  grabOverrideButton: 0
+  allowedGrabControllers: 0
+  grabAttachMechanicScript: {fileID: 0}
+  secondaryGrabActionScript: {fileID: 0}
+  isUsable: 0
+  holdButtonToUse: 1
+  useOnlyIfGrabbed: 0
+  pointerActivatesUseAction: 0
+  useOverrideButton: 0
+  allowedUseControllers: 0
+  objectHighlighter: {fileID: 0}
+  touchHighlightColor: {r: 0, g: 0, b: 0, a: 0}
+  usingState: 0
 --- !u!114 &114704582593145892
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -96,3 +129,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   brokenModelPrefab: {fileID: 100000, guid: a764e791281b22546b54af9bfec88e28, type: 3}
   breakSound: {fileID: 8300000, guid: 74c17c12813d87349ba04277bab8076f, type: 3}
+  breakingThreshold: 5
