@@ -26,7 +26,7 @@ public class CanBeSmashed : MonoBehaviour {
 
             if (smashCount == 4)
             {
-                _smashed=Instantiate(smashed, smashed.transform.position,smashed.transform.rotation);
+                _smashed=Instantiate(smashed, smashable.transform.position,smashed.transform.rotation);
                 Destroy(gameObject);
             }
             else
