@@ -6391,7 +6391,37 @@ ModelImporter:
     4302426: kitchen_clean_336
     4302428: kitchen_clean_337
     9500000: //RootNode
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Metal-1
+    second: {fileID: 2100000, guid: ee4844a9052cc404b9d83a378213d704, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Metal-3
+    second: {fileID: 2100000, guid: ee4844a9052cc404b9d83a378213d704, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Metal-4
+    second: {fileID: 2100000, guid: ee4844a9052cc404b9d83a378213d704, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Metal-5
+    second: {fileID: 2100000, guid: ee4844a9052cc404b9d83a378213d704, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Metal-Scratched
+    second: {fileID: 2100000, guid: ee4844a9052cc404b9d83a378213d704, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Plastic
+    second: {fileID: 2100000, guid: ee4844a9052cc404b9d83a378213d704, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

@@ -31,8 +31,8 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
+        m_Texture: {fileID: 2800000, guid: 111a7b708b418dd45bccd9da3432537a, type: 3}
+        m_Scale: {x: 3, y: 3}
         m_Offset: {x: 0, y: 0}
     - _DetailMask:
         m_Texture: {fileID: 0}
@@ -110,7 +110,7 @@ Material:
     - _DetailMode: 0
     - _DetailNormalMapScale: 1
     - _DetailT: 0
-    - _DetailWeight: 1
+    - _DetailWeight: 0.5
     - _Dissolve: 0
     - _DissolveCutoff: 0
     - _DissolveEdgeWidth: 0.01
