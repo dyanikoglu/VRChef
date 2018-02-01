@@ -1,18 +1,16 @@
 fileFormatVersion: 2
-guid: 11756aee7e4a0014cad6f9043e6e8d7a
-timeCreated: 1516189624
+guid: 68884a50688ff8b44977865bfa65b927
+timeCreated: 1517427604
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
     100000: //RootNode
-    100002: default
     400000: //RootNode
-    400002: default
-    2100000: defaultMat
-    2300000: default
-    3300000: default
-    4300000: default
+    2100000: Material.002
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: Sphere_cell.001
   externalObjects: {}
   materials:
     importMaterials: 1
