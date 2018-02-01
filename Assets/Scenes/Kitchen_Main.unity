@@ -907,7 +907,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 31571617}
   m_LocalRotation: {x: -0, y: -0, z: 7.1054257e-15, w: 1}
-  m_LocalPosition: {x: 0.344, y: -0.164, z: 0.105}
+  m_LocalPosition: {x: 0.344, y: -0.164, z: 0.1183}
   m_LocalScale: {x: 1.0000007, y: 1.0000006, z: 1.0000006}
   m_Children:
   - {fileID: 2020350991}
@@ -987,7 +987,7 @@ Rigidbody:
   m_GameObject: {fileID: 31571617}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 0
+  m_Drag: 3
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
@@ -3058,6 +3058,7 @@ GameObject:
   - component: {fileID: 85004399}
   - component: {fileID: 85004401}
   - component: {fileID: 85004400}
+  - component: {fileID: 85004402}
   m_Layer: 0
   m_Name: kitchen_island_1084 1
   m_TagString: Untagged
@@ -3121,6 +3122,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 85004398}
   m_Mesh: {fileID: 4300816, guid: 0746bbcc3e17a7d4ead07f84e57e7265, type: 3}
+--- !u!65 &85004402
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 85004398}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.3327619, y: 0.45923495, z: 0.021350473}
+  m_Center: {x: -0.026470419, y: -0.11820677, z: -0.013558222}
 --- !u!1 &87341681
 GameObject:
   m_ObjectHideFlags: 0
@@ -4839,6 +4852,11 @@ GameObject:
   - component: {fileID: 128411601}
   - component: {fileID: 128411603}
   - component: {fileID: 128411602}
+  - component: {fileID: 128411605}
+  - component: {fileID: 128411608}
+  - component: {fileID: 128411607}
+  - component: {fileID: 128411606}
+  - component: {fileID: 128411609}
   - component: {fileID: 128411604}
   m_Layer: 0
   m_Name: kitchen_island_1735
@@ -4913,8 +4931,121 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.030375939
-  m_Center: {x: 0.00000005494672, y: 0.000018320978, z: 0.000026161788}
+  m_Radius: 0.025
+  m_Center: {x: 0.00000005494672, y: 0.000018320978, z: 0.016}
+--- !u!54 &128411605
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 128411600}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 1
+  m_AngularDrag: 15
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 46
+  m_CollisionDetection: 0
+--- !u!114 &128411606
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 128411600}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18055ba762aa3994f9c10208cd088bc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &128411607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 128411600}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3abaf4521bf2344ea21ed3020b98eb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  disableWhenIdle: 1
+  allowedNearTouchControllers: 0
+  allowedTouchControllers: 0
+  ignoredColliders: []
+  isGrabbable: 1
+  holdButtonToGrab: 1
+  stayGrabbedOnTeleport: 0
+  validDrop: 1
+  grabOverrideButton: 0
+  allowedGrabControllers: 0
+  grabAttachMechanicScript: {fileID: 128411608}
+  secondaryGrabActionScript: {fileID: 128411606}
+  isUsable: 0
+  holdButtonToUse: 1
+  useOnlyIfGrabbed: 0
+  pointerActivatesUseAction: 0
+  useOverrideButton: 0
+  allowedUseControllers: 0
+  objectHighlighter: {fileID: 0}
+  touchHighlightColor: {r: 0, g: 0, b: 0, a: 0}
+  usingState: 0
+--- !u!114 &128411608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 128411600}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7668d60aac28b44ab5e626253713906, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  precisionGrab: 1
+  rightSnapHandle: {fileID: 0}
+  leftSnapHandle: {fileID: 0}
+  throwVelocityWithAttachDistance: 0
+  throwMultiplier: 1
+  onGrabCollisionDelay: 0
+  detachDistance: 0.5
+  velocityLimit: Infinity
+  angularVelocityLimit: Infinity
+  maxDistanceDelta: 10
+--- !u!59 &128411609
+HingeJoint:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 128411600}
+  m_ConnectedBody: {fileID: 230028066}
+  m_Anchor: {x: 0, y: 0, z: 0}
+  m_Axis: {x: 0, y: 0, z: 1}
+  m_AutoConfigureConnectedAnchor: 1
+  m_ConnectedAnchor: {x: -0.0037338466, y: -0.00045998208, z: 0.0117101045}
+  m_UseSpring: 0
+  m_Spring:
+    spring: 0
+    damper: 0
+    targetPosition: 0
+  m_UseMotor: 0
+  m_Motor:
+    targetVelocity: 0
+    force: 0
+    freeSpin: 0
+  m_UseLimits: 0
+  m_Limits:
+    min: 0
+    max: 0
+    bounciness: 0
+    bounceMinVelocity: 0
+    contactDistance: 0
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_EnableCollision: 0
+  m_EnablePreprocessing: 0
+  m_MassScale: 1
+  m_ConnectedMassScale: 1
 --- !u!1 &130373145
 GameObject:
   m_ObjectHideFlags: 0
@@ -5772,6 +5903,7 @@ GameObject:
   - component: {fileID: 164039675}
   - component: {fileID: 164039674}
   - component: {fileID: 164039676}
+  - component: {fileID: 164039677}
   m_Layer: 0
   m_Name: kitchen_island_1767
   m_TagString: Untagged
@@ -5848,6 +5980,21 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.07236603, y: 0.07219671, z: 0.014096472}
   m_Center: {x: -0.000002270565, y: -0.0000007223893, z: -0.008652279}
+--- !u!54 &164039677
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 164039672}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &164603935
 GameObject:
   m_ObjectHideFlags: 0
@@ -6584,6 +6731,11 @@ GameObject:
   - component: {fileID: 185775999}
   - component: {fileID: 185775998}
   - component: {fileID: 185776000}
+  - component: {fileID: 185776001}
+  - component: {fileID: 185776004}
+  - component: {fileID: 185776003}
+  - component: {fileID: 185776002}
+  - component: {fileID: 185776005}
   m_Layer: 0
   m_Name: kitchen_island_170
   m_TagString: Untagged
@@ -6657,8 +6809,121 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.028201919
-  m_Center: {x: 0.000059342943, y: -0.000020649708, z: 0.017193794}
+  m_Radius: 0.02420326
+  m_Center: {x: 0, y: 0, z: 0.022}
+--- !u!54 &185776001
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 185775996}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 1
+  m_AngularDrag: 15
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 14
+  m_CollisionDetection: 0
+--- !u!114 &185776002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 185775996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18055ba762aa3994f9c10208cd088bc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &185776003
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 185775996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3abaf4521bf2344ea21ed3020b98eb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  disableWhenIdle: 1
+  allowedNearTouchControllers: 0
+  allowedTouchControllers: 0
+  ignoredColliders: []
+  isGrabbable: 1
+  holdButtonToGrab: 1
+  stayGrabbedOnTeleport: 0
+  validDrop: 1
+  grabOverrideButton: 0
+  allowedGrabControllers: 0
+  grabAttachMechanicScript: {fileID: 185776004}
+  secondaryGrabActionScript: {fileID: 185776002}
+  isUsable: 0
+  holdButtonToUse: 1
+  useOnlyIfGrabbed: 0
+  pointerActivatesUseAction: 0
+  useOverrideButton: 0
+  allowedUseControllers: 0
+  objectHighlighter: {fileID: 0}
+  touchHighlightColor: {r: 0, g: 0, b: 0, a: 0}
+  usingState: 0
+--- !u!114 &185776004
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 185775996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7668d60aac28b44ab5e626253713906, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  precisionGrab: 1
+  rightSnapHandle: {fileID: 0}
+  leftSnapHandle: {fileID: 0}
+  throwVelocityWithAttachDistance: 0
+  throwMultiplier: 1
+  onGrabCollisionDelay: 0
+  detachDistance: 0.5
+  velocityLimit: Infinity
+  angularVelocityLimit: Infinity
+  maxDistanceDelta: 10
+--- !u!59 &185776005
+HingeJoint:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 185775996}
+  m_ConnectedBody: {fileID: 196605558}
+  m_Anchor: {x: 0, y: 0, z: 0}
+  m_Axis: {x: 0, y: 0, z: 1}
+  m_AutoConfigureConnectedAnchor: 1
+  m_ConnectedAnchor: {x: 0.000000037252903, y: -0.0000009592623, z: 0.016846623}
+  m_UseSpring: 0
+  m_Spring:
+    spring: 0
+    damper: 0
+    targetPosition: 0
+  m_UseMotor: 0
+  m_Motor:
+    targetVelocity: 0
+    force: 0
+    freeSpin: 0
+  m_UseLimits: 0
+  m_Limits:
+    min: 0
+    max: 0
+    bounciness: 0
+    bounceMinVelocity: 0
+    contactDistance: 0
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_EnableCollision: 0
+  m_EnablePreprocessing: 0
+  m_MassScale: 1
+  m_ConnectedMassScale: 1
 --- !u!1 &190834231
 GameObject:
   m_ObjectHideFlags: 0
@@ -6743,6 +7008,7 @@ GameObject:
   - component: {fileID: 191076509}
   - component: {fileID: 191076508}
   - component: {fileID: 191076510}
+  - component: {fileID: 191076511}
   m_Layer: 0
   m_Name: kitchen_island_1747
   m_TagString: Untagged
@@ -6819,6 +7085,21 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.07236603, y: 0.07219667, z: 0.014096467}
   m_Center: {x: -0.0031398877, y: -0.00045996153, z: 0.0030572643}
+--- !u!54 &191076511
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 191076506}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &191426340
 GameObject:
   m_ObjectHideFlags: 0
@@ -7226,6 +7507,7 @@ GameObject:
   - component: {fileID: 196605556}
   - component: {fileID: 196605555}
   - component: {fileID: 196605557}
+  - component: {fileID: 196605558}
   m_Layer: 0
   m_Name: kitchen_island_169
   m_TagString: Untagged
@@ -7301,6 +7583,21 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.08109381, y: 0.08159612, z: 0.020202609}
   m_Center: {x: -0.00025114417, y: 0.00000005990569, z: 0.010101542}
+--- !u!54 &196605558
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 196605553}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &201396921
 GameObject:
   m_ObjectHideFlags: 0
@@ -7460,6 +7757,7 @@ GameObject:
   - component: {fileID: 202813192}
   - component: {fileID: 202813191}
   - component: {fileID: 202813193}
+  - component: {fileID: 202813194}
   m_Layer: 0
   m_Name: kitchen_island_112
   m_TagString: Untagged
@@ -7535,6 +7833,21 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.08109381, y: 0.08159613, z: 0.02020261}
   m_Center: {x: -0.00025114417, y: 0.00000005990569, z: 0.010101424}
+--- !u!54 &202813194
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 202813189}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &203559440
 GameObject:
   m_ObjectHideFlags: 0
@@ -8704,6 +9017,7 @@ GameObject:
   - component: {fileID: 230028064}
   - component: {fileID: 230028063}
   - component: {fileID: 230028065}
+  - component: {fileID: 230028066}
   m_Layer: 0
   m_Name: kitchen_island_1736
   m_TagString: Untagged
@@ -8780,6 +9094,21 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.07236602, y: 0.07219667, z: 0.014096465}
   m_Center: {x: -0.0031400067, y: -0.0004598423, z: 0.0030573832}
+--- !u!54 &230028066
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 230028061}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &232467847
 GameObject:
   m_ObjectHideFlags: 0
@@ -8864,8 +9193,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.010633657, y: 0.6595055, z: 0.6770003}
-  m_Center: {x: 0.00000005960467, y: 2.3089798e-13, z: 0.3384999}
+  m_Size: {x: 0.0066663567, y: 0.6595055, z: 0.6770002}
+  m_Center: {x: 0.0019837117, y: 0.000000017436903, z: 0.3384999}
 --- !u!1 &236406519
 GameObject:
   m_ObjectHideFlags: 0
@@ -9642,6 +9971,11 @@ GameObject:
   - component: {fileID: 246948943}
   - component: {fileID: 246948945}
   - component: {fileID: 246948944}
+  - component: {fileID: 246948947}
+  - component: {fileID: 246948950}
+  - component: {fileID: 246948949}
+  - component: {fileID: 246948948}
+  - component: {fileID: 246948951}
   - component: {fileID: 246948946}
   m_Layer: 0
   m_Name: kitchen_island_1739
@@ -9716,8 +10050,121 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.030375939
-  m_Center: {x: -0.00000006426257, y: 0.000018369406, z: 0.000026400206}
+  m_Radius: 0.025
+  m_Center: {x: -0.00000006426257, y: 0.000018369406, z: 0.016}
+--- !u!54 &246948947
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 246948942}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 1
+  m_AngularDrag: 15
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 46
+  m_CollisionDetection: 0
+--- !u!114 &246948948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 246948942}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18055ba762aa3994f9c10208cd088bc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &246948949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 246948942}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3abaf4521bf2344ea21ed3020b98eb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  disableWhenIdle: 1
+  allowedNearTouchControllers: 0
+  allowedTouchControllers: 0
+  ignoredColliders: []
+  isGrabbable: 1
+  holdButtonToGrab: 1
+  stayGrabbedOnTeleport: 0
+  validDrop: 1
+  grabOverrideButton: 0
+  allowedGrabControllers: 0
+  grabAttachMechanicScript: {fileID: 246948950}
+  secondaryGrabActionScript: {fileID: 246948948}
+  isUsable: 0
+  holdButtonToUse: 1
+  useOnlyIfGrabbed: 0
+  pointerActivatesUseAction: 0
+  useOverrideButton: 0
+  allowedUseControllers: 0
+  objectHighlighter: {fileID: 0}
+  touchHighlightColor: {r: 0, g: 0, b: 0, a: 0}
+  usingState: 0
+--- !u!114 &246948950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 246948942}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7668d60aac28b44ab5e626253713906, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  precisionGrab: 1
+  rightSnapHandle: {fileID: 0}
+  leftSnapHandle: {fileID: 0}
+  throwVelocityWithAttachDistance: 0
+  throwMultiplier: 1
+  onGrabCollisionDelay: 0
+  detachDistance: 0.5
+  velocityLimit: Infinity
+  angularVelocityLimit: Infinity
+  maxDistanceDelta: 10
+--- !u!59 &246948951
+HingeJoint:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 246948942}
+  m_ConnectedBody: {fileID: 835468308}
+  m_Anchor: {x: 0, y: 0, z: 0}
+  m_Axis: {x: 0, y: 0, z: 1}
+  m_AutoConfigureConnectedAnchor: 1
+  m_ConnectedAnchor: {x: -0.0037342329, y: -0.0004602652, z: 0.011710777}
+  m_UseSpring: 0
+  m_Spring:
+    spring: 0
+    damper: 0
+    targetPosition: 0
+  m_UseMotor: 0
+  m_Motor:
+    targetVelocity: 0
+    force: 0
+    freeSpin: 0
+  m_UseLimits: 0
+  m_Limits:
+    min: 0
+    max: 0
+    bounciness: 0
+    bounceMinVelocity: 0
+    contactDistance: 0
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_EnableCollision: 0
+  m_EnablePreprocessing: 0
+  m_MassScale: 1
+  m_ConnectedMassScale: 1
 --- !u!1 &251319530
 GameObject:
   m_ObjectHideFlags: 0
@@ -10542,8 +10989,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.010633656, y: 0.6595053, z: 0.6470001}
-  m_Center: {x: -2.2066615e-13, y: 5.17363e-15, z: 0.32349992}
+  m_Size: {x: 0.005285533, y: 0.6063385, z: 0.6325468}
+  m_Center: {x: 0.0026740616, y: 0.001563876, z: 0.32405597}
 --- !u!1 &267746459
 GameObject:
   m_ObjectHideFlags: 0
@@ -13903,6 +14350,7 @@ GameObject:
   - component: {fileID: 303288053}
   - component: {fileID: 303288055}
   - component: {fileID: 303288054}
+  - component: {fileID: 303288056}
   m_Layer: 0
   m_Name: kitchen_island_1085
   m_TagString: Untagged
@@ -13966,6 +14414,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 303288052}
   m_Mesh: {fileID: 4300812, guid: 0746bbcc3e17a7d4ead07f84e57e7265, type: 3}
+--- !u!65 &303288056
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 303288052}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.3327619, y: 0.45923495, z: 0.021350473}
+  m_Center: {x: -0.026470419, y: -0.11820677, z: -0.013558222}
 --- !u!1 &310898234
 GameObject:
   m_ObjectHideFlags: 0
@@ -15057,6 +15517,7 @@ GameObject:
   - component: {fileID: 331795205}
   - component: {fileID: 331795207}
   - component: {fileID: 331795206}
+  - component: {fileID: 331795208}
   m_Layer: 0
   m_Name: kitchen_island_1667
   m_TagString: Untagged
@@ -15120,6 +15581,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 331795204}
   m_Mesh: {fileID: 4301260, guid: 0746bbcc3e17a7d4ead07f84e57e7265, type: 3}
+--- !u!65 &331795208
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 331795204}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.3327619, y: 0.45923495, z: 0.021350473}
+  m_Center: {x: -0.026470419, y: -0.11820677, z: -0.013558222}
 --- !u!1 &332438131
 GameObject:
   m_ObjectHideFlags: 0
@@ -17579,8 +18052,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.010633657, y: 0.65950555, z: 0.6770003}
-  m_Center: {x: 2.8862248e-14, y: 0, z: 0.3384999}
+  m_Size: {x: 0.005999322, y: 0.65950555, z: 0.6770002}
+  m_Center: {x: 0.0023171697, y: -0.00000001659564, z: 0.3384999}
 --- !u!1 &374244324
 GameObject:
   m_ObjectHideFlags: 0
@@ -19836,6 +20309,7 @@ GameObject:
   - component: {fileID: 408933639}
   - component: {fileID: 408933638}
   - component: {fileID: 408933640}
+  - component: {fileID: 408933641}
   m_Layer: 0
   m_Name: kitchen_island_1765
   m_TagString: Untagged
@@ -19912,6 +20386,21 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.07236603, y: 0.07219671, z: 0.014096472}
   m_Center: {x: -0.000002270565, y: -0.00000036476143, z: -0.008652279}
+--- !u!54 &408933641
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 408933636}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &408993639
 GameObject:
   m_ObjectHideFlags: 0
@@ -21060,7 +21549,7 @@ HingeJoint:
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
   m_EnableCollision: 0
-  m_EnablePreprocessing: 1
+  m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
 --- !u!54 &436823035
@@ -21071,8 +21560,8 @@ Rigidbody:
   m_GameObject: {fileID: 436823027}
   serializedVersion: 2
   m_Mass: 10
-  m_Drag: 10
-  m_AngularDrag: 0.1
+  m_Drag: 20
+  m_AngularDrag: 20
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -21088,8 +21577,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.029537965, y: 0.48006636, z: 0.34951025}
-  m_Center: {x: -0.017629297, y: 0.2384597, z: -0.000000055767813}
+  m_Size: {x: 0.041270345, y: 0.032847818, z: 0.29368794}
+  m_Center: {x: -0.052949734, y: 0.42597505, z: -0.000000019170088}
 --- !u!1 &437276900
 GameObject:
   m_ObjectHideFlags: 0
@@ -23775,11 +24264,11 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 100
   m_AngularDrag: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 2
+  m_Constraints: 112
+  m_CollisionDetection: 1
 --- !u!65 &495282509
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -24486,8 +24975,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.010633657, y: 0.6595055, z: 0.677}
-  m_Center: {x: -2.276907e-14, y: -0.000000029802475, z: 0.3385001}
+  m_Size: {x: 0.0055558817, y: 0.65950567, z: 0.677}
+  m_Center: {x: 0.0025388922, y: -0.000000032389107, z: 0.33850005}
 --- !u!1 &512297546
 GameObject:
   m_ObjectHideFlags: 0
@@ -25092,6 +25581,11 @@ GameObject:
   - component: {fileID: 535458308}
   - component: {fileID: 535458307}
   - component: {fileID: 535458309}
+  - component: {fileID: 535458310}
+  - component: {fileID: 535458313}
+  - component: {fileID: 535458312}
+  - component: {fileID: 535458311}
+  - component: {fileID: 535458314}
   m_Layer: 0
   m_Name: kitchen_island_1768
   m_TagString: Untagged
@@ -25165,8 +25659,121 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.03037596
-  m_Center: {x: 0.00000008288722, y: 0.000017989436, z: 0.000026469124}
+  m_Radius: 0.025
+  m_Center: {x: 0.00000005494672, y: 0.000018320978, z: 0.016}
+--- !u!54 &535458310
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 535458305}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 1
+  m_AngularDrag: 15
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 46
+  m_CollisionDetection: 0
+--- !u!114 &535458311
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 535458305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18055ba762aa3994f9c10208cd088bc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &535458312
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 535458305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3abaf4521bf2344ea21ed3020b98eb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  disableWhenIdle: 1
+  allowedNearTouchControllers: 0
+  allowedTouchControllers: 0
+  ignoredColliders: []
+  isGrabbable: 1
+  holdButtonToGrab: 1
+  stayGrabbedOnTeleport: 0
+  validDrop: 1
+  grabOverrideButton: 0
+  allowedGrabControllers: 0
+  grabAttachMechanicScript: {fileID: 1243343919}
+  secondaryGrabActionScript: {fileID: 1243343917}
+  isUsable: 0
+  holdButtonToUse: 1
+  useOnlyIfGrabbed: 0
+  pointerActivatesUseAction: 0
+  useOverrideButton: 0
+  allowedUseControllers: 0
+  objectHighlighter: {fileID: 0}
+  touchHighlightColor: {r: 0, g: 0, b: 0, a: 0}
+  usingState: 0
+--- !u!114 &535458313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 535458305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7668d60aac28b44ab5e626253713906, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  precisionGrab: 1
+  rightSnapHandle: {fileID: 0}
+  leftSnapHandle: {fileID: 0}
+  throwVelocityWithAttachDistance: 0
+  throwMultiplier: 1
+  onGrabCollisionDelay: 0
+  detachDistance: 0.5
+  velocityLimit: Infinity
+  angularVelocityLimit: Infinity
+  maxDistanceDelta: 10
+--- !u!59 &535458314
+HingeJoint:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 535458305}
+  m_ConnectedBody: {fileID: 1767527719}
+  m_Anchor: {x: 0, y: 0, z: 0}
+  m_Axis: {x: 0, y: 0, z: 1}
+  m_AutoConfigureConnectedAnchor: 1
+  m_ConnectedAnchor: {x: 1.072479, y: 3.6909027, z: -2.0404212}
+  m_UseSpring: 0
+  m_Spring:
+    spring: 0
+    damper: 0
+    targetPosition: 0
+  m_UseMotor: 0
+  m_Motor:
+    targetVelocity: 0
+    force: 0
+    freeSpin: 0
+  m_UseLimits: 0
+  m_Limits:
+    min: 0
+    max: 0
+    bounciness: 0
+    bounceMinVelocity: 0
+    contactDistance: 0
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_EnableCollision: 0
+  m_EnablePreprocessing: 0
+  m_MassScale: 1
+  m_ConnectedMassScale: 1
 --- !u!1 &540447338
 GameObject:
   m_ObjectHideFlags: 0
@@ -25543,8 +26150,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.010633662, y: 0.6595053, z: 0.6470001}
-  m_Center: {x: -0.00000035762764, y: 0.00000023841856, z: 0.32350004}
+  m_Size: {x: 0.0063330936, y: 0.6232138, z: 0.64700013}
+  m_Center: {x: 0.002149928, y: -0.0020157935, z: 0.32350004}
 --- !u!1 &549073313
 GameObject:
   m_ObjectHideFlags: 0
@@ -26898,8 +27505,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.029537965, y: 0.4800663, z: 0.34951043}
-  m_Center: {x: -0.01827586, y: 0.2384674, z: 0.0000001715643}
+  m_Size: {x: 0.041270345, y: 0.032847818, z: 0.29368794}
+  m_Center: {x: -0.052949734, y: 0.42597505, z: -0.000000019170088}
 --- !u!1 &596577932
 GameObject:
   m_ObjectHideFlags: 0
@@ -27277,7 +27884,7 @@ HingeJoint:
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
   m_EnableCollision: 0
-  m_EnablePreprocessing: 1
+  m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
 --- !u!54 &600956404
@@ -27288,8 +27895,8 @@ Rigidbody:
   m_GameObject: {fileID: 600956396}
   serializedVersion: 2
   m_Mass: 10
-  m_Drag: 10
-  m_AngularDrag: 0.1
+  m_Drag: 20
+  m_AngularDrag: 20
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -27305,8 +27912,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.02953796, y: 0.4800663, z: 0.34951025}
-  m_Center: {x: -0.017145162, y: 0.23861063, z: -0.00000030530228}
+  m_Size: {x: 0.041270345, y: 0.032847818, z: 0.29368794}
+  m_Center: {x: -0.052949734, y: 0.42597505, z: -0.000000019170088}
 --- !u!1 &603375385
 GameObject:
   m_ObjectHideFlags: 0
@@ -29030,6 +29637,11 @@ GameObject:
   - component: {fileID: 635466247}
   - component: {fileID: 635466249}
   - component: {fileID: 635466248}
+  - component: {fileID: 635466251}
+  - component: {fileID: 635466254}
+  - component: {fileID: 635466253}
+  - component: {fileID: 635466252}
+  - component: {fileID: 635466255}
   - component: {fileID: 635466250}
   m_Layer: 0
   m_Name: kitchen_island_1730
@@ -29104,8 +29716,121 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.030375939
-  m_Center: {x: -0.000000004657926, y: 0.000018434599, z: 0.000026400206}
+  m_Radius: 0.025
+  m_Center: {x: -0.000000004657926, y: 0.000018434599, z: 0.016}
+--- !u!54 &635466251
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 635466246}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 1
+  m_AngularDrag: 15
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 46
+  m_CollisionDetection: 0
+--- !u!114 &635466252
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 635466246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18055ba762aa3994f9c10208cd088bc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &635466253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 635466246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3abaf4521bf2344ea21ed3020b98eb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  disableWhenIdle: 1
+  allowedNearTouchControllers: 0
+  allowedTouchControllers: 0
+  ignoredColliders: []
+  isGrabbable: 1
+  holdButtonToGrab: 1
+  stayGrabbedOnTeleport: 0
+  validDrop: 1
+  grabOverrideButton: 0
+  allowedGrabControllers: 0
+  grabAttachMechanicScript: {fileID: 635466254}
+  secondaryGrabActionScript: {fileID: 635466252}
+  isUsable: 0
+  holdButtonToUse: 1
+  useOnlyIfGrabbed: 0
+  pointerActivatesUseAction: 0
+  useOverrideButton: 0
+  allowedUseControllers: 0
+  objectHighlighter: {fileID: 0}
+  touchHighlightColor: {r: 0, g: 0, b: 0, a: 0}
+  usingState: 0
+--- !u!114 &635466254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 635466246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7668d60aac28b44ab5e626253713906, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  precisionGrab: 1
+  rightSnapHandle: {fileID: 0}
+  leftSnapHandle: {fileID: 0}
+  throwVelocityWithAttachDistance: 0
+  throwMultiplier: 1
+  onGrabCollisionDelay: 0
+  detachDistance: 0.5
+  velocityLimit: Infinity
+  angularVelocityLimit: Infinity
+  maxDistanceDelta: 10
+--- !u!59 &635466255
+HingeJoint:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 635466246}
+  m_ConnectedBody: {fileID: 1437680096}
+  m_Anchor: {x: 0, y: 0, z: 0}
+  m_Axis: {x: 0, y: 0, z: 1}
+  m_AutoConfigureConnectedAnchor: 1
+  m_ConnectedAnchor: {x: -0.003733869, y: -0.0004600566, z: 0.011710228}
+  m_UseSpring: 0
+  m_Spring:
+    spring: 0
+    damper: 0
+    targetPosition: 0
+  m_UseMotor: 0
+  m_Motor:
+    targetVelocity: 0
+    force: 0
+    freeSpin: 0
+  m_UseLimits: 0
+  m_Limits:
+    min: 0
+    max: 0
+    bounciness: 0
+    bounceMinVelocity: 0
+    contactDistance: 0
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_EnableCollision: 0
+  m_EnablePreprocessing: 0
+  m_MassScale: 1
+  m_ConnectedMassScale: 1
 --- !u!1 &635544857
 GameObject:
   m_ObjectHideFlags: 0
@@ -29582,7 +30307,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 645971967}
   m_LocalRotation: {x: 0.00000011590392, y: -0.00000013697745, z: -0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: -0.0016548156, y: 0.3118495, z: -0.11954261}
+  m_LocalPosition: {x: -0.0016548156, y: 0.3157, z: -0.1195}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1288419700}
@@ -29641,8 +30366,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.029537944, y: 0.70000017, z: 0.23925215}
-  m_Center: {x: -0.00000005960464, y: 8.074943e-15, z: 0.11962631}
+  m_Size: {x: 0.025356703, y: 0.67825705, z: 0.21866877}
+  m_Center: {x: -0.0020906783, y: -0.00057224167, z: 0.116652116}
 --- !u!1 &655705875
 GameObject:
   m_ObjectHideFlags: 0
@@ -30197,6 +30922,7 @@ GameObject:
   - component: {fileID: 666484137}
   - component: {fileID: 666484136}
   - component: {fileID: 666484138}
+  - component: {fileID: 666484139}
   m_Layer: 0
   m_Name: kitchen_island_626
   m_TagString: Untagged
@@ -30273,6 +30999,21 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.07236602, y: 0.07219667, z: 0.014096465}
   m_Center: {x: -0.003140126, y: -0.0004599615, z: 0.0030573832}
+--- !u!54 &666484139
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 666484134}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &671529489
 GameObject:
   m_ObjectHideFlags: 0
@@ -30284,6 +31025,11 @@ GameObject:
   - component: {fileID: 671529492}
   - component: {fileID: 671529491}
   - component: {fileID: 671529493}
+  - component: {fileID: 671529494}
+  - component: {fileID: 671529497}
+  - component: {fileID: 671529496}
+  - component: {fileID: 671529495}
+  - component: {fileID: 671529498}
   m_Layer: 0
   m_Name: kitchen_island_153
   m_TagString: Untagged
@@ -30357,8 +31103,121 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.028201919
-  m_Center: {x: 0.000059342943, y: -0.000020649708, z: 0.017193794}
+  m_Radius: 0.02420326
+  m_Center: {x: 0, y: 0, z: 0.022}
+--- !u!54 &671529494
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 671529489}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 1
+  m_AngularDrag: 15
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 14
+  m_CollisionDetection: 0
+--- !u!114 &671529495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 671529489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18055ba762aa3994f9c10208cd088bc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &671529496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 671529489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3abaf4521bf2344ea21ed3020b98eb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  disableWhenIdle: 1
+  allowedNearTouchControllers: 0
+  allowedTouchControllers: 0
+  ignoredColliders: []
+  isGrabbable: 1
+  holdButtonToGrab: 1
+  stayGrabbedOnTeleport: 0
+  validDrop: 1
+  grabOverrideButton: 0
+  allowedGrabControllers: 0
+  grabAttachMechanicScript: {fileID: 671529497}
+  secondaryGrabActionScript: {fileID: 671529495}
+  isUsable: 0
+  holdButtonToUse: 1
+  useOnlyIfGrabbed: 0
+  pointerActivatesUseAction: 0
+  useOverrideButton: 0
+  allowedUseControllers: 0
+  objectHighlighter: {fileID: 0}
+  touchHighlightColor: {r: 0, g: 0, b: 0, a: 0}
+  usingState: 0
+--- !u!114 &671529497
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 671529489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7668d60aac28b44ab5e626253713906, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  precisionGrab: 1
+  rightSnapHandle: {fileID: 0}
+  leftSnapHandle: {fileID: 0}
+  throwVelocityWithAttachDistance: 0
+  throwMultiplier: 1
+  onGrabCollisionDelay: 0
+  detachDistance: 0.5
+  velocityLimit: Infinity
+  angularVelocityLimit: Infinity
+  maxDistanceDelta: 10
+--- !u!59 &671529498
+HingeJoint:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 671529489}
+  m_ConnectedBody: {fileID: 1434322587}
+  m_Anchor: {x: 0, y: 0, z: 0}
+  m_Axis: {x: 0, y: 0, z: 1}
+  m_AutoConfigureConnectedAnchor: 1
+  m_ConnectedAnchor: {x: -0.000000022351742, y: -0.0000009592623, z: 0.016846623}
+  m_UseSpring: 0
+  m_Spring:
+    spring: 0
+    damper: 0
+    targetPosition: 0
+  m_UseMotor: 0
+  m_Motor:
+    targetVelocity: 0
+    force: 0
+    freeSpin: 0
+  m_UseLimits: 0
+  m_Limits:
+    min: 0
+    max: 0
+    bounciness: 0
+    bounceMinVelocity: 0
+    contactDistance: 0
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_EnableCollision: 0
+  m_EnablePreprocessing: 0
+  m_MassScale: 1
+  m_ConnectedMassScale: 1
 --- !u!1 &671546094
 GameObject:
   m_ObjectHideFlags: 0
@@ -30748,8 +31607,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.029537944, y: 0.70000017, z: 0.23925215}
-  m_Center: {x: 0.000000044703487, y: 8.074943e-15, z: 0.119626075}
+  m_Size: {x: 0.022217616, y: 0.6769516, z: 0.2270518}
+  m_Center: {x: -0.00040631182, y: 0.00054877263, z: 0.11921942}
 --- !u!1 &680005863
 GameObject:
   m_ObjectHideFlags: 0
@@ -30871,8 +31730,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.010633656, y: 0.6595053, z: 0.6470001}
-  m_Center: {x: 0.000000059604425, y: 0.00000023841858, z: 0.32349998}
+  m_Size: {x: 0.0050166114, y: 0.6150849, z: 0.6430522}
+  m_Center: {x: -0.002808464, y: 0.00000030982915, z: 0.3215261}
 --- !u!1 &684284861
 GameObject:
   m_ObjectHideFlags: 0
@@ -31081,11 +31940,11 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 100
   m_AngularDrag: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 2
+  m_Constraints: 112
+  m_CollisionDetection: 1
 --- !u!65 &684284868
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -31108,6 +31967,7 @@ GameObject:
   - component: {fileID: 685980781}
   - component: {fileID: 685980783}
   - component: {fileID: 685980782}
+  - component: {fileID: 685980784}
   m_Layer: 0
   m_Name: kitchen_island_1225
   m_TagString: Untagged
@@ -31171,6 +32031,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 685980780}
   m_Mesh: {fileID: 4301076, guid: 0746bbcc3e17a7d4ead07f84e57e7265, type: 3}
+--- !u!65 &685980784
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 685980780}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.3327619, y: 0.45923495, z: 0.021350473}
+  m_Center: {x: -0.026470419, y: -0.11820677, z: -0.013558222}
 --- !u!1 &688321144
 GameObject:
   m_ObjectHideFlags: 0
@@ -32598,7 +33470,7 @@ Prefab:
     - target: {fileID: 224000012623161658, guid: d46cf6b1ad9d84a48ae7548a2a6b41b3,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 807
+      value: 532
       objectReference: {fileID: 0}
     - target: {fileID: 224000012623161658, guid: d46cf6b1ad9d84a48ae7548a2a6b41b3,
         type: 2}
@@ -34244,6 +35116,7 @@ GameObject:
   - component: {fileID: 748602897}
   - component: {fileID: 748602896}
   - component: {fileID: 748602898}
+  - component: {fileID: 748602899}
   m_Layer: 0
   m_Name: kitchen_island_1738
   m_TagString: Untagged
@@ -34320,6 +35193,21 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.07236602, y: 0.07219667, z: 0.014096465}
   m_Center: {x: -0.003140126, y: -0.0004598423, z: 0.0030573832}
+--- !u!54 &748602899
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 748602894}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &752593797
 GameObject:
   m_ObjectHideFlags: 0
@@ -35143,6 +36031,11 @@ GameObject:
   - component: {fileID: 769561693}
   - component: {fileID: 769561695}
   - component: {fileID: 769561694}
+  - component: {fileID: 769561697}
+  - component: {fileID: 769561700}
+  - component: {fileID: 769561699}
+  - component: {fileID: 769561698}
+  - component: {fileID: 769561701}
   - component: {fileID: 769561696}
   m_Layer: 0
   m_Name: kitchen_island_1729
@@ -35217,8 +36110,121 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.030375939
-  m_Center: {x: -0.00000006426257, y: 0.000018429011, z: 0.000026161788}
+  m_Radius: 0.025
+  m_Center: {x: -0.00000006426257, y: 0.000018429011, z: 0.016}
+--- !u!54 &769561697
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 769561692}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 1
+  m_AngularDrag: 15
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 46
+  m_CollisionDetection: 0
+--- !u!114 &769561698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 769561692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18055ba762aa3994f9c10208cd088bc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &769561699
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 769561692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3abaf4521bf2344ea21ed3020b98eb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  disableWhenIdle: 1
+  allowedNearTouchControllers: 0
+  allowedTouchControllers: 0
+  ignoredColliders: []
+  isGrabbable: 1
+  holdButtonToGrab: 1
+  stayGrabbedOnTeleport: 0
+  validDrop: 1
+  grabOverrideButton: 0
+  allowedGrabControllers: 0
+  grabAttachMechanicScript: {fileID: 769561700}
+  secondaryGrabActionScript: {fileID: 769561698}
+  isUsable: 0
+  holdButtonToUse: 1
+  useOnlyIfGrabbed: 0
+  pointerActivatesUseAction: 0
+  useOverrideButton: 0
+  allowedUseControllers: 0
+  objectHighlighter: {fileID: 0}
+  touchHighlightColor: {r: 0, g: 0, b: 0, a: 0}
+  usingState: 0
+--- !u!114 &769561700
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 769561692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7668d60aac28b44ab5e626253713906, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  precisionGrab: 1
+  rightSnapHandle: {fileID: 0}
+  leftSnapHandle: {fileID: 0}
+  throwVelocityWithAttachDistance: 0
+  throwMultiplier: 1
+  onGrabCollisionDelay: 0
+  detachDistance: 0.5
+  velocityLimit: Infinity
+  angularVelocityLimit: Infinity
+  maxDistanceDelta: 10
+--- !u!59 &769561701
+HingeJoint:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 769561692}
+  m_ConnectedBody: {fileID: 950658764}
+  m_Anchor: {x: 0, y: 0, z: 0}
+  m_Axis: {x: 0, y: 0, z: 1}
+  m_AutoConfigureConnectedAnchor: 1
+  m_ConnectedAnchor: {x: -0.003734136, y: -0.0004601013, z: 0.011710593}
+  m_UseSpring: 0
+  m_Spring:
+    spring: 0
+    damper: 0
+    targetPosition: 0
+  m_UseMotor: 0
+  m_Motor:
+    targetVelocity: 0
+    force: 0
+    freeSpin: 0
+  m_UseLimits: 0
+  m_Limits:
+    min: 0
+    max: 0
+    bounciness: 0
+    bounceMinVelocity: 0
+    contactDistance: 0
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_EnableCollision: 0
+  m_EnablePreprocessing: 0
+  m_MassScale: 1
+  m_ConnectedMassScale: 1
 --- !u!1 &770379849
 GameObject:
   m_ObjectHideFlags: 0
@@ -38731,6 +39737,7 @@ GameObject:
   - component: {fileID: 815021257}
   - component: {fileID: 815021259}
   - component: {fileID: 815021258}
+  - component: {fileID: 815021260}
   m_Layer: 0
   m_Name: kitchen_island_1067
   m_TagString: Untagged
@@ -38794,6 +39801,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 815021256}
   m_Mesh: {fileID: 4300788, guid: 0746bbcc3e17a7d4ead07f84e57e7265, type: 3}
+--- !u!65 &815021260
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 815021256}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.3327619, y: 0.45923495, z: 0.021350473}
+  m_Center: {x: -0.026470419, y: -0.11820677, z: -0.013558222}
 --- !u!1 &815943120
 GameObject:
   m_ObjectHideFlags: 0
@@ -39513,6 +40532,7 @@ GameObject:
   - component: {fileID: 835468306}
   - component: {fileID: 835468305}
   - component: {fileID: 835468307}
+  - component: {fileID: 835468308}
   m_Layer: 0
   m_Name: kitchen_island_1740
   m_TagString: Untagged
@@ -39589,6 +40609,21 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.07236602, y: 0.07219667, z: 0.014096465}
   m_Center: {x: -0.003140126, y: -0.00046008072, z: 0.0030573832}
+--- !u!54 &835468308
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 835468303}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &838023083
 GameObject:
   m_ObjectHideFlags: 0
@@ -39955,6 +40990,7 @@ GameObject:
   - component: {fileID: 842192159}
   - component: {fileID: 842192161}
   - component: {fileID: 842192160}
+  - component: {fileID: 842192162}
   m_Layer: 0
   m_Name: kitchen_island_1072
   m_TagString: Untagged
@@ -40018,6 +41054,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 842192158}
   m_Mesh: {fileID: 4300782, guid: 0746bbcc3e17a7d4ead07f84e57e7265, type: 3}
+--- !u!65 &842192162
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 842192158}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.3327619, y: 0.45923495, z: 0.021350473}
+  m_Center: {x: -0.026470419, y: -0.11820677, z: -0.013558222}
 --- !u!1 &845555896
 GameObject:
   m_ObjectHideFlags: 0
@@ -42482,6 +43530,7 @@ GameObject:
   - component: {fileID: 916190726}
   - component: {fileID: 916190725}
   - component: {fileID: 916190727}
+  - component: {fileID: 916190728}
   m_Layer: 0
   m_Name: kitchen_island_98
   m_TagString: Untagged
@@ -42558,6 +43607,21 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.07236603, y: 0.07219667, z: 0.014096467}
   m_Center: {x: -0.0031398877, y: -0.00046008074, z: 0.003057145}
+--- !u!54 &916190728
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 916190723}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &916281877
 GameObject:
   m_ObjectHideFlags: 0
@@ -43919,8 +44983,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.029537944, y: 0.70000017, z: 0.23925215}
-  m_Center: {x: 0.000000044703487, y: 8.074943e-15, z: 0.119626194}
+  m_Size: {x: 0.027281858, y: 0.6754359, z: 0.22120816}
+  m_Center: {x: 0.0011280865, y: -0.00000001876088, z: 0.118498355}
 --- !u!1 &938516319
 GameObject:
   m_ObjectHideFlags: 0
@@ -44348,6 +45412,7 @@ GameObject:
   - component: {fileID: 950658762}
   - component: {fileID: 950658761}
   - component: {fileID: 950658763}
+  - component: {fileID: 950658764}
   m_Layer: 0
   m_Name: kitchen_island_659
   m_TagString: Untagged
@@ -44424,6 +45489,21 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.07236602, y: 0.07219667, z: 0.014096465}
   m_Center: {x: -0.003140126, y: -0.0004599019, z: 0.0030573832}
+--- !u!54 &950658764
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 950658759}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &953501430
 GameObject:
   m_ObjectHideFlags: 0
@@ -44667,8 +45747,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.0106336605, y: 0.6595053, z: 0.6470001}
-  m_Center: {x: -0.000000014900941, y: 0.00000023841858, z: 0.32350028}
+  m_Size: {x: 0.0062241014, y: 0.6595053, z: 0.6470001}
+  m_Center: {x: -0.0022047951, y: 0.00000024397764, z: 0.32350034}
 --- !u!1 &959479517
 GameObject:
   m_ObjectHideFlags: 0
@@ -46434,6 +47514,7 @@ GameObject:
   - component: {fileID: 998658823}
   - component: {fileID: 998658825}
   - component: {fileID: 998658824}
+  - component: {fileID: 998658826}
   m_Layer: 0
   m_Name: kitchen_island_1696
   m_TagString: Untagged
@@ -46497,6 +47578,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 998658822}
   m_Mesh: {fileID: 4300848, guid: 0746bbcc3e17a7d4ead07f84e57e7265, type: 3}
+--- !u!65 &998658826
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 998658822}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.010633657, y: 0.65950537, z: 0.62619543}
+  m_Center: {x: -0.000000029769806, y: 0.0000002383168, z: 0.3339025}
 --- !u!1 &1000688844
 GameObject:
   m_ObjectHideFlags: 0
@@ -49899,8 +50992,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.55193365, y: 1.0384619, z: 0.008743186}
-  m_Center: {x: 0.000000014901161, y: 0.000000044703484, z: -0.0043716524}
+  m_Size: {x: 0.55193365, y: 1.0384619, z: 0.0032792082}
+  m_Center: {x: 0.00000002961347, y: 0.00000005844126, z: 0.0049170554}
 --- !u!1 &1074891607
 GameObject:
   m_ObjectHideFlags: 0
@@ -50258,7 +51351,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1082211578}
   m_LocalRotation: {x: -0, y: -0, z: 7.1054257e-15, w: 1}
-  m_LocalPosition: {x: -0.002, y: -0.164, z: 0.105}
+  m_LocalPosition: {x: -0.002, y: -0.164, z: 0.118300036}
   m_LocalScale: {x: 1.0000007, y: 1.0000006, z: 1.0000006}
   m_Children:
   - {fileID: 171357988}
@@ -50338,7 +51431,7 @@ Rigidbody:
   m_GameObject: {fileID: 1082211578}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 0
+  m_Drag: 3
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
@@ -52485,6 +53578,7 @@ GameObject:
   - component: {fileID: 1136783570}
   - component: {fileID: 1136783569}
   - component: {fileID: 1136783571}
+  - component: {fileID: 1136783572}
   m_Layer: 0
   m_Name: kitchen_island_1742
   m_TagString: Untagged
@@ -52561,6 +53655,21 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.07236603, y: 0.07219667, z: 0.014096467}
   m_Center: {x: -0.003140007, y: -0.0004597231, z: 0.003057145}
+--- !u!54 &1136783572
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1136783567}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1139795572
 GameObject:
   m_ObjectHideFlags: 0
@@ -53256,8 +54365,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.029537963, y: 0.4800663, z: 0.34951043}
-  m_Center: {x: -0.018661765, y: 0.23657724, z: -0.00000006689912}
+  m_Size: {x: 0.041270345, y: 0.032847818, z: 0.29368794}
+  m_Center: {x: -0.052949734, y: 0.42597505, z: -0.000000019170088}
 --- !u!1 &1146981948
 GameObject:
   m_ObjectHideFlags: 0
@@ -54403,7 +55512,7 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 100
   m_AngularDrag: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
@@ -54685,6 +55794,7 @@ GameObject:
   - component: {fileID: 1173997001}
   - component: {fileID: 1173997000}
   - component: {fileID: 1173997002}
+  - component: {fileID: 1173997003}
   m_Layer: 0
   m_Name: kitchen_island_658
   m_TagString: Untagged
@@ -54761,6 +55871,21 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.07236602, y: 0.07219667, z: 0.014096465}
   m_Center: {x: -0.003140126, y: -0.0004599615, z: 0.0030575024}
+--- !u!54 &1173997003
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1173996998}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1175195133
 GameObject:
   m_ObjectHideFlags: 0
@@ -56726,6 +57851,7 @@ GameObject:
   - component: {fileID: 1211240678}
   - component: {fileID: 1211240677}
   - component: {fileID: 1211240679}
+  - component: {fileID: 1211240680}
   m_Layer: 0
   m_Name: kitchen_island_1254
   m_TagString: Untagged
@@ -56802,6 +57928,21 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.07236604, y: 0.07219671, z: 0.014096474}
   m_Center: {x: -0.0000017934703, y: -0.00000018610662, z: -0.008652995}
+--- !u!54 &1211240680
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1211240675}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1211241568
 GameObject:
   m_ObjectHideFlags: 0
@@ -56993,7 +58134,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1213383712}
   m_LocalRotation: {x: 0, y: 0, z: 7.1054274e-15, w: 1}
-  m_LocalPosition: {x: -0.002234802, y: 0.10672726, z: 0.10494987}
+  m_LocalPosition: {x: -0.002234802, y: 0.10672726, z: 0.11824991}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1812111843}
@@ -57085,7 +58226,7 @@ Rigidbody:
   m_GameObject: {fileID: 1213383712}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 0
+  m_Drag: 3
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
@@ -57163,6 +58304,11 @@ GameObject:
   - component: {fileID: 1214794466}
   - component: {fileID: 1214794465}
   - component: {fileID: 1214794467}
+  - component: {fileID: 1214794468}
+  - component: {fileID: 1214794471}
+  - component: {fileID: 1214794470}
+  - component: {fileID: 1214794469}
+  - component: {fileID: 1214794472}
   m_Layer: 0
   m_Name: kitchen_island_1745
   m_TagString: Untagged
@@ -57236,8 +58382,121 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.030375939
-  m_Center: {x: 0.00000025518207, y: 0.000018319115, z: 0.000026238156}
+  m_Radius: 0.025
+  m_Center: {x: 0.00000005494672, y: 0.000018320978, z: 0.016}
+--- !u!54 &1214794468
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1214794463}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 1
+  m_AngularDrag: 15
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 46
+  m_CollisionDetection: 0
+--- !u!114 &1214794469
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1214794463}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18055ba762aa3994f9c10208cd088bc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1214794470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1214794463}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3abaf4521bf2344ea21ed3020b98eb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  disableWhenIdle: 1
+  allowedNearTouchControllers: 0
+  allowedTouchControllers: 0
+  ignoredColliders: []
+  isGrabbable: 1
+  holdButtonToGrab: 1
+  stayGrabbedOnTeleport: 0
+  validDrop: 1
+  grabOverrideButton: 0
+  allowedGrabControllers: 0
+  grabAttachMechanicScript: {fileID: 1243343919}
+  secondaryGrabActionScript: {fileID: 1243343917}
+  isUsable: 0
+  holdButtonToUse: 1
+  useOnlyIfGrabbed: 0
+  pointerActivatesUseAction: 0
+  useOverrideButton: 0
+  allowedUseControllers: 0
+  objectHighlighter: {fileID: 0}
+  touchHighlightColor: {r: 0, g: 0, b: 0, a: 0}
+  usingState: 0
+--- !u!114 &1214794471
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1214794463}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7668d60aac28b44ab5e626253713906, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  precisionGrab: 1
+  rightSnapHandle: {fileID: 0}
+  leftSnapHandle: {fileID: 0}
+  throwVelocityWithAttachDistance: 0
+  throwMultiplier: 1
+  onGrabCollisionDelay: 0
+  detachDistance: 0.5
+  velocityLimit: Infinity
+  angularVelocityLimit: Infinity
+  maxDistanceDelta: 10
+--- !u!59 &1214794472
+HingeJoint:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1214794463}
+  m_ConnectedBody: {fileID: 1767527719}
+  m_Anchor: {x: 0, y: 0, z: 0}
+  m_Axis: {x: 0, y: 0, z: 1}
+  m_AutoConfigureConnectedAnchor: 1
+  m_ConnectedAnchor: {x: 0.64740956, y: 1.0255171, z: -1.2287961}
+  m_UseSpring: 0
+  m_Spring:
+    spring: 0
+    damper: 0
+    targetPosition: 0
+  m_UseMotor: 0
+  m_Motor:
+    targetVelocity: 0
+    force: 0
+    freeSpin: 0
+  m_UseLimits: 0
+  m_Limits:
+    min: 0
+    max: 0
+    bounciness: 0
+    bounceMinVelocity: 0
+    contactDistance: 0
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_EnableCollision: 0
+  m_EnablePreprocessing: 0
+  m_MassScale: 1
+  m_ConnectedMassScale: 1
 --- !u!1 &1215499206
 GameObject:
   m_ObjectHideFlags: 0
@@ -58007,6 +59266,11 @@ GameObject:
   - component: {fileID: 1226067690}
   - component: {fileID: 1226067689}
   - component: {fileID: 1226067691}
+  - component: {fileID: 1226067692}
+  - component: {fileID: 1226067695}
+  - component: {fileID: 1226067694}
+  - component: {fileID: 1226067693}
+  - component: {fileID: 1226067696}
   m_Layer: 0
   m_Name: kitchen_island_1766
   m_TagString: Untagged
@@ -58080,8 +59344,121 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.03037596
-  m_Center: {x: 0.00000008288722, y: 0.000018108645, z: 0.000026230706}
+  m_Radius: 0.025
+  m_Center: {x: 0.00000005494672, y: 0.000018320978, z: 0.016}
+--- !u!54 &1226067692
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1226067687}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 1
+  m_AngularDrag: 15
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 46
+  m_CollisionDetection: 0
+--- !u!114 &1226067693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1226067687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18055ba762aa3994f9c10208cd088bc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1226067694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1226067687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3abaf4521bf2344ea21ed3020b98eb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  disableWhenIdle: 1
+  allowedNearTouchControllers: 0
+  allowedTouchControllers: 0
+  ignoredColliders: []
+  isGrabbable: 1
+  holdButtonToGrab: 1
+  stayGrabbedOnTeleport: 0
+  validDrop: 1
+  grabOverrideButton: 0
+  allowedGrabControllers: 0
+  grabAttachMechanicScript: {fileID: 1243343919}
+  secondaryGrabActionScript: {fileID: 1243343917}
+  isUsable: 0
+  holdButtonToUse: 1
+  useOnlyIfGrabbed: 0
+  pointerActivatesUseAction: 0
+  useOverrideButton: 0
+  allowedUseControllers: 0
+  objectHighlighter: {fileID: 0}
+  touchHighlightColor: {r: 0, g: 0, b: 0, a: 0}
+  usingState: 0
+--- !u!114 &1226067695
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1226067687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7668d60aac28b44ab5e626253713906, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  precisionGrab: 1
+  rightSnapHandle: {fileID: 0}
+  leftSnapHandle: {fileID: 0}
+  throwVelocityWithAttachDistance: 0
+  throwMultiplier: 1
+  onGrabCollisionDelay: 0
+  detachDistance: 0.5
+  velocityLimit: Infinity
+  angularVelocityLimit: Infinity
+  maxDistanceDelta: 10
+--- !u!59 &1226067696
+HingeJoint:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1226067687}
+  m_ConnectedBody: {fileID: 1767527719}
+  m_Anchor: {x: 0, y: 0, z: 0}
+  m_Axis: {x: 0, y: 0, z: 1}
+  m_AutoConfigureConnectedAnchor: 1
+  m_ConnectedAnchor: {x: 0.93303734, y: 3.6909025, z: -1.7747684}
+  m_UseSpring: 0
+  m_Spring:
+    spring: 0
+    damper: 0
+    targetPosition: 0
+  m_UseMotor: 0
+  m_Motor:
+    targetVelocity: 0
+    force: 0
+    freeSpin: 0
+  m_UseLimits: 0
+  m_Limits:
+    min: 0
+    max: 0
+    bounciness: 0
+    bounceMinVelocity: 0
+    contactDistance: 0
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_EnableCollision: 0
+  m_EnablePreprocessing: 0
+  m_MassScale: 1
+  m_ConnectedMassScale: 1
 --- !u!1 &1228248580
 GameObject:
   m_ObjectHideFlags: 0
@@ -58239,6 +59616,11 @@ GameObject:
   - component: {fileID: 1241627066}
   - component: {fileID: 1241627065}
   - component: {fileID: 1241627067}
+  - component: {fileID: 1241627068}
+  - component: {fileID: 1241627071}
+  - component: {fileID: 1241627070}
+  - component: {fileID: 1241627069}
+  - component: {fileID: 1241627072}
   m_Layer: 0
   m_Name: kitchen_island_119
   m_TagString: Untagged
@@ -58312,8 +59694,121 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.02820192
-  m_Center: {x: 0.00005958136, y: -0.0000205305, z: 0.017193796}
+  m_Radius: 0.02420326
+  m_Center: {x: 0, y: 0, z: 0.022}
+--- !u!54 &1241627068
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1241627063}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 1
+  m_AngularDrag: 15
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 14
+  m_CollisionDetection: 0
+--- !u!114 &1241627069
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1241627063}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18055ba762aa3994f9c10208cd088bc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1241627070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1241627063}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3abaf4521bf2344ea21ed3020b98eb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  disableWhenIdle: 1
+  allowedNearTouchControllers: 0
+  allowedTouchControllers: 0
+  ignoredColliders: []
+  isGrabbable: 1
+  holdButtonToGrab: 1
+  stayGrabbedOnTeleport: 0
+  validDrop: 1
+  grabOverrideButton: 0
+  allowedGrabControllers: 0
+  grabAttachMechanicScript: {fileID: 1243343919}
+  secondaryGrabActionScript: {fileID: 1243343917}
+  isUsable: 0
+  holdButtonToUse: 1
+  useOnlyIfGrabbed: 0
+  pointerActivatesUseAction: 0
+  useOverrideButton: 0
+  allowedUseControllers: 0
+  objectHighlighter: {fileID: 0}
+  touchHighlightColor: {r: 0, g: 0, b: 0, a: 0}
+  usingState: 0
+--- !u!114 &1241627071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1241627063}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7668d60aac28b44ab5e626253713906, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  precisionGrab: 1
+  rightSnapHandle: {fileID: 0}
+  leftSnapHandle: {fileID: 0}
+  throwVelocityWithAttachDistance: 0
+  throwMultiplier: 1
+  onGrabCollisionDelay: 0
+  detachDistance: 0.5
+  velocityLimit: Infinity
+  angularVelocityLimit: Infinity
+  maxDistanceDelta: 10
+--- !u!59 &1241627072
+HingeJoint:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1241627063}
+  m_ConnectedBody: {fileID: 1767527719}
+  m_Anchor: {x: 0, y: 0, z: 0}
+  m_Axis: {x: 0, y: 0, z: 1}
+  m_AutoConfigureConnectedAnchor: 1
+  m_ConnectedAnchor: {x: 0.65159816, y: 2.2097116, z: -1.2289586}
+  m_UseSpring: 0
+  m_Spring:
+    spring: 0
+    damper: 0
+    targetPosition: 0
+  m_UseMotor: 0
+  m_Motor:
+    targetVelocity: 0
+    force: 0
+    freeSpin: 0
+  m_UseLimits: 0
+  m_Limits:
+    min: 0
+    max: 0
+    bounciness: 0
+    bounceMinVelocity: 0
+    contactDistance: 0
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_EnableCollision: 0
+  m_EnablePreprocessing: 0
+  m_MassScale: 1
+  m_ConnectedMassScale: 1
 --- !u!1 &1242543781
 GameObject:
   m_ObjectHideFlags: 0
@@ -58483,6 +59978,11 @@ GameObject:
   - component: {fileID: 1243343913}
   - component: {fileID: 1243343915}
   - component: {fileID: 1243343914}
+  - component: {fileID: 1243343921}
+  - component: {fileID: 1243343920}
+  - component: {fileID: 1243343919}
+  - component: {fileID: 1243343918}
+  - component: {fileID: 1243343917}
   - component: {fileID: 1243343916}
   m_Layer: 0
   m_Name: kitchen_island_1731
@@ -58557,8 +60057,121 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.030394288
-  m_Center: {x: -0.0000000046566146, y: 0.000000059604645, z: 0.000000036321588}
+  m_Radius: 0.025
+  m_Center: {x: -0.0000000046566146, y: 0.000000059604645, z: 0.016}
+--- !u!114 &1243343917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1243343912}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18055ba762aa3994f9c10208cd088bc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1243343918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1243343912}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3abaf4521bf2344ea21ed3020b98eb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  disableWhenIdle: 1
+  allowedNearTouchControllers: 0
+  allowedTouchControllers: 0
+  ignoredColliders: []
+  isGrabbable: 1
+  holdButtonToGrab: 1
+  stayGrabbedOnTeleport: 0
+  validDrop: 1
+  grabOverrideButton: 0
+  allowedGrabControllers: 0
+  grabAttachMechanicScript: {fileID: 1243343919}
+  secondaryGrabActionScript: {fileID: 1243343917}
+  isUsable: 0
+  holdButtonToUse: 1
+  useOnlyIfGrabbed: 0
+  pointerActivatesUseAction: 0
+  useOverrideButton: 0
+  allowedUseControllers: 0
+  objectHighlighter: {fileID: 0}
+  touchHighlightColor: {r: 0, g: 0, b: 0, a: 0}
+  usingState: 0
+--- !u!114 &1243343919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1243343912}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7668d60aac28b44ab5e626253713906, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  precisionGrab: 1
+  rightSnapHandle: {fileID: 0}
+  leftSnapHandle: {fileID: 0}
+  throwVelocityWithAttachDistance: 0
+  throwMultiplier: 1
+  onGrabCollisionDelay: 0
+  detachDistance: 0.5
+  velocityLimit: Infinity
+  angularVelocityLimit: Infinity
+  maxDistanceDelta: 10
+--- !u!59 &1243343920
+HingeJoint:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1243343912}
+  m_ConnectedBody: {fileID: 1767527719}
+  m_Anchor: {x: 0, y: 0, z: 0}
+  m_Axis: {x: 0, y: 0, z: 1}
+  m_AutoConfigureConnectedAnchor: 1
+  m_ConnectedAnchor: {x: -0.003734001, y: -0.0004601311, z: 0.011710159}
+  m_UseSpring: 0
+  m_Spring:
+    spring: 0
+    damper: 0
+    targetPosition: 0
+  m_UseMotor: 0
+  m_Motor:
+    targetVelocity: 0
+    force: 0
+    freeSpin: 0
+  m_UseLimits: 0
+  m_Limits:
+    min: 0
+    max: 0
+    bounciness: 0
+    bounceMinVelocity: 0
+    contactDistance: 0
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_EnableCollision: 0
+  m_EnablePreprocessing: 0
+  m_MassScale: 1
+  m_ConnectedMassScale: 1
+--- !u!54 &1243343921
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1243343912}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 1
+  m_AngularDrag: 15
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 46
+  m_CollisionDetection: 0
 --- !u!1 &1244171154
 GameObject:
   m_ObjectHideFlags: 0
@@ -60426,7 +62039,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1288419699}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.0018540191, y: -0.020506896, z: -0.0241082}
+  m_LocalPosition: {x: 0.0018540191, y: -0.02470169, z: -0.023232685}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1863814186}
@@ -60448,7 +62061,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.6803818, y: 0.93039703, z: -0.09415221}
+  m_ConnectedAnchor: {x: -0.6803818, y: 0.93109745, z: -0.09079635}
   serializedVersion: 2
   m_SecondaryAxis: {x: -1, y: 0, z: 0}
   m_XMotion: 1
@@ -60542,11 +62155,11 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 100
   m_AngularDrag: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 2
+  m_Constraints: 112
+  m_CollisionDetection: 0
 --- !u!114 &1288419703
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -60852,6 +62465,7 @@ GameObject:
   - component: {fileID: 1295769625}
   - component: {fileID: 1295769627}
   - component: {fileID: 1295769626}
+  - component: {fileID: 1295769628}
   m_Layer: 0
   m_Name: kitchen_island_1069
   m_TagString: Untagged
@@ -60915,6 +62529,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1295769624}
   m_Mesh: {fileID: 4300784, guid: 0746bbcc3e17a7d4ead07f84e57e7265, type: 3}
+--- !u!65 &1295769628
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1295769624}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.010633656, y: 0.65950537, z: 0.6318932}
+  m_Center: {x: 4.1557748e-13, y: 0.00000023882626, z: 0.33105347}
 --- !u!1 &1302636684
 GameObject:
   m_ObjectHideFlags: 0
@@ -61137,8 +62763,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.010633656, y: 0.6595053, z: 0.6470001}
-  m_Center: {x: 0.000000059604425, y: 0.00000023841858, z: 0.32349998}
+  m_Size: {x: 0.0047132317, y: 0.6216089, z: 0.63465065}
+  m_Center: {x: -0.0029601539, y: -0.003157712, z: 0.32181573}
 --- !u!1 &1305732191
 GameObject:
   m_ObjectHideFlags: 0
@@ -61687,6 +63313,11 @@ GameObject:
   - component: {fileID: 1315467265}
   - component: {fileID: 1315467264}
   - component: {fileID: 1315467266}
+  - component: {fileID: 1315467267}
+  - component: {fileID: 1315467270}
+  - component: {fileID: 1315467269}
+  - component: {fileID: 1315467268}
+  - component: {fileID: 1315467271}
   m_Layer: 0
   m_Name: kitchen_island_1743
   m_TagString: Untagged
@@ -61760,8 +63391,121 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.030375939
-  m_Center: {x: 0.00000019557721, y: 0.000018557534, z: 0.000026357366}
+  m_Radius: 0.025
+  m_Center: {x: 0.00000005494672, y: 0.000018320978, z: 0.016}
+--- !u!54 &1315467267
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1315467262}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 1
+  m_AngularDrag: 15
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 14
+  m_CollisionDetection: 0
+--- !u!114 &1315467268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1315467262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18055ba762aa3994f9c10208cd088bc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1315467269
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1315467262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3abaf4521bf2344ea21ed3020b98eb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  disableWhenIdle: 1
+  allowedNearTouchControllers: 0
+  allowedTouchControllers: 0
+  ignoredColliders: []
+  isGrabbable: 1
+  holdButtonToGrab: 1
+  stayGrabbedOnTeleport: 0
+  validDrop: 1
+  grabOverrideButton: 0
+  allowedGrabControllers: 0
+  grabAttachMechanicScript: {fileID: 1243343919}
+  secondaryGrabActionScript: {fileID: 1243343917}
+  isUsable: 0
+  holdButtonToUse: 1
+  useOnlyIfGrabbed: 0
+  pointerActivatesUseAction: 0
+  useOverrideButton: 0
+  allowedUseControllers: 0
+  objectHighlighter: {fileID: 0}
+  touchHighlightColor: {r: 0, g: 0, b: 0, a: 0}
+  usingState: 0
+--- !u!114 &1315467270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1315467262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7668d60aac28b44ab5e626253713906, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  precisionGrab: 1
+  rightSnapHandle: {fileID: 0}
+  leftSnapHandle: {fileID: 0}
+  throwVelocityWithAttachDistance: 0
+  throwMultiplier: 1
+  onGrabCollisionDelay: 0
+  detachDistance: 0.5
+  velocityLimit: Infinity
+  angularVelocityLimit: Infinity
+  maxDistanceDelta: 10
+--- !u!59 &1315467271
+HingeJoint:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1315467262}
+  m_ConnectedBody: {fileID: 1767527719}
+  m_Anchor: {x: 0, y: 0, z: 0}
+  m_Axis: {x: 0, y: 0, z: 1}
+  m_AutoConfigureConnectedAnchor: 1
+  m_ConnectedAnchor: {x: 0.6474092, y: 2.091308, z: -1.2287955}
+  m_UseSpring: 0
+  m_Spring:
+    spring: 0
+    damper: 0
+    targetPosition: 0
+  m_UseMotor: 0
+  m_Motor:
+    targetVelocity: 0
+    force: 0
+    freeSpin: 0
+  m_UseLimits: 0
+  m_Limits:
+    min: 0
+    max: 0
+    bounciness: 0
+    bounceMinVelocity: 0
+    contactDistance: 0
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_EnableCollision: 0
+  m_EnablePreprocessing: 0
+  m_MassScale: 1
+  m_ConnectedMassScale: 1
 --- !u!1 &1317792814
 GameObject:
   m_ObjectHideFlags: 0
@@ -63619,8 +65363,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.029537944, y: 0.70000017, z: 0.23925215}
-  m_Center: {x: -0.00000014901161, y: 8.074943e-15, z: 0.119626135}
+  m_Size: {x: 0.022867307, y: 0.66592896, z: 0.22196662}
+  m_Center: {x: -0.0011118748, y: 0.00011578217, z: 0.11987802}
 --- !u!1 &1355681731
 GameObject:
   m_ObjectHideFlags: 0
@@ -66998,6 +68742,11 @@ GameObject:
   - component: {fileID: 1423798983}
   - component: {fileID: 1423798982}
   - component: {fileID: 1423798984}
+  - component: {fileID: 1423798985}
+  - component: {fileID: 1423798988}
+  - component: {fileID: 1423798987}
+  - component: {fileID: 1423798986}
+  - component: {fileID: 1423798989}
   m_Layer: 0
   m_Name: kitchen_island_1741
   m_TagString: Untagged
@@ -67071,8 +68820,121 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.030375939
-  m_Center: {x: 0.000000076368856, y: 0.000018319115, z: 0.000026238156}
+  m_Radius: 0.025
+  m_Center: {x: 0.00000005494672, y: 0.000018320978, z: 0.016}
+--- !u!54 &1423798985
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1423798980}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 1
+  m_AngularDrag: 15
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 46
+  m_CollisionDetection: 0
+--- !u!114 &1423798986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1423798980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18055ba762aa3994f9c10208cd088bc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1423798987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1423798980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3abaf4521bf2344ea21ed3020b98eb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  disableWhenIdle: 1
+  allowedNearTouchControllers: 0
+  allowedTouchControllers: 0
+  ignoredColliders: []
+  isGrabbable: 1
+  holdButtonToGrab: 1
+  stayGrabbedOnTeleport: 0
+  validDrop: 1
+  grabOverrideButton: 0
+  allowedGrabControllers: 0
+  grabAttachMechanicScript: {fileID: 1243343919}
+  secondaryGrabActionScript: {fileID: 1243343917}
+  isUsable: 0
+  holdButtonToUse: 1
+  useOnlyIfGrabbed: 0
+  pointerActivatesUseAction: 0
+  useOverrideButton: 0
+  allowedUseControllers: 0
+  objectHighlighter: {fileID: 0}
+  touchHighlightColor: {r: 0, g: 0, b: 0, a: 0}
+  usingState: 0
+--- !u!114 &1423798988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1423798980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7668d60aac28b44ab5e626253713906, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  precisionGrab: 1
+  rightSnapHandle: {fileID: 0}
+  leftSnapHandle: {fileID: 0}
+  throwVelocityWithAttachDistance: 0
+  throwMultiplier: 1
+  onGrabCollisionDelay: 0
+  detachDistance: 0.5
+  velocityLimit: Infinity
+  angularVelocityLimit: Infinity
+  maxDistanceDelta: 10
+--- !u!59 &1423798989
+HingeJoint:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1423798980}
+  m_ConnectedBody: {fileID: 1767527719}
+  m_Anchor: {x: 0, y: 0, z: 0}
+  m_Axis: {x: 0, y: 0, z: 1}
+  m_AutoConfigureConnectedAnchor: 1
+  m_ConnectedAnchor: {x: 0.64740944, y: 1.8046967, z: -1.2287955}
+  m_UseSpring: 0
+  m_Spring:
+    spring: 0
+    damper: 0
+    targetPosition: 0
+  m_UseMotor: 0
+  m_Motor:
+    targetVelocity: 0
+    force: 0
+    freeSpin: 0
+  m_UseLimits: 0
+  m_Limits:
+    min: 0
+    max: 0
+    bounciness: 0
+    bounceMinVelocity: 0
+    contactDistance: 0
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_EnableCollision: 0
+  m_EnablePreprocessing: 0
+  m_MassScale: 1
+  m_ConnectedMassScale: 1
 --- !u!1 &1423806501
 GameObject:
   m_ObjectHideFlags: 0
@@ -67503,6 +69365,7 @@ GameObject:
   - component: {fileID: 1434322585}
   - component: {fileID: 1434322584}
   - component: {fileID: 1434322586}
+  - component: {fileID: 1434322587}
   m_Layer: 0
   m_Name: kitchen_island_154
   m_TagString: Untagged
@@ -67578,6 +69441,21 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.08109381, y: 0.08159612, z: 0.020202609}
   m_Center: {x: -0.00025114417, y: 0.00000005990569, z: 0.010101542}
+--- !u!54 &1434322587
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1434322582}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1437680091
 GameObject:
   m_ObjectHideFlags: 0
@@ -67589,6 +69467,7 @@ GameObject:
   - component: {fileID: 1437680094}
   - component: {fileID: 1437680093}
   - component: {fileID: 1437680095}
+  - component: {fileID: 1437680096}
   m_Layer: 0
   m_Name: kitchen_island_75
   m_TagString: Untagged
@@ -67665,6 +69544,21 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.07236602, y: 0.07219667, z: 0.014096465}
   m_Center: {x: -0.0031400663, y: -0.0004598423, z: 0.0030575024}
+--- !u!54 &1437680096
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1437680091}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1439262209
 GameObject:
   m_ObjectHideFlags: 0
@@ -68052,7 +69946,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1450559278}
   m_LocalRotation: {x: -0, y: -0, z: 7.1054257e-15, w: 1}
-  m_LocalPosition: {x: 0.35, y: 0.106, z: 0.105}
+  m_LocalPosition: {x: 0.35, y: 0.106, z: 0.118300036}
   m_LocalScale: {x: 1.0000007, y: 1.0000006, z: 1.0000006}
   m_Children:
   - {fileID: 2028526612}
@@ -68132,7 +70026,7 @@ Rigidbody:
   m_GameObject: {fileID: 1450559278}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 0
+  m_Drag: 3
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
@@ -68940,6 +70834,7 @@ GameObject:
   - component: {fileID: 1463518768}
   - component: {fileID: 1463518770}
   - component: {fileID: 1463518769}
+  - component: {fileID: 1463518771}
   m_Layer: 0
   m_Name: kitchen_island_1774
   m_TagString: Untagged
@@ -69003,6 +70898,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1463518767}
   m_Mesh: {fileID: 4300808, guid: 0746bbcc3e17a7d4ead07f84e57e7265, type: 3}
+--- !u!65 &1463518771
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1463518767}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.010633655, y: 0.65950537, z: 0.6209784}
+  m_Center: {x: 0.00000011901372, y: 0.0000002206551, z: 0.33651096}
 --- !u!1 &1464349166
 GameObject:
   m_ObjectHideFlags: 0
@@ -70371,6 +72278,11 @@ GameObject:
   - component: {fileID: 1485766620}
   - component: {fileID: 1485766622}
   - component: {fileID: 1485766621}
+  - component: {fileID: 1485766624}
+  - component: {fileID: 1485766627}
+  - component: {fileID: 1485766626}
+  - component: {fileID: 1485766625}
+  - component: {fileID: 1485766628}
   - component: {fileID: 1485766623}
   m_Layer: 0
   m_Name: kitchen_island_1737
@@ -70445,8 +72357,121 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.030375939
-  m_Center: {x: 0.000000023281759, y: 0.000018369406, z: 0.000026242813}
+  m_Radius: 0.025
+  m_Center: {x: 0.000000023281759, y: 0.000018369406, z: 0.016}
+--- !u!54 &1485766624
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1485766619}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 1
+  m_AngularDrag: 15
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 46
+  m_CollisionDetection: 0
+--- !u!114 &1485766625
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1485766619}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18055ba762aa3994f9c10208cd088bc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1485766626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1485766619}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3abaf4521bf2344ea21ed3020b98eb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  disableWhenIdle: 1
+  allowedNearTouchControllers: 0
+  allowedTouchControllers: 0
+  ignoredColliders: []
+  isGrabbable: 1
+  holdButtonToGrab: 1
+  stayGrabbedOnTeleport: 0
+  validDrop: 1
+  grabOverrideButton: 0
+  allowedGrabControllers: 0
+  grabAttachMechanicScript: {fileID: 1485766627}
+  secondaryGrabActionScript: {fileID: 1485766625}
+  isUsable: 0
+  holdButtonToUse: 1
+  useOnlyIfGrabbed: 0
+  pointerActivatesUseAction: 0
+  useOverrideButton: 0
+  allowedUseControllers: 0
+  objectHighlighter: {fileID: 0}
+  touchHighlightColor: {r: 0, g: 0, b: 0, a: 0}
+  usingState: 0
+--- !u!114 &1485766627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1485766619}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7668d60aac28b44ab5e626253713906, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  precisionGrab: 1
+  rightSnapHandle: {fileID: 0}
+  leftSnapHandle: {fileID: 0}
+  throwVelocityWithAttachDistance: 0
+  throwMultiplier: 1
+  onGrabCollisionDelay: 0
+  detachDistance: 0.5
+  velocityLimit: Infinity
+  angularVelocityLimit: Infinity
+  maxDistanceDelta: 10
+--- !u!59 &1485766628
+HingeJoint:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1485766619}
+  m_ConnectedBody: {fileID: 748602899}
+  m_Anchor: {x: 0, y: 0, z: 0}
+  m_Axis: {x: 0, y: 0, z: 1}
+  m_AutoConfigureConnectedAnchor: 1
+  m_ConnectedAnchor: {x: -0.0037339558, y: -0.0004600566, z: 0.011710249}
+  m_UseSpring: 0
+  m_Spring:
+    spring: 0
+    damper: 0
+    targetPosition: 0
+  m_UseMotor: 0
+  m_Motor:
+    targetVelocity: 0
+    force: 0
+    freeSpin: 0
+  m_UseLimits: 0
+  m_Limits:
+    min: 0
+    max: 0
+    bounciness: 0
+    bounceMinVelocity: 0
+    contactDistance: 0
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_EnableCollision: 0
+  m_EnablePreprocessing: 0
+  m_MassScale: 1
+  m_ConnectedMassScale: 1
 --- !u!1 &1486441447
 GameObject:
   m_ObjectHideFlags: 0
@@ -71605,8 +73630,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.029538063, y: 0.48006642, z: 0.34951046}
-  m_Center: {x: -0.01727167, y: -0.23847009, z: -0.0000003100057}
+  m_Size: {x: 0.041223936, y: 0.034417562, z: 0.29311797}
+  m_Center: {x: -0.05563105, y: -0.42635638, z: 0.0006559807}
 --- !u!1 &1510205788
 GameObject:
   m_ObjectHideFlags: 0
@@ -72377,8 +74402,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.029538063, y: 0.48006648, z: 0.34951046}
-  m_Center: {x: -0.020342648, y: -0.23520212, z: -0.000000115626435}
+  m_Size: {x: 0.041223936, y: 0.034417562, z: 0.29311797}
+  m_Center: {x: -0.05563105, y: -0.42635638, z: 0.0006559807}
 --- !u!1 &1520729798
 GameObject:
   m_ObjectHideFlags: 0
@@ -72390,6 +74415,11 @@ GameObject:
   - component: {fileID: 1520729801}
   - component: {fileID: 1520729800}
   - component: {fileID: 1520729802}
+  - component: {fileID: 1520729803}
+  - component: {fileID: 1520729806}
+  - component: {fileID: 1520729805}
+  - component: {fileID: 1520729804}
+  - component: {fileID: 1520729807}
   m_Layer: 0
   m_Name: kitchen_island_1746
   m_TagString: Untagged
@@ -72463,8 +74493,121 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.030375939
-  m_Center: {x: 0.0000001359735, y: 0.000018199906, z: 0.000026238156}
+  m_Radius: 0.025
+  m_Center: {x: 0.00000005494672, y: 0.000018320978, z: 0.016}
+--- !u!54 &1520729803
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1520729798}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 1
+  m_AngularDrag: 15
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 46
+  m_CollisionDetection: 0
+--- !u!114 &1520729804
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1520729798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18055ba762aa3994f9c10208cd088bc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1520729805
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1520729798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3abaf4521bf2344ea21ed3020b98eb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  disableWhenIdle: 1
+  allowedNearTouchControllers: 0
+  allowedTouchControllers: 0
+  ignoredColliders: []
+  isGrabbable: 1
+  holdButtonToGrab: 1
+  stayGrabbedOnTeleport: 0
+  validDrop: 1
+  grabOverrideButton: 0
+  allowedGrabControllers: 0
+  grabAttachMechanicScript: {fileID: 1243343919}
+  secondaryGrabActionScript: {fileID: 1243343917}
+  isUsable: 0
+  holdButtonToUse: 1
+  useOnlyIfGrabbed: 0
+  pointerActivatesUseAction: 0
+  useOverrideButton: 0
+  allowedUseControllers: 0
+  objectHighlighter: {fileID: 0}
+  touchHighlightColor: {r: 0, g: 0, b: 0, a: 0}
+  usingState: 0
+--- !u!114 &1520729806
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1520729798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7668d60aac28b44ab5e626253713906, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  precisionGrab: 1
+  rightSnapHandle: {fileID: 0}
+  leftSnapHandle: {fileID: 0}
+  throwVelocityWithAttachDistance: 0
+  throwMultiplier: 1
+  onGrabCollisionDelay: 0
+  detachDistance: 0.5
+  velocityLimit: Infinity
+  angularVelocityLimit: Infinity
+  maxDistanceDelta: 10
+--- !u!59 &1520729807
+HingeJoint:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1520729798}
+  m_ConnectedBody: {fileID: 1767527719}
+  m_Anchor: {x: 0, y: 0, z: 0}
+  m_Axis: {x: 0, y: 0, z: 1}
+  m_AutoConfigureConnectedAnchor: 1
+  m_ConnectedAnchor: {x: 0.6474093, y: 1.5045782, z: -1.2287956}
+  m_UseSpring: 0
+  m_Spring:
+    spring: 0
+    damper: 0
+    targetPosition: 0
+  m_UseMotor: 0
+  m_Motor:
+    targetVelocity: 0
+    force: 0
+    freeSpin: 0
+  m_UseLimits: 0
+  m_Limits:
+    min: 0
+    max: 0
+    bounciness: 0
+    bounceMinVelocity: 0
+    contactDistance: 0
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_EnableCollision: 0
+  m_EnablePreprocessing: 0
+  m_MassScale: 1
+  m_ConnectedMassScale: 1
 --- !u!1 &1524212056
 GameObject:
   m_ObjectHideFlags: 0
@@ -73179,8 +75322,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.0106336605, y: 0.6595053, z: 0.6470001}
-  m_Center: {x: -0.000000044703263, y: 0.00000023841858, z: 0.32349956}
+  m_Size: {x: 0.004604998, y: 0.61786264, z: 0.6470001}
+  m_Center: {x: -0.0030143794, y: -0.0016012965, z: 0.3234996}
 --- !u!1 &1538597346
 GameObject:
   m_ObjectHideFlags: 0
@@ -73984,6 +76127,7 @@ GameObject:
   - component: {fileID: 1564568211}
   - component: {fileID: 1564568213}
   - component: {fileID: 1564568212}
+  - component: {fileID: 1564568214}
   m_Layer: 0
   m_Name: kitchen_island_1226
   m_TagString: Untagged
@@ -74047,6 +76191,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1564568210}
   m_Mesh: {fileID: 4301072, guid: 0746bbcc3e17a7d4ead07f84e57e7265, type: 3}
+--- !u!65 &1564568214
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1564568210}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.3327619, y: 0.45923495, z: 0.021350473}
+  m_Center: {x: -0.026470419, y: -0.11820677, z: -0.013558222}
 --- !u!1 &1567597158
 GameObject:
   m_ObjectHideFlags: 0
@@ -75885,8 +78041,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.029537933, y: 0.7000002, z: 0.23925215}
-  m_Center: {x: 0.00000047683716, y: -0.00000008940697, z: 0.119626075}
+  m_Size: {x: 0.029537944, y: 0.6767607, z: 0.22011366}
+  m_Center: {x: 0.00000047667908, y: -0.00068359694, z: 0.118259214}
 --- !u!1 &1609741177
 GameObject:
   m_ObjectHideFlags: 0
@@ -78115,7 +80271,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1625653520}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.0018540191, y: -0.019650187, z: -0.26306728}
+  m_LocalPosition: {x: 0.0018540191, y: -0.021, z: -0.263}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1349884818}
@@ -78137,7 +80293,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.6803818, y: 0.73922974, z: -0.09483755}
+  m_ConnectedAnchor: {x: -0.6803818, y: 0.73928356, z: -0.093757704}
   serializedVersion: 2
   m_SecondaryAxis: {x: -1, y: 0, z: 0}
   m_XMotion: 1
@@ -78231,11 +80387,11 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 100
   m_AngularDrag: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 2
+  m_Constraints: 112
+  m_CollisionDetection: 0
 --- !u!114 &1625653524
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -80261,6 +82417,11 @@ GameObject:
   - component: {fileID: 1652685080}
   - component: {fileID: 1652685079}
   - component: {fileID: 1652685081}
+  - component: {fileID: 1652685082}
+  - component: {fileID: 1652685085}
+  - component: {fileID: 1652685084}
+  - component: {fileID: 1652685083}
+  - component: {fileID: 1652685086}
   m_Layer: 0
   m_Name: kitchen_island_93
   m_TagString: Untagged
@@ -80334,8 +82495,121 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.02820192
-  m_Center: {x: 0.000059342943, y: -0.000020590105, z: 0.017193677}
+  m_Radius: 0.02420326
+  m_Center: {x: 0, y: 0, z: 0.022}
+--- !u!54 &1652685082
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1652685077}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 1
+  m_AngularDrag: 15
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 14
+  m_CollisionDetection: 0
+--- !u!114 &1652685083
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1652685077}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18055ba762aa3994f9c10208cd088bc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1652685084
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1652685077}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3abaf4521bf2344ea21ed3020b98eb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  disableWhenIdle: 1
+  allowedNearTouchControllers: 0
+  allowedTouchControllers: 0
+  ignoredColliders: []
+  isGrabbable: 1
+  holdButtonToGrab: 1
+  stayGrabbedOnTeleport: 0
+  validDrop: 1
+  grabOverrideButton: 0
+  allowedGrabControllers: 0
+  grabAttachMechanicScript: {fileID: 1243343919}
+  secondaryGrabActionScript: {fileID: 1243343917}
+  isUsable: 0
+  holdButtonToUse: 1
+  useOnlyIfGrabbed: 0
+  pointerActivatesUseAction: 0
+  useOverrideButton: 0
+  allowedUseControllers: 0
+  objectHighlighter: {fileID: 0}
+  touchHighlightColor: {r: 0, g: 0, b: 0, a: 0}
+  usingState: 0
+--- !u!114 &1652685085
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1652685077}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7668d60aac28b44ab5e626253713906, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  precisionGrab: 1
+  rightSnapHandle: {fileID: 0}
+  leftSnapHandle: {fileID: 0}
+  throwVelocityWithAttachDistance: 0
+  throwMultiplier: 1
+  onGrabCollisionDelay: 0
+  detachDistance: 0.5
+  velocityLimit: Infinity
+  angularVelocityLimit: Infinity
+  maxDistanceDelta: 10
+--- !u!59 &1652685086
+HingeJoint:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1652685077}
+  m_ConnectedBody: {fileID: 1767527719}
+  m_Anchor: {x: 0, y: 0, z: 0}
+  m_Axis: {x: 0, y: 0, z: 1}
+  m_AutoConfigureConnectedAnchor: 1
+  m_ConnectedAnchor: {x: 0.65159804, y: 2.42768, z: -1.2289586}
+  m_UseSpring: 0
+  m_Spring:
+    spring: 0
+    damper: 0
+    targetPosition: 0
+  m_UseMotor: 0
+  m_Motor:
+    targetVelocity: 0
+    force: 0
+    freeSpin: 0
+  m_UseLimits: 0
+  m_Limits:
+    min: 0
+    max: 0
+    bounciness: 0
+    bounceMinVelocity: 0
+    contactDistance: 0
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_EnableCollision: 0
+  m_EnablePreprocessing: 0
+  m_MassScale: 1
+  m_ConnectedMassScale: 1
 --- !u!1 &1652831522
 GameObject:
   m_ObjectHideFlags: 0
@@ -81223,6 +83497,7 @@ GameObject:
   - component: {fileID: 1663037505}
   - component: {fileID: 1663037507}
   - component: {fileID: 1663037506}
+  - component: {fileID: 1663037508}
   m_Layer: 0
   m_Name: kitchen_island_1672
   m_TagString: Untagged
@@ -81286,6 +83561,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1663037504}
   m_Mesh: {fileID: 4301252, guid: 0746bbcc3e17a7d4ead07f84e57e7265, type: 3}
+--- !u!65 &1663037508
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1663037504}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.3327619, y: 0.45923495, z: 0.021350473}
+  m_Center: {x: -0.026470419, y: -0.11820677, z: -0.013558222}
 --- !u!1 &1666200456
 GameObject:
   m_ObjectHideFlags: 0
@@ -84621,7 +86908,7 @@ HingeJoint:
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
   m_EnableCollision: 0
-  m_EnablePreprocessing: 1
+  m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
 --- !u!54 &1742447584
@@ -84632,8 +86919,8 @@ Rigidbody:
   m_GameObject: {fileID: 1742447576}
   serializedVersion: 2
   m_Mass: 10
-  m_Drag: 10
-  m_AngularDrag: 0.1
+  m_Drag: 20
+  m_AngularDrag: 20
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -84649,8 +86936,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.029538061, y: 0.48006645, z: 0.34951028}
-  m_Center: {x: -0.019474803, y: -0.23796856, z: 0.00000027139635}
+  m_Size: {x: 0.041223936, y: 0.034417562, z: 0.29311797}
+  m_Center: {x: -0.05563105, y: -0.42635638, z: 0.0006559807}
 --- !u!1 &1746649734
 GameObject:
   m_ObjectHideFlags: 0
@@ -85686,6 +87973,7 @@ GameObject:
   - component: {fileID: 1767527717}
   - component: {fileID: 1767527716}
   - component: {fileID: 1767527718}
+  - component: {fileID: 1767527719}
   m_Layer: 0
   m_Name: kitchen_island_80
   m_TagString: Untagged
@@ -85762,6 +88050,21 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.07236602, y: 0.07219667, z: 0.014096465}
   m_Center: {x: -0.0031400663, y: -0.00045979014, z: 0.0030573832}
+--- !u!54 &1767527719
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1767527714}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1770861834
 GameObject:
   m_ObjectHideFlags: 0
@@ -85772,6 +88075,11 @@ GameObject:
   - component: {fileID: 1770861835}
   - component: {fileID: 1770861837}
   - component: {fileID: 1770861836}
+  - component: {fileID: 1770861839}
+  - component: {fileID: 1770861842}
+  - component: {fileID: 1770861841}
+  - component: {fileID: 1770861840}
+  - component: {fileID: 1770861843}
   - component: {fileID: 1770861838}
   m_Layer: 0
   m_Name: kitchen_island_1734
@@ -85846,8 +88154,121 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.030375939
-  m_Center: {x: -0.000000004657925, y: 0.000018201768, z: 0.000026280997}
+  m_Radius: 0.025
+  m_Center: {x: -0.000000004657925, y: 0.000018201768, z: 0.016}
+--- !u!54 &1770861839
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1770861834}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 1
+  m_AngularDrag: 15
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 46
+  m_CollisionDetection: 0
+--- !u!114 &1770861840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1770861834}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18055ba762aa3994f9c10208cd088bc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1770861841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1770861834}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3abaf4521bf2344ea21ed3020b98eb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  disableWhenIdle: 1
+  allowedNearTouchControllers: 0
+  allowedTouchControllers: 0
+  ignoredColliders: []
+  isGrabbable: 1
+  holdButtonToGrab: 1
+  stayGrabbedOnTeleport: 0
+  validDrop: 1
+  grabOverrideButton: 0
+  allowedGrabControllers: 0
+  grabAttachMechanicScript: {fileID: 1770861842}
+  secondaryGrabActionScript: {fileID: 1770861840}
+  isUsable: 0
+  holdButtonToUse: 1
+  useOnlyIfGrabbed: 0
+  pointerActivatesUseAction: 0
+  useOverrideButton: 0
+  allowedUseControllers: 0
+  objectHighlighter: {fileID: 0}
+  touchHighlightColor: {r: 0, g: 0, b: 0, a: 0}
+  usingState: 0
+--- !u!114 &1770861842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1770861834}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7668d60aac28b44ab5e626253713906, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  precisionGrab: 1
+  rightSnapHandle: {fileID: 0}
+  leftSnapHandle: {fileID: 0}
+  throwVelocityWithAttachDistance: 0
+  throwMultiplier: 1
+  onGrabCollisionDelay: 0
+  detachDistance: 0.5
+  velocityLimit: Infinity
+  angularVelocityLimit: Infinity
+  maxDistanceDelta: 10
+--- !u!59 &1770861843
+HingeJoint:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1770861834}
+  m_ConnectedBody: {fileID: 666484139}
+  m_Anchor: {x: 0, y: 0, z: 0}
+  m_Axis: {x: 0, y: 0, z: 1}
+  m_AutoConfigureConnectedAnchor: 1
+  m_ConnectedAnchor: {x: -0.0037339507, y: -0.0004602801, z: 0.011709983}
+  m_UseSpring: 0
+  m_Spring:
+    spring: 0
+    damper: 0
+    targetPosition: 0
+  m_UseMotor: 0
+  m_Motor:
+    targetVelocity: 0
+    force: 0
+    freeSpin: 0
+  m_UseLimits: 0
+  m_Limits:
+    min: 0
+    max: 0
+    bounciness: 0
+    bounceMinVelocity: 0
+    contactDistance: 0
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_EnableCollision: 0
+  m_EnablePreprocessing: 0
+  m_MassScale: 1
+  m_ConnectedMassScale: 1
 --- !u!1 &1771131135
 GameObject:
   m_ObjectHideFlags: 0
@@ -86146,8 +88567,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.010633657, y: 0.6595055, z: 0.677}
-  m_Center: {x: 0.00000011920927, y: -0.000000014901316, z: 0.3385001}
+  m_Size: {x: 0.0068795807, y: 0.65227234, z: 0.677}
+  m_Center: {x: 0.0018771633, y: -0.0036168424, z: 0.33850008}
 --- !u!1 &1775984213
 GameObject:
   m_ObjectHideFlags: 0
@@ -88769,6 +91190,11 @@ GameObject:
   - component: {fileID: 1838705666}
   - component: {fileID: 1838705668}
   - component: {fileID: 1838705667}
+  - component: {fileID: 1838705670}
+  - component: {fileID: 1838705673}
+  - component: {fileID: 1838705672}
+  - component: {fileID: 1838705671}
+  - component: {fileID: 1838705674}
   - component: {fileID: 1838705669}
   m_Layer: 0
   m_Name: kitchen_island_1728
@@ -88843,8 +91269,121 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.030375939
-  m_Center: {x: 0.000000023281759, y: 0.000018488616, z: 0.000026242813}
+  m_Radius: 0.025
+  m_Center: {x: 0.000000023281759, y: 0.000018488616, z: 0.016}
+--- !u!54 &1838705670
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1838705665}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 1
+  m_AngularDrag: 15
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 46
+  m_CollisionDetection: 0
+--- !u!114 &1838705671
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1838705665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18055ba762aa3994f9c10208cd088bc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1838705672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1838705665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3abaf4521bf2344ea21ed3020b98eb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  disableWhenIdle: 1
+  allowedNearTouchControllers: 0
+  allowedTouchControllers: 0
+  ignoredColliders: []
+  isGrabbable: 1
+  holdButtonToGrab: 1
+  stayGrabbedOnTeleport: 0
+  validDrop: 1
+  grabOverrideButton: 0
+  allowedGrabControllers: 0
+  grabAttachMechanicScript: {fileID: 1838705673}
+  secondaryGrabActionScript: {fileID: 1838705671}
+  isUsable: 0
+  holdButtonToUse: 1
+  useOnlyIfGrabbed: 0
+  pointerActivatesUseAction: 0
+  useOverrideButton: 0
+  allowedUseControllers: 0
+  objectHighlighter: {fileID: 0}
+  touchHighlightColor: {r: 0, g: 0, b: 0, a: 0}
+  usingState: 0
+--- !u!114 &1838705673
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1838705665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7668d60aac28b44ab5e626253713906, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  precisionGrab: 1
+  rightSnapHandle: {fileID: 0}
+  leftSnapHandle: {fileID: 0}
+  throwVelocityWithAttachDistance: 0
+  throwMultiplier: 1
+  onGrabCollisionDelay: 0
+  detachDistance: 0.5
+  velocityLimit: Infinity
+  angularVelocityLimit: Infinity
+  maxDistanceDelta: 10
+--- !u!59 &1838705674
+HingeJoint:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1838705665}
+  m_ConnectedBody: {fileID: 1173997003}
+  m_Anchor: {x: 0, y: 0, z: 0}
+  m_Axis: {x: 0, y: 0, z: 1}
+  m_AutoConfigureConnectedAnchor: 1
+  m_ConnectedAnchor: {x: -0.0037339283, y: -0.0004600268, z: 0.011710197}
+  m_UseSpring: 0
+  m_Spring:
+    spring: 0
+    damper: 0
+    targetPosition: 0
+  m_UseMotor: 0
+  m_Motor:
+    targetVelocity: 0
+    force: 0
+    freeSpin: 0
+  m_UseLimits: 0
+  m_Limits:
+    min: 0
+    max: 0
+    bounciness: 0
+    bounceMinVelocity: 0
+    contactDistance: 0
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_EnableCollision: 0
+  m_EnablePreprocessing: 0
+  m_MassScale: 1
+  m_ConnectedMassScale: 1
 --- !u!1 &1840010329
 GameObject:
   m_ObjectHideFlags: 0
@@ -89685,7 +92224,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1863814185}
   m_LocalRotation: {x: 0.7071068, y: 0.0000011801114, z: 0.000001180112, w: 0.7071067}
-  m_LocalPosition: {x: -0.34582618, y: 0.29690352, z: 0.00078586576}
+  m_LocalPosition: {x: -0.34582618, y: 0.303, z: 0.001}
   m_LocalScale: {x: 0.99999994, y: 0.3555015, z: 0.99999994}
   m_Children: []
   m_Father: {fileID: 1288419700}
@@ -89744,8 +92283,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.010633656, y: 0.6595053, z: 0.6470001}
-  m_Center: {x: -2.2066615e-13, y: 0.00000023841858, z: 0.3235}
+  m_Size: {x: 0.0050675957, y: 0.61676884, z: 0.6406701}
+  m_Center: {x: 0.00278303, y: -0.0035611535, z: 0.32413307}
 --- !u!1 &1864618161
 GameObject:
   m_ObjectHideFlags: 0
@@ -91126,8 +93665,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.029537933, y: 0.7000002, z: 0.23925215}
-  m_Center: {x: 0.0000009536743, y: -0.00000014901161, z: 0.119626135}
+  m_Size: {x: 0.029537944, y: 0.6733499, z: 0.2157365}
+  m_Center: {x: 0.0000009533037, y: -0.0007839564, z: 0.120410025}
 --- !u!1 &1878088873
 GameObject:
   m_ObjectHideFlags: 0
@@ -93099,6 +95638,7 @@ GameObject:
   - component: {fileID: 1896957701}
   - component: {fileID: 1896957700}
   - component: {fileID: 1896957702}
+  - component: {fileID: 1896957703}
   m_Layer: 0
   m_Name: kitchen_island_1744
   m_TagString: Untagged
@@ -93175,6 +95715,21 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.07236603, y: 0.07219667, z: 0.014096467}
   m_Center: {x: -0.0031397685, y: -0.00045996153, z: 0.0030572643}
+--- !u!54 &1896957703
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1896957698}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1898864558
 GameObject:
   m_ObjectHideFlags: 0
@@ -93630,7 +96185,7 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 100
   m_AngularDrag: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
@@ -95387,8 +97942,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.010633662, y: 0.6595053, z: 0.6470001}
-  m_Center: {x: -0.00000023841835, y: 0.00000047683716, z: 0.3234998}
+  m_Size: {x: 0.0049482584, y: 0.61792403, z: 0}
+  m_Center: {x: 0.002842463, y: -0.0047974424, z: 0.6469999}
 --- !u!1 &1952447118
 GameObject:
   m_ObjectHideFlags: 0
@@ -96132,7 +98687,7 @@ HingeJoint:
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
   m_EnableCollision: 0
-  m_EnablePreprocessing: 1
+  m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
 --- !u!54 &1966511558
@@ -96143,8 +98698,8 @@ Rigidbody:
   m_GameObject: {fileID: 1966511550}
   serializedVersion: 2
   m_Mass: 10
-  m_Drag: 10
-  m_AngularDrag: 0.1
+  m_Drag: 20
+  m_AngularDrag: 20
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -96160,8 +98715,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.029537978, y: 0.4800663, z: 0.34951025}
-  m_Center: {x: -0.017744783, y: -0.23890385, z: -0.000000049708014}
+  m_Size: {x: 0.041223943, y: 0.034417573, z: 0.29368794}
+  m_Center: {x: -0.05563101, y: -0.42635635, z: 0.0012788438}
 --- !u!1 &1968208956
 GameObject:
   m_ObjectHideFlags: 0
@@ -99768,6 +102323,11 @@ GameObject:
   - component: {fileID: 2045033336}
   - component: {fileID: 2045033335}
   - component: {fileID: 2045033337}
+  - component: {fileID: 2045033338}
+  - component: {fileID: 2045033341}
+  - component: {fileID: 2045033340}
+  - component: {fileID: 2045033339}
+  - component: {fileID: 2045033342}
   m_Layer: 0
   m_Name: kitchen_island_1269
   m_TagString: Untagged
@@ -99842,8 +102402,121 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.030375957
-  m_Center: {x: 0.00000032130535, y: 0.000018108647, z: 0.00002599229}
+  m_Radius: 0.025
+  m_Center: {x: 0.00000005494672, y: 0.000018320978, z: 0.016}
+--- !u!54 &2045033338
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2045033333}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 1
+  m_AngularDrag: 15
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 14
+  m_CollisionDetection: 0
+--- !u!114 &2045033339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2045033333}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18055ba762aa3994f9c10208cd088bc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2045033340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2045033333}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3abaf4521bf2344ea21ed3020b98eb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  disableWhenIdle: 1
+  allowedNearTouchControllers: 0
+  allowedTouchControllers: 0
+  ignoredColliders: []
+  isGrabbable: 1
+  holdButtonToGrab: 1
+  stayGrabbedOnTeleport: 0
+  validDrop: 1
+  grabOverrideButton: 0
+  allowedGrabControllers: 0
+  grabAttachMechanicScript: {fileID: 1243343919}
+  secondaryGrabActionScript: {fileID: 1243343917}
+  isUsable: 0
+  holdButtonToUse: 1
+  useOnlyIfGrabbed: 0
+  pointerActivatesUseAction: 0
+  useOverrideButton: 0
+  allowedUseControllers: 0
+  objectHighlighter: {fileID: 0}
+  touchHighlightColor: {r: 0, g: 0, b: 0, a: 0}
+  usingState: 0
+--- !u!114 &2045033341
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2045033333}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7668d60aac28b44ab5e626253713906, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  precisionGrab: 1
+  rightSnapHandle: {fileID: 0}
+  leftSnapHandle: {fileID: 0}
+  throwVelocityWithAttachDistance: 0
+  throwMultiplier: 1
+  onGrabCollisionDelay: 0
+  detachDistance: 0.5
+  velocityLimit: Infinity
+  angularVelocityLimit: Infinity
+  maxDistanceDelta: 10
+--- !u!59 &2045033342
+HingeJoint:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2045033333}
+  m_ConnectedBody: {fileID: 1767527719}
+  m_Anchor: {x: 0, y: 0, z: 0}
+  m_Axis: {x: 0, y: 0, z: 1}
+  m_AutoConfigureConnectedAnchor: 1
+  m_ConnectedAnchor: {x: 0.71069896, y: 3.6909022, z: -1.351188}
+  m_UseSpring: 0
+  m_Spring:
+    spring: 0
+    damper: 0
+    targetPosition: 0
+  m_UseMotor: 0
+  m_Motor:
+    targetVelocity: 0
+    force: 0
+    freeSpin: 0
+  m_UseLimits: 0
+  m_Limits:
+    min: 0
+    max: 0
+    bounciness: 0
+    bounceMinVelocity: 0
+    contactDistance: 0
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_EnableCollision: 0
+  m_EnablePreprocessing: 0
+  m_MassScale: 1
+  m_ConnectedMassScale: 1
 --- !u!1 &2046017166
 GameObject:
   m_ObjectHideFlags: 0
@@ -100338,6 +103011,7 @@ GameObject:
   - component: {fileID: 2056443837}
   - component: {fileID: 2056443836}
   - component: {fileID: 2056443838}
+  - component: {fileID: 2056443839}
   m_Layer: 0
   m_Name: kitchen_island_111
   m_TagString: Untagged
@@ -100413,6 +103087,21 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.082043424, y: 0.082043454, z: 0.02020261}
   m_Center: {x: 0.00000023841858, y: 0.00000017911498, z: 0.010101424}
+--- !u!54 &2056443839
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2056443834}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &2059482354
 GameObject:
   m_ObjectHideFlags: 0
