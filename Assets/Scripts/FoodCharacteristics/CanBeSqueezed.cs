@@ -12,6 +12,9 @@ public class CanBeSqueezed : FoodCharacteristic
     public ParticleSystem particleLauncher;
     public AudioClip juiceSound;
 
+    AudioSource source;
+    bool onlyOnce = true;
+
     private bool canSpin;
     private GameObject currentSqueezer;
     private float rotationAngle;
@@ -30,18 +33,17 @@ public class CanBeSqueezed : FoodCharacteristic
         meshCollider.skinWidth = 0.01f;
         meshCollider.convex = true;
 
-        gameObject.AddComponent<AudioSource>();
-
+        source = gameObject.AddComponent<AudioSource>();
+        source.loop = true;
+        source.clip = juiceSound;
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other is CapsuleCollider)
         {
-            Debug.Log("capsule collider");
-            meshCollider.skinWidth = 0.01f;
-            //transform.eulerAngles = new Vector3(180, transform.eulerAngles.y, 0);
-            transform.rotation = Quaternion.EulerAngles(180, transform.rotation.y, 0);
+            transform.eulerAngles = new Vector3(180, transform.eulerAngles.y, 0);
+            transform.position = other.transform.position;
         }
     }
     private void OnCollisionEnter(Collision collision)
@@ -56,8 +58,6 @@ public class CanBeSqueezed : FoodCharacteristic
 
             currentSqueezer.GetComponent<Rigidbody>().isKinematic = true;
             currentSqueezer.GetComponent<CanSqueeze>().bowl.GetComponent<Rigidbody>().isKinematic = true;
-
-            // transform.position = new Vector3(currentSqueezer.transform.position.x, currentSqueezer.transform.position.y, currentSqueezer.transform.position.z);
         }
     }
 
@@ -71,8 +71,6 @@ public class CanBeSqueezed : FoodCharacteristic
 
             currentSqueezer.GetComponent<Rigidbody>().isKinematic = false;
             currentSqueezer.GetComponent<CanSqueeze>().bowl.GetComponent<Rigidbody>().isKinematic = false;
-            meshCollider.skinWidth = 0.005f;
-
         }
     }
 
@@ -81,26 +79,39 @@ public class CanBeSqueezed : FoodCharacteristic
     {
         if ((OVRInput.Get(OVRInput.Button.Four) || OVRInput.Get(OVRInput.Button.Two)))
         {
-            if (canSpin && !finished) //&& GetIsGrabbed())
+            if (canSpin && !finished)
             {
                 GetComponent<VRTK.VRTK_InteractableObject>().isGrabbable = false;
                 transform.Rotate(Vector3.up * 200 * Time.deltaTime, Space.Self);
                 rotationAngle += 200 * Time.deltaTime;
                 particleLauncher.Emit(40);
-                AudioSource.PlayClipAtPoint(juiceSound, transform.position);
+
+                if (onlyOnce)
+                {
+                    source.Play();
+                    onlyOnce = false;
+                }                
 
                 if (rotationAngle >= 360 * 3)
                 {
-                    AudioSource.PlayClipAtPoint(juiceSound, transform.position);
                     GetComponent<Renderer>().materials[1].mainTexture = squeezedTexture;
                     rotationAngle = 0;
                     finished = true;
                     currentSqueezer.GetComponent<CanSqueeze>().AddWater();
                 }
             }
+            else
+            {
+                source.loop = false;
+                source.Stop();
+                onlyOnce = true;
+            }
         }
         else
         {
+            source.Stop();
+            onlyOnce = true;
+            source.loop = true;
             GetComponent<VRTK.VRTK_InteractableObject>().isGrabbable = true;
         }
 

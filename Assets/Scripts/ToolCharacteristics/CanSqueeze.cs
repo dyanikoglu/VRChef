@@ -27,21 +27,12 @@ public class CanSqueeze : ToolCharacteristic
 
     private void OnCollisionEnter(Collision collision)
     {
-
-        Debug.Log("enter");
-        Debug.Log(collision.gameObject);
         if (collision.gameObject == bowl || collision.gameObject.GetComponent<CanBeSqueezed>() != null)
         {
             myColliders[0].enabled = true;
             myColliders[1].enabled = false;
             capsuleCollider.isTrigger = true;
         }
-        /*else if (collision.gameObject.GetComponent<CanBeSqueezed>() != null)
-        {
-            myColliders[0].enabled = true;
-            myColliders[1].enabled = false;
-            capsuleCollider.enabled = true;
-        }*/
         else if(collision.gameObject.GetComponent<CanBeSqueezed>() == null)
         {
             myColliders[0].enabled = false;

@@ -161,7 +161,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1790416690086422}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.226, y: 1.781, z: -0.008}
+  m_LocalPosition: {x: -0.226, y: 1.778, z: -0.008}
   m_LocalScale: {x: 0.79999995, y: 0.79999995, z: 0.79999995}
   m_Children:
   - {fileID: 4746716811963090}
@@ -231,7 +231,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1451091723512356}
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: 0, y: 0.047000054, z: -0.003000001}
+  m_LocalPosition: {x: 0, y: 0.0485, z: -0.003000001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4488837125501584}
@@ -252,7 +252,7 @@ MeshRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: dee1eb073b46b7742a3e52bda196b02f, type: 2}
+  - {fileID: 2100000, guid: f3c5d7eea62cfd8409527aa4bccaab71, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -286,7 +286,7 @@ MeshRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: dee1eb073b46b7742a3e52bda196b02f, type: 2}
+  - {fileID: 2100000, guid: f3c5d7eea62cfd8409527aa4bccaab71, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -354,7 +354,7 @@ MeshRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: dee1eb073b46b7742a3e52bda196b02f, type: 2}
+  - {fileID: 2100000, guid: f3c5d7eea62cfd8409527aa4bccaab71, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -507,7 +507,7 @@ BoxCollider:
   m_GameObject: {fileID: 1451091723512356}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 0.33807218, y: 0.3373733, z: 0.047772136}
   m_Center: {x: -0.001815185, y: 0.0027258135, z: 0.00919971}
@@ -640,8 +640,8 @@ CapsuleCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1451091723512356}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
+  m_IsTrigger: 1
+  m_Enabled: 1
   m_Radius: 0.05
   m_Height: 0.1
   m_Direction: 1
@@ -706,7 +706,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -274198306
+  randomSeed: 1739570516
   InitialModule:
     serializedVersion: 3
     enabled: 1

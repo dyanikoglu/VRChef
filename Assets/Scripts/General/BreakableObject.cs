@@ -27,8 +27,6 @@ public class BreakableObject : MonoBehaviour {
         rigidBody.isKinematic = false;
 
         source = gameObject.AddComponent<AudioSource>();
-
-
     }
 
     private void OnCollisionEnter(Collision collision)
