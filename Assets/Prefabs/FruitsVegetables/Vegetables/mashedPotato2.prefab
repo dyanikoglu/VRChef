@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4743036813575732}
   - component: {fileID: 33990716704592238}
   - component: {fileID: 23045826041129876}
+  - component: {fileID: 114279244172281556}
   m_Layer: 0
   m_Name: mashedPotato2
   m_TagString: Untagged
@@ -82,3 +83,15 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1835790101553934}
   m_Mesh: {fileID: 4300000, guid: 6dd698f245861a84e9190e0201a24691, type: 3}
+--- !u!114 &114279244172281556
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1835790101553934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ed381beec0e87244afe8d759a8445a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parentObj: {fileID: 1093404313482088, guid: 0e9b7794c12d1a84da564906f84407fe, type: 2}
