@@ -162,6 +162,8 @@ public class BreakableObject : MonoBehaviour {
                 else
                 {
                     MeshCollider collider = child.gameObject.AddComponent<MeshCollider>();
+                    collider.cookingOptions = MeshColliderCookingOptions.InflateConvexMesh | MeshColliderCookingOptions.CookForFasterSimulation | MeshColliderCookingOptions.WeldColocatedVertices | MeshColliderCookingOptions.EnableMeshCleaning;
+                    collider.skinWidth = 0.001f;
                     collider.convex = true;
                 }
             }
