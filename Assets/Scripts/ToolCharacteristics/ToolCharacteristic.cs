@@ -6,6 +6,9 @@ using VRTK;
 
 public class ToolCharacteristic : MonoBehaviour
 {
+    public bool canHangOnRack;
+    public Transform hangPoint;
+
     // Use this for initialization
     void Start()
     {
@@ -16,12 +19,6 @@ public class ToolCharacteristic : MonoBehaviour
     void Update()
     {
 
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        
-        
     }
 
     public bool GetIsGrabbed()
