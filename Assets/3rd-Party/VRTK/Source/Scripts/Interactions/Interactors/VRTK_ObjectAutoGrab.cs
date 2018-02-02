@@ -96,6 +96,7 @@ namespace VRTK
             }
         }
 
+
         protected virtual IEnumerator AutoGrab()
         {
             yield return new WaitForEndOfFrame();

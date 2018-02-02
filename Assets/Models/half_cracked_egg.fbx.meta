@@ -1,16 +1,25 @@
 fileFormatVersion: 2
-guid: 5c79833a3b52a134cb6ebc23f3183895
-timeCreated: 1517517546
+guid: f94d327f13f67dd458ab9ab2ace27bcd
+timeCreated: 1517517952
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
     100000: //RootNode
+    100002: Sphere
+    100004: Sphere.002
     400000: //RootNode
-    2100000: Color_000
-    2300000: //RootNode
-    3300000: //RootNode
-    4300000: Lathed Form_001
+    400002: Sphere
+    400004: Sphere.002
+    2100000: EggOut
+    2100002: EggInside
+    2100004: EdgeRim
+    2300000: Sphere
+    2300002: Sphere.002
+    3300000: Sphere
+    3300002: Sphere.002
+    4300000: Sphere.002
+    4300002: Sphere
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -41,7 +50,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 1
+    globalScale: 0.8
     meshCompression: 0
     addColliders: 0
     importVisibility: 1

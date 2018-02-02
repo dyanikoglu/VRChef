@@ -6,7 +6,7 @@
     public class PullFromBothSides_GrabAction : VRTK_BaseGrabAction
     {
         [Tooltip("The distance the secondary grabbing object must move away from the original grab position before the secondary grabbing object auto ungrabs the Interactable Object.")]
-        public float ungrabDistance = 1f;
+        public float ungrabDistance = 2f;
 
         public bool isActionDone = false;
 
@@ -44,8 +44,8 @@
             if (initialised && Vector3.Distance(secondaryGrabbingObject.transform.position, secondaryInitialGrabPoint.position) > ungrabDistance)
             {
                 grabbedObject.ForceStopSecondaryGrabInteraction();
+                isActionDone = true;
             }
-            isActionDone = true;
         }
     }
 }

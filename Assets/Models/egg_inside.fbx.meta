@@ -1,16 +1,16 @@
 fileFormatVersion: 2
-guid: 68884a50688ff8b44977865bfa65b927
-timeCreated: 1517427604
+guid: 4976580a004166d448f0c9d99563912b
+timeCreated: 1517530874
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
     100000: //RootNode
     400000: //RootNode
-    2100000: Material.002
+    2100000: egg
     2300000: //RootNode
     3300000: //RootNode
-    4300000: Sphere_cell.001
+    4300000: egg
   externalObjects: {}
   materials:
     importMaterials: 1
