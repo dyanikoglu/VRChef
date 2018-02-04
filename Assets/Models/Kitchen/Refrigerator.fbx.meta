@@ -1,0 +1,266 @@
+fileFormatVersion: 2
+guid: 6eae60bc01f32af45b80a9ff301af9d4
+timeCreated: 1517751742
+licenseType: Pro
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: fridge_003_00
+    100002: fridge_003_005
+    100004: fridge_003_01
+    100006: fridge_003_02
+    100008: fridge_003_03
+    100010: fridge_003_04
+    100012: fridge_003_041
+    100014: fridge_003_042
+    100016: fridge_003_043
+    100018: fridge_003_044
+    100020: fridge_003_045
+    100022: fridge_003_046
+    100024: fridge_003_047
+    100026: fridge_003_048
+    100028: fridge_003_049
+    100030: fridge_003_05
+    100032: fridge_003_050
+    100034: fridge_003_051
+    100036: fridge_003_052
+    100038: fridge_003_053
+    100040: fridge_003_054
+    100042: fridge_003_055
+    100044: fridge_003_056
+    100046: fridge_003_057
+    100048: fridge_003_058
+    100050: fridge_003_059
+    100052: fridge_003_07
+    100054: fridge_003_08
+    100056: fridge_003_11
+    100058: fridge_003_12
+    100060: fridge_003_14
+    100062: fridge_003_28
+    100064: fridge_003_40
+    100066: Fridge_Left
+    100068: Fridge_Right
+    100070: //RootNode
+    400000: fridge_003_00
+    400002: fridge_003_005
+    400004: fridge_003_01
+    400006: fridge_003_02
+    400008: fridge_003_03
+    400010: fridge_003_04
+    400012: fridge_003_041
+    400014: fridge_003_042
+    400016: fridge_003_043
+    400018: fridge_003_044
+    400020: fridge_003_045
+    400022: fridge_003_046
+    400024: fridge_003_047
+    400026: fridge_003_048
+    400028: fridge_003_049
+    400030: fridge_003_05
+    400032: fridge_003_050
+    400034: fridge_003_051
+    400036: fridge_003_052
+    400038: fridge_003_053
+    400040: fridge_003_054
+    400042: fridge_003_055
+    400044: fridge_003_056
+    400046: fridge_003_057
+    400048: fridge_003_058
+    400050: fridge_003_059
+    400052: fridge_003_07
+    400054: fridge_003_08
+    400056: fridge_003_11
+    400058: fridge_003_12
+    400060: fridge_003_14
+    400062: fridge_003_28
+    400064: fridge_003_40
+    400066: Fridge_Left
+    400068: Fridge_Right
+    400070: //RootNode
+    2100000: 'Material #31'
+    2100002: 'Material #32'
+    2100004: 'Material #33'
+    2100006: 04 - Default
+    2100008: 'Material #34'
+    2100010: 'Material #36'
+    2100012: orange
+    2300000: fridge_003_00
+    2300002: fridge_003_005
+    2300004: fridge_003_01
+    2300006: fridge_003_02
+    2300008: fridge_003_03
+    2300010: fridge_003_04
+    2300012: fridge_003_041
+    2300014: fridge_003_042
+    2300016: fridge_003_043
+    2300018: fridge_003_044
+    2300020: fridge_003_045
+    2300022: fridge_003_046
+    2300024: fridge_003_047
+    2300026: fridge_003_048
+    2300028: fridge_003_049
+    2300030: fridge_003_05
+    2300032: fridge_003_050
+    2300034: fridge_003_051
+    2300036: fridge_003_052
+    2300038: fridge_003_053
+    2300040: fridge_003_054
+    2300042: fridge_003_055
+    2300044: fridge_003_056
+    2300046: fridge_003_057
+    2300048: fridge_003_058
+    2300050: fridge_003_059
+    2300052: fridge_003_07
+    2300054: fridge_003_08
+    2300056: fridge_003_11
+    2300058: fridge_003_12
+    2300060: fridge_003_14
+    2300062: fridge_003_28
+    2300064: fridge_003_40
+    3300000: fridge_003_00
+    3300002: fridge_003_005
+    3300004: fridge_003_01
+    3300006: fridge_003_02
+    3300008: fridge_003_03
+    3300010: fridge_003_04
+    3300012: fridge_003_041
+    3300014: fridge_003_042
+    3300016: fridge_003_043
+    3300018: fridge_003_044
+    3300020: fridge_003_045
+    3300022: fridge_003_046
+    3300024: fridge_003_047
+    3300026: fridge_003_048
+    3300028: fridge_003_049
+    3300030: fridge_003_05
+    3300032: fridge_003_050
+    3300034: fridge_003_051
+    3300036: fridge_003_052
+    3300038: fridge_003_053
+    3300040: fridge_003_054
+    3300042: fridge_003_055
+    3300044: fridge_003_056
+    3300046: fridge_003_057
+    3300048: fridge_003_058
+    3300050: fridge_003_059
+    3300052: fridge_003_07
+    3300054: fridge_003_08
+    3300056: fridge_003_11
+    3300058: fridge_003_12
+    3300060: fridge_003_14
+    3300062: fridge_003_28
+    3300064: fridge_003_40
+    4300000: fridge_003_00
+    4300002: fridge_003_01
+    4300004: fridge_003_02
+    4300006: fridge_003_03
+    4300008: fridge_003_005
+    4300010: fridge_003_04
+    4300012: fridge_003_05
+    4300014: fridge_003_08
+    4300016: fridge_003_07
+    4300018: fridge_003_11
+    4300020: fridge_003_12
+    4300022: fridge_003_14
+    4300024: fridge_003_28
+    4300026: fridge_003_40
+    4300028: fridge_003_041
+    4300030: fridge_003_042
+    4300032: fridge_003_043
+    4300034: fridge_003_044
+    4300036: fridge_003_045
+    4300038: fridge_003_046
+    4300040: fridge_003_047
+    4300042: fridge_003_048
+    4300044: fridge_003_049
+    4300046: fridge_003_050
+    4300048: fridge_003_051
+    4300050: fridge_003_052
+    4300052: fridge_003_053
+    4300054: fridge_003_054
+    4300056: fridge_003_055
+    4300058: fridge_003_056
+    4300060: fridge_003_057
+    4300062: fridge_003_058
+    4300064: fridge_003_059
+    9500000: //RootNode
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 0
+    importLights: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 1
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 0
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

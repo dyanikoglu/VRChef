@@ -129,7 +129,7 @@ Material:
     - _Lightmapping: 1
     - _MainPhysicalProperties: 0
     - _MainRoughnessSource: 0
-    - _MainTexUV: 0
+    - _MainTexUV: 1
     - _MainTextures: 0
     - _MaxSamples: 20
     - _Metal: 0.85
