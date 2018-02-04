@@ -1,39 +1,34 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using VRTK;
 
 public class Rack : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
-        if (!this.GetComponent<Joint>())
+        if (!this.GetComponent<Joint>() && other.transform.parent)
         {
-            if (other.GetComponent<ToolCharacteristic>() && other.GetComponent<ToolCharacteristic>().canHangOnRack)
+            VRTK_InteractableObject vrtk_io = other.transform.parent.GetComponent<VRTK_InteractableObject>();
+            if (vrtk_io && !vrtk_io.IsGrabbed())
             {
-                SpringJoint joint = gameObject.AddComponent<SpringJoint>();
-                joint.connectedBody = other.GetComponent<Rigidbody>();
-                joint.spring = 100;
-                joint.damper = 0;
-                joint.tolerance = 0.001f;
+                if (other.GetComponent<RackHang>() && other.GetComponent<RackHang>().canHangOnRack)
+                {
+                    HingeJoint joint = gameObject.AddComponent<HingeJoint>();
+                    other.transform.parent.transform.position = this.transform.position;
+                    joint.connectedBody = other.transform.parent.GetComponent<Rigidbody>();
+                    joint.axis = new Vector3(0, 0, 0);
+                }
             }
         }
     }
+
 
     private void OnTriggerExit(Collider other)
     {
         if (this.GetComponent<Joint>())
         {
-            if (other.GetComponent<ToolCharacteristic>() && other.GetComponent<ToolCharacteristic>().canHangOnRack)
+            if (other.GetComponent<RackHang>() && other.GetComponent<RackHang>().canHangOnRack)
             {
                 Destroy(this.GetComponent<Joint>());
             }

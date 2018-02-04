@@ -6,9 +6,6 @@ using VRTK;
 
 public class ToolCharacteristic : MonoBehaviour
 {
-    public bool canHangOnRack;
-    public Transform hangPoint;
-
     // Use this for initialization
     void Start()
     {
