@@ -88,7 +88,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4662572540710108}
   m_Layer: 0
-  m_Name: potato_rig1
+  m_Name: potato_rig
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
