@@ -1,18 +1,23 @@
 fileFormatVersion: 2
-guid: 11756aee7e4a0014cad6f9043e6e8d7a
-timeCreated: 1516189624
+guid: 32ace714cb5165148b63dc21d2ebc6ee
+timeCreated: 1517859415
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
     100000: //RootNode
-    100002: default
+    100002: PotatoA
+    100004: PotatoA.001
     400000: //RootNode
-    400002: default
-    2100000: defaultMat
-    2300000: default
-    3300000: default
-    4300000: default
+    400002: PotatoA
+    400004: PotatoA.001
+    2100000: Potato
+    2300000: PotatoA
+    2300002: PotatoA.001
+    3300000: PotatoA
+    3300002: PotatoA.001
+    4300000: PotatoA.001
+    4300002: PotatoA
   externalObjects: {}
   materials:
     importMaterials: 1
