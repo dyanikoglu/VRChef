@@ -16,7 +16,7 @@ public class CanBeTakenFrom : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.GetComponent<CanTake>() != null)
+        if (other.gameObject.GetComponent<CanTake>() != null && CanTake.full==false)
         {
             other.gameObject.transform.GetChild(0).gameObject.SetActive(true);
             CanTake.full = true;

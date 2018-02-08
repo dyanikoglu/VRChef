@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
@@ -8,14 +9,26 @@ public class CanTake: ToolCharacteristic {
     // Use this for initialization
     ParticleSystem dust;
     public static bool full = false;
+    Vector3 _rotation;
 	void Start () {
         gameObject.transform.GetChild(0).gameObject.SetActive(false);
         dust = GetComponentInChildren<ParticleSystem>();
+        _rotation = gameObject.transform.rotation.eulerAngles;
     }
     GameObject poured;
     // Update is called once per frame
     void Update () {
-        if (Input.GetKeyDown("space") && GetIsGrabbed() && full)
+        if(Math.Abs(_rotation.y- gameObject.transform.rotation.eulerAngles.y )>180)
+        {
+            Vector3 pos = dust.transform.position;
+            pos.y = gameObject.transform.position.y;
+            pos.x = gameObject.transform.position.x;
+            dust.transform.position = pos;
+            dust.Play();
+            gameObject.transform.GetChild(0).gameObject.SetActive(false);
+            full = false;
+        }
+        /*if (Input.GetKeyDown("space") && GetIsGrabbed() && full)
         {
             Vector3 pos = dust.transform.position;
             pos.y = gameObject.transform.position.y;
@@ -24,7 +37,7 @@ public class CanTake: ToolCharacteristic {
             dust.Play(); 
             gameObject.transform.GetChild(0).gameObject.SetActive(false);
             full = false;
-        }
+        }*/
 
         
 	}
