@@ -8,6 +8,7 @@ using VRTK.GrabAttachMechanics;
 public class CanBePeeled : CanBeChopped {
 
     public GameObject objectFlesh;
+    public float smallerAllowedRigVolume = 0.0001f;
 
     // Use this for initialization
     void Start()
@@ -183,24 +184,6 @@ public class CanBePeeled : CanBeChopped {
 
         rightSideObj.transform.localScale = gameObject.transform.localScale;
 
-        if (right_HalfMesh.vertexCount > left_HalfMesh.vertexCount)
-        {
-            //objectFlesh.transform.localPosition = new Vector3(0, 0, 0);
-            //objectFlesh.transform.SetParent(rightSideObj.transform);
-            objectFlesh.transform.parent = rightSideObj.transform;
-            objectFlesh.transform.position = rightSideObj.transform.position;
-            objectFlesh.transform.rotation = rightSideObj.transform.rotation;
-
-        }
-        else
-        {
-            //objectFlesh.transform.localPosition = new Vector3(0,0,0);
-            //objectFlesh.transform.SetParent(leftSideObj.transform);
-            objectFlesh.transform.parent = leftSideObj.transform;
-            objectFlesh.transform.position = leftSideObj.transform.position;
-            objectFlesh.transform.rotation = leftSideObj.transform.rotation;
-        }
-
         // assign mats
         leftSideObj.GetComponent<MeshRenderer>().materials = mats;
         rightSideObj.GetComponent<MeshRenderer>().materials = mats;
@@ -237,6 +220,44 @@ public class CanBePeeled : CanBeChopped {
         vrtk_fjga.precisionGrab = true;
         /////
 
+        Renderer right_renderer = rightSideObj.GetComponent<Renderer>();
+        Renderer left_renderer = leftSideObj.GetComponent<Renderer>();
+        float right_bounds = right_renderer.bounds.size.x * right_renderer.bounds.size.y * right_renderer.bounds.size.z;
+        float left_bounds = left_renderer.bounds.size.x * left_renderer.bounds.size.y * left_renderer.bounds.size.z;
+
+        if (right_bounds > left_bounds)
+        {
+            if (right_bounds < smallerAllowedRigVolume)
+            {
+                AddCanBeChopped();
+            }
+            else
+            {
+                //objectFlesh.transform.localPosition = new Vector3(0, 0, 0);
+                //objectFlesh.transform.SetParent(rightSideObj.transform);
+                objectFlesh.transform.parent = rightSideObj.transform;
+                rightSideObj.transform.position = objectFlesh.transform.position;
+                rightSideObj.transform.rotation = objectFlesh.transform.rotation;
+            }
+            Destroy(leftSideObj.GetComponent<CanBePeeled>());
+        }
+        else
+        {
+            if (right_bounds < smallerAllowedRigVolume)
+            {
+                AddCanBeChopped();
+            }
+            else
+            {
+                //objectFlesh.transform.localPosition = new Vector3(0,0,0);
+                //objectFlesh.transform.SetParent(leftSideObj.transform);
+                objectFlesh.transform.parent = leftSideObj.transform;
+                leftSideObj.transform.position = objectFlesh.transform.position;
+                leftSideObj.transform.rotation = objectFlesh.transform.rotation;
+            }
+            Destroy(rightSideObj.GetComponent<CanBePeeled>());
+        }
+
         //// Check if new pieces are too small. If so, prevent chopping them into more smaller parts.
         Renderer rend = GetComponent<Renderer>();
         if (rend.bounds.size.x * rend.bounds.size.y * rend.bounds.size.z < smallerAllowedPieceVolume)
@@ -254,6 +275,18 @@ public class CanBePeeled : CanBeChopped {
         yield return Ninja.JumpBack;
 
         yield break;
+    }
+
+    private void AddCanBeChopped()
+    {
+        objectFlesh.transform.parent = null;
+        objectFlesh.AddComponent<Rigidbody>();
+        MeshCollider cmc = objectFlesh.AddComponent<MeshCollider>();
+        cmc.cookingOptions = MeshColliderCookingOptions.InflateConvexMesh;
+        cmc.skinWidth = colliderSkinWidth;
+        cmc.convex = true;
+        objectFlesh.GetComponent<CanBeChopped>().enabled = true;
+        objectFlesh.AddComponent<VRTK_InteractableObject>().isGrabbable = true;
     }
 
     public override void HandleCollisions(GameObject piece)
