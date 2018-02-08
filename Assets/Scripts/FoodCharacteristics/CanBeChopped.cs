@@ -7,18 +7,18 @@ using VRTK.GrabAttachMechanics;
 
 public class CanBeChopped : FoodCharacteristic
 {
-    private Mesh_Maker _leftSide = new Mesh_Maker();
-    private Mesh_Maker _rightSide = new Mesh_Maker();
-    private Plane _blade;
-    private Mesh _victim_mesh;
-    private List<Vector3> _new_vertices = new List<Vector3>();
-    private int _capMatSub = 1;
-    private Vector3 _anchorPoint;
-    private Vector3 _normalDirection;
+    protected Mesh_Maker _leftSide = new Mesh_Maker();
+    protected Mesh_Maker _rightSide = new Mesh_Maker();
+    protected Plane _blade;
+    protected Mesh _victim_mesh;
+    protected List<Vector3> _new_vertices = new List<Vector3>();
+    protected int _capMatSub = 1;
+    protected Vector3 _anchorPoint;
+    protected Vector3 _normalDirection;
     private bool _onDelay = true;
     private List<Vector3> _capVertTracker = new List<Vector3>();
     private List<Vector3> _capVertpolygon = new List<Vector3>();
-    private GameObject _rootObject = null;
+    protected GameObject _rootObject = null;
     private int _prevPlayedSFX = 0;
     private bool _startedChopping = false;
 
@@ -38,13 +38,13 @@ public class CanBeChopped : FoodCharacteristic
         StartCoroutine(SliceDelay());
     }
 
-    private IEnumerator SliceDelay()
+    protected IEnumerator SliceDelay()
     {
         yield return new WaitForSeconds(sliceTimeout);
         _onDelay = true;
     }
 
-    public void BeginSlice(Vector3 anchorPoint, Vector3 normalDirection)
+    public virtual void BeginSlice(Vector3 anchorPoint, Vector3 normalDirection)
     {
         this._anchorPoint = anchorPoint;
         this._normalDirection = normalDirection;
@@ -81,7 +81,7 @@ public class CanBeChopped : FoodCharacteristic
     }
 
     // TODO Fix capping material UV-Map
-    IEnumerator Cut()
+    public virtual IEnumerator Cut()
     {
         // Jump to main thread for running UNITY API calls
         yield return Ninja.JumpToUnity;
@@ -273,7 +273,7 @@ public class CanBeChopped : FoodCharacteristic
         yield break;
     }
 
-    private void HandleCollisions(GameObject piece)
+    public virtual void HandleCollisions(GameObject piece)
     {
         Rigidbody rb;
 
@@ -305,7 +305,7 @@ public class CanBeChopped : FoodCharacteristic
     }
 
     #region ComplexMeshCuttingStuff
-    private void Cut_this_Face(
+    protected void Cut_this_Face(
         Vector3[] vertices,
         Vector3[] normals,
         Vector2[] uvs,
