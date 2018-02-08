@@ -7,38 +7,27 @@ using UnityEngine;
 public class CanTake: ToolCharacteristic {
 
     // Use this for initialization
-    ParticleSystem dust;
+    public ParticleSystem dust;
     public static bool full = false;
     Vector3 _rotation;
 	void Start () {
         gameObject.transform.GetChild(0).gameObject.SetActive(false);
-        dust = GetComponentInChildren<ParticleSystem>();
-        _rotation = gameObject.transform.rotation.eulerAngles;
+        _rotation = gameObject.transform.rotation.eulerAngles;        
     }
-    GameObject poured;
+
     // Update is called once per frame
     void Update () {
-        if(Math.Abs(_rotation.y- gameObject.transform.rotation.eulerAngles.y )>180)
+        if(Math.Abs(_rotation.x- gameObject.transform.rotation.eulerAngles.x )>180 && full)
         {
-            Vector3 pos = dust.transform.position;
-            pos.y = gameObject.transform.position.y;
-            pos.x = gameObject.transform.position.x;
-            dust.transform.position = pos;
+            dust.transform.position = gameObject.transform.GetChild(0).gameObject.transform.position;
+            dust.transform.eulerAngles = new Vector3(75, 0, 0);
+            GameObject child = gameObject.transform.GetChild(0).gameObject;
+            GameObject newObject = Instantiate(child,child.transform.position, child.transform.rotation);
             dust.Play();
-            gameObject.transform.GetChild(0).gameObject.SetActive(false);
+            child.SetActive(false);
+            newObject.transform.parent = null;
+            newObject.AddComponent<Rigidbody>();
             full = false;
         }
-        /*if (Input.GetKeyDown("space") && GetIsGrabbed() && full)
-        {
-            Vector3 pos = dust.transform.position;
-            pos.y = gameObject.transform.position.y;
-            pos.x = gameObject.transform.position.x;
-            dust.transform.position = pos; 
-            dust.Play(); 
-            gameObject.transform.GetChild(0).gameObject.SetActive(false);
-            full = false;
-        }*/
-
-        
 	}
 }
