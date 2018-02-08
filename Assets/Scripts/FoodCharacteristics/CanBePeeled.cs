@@ -14,6 +14,14 @@ public class CanBePeeled : CanBeChopped {
     void Start()
     {
         detachChildrenOnSlice = true;
+        /*CanChop[] knives = FindObjectsOfType<CanChop>();
+        foreach (CanChop knife in knives)
+        {
+            Debug.Log(knife.name);
+            Physics.IgnoreCollision(objectFlesh.GetComponent<Collider>(), knife.GetComponent<Collider>());
+            Physics.IgnoreCollision(objectFlesh.GetComponent<Collider>(), knife.sharpAreaRef.GetComponent<Collider>());
+        }
+        Physics.IgnoreCollision(objectFlesh.GetComponent<Collider>(), GetComponent<Collider>());*/
         base.Start();
     }
 
@@ -26,7 +34,7 @@ public class CanBePeeled : CanBeChopped {
         if (this._rootObject == null)
         {
             _rootObject = Instantiate(rootObjectAfterSlice, this.transform.position, Quaternion.identity);
-            _rootObject.name = this.gameObject.name + "_Sliced";
+            _rootObject.name = this.gameObject.name + "_Peeled";
             this.transform.SetParent(_rootObject.transform);
         }
 
@@ -243,7 +251,7 @@ public class CanBePeeled : CanBeChopped {
         }
         else
         {
-            if (right_bounds < smallerAllowedRigVolume)
+            if (left_bounds < smallerAllowedRigVolume)
             {
                 AddCanBeChopped();
             }
