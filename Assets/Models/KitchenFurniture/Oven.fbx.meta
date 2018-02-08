@@ -1,0 +1,168 @@
+fileFormatVersion: 2
+guid: ff9cf439c6d61b742a3efd00ba7da408
+timeCreated: 1518126921
+licenseType: Pro
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: cook_010_01
+    100002: cook_010_014
+    100004: cook_010_015
+    100006: cook_010_016
+    100008: cook_010_017
+    100010: cook_010_018
+    100012: cook_010_02
+    100014: cook_010_04
+    100016: cook_010_05
+    100018: cook_010_06
+    100020: cook_010_08
+    100022: cook_010_09
+    100024: cook_010_12
+    100026: cook_010_13
+    100028: //RootNode
+    400000: cook_010_01
+    400002: cook_010_014
+    400004: cook_010_015
+    400006: cook_010_016
+    400008: cook_010_017
+    400010: cook_010_018
+    400012: cook_010_02
+    400014: cook_010_04
+    400016: cook_010_05
+    400018: cook_010_06
+    400020: cook_010_08
+    400022: cook_010_09
+    400024: cook_010_12
+    400026: cook_010_13
+    400028: //RootNode
+    2100000: 'Material #31'
+    2100002: 'Material #32'
+    2100004: 'Material #33'
+    2100006: 'Material #34'
+    2100008: 'Material #36'
+    2100010: 'Material #37'
+    2100012: 'Material #39'
+    2100014: 'Material #35'
+    2300000: cook_010_01
+    2300002: cook_010_014
+    2300004: cook_010_015
+    2300006: cook_010_016
+    2300008: cook_010_017
+    2300010: cook_010_018
+    2300012: cook_010_02
+    2300014: cook_010_04
+    2300016: cook_010_05
+    2300018: cook_010_06
+    2300020: cook_010_08
+    2300022: cook_010_09
+    2300024: cook_010_12
+    2300026: cook_010_13
+    3300000: cook_010_01
+    3300002: cook_010_014
+    3300004: cook_010_015
+    3300006: cook_010_016
+    3300008: cook_010_017
+    3300010: cook_010_018
+    3300012: cook_010_02
+    3300014: cook_010_04
+    3300016: cook_010_05
+    3300018: cook_010_06
+    3300020: cook_010_08
+    3300022: cook_010_09
+    3300024: cook_010_12
+    3300026: cook_010_13
+    4300000: cook_010_01
+    4300002: cook_010_02
+    4300004: cook_010_04
+    4300006: cook_010_05
+    4300008: cook_010_06
+    4300010: cook_010_08
+    4300012: cook_010_09
+    4300014: cook_010_12
+    4300016: cook_010_13
+    4300018: cook_010_014
+    4300020: cook_010_015
+    4300022: cook_010_016
+    4300024: cook_010_017
+    4300026: cook_010_018
+    9500000: //RootNode
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 0
+    importLights: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 1
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 0
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
