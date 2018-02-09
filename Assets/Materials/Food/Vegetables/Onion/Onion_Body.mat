@@ -160,7 +160,7 @@ Material:
     - _WetMaskUV: 0
     - _WetNormalMapScale: 1
     - _WetNormalMapUV: 0
-    - _WetRoughness: 0.2
+    - _WetRoughness: 1
     - _WetWeight: 1
     - _WetnessProperties: 0
     - _ZWrite: 1

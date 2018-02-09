@@ -1,17 +1,16 @@
 fileFormatVersion: 2
-guid: d378b6716366b7c42b67725f48d3b3f7
-timeCreated: 1518178551
+guid: 9faf072ec74c0eb45b702d10ec5c87e1
+timeCreated: 1516014073
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
     100000: //RootNode
     400000: //RootNode
-    2100000: 'Material #2'
+    2100000: Potato
     2300000: //RootNode
     3300000: //RootNode
-    4300000: Potato
-    9500000: //RootNode
+    4300000: PotatoA
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -86,7 +85,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  animationType: 0
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
