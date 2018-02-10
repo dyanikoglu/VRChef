@@ -161,7 +161,7 @@ Material:
     - _WetNormalMapScale: 1
     - _WetNormalMapUV: 0
     - _WetRoughness: 0.2
-    - _WetWeight: 0
+    - _WetWeight: 1
     - _WetnessProperties: 1
     - _ZWrite: 1
     m_Colors:
