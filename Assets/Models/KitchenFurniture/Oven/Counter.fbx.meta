@@ -1,0 +1,217 @@
+fileFormatVersion: 2
+guid: b93e8cd2b4a58a84d99ceced2f0eced7
+timeCreated: 1518256033
+licenseType: Free
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: cook_010_010
+    100002: cook_010_011
+    100004: cook_010_012
+    100006: cook_010_013
+    100008: cook_010_014
+    100010: cook_010_015
+    100012: cook_010_016
+    100014: cook_010_018
+    100016: cook_010_019
+    100018: cook_010_020
+    100020: cook_010_021
+    100022: cook_010_022
+    100024: cook_010_023
+    100026: cook_010_024
+    100028: cook_010_025
+    100030: cook_010_026
+    100032: cook_010_027
+    100034: cook_010_028
+    100036: cook_010_029
+    100038: cook_010_030
+    100040: cook_010_031
+    100042: //RootNode
+    100044: Digit_1
+    100046: Digit_2
+    100048: Digit_3
+    100050: Lines
+    100052: Seconds
+    400000: cook_010_010
+    400002: cook_010_011
+    400004: cook_010_012
+    400006: cook_010_013
+    400008: cook_010_014
+    400010: cook_010_015
+    400012: cook_010_016
+    400014: cook_010_018
+    400016: cook_010_019
+    400018: cook_010_020
+    400020: cook_010_021
+    400022: cook_010_022
+    400024: cook_010_023
+    400026: cook_010_024
+    400028: cook_010_025
+    400030: cook_010_026
+    400032: cook_010_027
+    400034: cook_010_028
+    400036: cook_010_029
+    400038: cook_010_030
+    400040: cook_010_031
+    400042: //RootNode
+    400044: Digit_1
+    400046: Digit_2
+    400048: Digit_3
+    400050: Lines
+    400052: Seconds
+    2100000: 'Material #2'
+    2300000: cook_010_010
+    2300002: cook_010_011
+    2300004: cook_010_012
+    2300006: cook_010_013
+    2300008: cook_010_014
+    2300010: cook_010_015
+    2300012: cook_010_016
+    2300014: cook_010_018
+    2300016: cook_010_019
+    2300018: cook_010_020
+    2300020: cook_010_021
+    2300022: cook_010_022
+    2300024: cook_010_023
+    2300026: cook_010_024
+    2300028: cook_010_025
+    2300030: cook_010_026
+    2300032: cook_010_027
+    2300034: cook_010_028
+    2300036: cook_010_029
+    2300038: cook_010_030
+    2300040: cook_010_031
+    2300042: Lines
+    2300044: Seconds
+    3300000: cook_010_010
+    3300002: cook_010_011
+    3300004: cook_010_012
+    3300006: cook_010_013
+    3300008: cook_010_014
+    3300010: cook_010_015
+    3300012: cook_010_016
+    3300014: cook_010_018
+    3300016: cook_010_019
+    3300018: cook_010_020
+    3300020: cook_010_021
+    3300022: cook_010_022
+    3300024: cook_010_023
+    3300026: cook_010_024
+    3300028: cook_010_025
+    3300030: cook_010_026
+    3300032: cook_010_027
+    3300034: cook_010_028
+    3300036: cook_010_029
+    3300038: cook_010_030
+    3300040: cook_010_031
+    3300042: Lines
+    3300044: Seconds
+    4300000: Lines
+    4300002: Seconds
+    4300004: cook_010_010
+    4300006: cook_010_011
+    4300008: cook_010_012
+    4300010: cook_010_013
+    4300012: cook_010_014
+    4300014: cook_010_015
+    4300016: cook_010_016
+    4300018: cook_010_018
+    4300020: cook_010_019
+    4300022: cook_010_020
+    4300024: cook_010_021
+    4300026: cook_010_022
+    4300028: cook_010_023
+    4300030: cook_010_024
+    4300032: cook_010_025
+    4300034: cook_010_026
+    4300036: cook_010_027
+    4300038: cook_010_028
+    4300040: cook_010_029
+    4300042: cook_010_030
+    4300044: cook_010_031
+    9500000: //RootNode
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 'Material #2'
+    second: {fileID: 2100000, guid: a8b642c2da9ef4344a3073a16387e3ab, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 0
+    importLights: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 1
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 0
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
