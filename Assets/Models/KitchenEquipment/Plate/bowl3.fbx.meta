@@ -1,17 +1,15 @@
 fileFormatVersion: 2
-guid: 5ff44ecc95698b74492f37719e54d9c0
-timeCreated: 1518172455
+guid: 6eb6144b27bc2ac4ba1682501d18b7d8
+timeCreated: 1518266868
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
     100000: //RootNode
-    100002: kitchen_clean_331
     400000: //RootNode
-    400002: kitchen_clean_331
     2100000: 'Material #3011'
-    2300000: kitchen_clean_331
-    3300000: kitchen_clean_331
+    2300000: //RootNode
+    3300000: //RootNode
     4300000: kitchen_clean_331
   externalObjects: {}
   materials:

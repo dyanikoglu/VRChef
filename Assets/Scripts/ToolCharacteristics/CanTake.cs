@@ -29,12 +29,6 @@ public class CanTake: ToolCharacteristic {
             newObject.AddComponent<Rigidbody>();
             full = false;
             newObject.AddComponent<CanBeMixed>();
-            CanMixedIn[] bowls = FindObjectsOfType<CanMixedIn>();
-            foreach (CanMixedIn bowl in bowls)
-            {
-                Physics.IgnoreCollision(newObject.GetComponent<Collider>(), bowl.GetComponent<Collider>());
-            }
-           
         }
 	}
 }

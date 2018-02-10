@@ -26,6 +26,7 @@ GameObject:
   - component: {fileID: 114100420363453248}
   - component: {fileID: 54319257754135206}
   - component: {fileID: 114138674152776642}
+  - component: {fileID: 114248827923294016}
   m_Layer: 0
   m_Name: potato
   m_TagString: Untagged
@@ -182,3 +183,14 @@ MonoBehaviour:
   objectHighlighter: {fileID: 0}
   touchHighlightColor: {r: 0, g: 0, b: 0, a: 0}
   usingState: 0
+--- !u!114 &114248827923294016
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1609411215709016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76f4c4dd68146d842bd4a73e5807bef7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
