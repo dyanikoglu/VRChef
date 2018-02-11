@@ -1,25 +1,24 @@
 fileFormatVersion: 2
-guid: 91cfe8db70905764e96c00b5fa546c47
-timeCreated: 1517838757
+guid: 5e3c6747f9f33e741a21a17ab8f51367
+timeCreated: 1518336532
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
-    100000: banana
-    100002: banana_flesh
-    100004: //RootNode
-    400000: banana
-    400002: banana_flesh
-    400004: //RootNode
-    2100000: banana_rip
-    2100002: banana_flesh
-    2300000: banana
-    2300002: banana_flesh
-    3300000: banana
-    3300002: banana_flesh
-    4300000: banana
-    4300002: banana_flesh
-  externalObjects: {}
+    100000: default
+    100002: //RootNode
+    400000: default
+    400002: //RootNode
+    2100000: defaultMat
+    2300000: default
+    3300000: default
+    4300000: default
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: defaultMat
+    second: {fileID: 2100000, guid: 8148091944324374ca064bdaaf6b9412, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

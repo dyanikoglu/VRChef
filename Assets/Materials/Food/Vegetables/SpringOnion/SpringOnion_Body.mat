@@ -8,7 +8,7 @@ Material:
   m_PrefabInternal: {fileID: 0}
   m_Name: SpringOnion_Body
   m_Shader: {fileID: 4800000, guid: 12c5a1911ed698d45920f1c6fa4d6d57, type: 3}
-  m_ShaderKeywords: EFFECT_BUMP
+  m_ShaderKeywords: _WETMASKSOURCE_VERTEXCOLORALPHA _WETNESS_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -124,7 +124,7 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _HasBumpMap: 1
+    - _HasBumpMap: 0
     - _IncandescenceMapUV: 0
     - _Lightmapping: 1
     - _MainPhysicalProperties: 0
@@ -155,14 +155,14 @@ Material:
     - _TeamColor: 0
     - _TeamColorMasksAsTint: 0
     - _UVSec: 0
-    - _WetMaskSource: 0
+    - _WetMaskSource: 1
     - _WetMaskStrength: 1
     - _WetMaskUV: 0
     - _WetNormalMapScale: 1
     - _WetNormalMapUV: 0
-    - _WetRoughness: 0.2
-    - _WetWeight: 1
-    - _WetnessProperties: 0
+    - _WetRoughness: 1
+    - _WetWeight: 0
+    - _WetnessProperties: 1
     - _ZWrite: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}

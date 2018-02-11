@@ -96,7 +96,7 @@ Material:
     - _AdvancedOptions: 0
     - _Ao2MapUV: 1
     - _Ao2Occlusion: 1
-    - _BaseColorVertexTint: 0.271
+    - _BaseColorVertexTint: 0.312
     - _BumpMode: 0
     - _BumpScale: 1
     - _Cutoff: 0.876
@@ -137,7 +137,7 @@ Material:
     - _MainTexUV: 0
     - _MainTextures: 0
     - _MaxSamples: 20
-    - _Metal: 0.015
+    - _Metal: 0.559
     - _Metallic: 0.683
     - _MinSamples: 4
     - _Mode: 3
@@ -151,11 +151,11 @@ Material:
     - _RimPower: 4
     - _RimTexUV: 0
     - _RimWeight: 1
-    - _Roughness: 0.8
+    - _Roughness: 0.694
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SpecularTint: 1
-    - _Specularity: 0.5
+    - _Specularity: 0.465
     - _SrcBlend: 1
     - _TeamColor: 0
     - _TeamColorMasksAsTint: 0

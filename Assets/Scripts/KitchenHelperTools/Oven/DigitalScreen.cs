@@ -1,19 +1,19 @@
 ﻿using UnityEngine;
 
 public class DigitalScreen : MonoBehaviour {
-    protected string zero = "1111110";
-    protected string one = "0000110";
-    protected string two = "1011011";
-    protected string three = "1001111";
-    protected string four = "0100111";
-    protected string five = "1101101";
-    protected string six = "1111101";
-    protected string seven = "1000110";
-    protected string eight = "1111111";
-    protected string nine = "1101111";
-    protected Renderer[][] digitRefs;
-    protected string[] digitCodes;
-    protected int val;
+    private string zero = "1111110";
+    private string one = "0000110";
+    private string two = "1011011";
+    private string three = "1001111";
+    private string four = "0100111";
+    private string five = "1101101";
+    private string six = "1111101";
+    private string seven = "1000110";
+    private string eight = "1111111";
+    private string nine = "1101111";
+    private Renderer[][] digitRefs;
+    private string[] digitCodes;
+    protected int val = 0;
 
     public Material blankMat;
     public Material activeMat;
@@ -22,10 +22,15 @@ public class DigitalScreen : MonoBehaviour {
     public Renderer[] digit_2;
     public Renderer[] digit_3;
 
-    void Start()
+    protected virtual void Start()
     {
         digitCodes = new string[] { zero, one, two, three, four, five, six, seven, eight, nine };
         digitRefs = new Renderer[][] { digit_1, digit_2, digit_3 };
+    }
+
+    public int GetValue()
+    {
+        return val;
     }
 
     protected void SetDigit(int digitIndex, int num)

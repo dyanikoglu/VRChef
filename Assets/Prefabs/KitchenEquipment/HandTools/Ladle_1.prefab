@@ -22,10 +22,11 @@ GameObject:
   - component: {fileID: 33064238808299952}
   - component: {fileID: 23646798598736010}
   - component: {fileID: 54981423357989838}
-  - component: {fileID: 64901807649182946}
   - component: {fileID: 114264809785026290}
   - component: {fileID: 114412942408242918}
   - component: {fileID: 114666715614251230}
+  - component: {fileID: 65400856937593396}
+  - component: {fileID: 65899445735117850}
   m_Layer: 0
   m_Name: Ladle_1
   m_TagString: Untagged
@@ -134,8 +135,8 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!64 &64901807649182946
-MeshCollider:
+--- !u!65 &65400856937593396
+BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -143,11 +144,21 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 1
-  m_CookingOptions: -1
-  m_SkinWidth: 0.001
-  m_Mesh: {fileID: 4300000, guid: d9a6ce34dc28c3a4fb8593276fbb82e2, type: 3}
+  serializedVersion: 2
+  m_Size: {x: 0.07211122, y: 0.2836231, z: 0.057182923}
+  m_Center: {x: 0, y: -0.13598254, z: 0.015727062}
+--- !u!65 &65899445735117850
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1101741370289326}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.07211122, y: 0.2836231, z: 0.057182923}
+  m_Center: {x: 0, y: -0.13598254, z: 0.015727062}
 --- !u!114 &114264809785026290
 MonoBehaviour:
   m_ObjectHideFlags: 1

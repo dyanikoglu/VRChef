@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Heat : DigitalScreen {
+    public GameObject heatAdjuster;
+
 	void Update () {
-        // 0-180 -> 0-220
-        SetHeat((int)((this.transform.rotation.eulerAngles.z * 220f) / 180f));
+        // Map 0-180 -> 0-220
+        SetHeat((int)((heatAdjuster.transform.rotation.eulerAngles.z * 220f) / 180f));
 	}
 
-    private void SetHeat(int value)
+    public void SetHeat(int value)
     {
         if (val != value)
         {

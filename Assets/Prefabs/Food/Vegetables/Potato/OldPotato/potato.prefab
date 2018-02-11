@@ -9,51 +9,50 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1452935899471422}
+  m_RootGameObject: {fileID: 1609411215709016}
   m_IsPrefabParent: 1
---- !u!1 &1452935899471422
+--- !u!1 &1609411215709016
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4641535711429126}
-  - component: {fileID: 33120843433634804}
-  - component: {fileID: 23811333950206492}
-  - component: {fileID: 54743783485722764}
-  - component: {fileID: 64702741644328822}
-  - component: {fileID: 114252333980581040}
-  - component: {fileID: 114089110842204090}
-  - component: {fileID: 114683441603290446}
-  - component: {fileID: 114400178684345564}
-  - component: {fileID: 114894405725627570}
+  - component: {fileID: 4193970839491474}
+  - component: {fileID: 33235987287312802}
+  - component: {fileID: 23118815369229524}
+  - component: {fileID: 65616382159047340}
+  - component: {fileID: 114232778439681900}
+  - component: {fileID: 114100420363453248}
+  - component: {fileID: 54319257754135206}
+  - component: {fileID: 114138674152776642}
+  - component: {fileID: 114248827923294016}
   m_Layer: 0
-  m_Name: Bread_1
+  m_Name: potato
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4641535711429126
+--- !u!4 &4193970839491474
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1452935899471422}
-  m_LocalRotation: {x: 0.0783577, y: 0.21772486, z: 0.021522237, w: 0.9726216}
-  m_LocalPosition: {x: -0.7652, y: 0.8483, z: -0.6477}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_GameObject: {fileID: 1609411215709016}
+  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: -0.1961, y: 1.1988, z: 0.7676}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 8.225, y: 25.552002, z: 4.4030004}
---- !u!23 &23811333950206492
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!23 &23118815369229524
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1452935899471422}
+  m_GameObject: {fileID: 1609411215709016}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -62,7 +61,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 17910886d84d6dc44a139f57a9a65606, type: 2}
+  - {fileID: 2100000, guid: e1ce5d33010df3c4a82a36cc80c32441, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -82,21 +81,21 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!33 &33120843433634804
+--- !u!33 &33235987287312802
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1452935899471422}
-  m_Mesh: {fileID: 4300000, guid: efba8a1cbb84b3540b96093c9d089e0d, type: 3}
---- !u!54 &54743783485722764
+  m_GameObject: {fileID: 1609411215709016}
+  m_Mesh: {fileID: 4300000, guid: 9faf072ec74c0eb45b702d10ec5c87e1, type: 3}
+--- !u!54 &54319257754135206
 Rigidbody:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1452935899471422}
+  m_GameObject: {fileID: 1609411215709016}
   serializedVersion: 2
-  m_Mass: 0.4
+  m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -104,62 +103,44 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!64 &64702741644328822
-MeshCollider:
+--- !u!65 &65616382159047340
+BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1452935899471422}
+  m_GameObject: {fileID: 1609411215709016}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 1
-  m_CookingOptions: 14
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 4300000, guid: efba8a1cbb84b3540b96093c9d089e0d, type: 3}
---- !u!114 &114089110842204090
+  serializedVersion: 2
+  m_Size: {x: 0.10922066, y: 0.06305804, z: 0.06545765}
+  m_Center: {x: 0.0022679828, y: -0.000039730217, z: -0.00030630638}
+--- !u!114 &114100420363453248
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1452935899471422}
+  m_GameObject: {fileID: 1609411215709016}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18055ba762aa3994f9c10208cd088bc5, type: 3}
+  m_Script: {fileID: 11500000, guid: f201bc5273b099b42a9f495d91c69a49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114252333980581040
+  smashable: {fileID: 1609411215709016}
+  smashed: {fileID: 1336879228730784, guid: 06f89c2fd7bb7594dbafc393c632c374, type: 2}
+  smashSound: {fileID: 8300000, guid: 52d2c0298aa8e4f45baddc37b0a43422, type: 3}
+--- !u!114 &114138674152776642
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1452935899471422}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8afa0b205791c9f4496bf2814aeac078, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  precisionGrab: 1
-  rightSnapHandle: {fileID: 0}
-  leftSnapHandle: {fileID: 0}
-  throwVelocityWithAttachDistance: 0
-  throwMultiplier: 1
-  onGrabCollisionDelay: 0
-  destroyImmediatelyOnThrow: 1
-  breakForce: 1500
---- !u!114 &114400178684345564
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1452935899471422}
+  m_GameObject: {fileID: 1609411215709016}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 245aa739fea004bcaa2da96fef6f8599, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  capMaterial: {fileID: 2100000, guid: bbf6e7bdc8cc2934686d289ab6bbded0, type: 2}
+  capMaterial: {fileID: 2100000, guid: e1ce5d33010df3c4a82a36cc80c32441, type: 2}
   sliceTimeout: 0.5
   currentlyChoppable: 1
   colliderSkinWidth: 0.001
@@ -170,12 +151,12 @@ MonoBehaviour:
     type: 2}
   choppingSoundBoard: []
   smallerAllowedPieceVolume: 0.0001
---- !u!114 &114683441603290446
+--- !u!114 &114232778439681900
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1452935899471422}
+  m_GameObject: {fileID: 1609411215709016}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a3abaf4521bf2344ea21ed3020b98eb2, type: 3}
@@ -191,8 +172,8 @@ MonoBehaviour:
   validDrop: 1
   grabOverrideButton: 0
   allowedGrabControllers: 0
-  grabAttachMechanicScript: {fileID: 114252333980581040}
-  secondaryGrabActionScript: {fileID: 114089110842204090}
+  grabAttachMechanicScript: {fileID: 0}
+  secondaryGrabActionScript: {fileID: 0}
   isUsable: 0
   holdButtonToUse: 1
   useOnlyIfGrabbed: 0
@@ -202,19 +183,14 @@ MonoBehaviour:
   objectHighlighter: {fileID: 0}
   touchHighlightColor: {r: 0, g: 0, b: 0, a: 0}
   usingState: 0
---- !u!114 &114894405725627570
+--- !u!114 &114248827923294016
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1452935899471422}
+  m_GameObject: {fileID: 1609411215709016}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3bb67acb9b2d88a49b40cd6a4cc7738b, type: 3}
+  m_Script: {fileID: 11500000, guid: 76f4c4dd68146d842bd4a73e5807bef7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  requiredCookTime: 60
-  requiredCookHeat: 150
-  cookingUpdateFreq: 0.5
-  cookingStartDelay: 0
-  cookEffectTint: {r: 1, g: 0.972549, b: 0.7411765, a: 1}

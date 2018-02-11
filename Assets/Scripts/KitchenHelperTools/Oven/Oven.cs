@@ -4,22 +4,88 @@ using UnityEngine;
 using VRTK;
 
 public class Oven : MonoBehaviour {
+    public Timer timerRef;
+    public Heat heatRef;
+    public GameObject coverRef;
+    public GameObject startStopButtonRef;
 
-    public Counter counterRef;
+    private List<GameObject> objectsToBeCooked;
+    private bool heatEnabled = false;
 
-	// Use this for initialization
 	void Start () {
-        GetComponent<VRTK_InteractableObject>().InteractableObjectUsed += OnUse;
+        objectsToBeCooked = new List<GameObject>();
+        startStopButtonRef.GetComponent<VRTK_InteractableObject>().InteractableObjectUsed += OvenHeatOnOff;
     }
 
-    public void OnUse(object sender, InteractableObjectEventArgs e)
+    private void OvenHeatOnOff(object sender, InteractableObjectEventArgs e)
     {
-        counterRef.SetCounter(3605);
-        counterRef.StartCounter();
+        if (heatEnabled)
+        {
+            OvenHeatOff();
+        }
+        else
+        {
+            OvenHeatOn();
+        }
     }
 
-    // Update is called once per frame
     void Update () {
-		
+        // Cover is not closed correctly, stop heating.
+        if (heatEnabled && coverRef.transform.localRotation.eulerAngles.x < 89.75f)
+        {
+            OvenHeatOff();
+            return;
+        }
 	}
+
+    public void OvenHeatOff()
+    {
+        heatEnabled = false;
+        timerRef.StopTimer();
+
+        foreach (GameObject o in objectsToBeCooked)
+        {
+            CanBeCooked cbc = o.GetComponent<CanBeCooked>();
+            cbc.EndCook();
+        }
+    }
+
+    public void OvenHeatOn()
+    {
+        heatEnabled = true;
+        timerRef.StartTimer();
+
+        foreach (GameObject o in objectsToBeCooked)
+        {
+            CanBeCooked cbc = o.GetComponent<CanBeCooked>();
+            cbc.SetCurrentHeat(heatRef.GetValue());
+            cbc.BeginCook(timerRef.GetValue());
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.GetComponent<CanBeCooked>())
+        {
+            objectsToBeCooked.Add(other.gameObject);
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.GetComponent<CanBeCooked>())
+        {
+            objectsToBeCooked.Remove(other.gameObject);
+        }
+    }
+
+    public int GetCurrentTimerValue()
+    {
+        return timerRef.GetValue();
+    }
+
+    public int GetCurrentHeatValue()
+    {
+        return heatRef.GetValue();
+    }
 }

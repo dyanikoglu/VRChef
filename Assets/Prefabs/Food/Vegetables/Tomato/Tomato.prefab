@@ -30,9 +30,10 @@ GameObject:
   - component: {fileID: 114815008173038502}
   - component: {fileID: 82550967987313596}
   - component: {fileID: 114167140868930194}
+  - component: {fileID: 114842769769896674}
   m_Layer: 0
   m_Name: Tomato
-  m_TagString: Choppable
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -347,6 +348,22 @@ MonoBehaviour:
   smashedJuice: {fileID: 1235238343858280, guid: 4062290fe98c3b04786870bf8e7c3061,
     type: 2}
   smashSound: {fileID: 8300000, guid: 52d2c0298aa8e4f45baddc37b0a43422, type: 3}
+--- !u!114 &114842769769896674
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1526205933625466}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bb67acb9b2d88a49b40cd6a4cc7738b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  requiredCookTime: 60
+  requiredCookHeat: 150
+  cookingUpdateFreq: 0.5
+  cookingStartDelay: 0
+  cookEffectTint: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &114894782817713392
 MonoBehaviour:
   m_ObjectHideFlags: 1
