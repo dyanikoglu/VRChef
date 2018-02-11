@@ -6,15 +6,14 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Glass
+  m_Name: Rusted_Iron
   m_Shader: {fileID: 4800000, guid: 12c5a1911ed698d45920f1c6fa4d6d57, type: 3}
-  m_ShaderKeywords: EFFECT_BUMP _ALPHAPREMULTIPLY_ON
+  m_ShaderKeywords: EFFECT_BUMP
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 3000
-  stringTagMap:
-    RenderType: Transparent
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
@@ -24,7 +23,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: f042d56ea5b645144a6fd12dd7de24f8, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DecalTex:
@@ -56,16 +55,8 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MetallicGlossMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _OcclusionMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
+        m_Texture: {fileID: 2800000, guid: 579fdac0369b34c4d861bcaaaf1f5b33, type: 3}
+        m_Scale: {x: 1, y: 3}
         m_Offset: {x: 0, y: 0}
     - _ParallaxMap:
         m_Texture: {fileID: 0}
@@ -76,7 +67,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SpecTex:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 827afbedff15d6e49a701d54518e4695, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _TeamColorMaskMap:
@@ -96,10 +87,10 @@ Material:
     - _AdvancedOptions: 0
     - _Ao2MapUV: 1
     - _Ao2Occlusion: 1
-    - _BaseColorVertexTint: 0.312
+    - _BaseColorVertexTint: 0
     - _BumpMode: 0
     - _BumpScale: 1
-    - _Cutoff: 0.876
+    - _Cutoff: 0.5
     - _Decal: 0
     - _DecalAlphaVertexTint: 0
     - _DecalSpecularity: 0.5
@@ -117,17 +108,11 @@ Material:
     - _DissolveEdgeWidth: 0.01
     - _DissolveGlowWeight: 1
     - _DissolveTexUV: 0
-    - _DistortGeoWeight: 1
-    - _DistortIntensity: 107
-    - _DistortWeight: 1
-    - _DistortionProperties: 0
-    - _DstBlend: 10
+    - _DstBlend: 0
     - _Emission: 0
     - _EmissionWeight: 1
     - _EnableInstancing: 0
     - _ForwardRenderingOptions: 0
-    - _GlossMapScale: 0
-    - _Glossiness: 1
     - _GlossyReflections: 1
     - _HasBumpMap: 1
     - _IncandescenceMapUV: 0
@@ -137,12 +122,10 @@ Material:
     - _MainTexUV: 0
     - _MainTextures: 0
     - _MaxSamples: 20
-    - _Metal: 0.559
-    - _Metallic: 0.683
+    - _Metal: 1
     - _MinSamples: 4
-    - _Mode: 3
+    - _Mode: 0
     - _Occlusion: 1
-    - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _ParallaxT: 0
     - _RenderQueue: 0
@@ -151,15 +134,13 @@ Material:
     - _RimPower: 4
     - _RimTexUV: 0
     - _RimWeight: 1
-    - _Roughness: 0.694
-    - _SmoothnessTextureChannel: 0
+    - _Roughness: 0.5
     - _SpecularHighlights: 1
-    - _SpecularTint: 1
-    - _Specularity: 0.465
+    - _SpecularTint: 0
+    - _Specularity: 1
     - _SrcBlend: 1
     - _TeamColor: 0
     - _TeamColorMasksAsTint: 0
-    - _UVSec: 0
     - _WetMaskSource: 0
     - _WetMaskStrength: 1
     - _WetMaskUV: 0
@@ -168,13 +149,13 @@ Material:
     - _WetRoughness: 0.2
     - _WetWeight: 1
     - _WetnessProperties: 0
-    - _ZWrite: 0
+    - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 0}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _DecalColor: {r: 1, g: 1, b: 1, a: 1}
     - _DetailAlbedoMapVelocity: {r: 0, g: 0, b: 0, a: 0}
     - _DissolveGlowColor: {r: 1, g: 1, b: 1, a: 1}
-    - _EmissionColor: {r: 0, g: 0, b: 0, a: 0}
+    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _IncandescenceMapVelocity: {r: 0, g: 0, b: 0, a: 0}
     - _MainTexVelocity: {r: 0, g: 0, b: 0, a: 0}
     - _RimColor: {r: 1, g: 1, b: 1, a: 1}

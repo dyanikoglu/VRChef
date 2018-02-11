@@ -7,10 +7,12 @@ public class Timer : DigitalScreen {
 
     private int currentHours = -1;
     private int currentMinutes = -1;
+    private bool isInitiated = false;
     
     public Renderer seconds;
     public GameObject increaseButtonRef;
     public GameObject decreaseButtonRef;
+    public AudioClip beep;
    
 
     protected override void Start()
@@ -19,11 +21,18 @@ public class Timer : DigitalScreen {
 
         increaseButtonRef.GetComponent<VRTK_InteractableObject>().InteractableObjectUsed += TimerIncrement;
         decreaseButtonRef.GetComponent<VRTK_InteractableObject>().InteractableObjectUsed += TimerDecrement;
+
+        GetComponent<AudioSource>().clip = beep;
     }
 
     private void TimerIncrement(object sender, InteractableObjectEventArgs e)
     {
-        StopTimer();
+        if(isInitiated)
+        {
+            return;
+        }
+
+        GetComponent<AudioSource>().Play();
 
         if (val + 60 <= MAX_VALUE)
         {
@@ -38,7 +47,12 @@ public class Timer : DigitalScreen {
 
     private void TimerDecrement(object sender, InteractableObjectEventArgs e)
     {
-        StopTimer();
+        if (isInitiated)
+        {
+            return;
+        }
+
+        GetComponent<AudioSource>().Play();
 
         if (val - 60 >= 0)
         {
@@ -113,12 +127,14 @@ public class Timer : DigitalScreen {
 
     public void StartTimer()
     {
+        isInitiated = true;
         StartCoroutine(InitiateTimer(val));
         InvokeRepeating("TimerUpdate", 0, 1);
     }
 
     public void StopTimer()
     {
+        isInitiated = false;
         StopCoroutine("InitiateTimer");
         CancelInvoke("TimerUpdate");
     }

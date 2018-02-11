@@ -9,12 +9,20 @@ public class Oven : MonoBehaviour {
     public GameObject coverRef;
     public GameObject startStopButtonRef;
 
+    public AudioClip ovenStart;
+    public AudioClip ovenLoop;
+    public AudioClip ovenStop;
+
+    public Light heatLight;
+    public float heatLightIntensity = 20;
+
     private List<GameObject> objectsToBeCooked;
     private bool heatEnabled = false;
 
 	void Start () {
         objectsToBeCooked = new List<GameObject>();
         startStopButtonRef.GetComponent<VRTK_InteractableObject>().InteractableObjectUsed += OvenHeatOnOff;
+        heatLight.intensity = 0;
     }
 
     private void OvenHeatOnOff(object sender, InteractableObjectEventArgs e)
@@ -23,7 +31,7 @@ public class Oven : MonoBehaviour {
         {
             OvenHeatOff();
         }
-        else
+        else if(coverRef.transform.localRotation.eulerAngles.x >= 89.75f)
         {
             OvenHeatOn();
         }
@@ -36,10 +44,22 @@ public class Oven : MonoBehaviour {
             OvenHeatOff();
             return;
         }
+
+        if(heatEnabled && GetCurrentTimerValue() == 0)
+        {
+            OvenHeatOff();
+            return;
+        }
 	}
 
     public void OvenHeatOff()
     {
+        GetComponent<AudioSource>().loop = false;
+        GetComponent<AudioSource>().clip = ovenStop;
+        GetComponent<AudioSource>().Play();
+
+        heatLight.intensity = 0;
+
         heatEnabled = false;
         timerRef.StopTimer();
 
@@ -50,8 +70,32 @@ public class Oven : MonoBehaviour {
         }
     }
 
+    IEnumerator DelayedEffect()
+    {
+        yield return new WaitForSeconds(4.9f);
+
+        if (heatEnabled)
+        {
+            GetComponent<AudioSource>().clip = ovenLoop;
+            GetComponent<AudioSource>().loop = true;
+            GetComponent<AudioSource>().Play();
+        }
+    }
+
     public void OvenHeatOn()
     {
+        if(GetCurrentTimerValue() < 60)
+        {
+            return;
+        }
+
+        GetComponent<AudioSource>().loop = false;
+        GetComponent<AudioSource>().clip = ovenStart;
+        GetComponent<AudioSource>().Play();
+        StartCoroutine(DelayedEffect());
+
+        heatLight.intensity = heatLightIntensity;
+
         heatEnabled = true;
         timerRef.StartTimer();
 

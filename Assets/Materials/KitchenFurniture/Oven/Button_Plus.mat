@@ -6,14 +6,15 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Freezer
+  m_Name: Button_Plus
   m_Shader: {fileID: 4800000, guid: 12c5a1911ed698d45920f1c6fa4d6d57, type: 3}
-  m_ShaderKeywords: EFFECT_BUMP
+  m_ShaderKeywords: EFFECT_BUMP _ALPHATEST_ON _EMISSION
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
+  m_CustomRenderQueue: 2450
+  stringTagMap:
+    RenderType: TransparentCutout
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
@@ -55,7 +56,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: cb4f7d2fe0abadb488cef17f940d8db0, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -117,7 +118,7 @@ Material:
     - _DissolveGlowWeight: 1
     - _DissolveTexUV: 0
     - _DstBlend: 0
-    - _Emission: 0
+    - _Emission: 1
     - _EmissionWeight: 1
     - _EnableInstancing: 0
     - _ForwardRenderingOptions: 0
@@ -132,10 +133,10 @@ Material:
     - _MainTexUV: 0
     - _MainTextures: 0
     - _MaxSamples: 20
-    - _Metal: 0
+    - _Metal: 1
     - _Metallic: 0
     - _MinSamples: 4
-    - _Mode: 0
+    - _Mode: 1
     - _Occlusion: 1
     - _OcclusionStrength: 1
     - _Parallax: 0.02
@@ -169,7 +170,7 @@ Material:
     - _DecalColor: {r: 1, g: 1, b: 1, a: 1}
     - _DetailAlbedoMapVelocity: {r: 0, g: 0, b: 0, a: 0}
     - _DissolveGlowColor: {r: 1, g: 1, b: 1, a: 1}
-    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _EmissionColor: {r: 0.75735295, g: 0.10580667, b: 0.10580667, a: 1}
     - _IncandescenceMapVelocity: {r: 0, g: 0, b: 0, a: 0}
     - _MainTexVelocity: {r: 0, g: 0, b: 0, a: 0}
     - _RimColor: {r: 1, g: 1, b: 1, a: 1}
