@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 22d5925c2698b4b028854932132312c8
+labels:
+- ObiFluid
+timeCreated: 1465712854
+licenseType: Store
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {fileID: 2800000, guid: 882466012f5c44b69b035a407aa63e16, type: 3}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

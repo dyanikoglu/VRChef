@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45b3b3073315a4191bcde3b6ca445dc7, type: 3}
+  m_Name: Dense
+  m_EditorClassIdentifier: 
+  resolution: 2.5
+  restDensity: 1000
+  smoothing: 2.5
+  viscosity: 0.01
+  surfaceTension: 1
+  buoyancy: -1
+  atmosphericDrag: 0
+  atmosphericPressure: 0
+  vorticity: 0
