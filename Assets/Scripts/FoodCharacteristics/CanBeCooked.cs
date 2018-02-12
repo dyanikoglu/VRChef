@@ -29,8 +29,8 @@ public class CanBeCooked : FoodCharacteristic {
 
     public void BeginCook(int cookForSecs)
     {
-        _effectPercentage = _currentHeat / requiredCookHeat;
-        _neededUpdateCount = (int) (requiredCookTime / cookingUpdateFreq);
+        _effectPercentage = (float)_currentHeat / (float)requiredCookHeat;
+        _neededUpdateCount = (int) ((float)requiredCookTime / cookingUpdateFreq);
         _deltaValue =  (1.0f / (float)(_neededUpdateCount)) * _effectPercentage;
 
         StartCoroutine(CookingTimer(cookForSecs));
