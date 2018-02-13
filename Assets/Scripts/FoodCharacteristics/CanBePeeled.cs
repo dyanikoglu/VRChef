@@ -9,19 +9,21 @@ public class CanBePeeled : CanBeChopped {
 
     public GameObject objectFlesh;
     public float smallerAllowedRigVolume = 0.0001f;
-
+    private GameObject parent = null;
+    private CanChop[] knives;
+    private bool smallEnough = false;
     // Use this for initialization
     void Start()
-    {
+    {        
         detachChildrenOnSlice = true;
-        /*CanChop[] knives = FindObjectsOfType<CanChop>();
+        knives = FindObjectsOfType<CanChop>();
+        Debug.Log(knives);
         foreach (CanChop knife in knives)
         {
-            Debug.Log(knife.name);
             Physics.IgnoreCollision(objectFlesh.GetComponent<Collider>(), knife.GetComponent<Collider>());
             Physics.IgnoreCollision(objectFlesh.GetComponent<Collider>(), knife.sharpAreaRef.GetComponent<Collider>());
         }
-        Physics.IgnoreCollision(objectFlesh.GetComponent<Collider>(), GetComponent<Collider>());*/
+        Physics.IgnoreCollision(objectFlesh.GetComponent<Collider>(), GetComponent<Collider>());
         base.Start();
     }
 
@@ -200,29 +202,15 @@ public class CanBePeeled : CanBeChopped {
         HandleCollisions(leftSideObj);
         HandleCollisions(rightSideObj);
 
-        // Create required components & set parameters on right piece, copy component values to new one.
-        CanBePeeled cbc = rightSideObj.AddComponent<CanBePeeled>();
-        cbc.capMaterial = this.capMaterial;
-        cbc.sliceTimeout = this.sliceTimeout;
-        cbc.colliderSkinWidth = this.colliderSkinWidth;
-        cbc.detachChildrenOnSlice = this.detachChildrenOnSlice;
-        cbc.newPieceMassMultiplier = this.newPieceMassMultiplier;
-        cbc.canBeChoppedWhileOnHand = this.canBeChoppedWhileOnHand;
-        cbc._rootObject = this._rootObject;
-        cbc.choppingSoundBoard = this.choppingSoundBoard;
-        cbc.smallerAllowedPieceVolume = this.smallerAllowedPieceVolume;
-        cbc.objectFlesh = this.objectFlesh;
-        ////
-
         // Sound effects preparation
         AudioSource asrc = rightSideObj.AddComponent<AudioSource>();
         asrc.spatialBlend = 1f;
         asrc.volume = 0.4f;
         asrc.playOnAwake = false;
         ////
-
         // Other Stuff
         VRTK.VRTK_InteractableObject vrtk_io = rightSideObj.AddComponent<VRTK_InteractableObject>();
+        //vrtk_io.holdButtonToGrab = false;
         VRTK_FixedJointGrabAttach vrtk_fjga = rightSideObj.AddComponent<VRTK_FixedJointGrabAttach>();
         vrtk_io.isGrabbable = true;
         vrtk_fjga.precisionGrab = true;
@@ -233,50 +221,67 @@ public class CanBePeeled : CanBeChopped {
         float right_bounds = right_renderer.bounds.size.x * right_renderer.bounds.size.y * right_renderer.bounds.size.z;
         float left_bounds = left_renderer.bounds.size.x * left_renderer.bounds.size.y * left_renderer.bounds.size.z;
 
-        if (right_bounds > left_bounds)
+        GameObject rightController = GameObject.Find("RightController");
+
+        if (right_bounds < smallerAllowedRigVolume && left_bounds < smallerAllowedRigVolume)
         {
-            if (right_bounds < smallerAllowedRigVolume)
-            {
-                AddCanBeChopped();
-            }
-            else
-            {
-                //objectFlesh.transform.localPosition = new Vector3(0, 0, 0);
-                //objectFlesh.transform.SetParent(rightSideObj.transform);
-                objectFlesh.transform.parent = rightSideObj.transform;
-                rightSideObj.transform.position = objectFlesh.transform.position;
-                rightSideObj.transform.rotation = objectFlesh.transform.rotation;
-            }
-            Destroy(leftSideObj.GetComponent<CanBePeeled>());
+            AddCanBeChopped();
+            smallEnough = true;
         }
         else
         {
-            if (left_bounds < smallerAllowedRigVolume)
+            if (right_bounds > left_bounds)
             {
-                AddCanBeChopped();
+                Debug.Log("right side auto grab");
+
+                //rightController.GetComponent<VRTK_InteractGrab>().GetGrabbedObject();
+
+                AutoGrab autoGrabRight = rightController.AddComponent<AutoGrab>();
+                autoGrabRight.interactTouch = autoGrabRight.GetComponent<VRTK_InteractTouch>();
+                autoGrabRight.interactGrab = autoGrabRight.GetComponent<VRTK_InteractGrab>();
+                autoGrabRight.objectToGrab = vrtk_io;
+
+                objectFlesh.transform.parent = rightSideObj.transform;
+                objectFlesh.transform.position = rightSideObj.transform.position;
+                objectFlesh.transform.rotation = rightSideObj.transform.rotation;
+
+                parent = rightSideObj;
+
+                // Create required components & set parameters on right piece, copy component values to new one.
+                CanBePeeled cbc = rightSideObj.AddComponent<CanBePeeled>();
+                cbc.capMaterial = this.capMaterial;
+                cbc.sliceTimeout = this.sliceTimeout;
+                cbc.colliderSkinWidth = this.colliderSkinWidth;
+                cbc.detachChildrenOnSlice = this.detachChildrenOnSlice;
+                cbc.newPieceMassMultiplier = this.newPieceMassMultiplier;
+                cbc.canBeChoppedWhileOnHand = this.canBeChoppedWhileOnHand;
+                cbc._rootObject = this._rootObject;
+                cbc.choppingSoundBoard = this.choppingSoundBoard;
+                cbc.smallerAllowedPieceVolume = this.smallerAllowedPieceVolume;
+                cbc.objectFlesh = this.objectFlesh;
+                ////
+
+                Destroy(leftSideObj.GetComponent<CanBePeeled>());
             }
             else
             {
+                Debug.Log("left side auto grab");
                 //objectFlesh.transform.localPosition = new Vector3(0,0,0);
                 //objectFlesh.transform.SetParent(leftSideObj.transform);
+
+                AutoGrab autoGrabRight = rightController.AddComponent<AutoGrab>();
+                autoGrabRight.interactTouch = autoGrabRight.GetComponent<VRTK_InteractTouch>();
+                autoGrabRight.interactGrab = autoGrabRight.GetComponent<VRTK_InteractGrab>();
+                autoGrabRight.objectToGrab = leftSideObj.GetComponent<VRTK_InteractableObject>();
+
                 objectFlesh.transform.parent = leftSideObj.transform;
-                leftSideObj.transform.position = objectFlesh.transform.position;
-                leftSideObj.transform.rotation = objectFlesh.transform.rotation;
+                objectFlesh.transform.position = leftSideObj.transform.position;
+                objectFlesh.transform.rotation = leftSideObj.transform.rotation;
+
+                parent = leftSideObj;
+            
+                Destroy(rightSideObj.GetComponent<CanBePeeled>());
             }
-            Destroy(rightSideObj.GetComponent<CanBePeeled>());
-        }
-
-        //// Check if new pieces are too small. If so, prevent chopping them into more smaller parts.
-        Renderer rend = GetComponent<Renderer>();
-        if (rend.bounds.size.x * rend.bounds.size.y * rend.bounds.size.z < smallerAllowedPieceVolume)
-        {
-            currentlyChoppable = false;
-        }
-
-        rend = rightSideObj.GetComponent<Renderer>();
-        if (rend.bounds.size.x * rend.bounds.size.y * rend.bounds.size.z < smallerAllowedPieceVolume)
-        {
-            cbc.currentlyChoppable = false;
         }
 
         // End thread
@@ -288,13 +293,21 @@ public class CanBePeeled : CanBeChopped {
     private void AddCanBeChopped()
     {
         objectFlesh.transform.parent = null;
+        parent = null;
         objectFlesh.AddComponent<Rigidbody>();
-        MeshCollider cmc = objectFlesh.AddComponent<MeshCollider>();
+        /*MeshCollider cmc = objectFlesh.GetComponent<MeshCollider>();
         cmc.cookingOptions = MeshColliderCookingOptions.InflateConvexMesh;
         cmc.skinWidth = colliderSkinWidth;
-        cmc.convex = true;
+        cmc.convex = true;*/
         objectFlesh.GetComponent<CanBeChopped>().enabled = true;
         objectFlesh.AddComponent<VRTK_InteractableObject>().isGrabbable = true;
+        Debug.Log(knives);
+        foreach (CanChop knife in knives)
+        {
+            Physics.IgnoreCollision(objectFlesh.GetComponent<Collider>(), knife.GetComponent<Collider>(), false);
+            Physics.IgnoreCollision(objectFlesh.GetComponent<Collider>(), knife.sharpAreaRef.GetComponent<Collider>(), false);
+        }
+        Physics.IgnoreCollision(objectFlesh.GetComponent<Collider>(), GetComponent<Collider>(), false);
     }
 
     public override void HandleCollisions(GameObject piece)
@@ -328,4 +341,13 @@ public class CanBePeeled : CanBeChopped {
         rb.isKinematic = false;
     }
 
+
+    public void Update()
+    {
+        if (parent != null && objectFlesh.transform.parent !=null)
+        {            
+            objectFlesh.transform.localPosition = Vector3.zero;
+            objectFlesh.transform.localRotation = Quaternion.Euler(Vector3.zero);
+        }
+    }
 }
