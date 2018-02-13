@@ -13,12 +13,23 @@ public class CanBeFried : MonoBehaviour
     public Texture friedTexture;
 
     public float fryingTimeInSeconds;
+    [SerializeField]
+    bool isFried;
 
+    private MaterialPropertyBlock propertyBlock;
+
+    private void Awake()
+    {
+        GetComponent<Renderer>().material = new Material(GetComponent<Renderer>().material);
+        myMaterial = GetComponent<Renderer>().material;
+        propertyBlock = new MaterialPropertyBlock();
+
+        isFried = false;
+    }
     // Use this for initialization
     void Start()
     {
 
-        myMaterial = GetComponent<Renderer>().material;
         objectTexture = myMaterial.mainTexture;
         if (!objectTexture)
         {
@@ -35,24 +46,33 @@ public class CanBeFried : MonoBehaviour
             texture.Apply();
             objectTexture = texture;
         }
+
+        // replace shader with one can blend textures
+        myMaterial.shader = shaderWithBlending;
+
+        // set textures of object. (One for initial state, one for fried state)
+        myMaterial.SetTexture("_MainTex", objectTexture);
+        myMaterial.SetTexture("_Texture2", friedTexture);
+        myMaterial.SetFloat("_Blend", 0f);
+
+
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnCollisionEnter(Collision collision)
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        Debug.Log(collision.collider.name);
+        if(collision.collider.name.Contains("Cube") && !isFried)
         {
-            // replace shader with one can blend textures
-            myMaterial.shader = shaderWithBlending;
-
-            // set textures of object. (One for initial state, one for fried state)
-            myMaterial.SetTexture("_MainTex", objectTexture);
-            myMaterial.SetTexture("_Texture2", friedTexture);
-
-            // to animate object's frying process
-            StartCoroutine("Fry");
+            Debug.Log("wtf");
+            StartFrying();
         }
+    }
 
+    void StartFrying()
+    {
+
+        // to animate object's frying process
+        StartCoroutine("Fry");
     }
 
     IEnumerator Fry()
@@ -67,11 +87,17 @@ public class CanBeFried : MonoBehaviour
         float blend = myMaterial.GetFloat("_Blend");
         while (blend < 1f)
         {
-            myMaterial.SetFloat("_Blend", blend);
+            //myMaterial.SetFloat("_Blend", blend);
             float fadeValue = Time.deltaTime / fryingTimeInSeconds;
             blend += fadeValue;
+
+            GetComponent<Renderer>().GetPropertyBlock(propertyBlock);
+            propertyBlock.SetFloat("_Blend", blend);
+            GetComponent<Renderer>().SetPropertyBlock(propertyBlock);
+
             yield return new WaitForSeconds(fadeValue);
         }
+        isFried = true;
     }
 
 }
