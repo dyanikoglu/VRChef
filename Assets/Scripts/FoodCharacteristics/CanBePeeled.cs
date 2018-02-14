@@ -221,31 +221,43 @@ public class CanBePeeled : CanBeChopped {
         float right_bounds = right_renderer.bounds.size.x * right_renderer.bounds.size.y * right_renderer.bounds.size.z;
         float left_bounds = left_renderer.bounds.size.x * left_renderer.bounds.size.y * left_renderer.bounds.size.z;
 
-        GameObject rightController = GameObject.Find("RightController");
-
-        if (right_bounds < smallerAllowedRigVolume && left_bounds < smallerAllowedRigVolume)
+        GameObject leftController = GameObject.Find("LeftController");
+        if (leftController.GetComponent<AutoGrab>() != null)
         {
-            AddCanBeChopped();
-            smallEnough = true;
+            Destroy(leftController.GetComponent<AutoGrab>());
         }
-        else
+        if (right_bounds > left_bounds)
         {
-            if (right_bounds > left_bounds)
+            Debug.Log("right side auto grab");
+
+            objectFlesh.transform.parent = rightSideObj.transform;
+            objectFlesh.transform.position = rightSideObj.transform.position;
+            objectFlesh.transform.rotation = rightSideObj.transform.rotation;
+
+            parent = rightSideObj;
+
+            if (right_bounds < smallerAllowedRigVolume)
             {
-                Debug.Log("right side auto grab");
+                AddCanBeChopped();
+            }
+            else
+            {
+                leftController.GetComponent<VRTK_InteractGrab>().ForceRelease();
 
-                //rightController.GetComponent<VRTK_InteractGrab>().GetGrabbedObject();
+                /*if (rightController.GetComponent<VRTK_InteractGrab>() != null)
+                {
+                    GameObject grabbedObject = rightController.GetComponent<VRTK_InteractGrab>().GetGrabbedObject();
+                    Debug.Log(grabbedObject);
 
-                AutoGrab autoGrabRight = rightController.AddComponent<AutoGrab>();
+                    if (grabbedObject != null && grabbedObject.GetComponent<VRTK_InteractableObject>() != null)
+                    {
+                        grabbedObject.GetComponent<VRTK_InteractableObject>().Ungrabbed();
+                    }
+                }*/
+                AutoGrab autoGrabRight = leftController.AddComponent<AutoGrab>();
                 autoGrabRight.interactTouch = autoGrabRight.GetComponent<VRTK_InteractTouch>();
                 autoGrabRight.interactGrab = autoGrabRight.GetComponent<VRTK_InteractGrab>();
                 autoGrabRight.objectToGrab = vrtk_io;
-
-                objectFlesh.transform.parent = rightSideObj.transform;
-                objectFlesh.transform.position = rightSideObj.transform.position;
-                objectFlesh.transform.rotation = rightSideObj.transform.rotation;
-
-                parent = rightSideObj;
 
                 // Create required components & set parameters on right piece, copy component values to new one.
                 CanBePeeled cbc = rightSideObj.AddComponent<CanBePeeled>();
@@ -260,16 +272,33 @@ public class CanBePeeled : CanBeChopped {
                 cbc.smallerAllowedPieceVolume = this.smallerAllowedPieceVolume;
                 cbc.objectFlesh = this.objectFlesh;
                 ////
-
-                Destroy(leftSideObj.GetComponent<CanBePeeled>());
+            }
+            Destroy(leftSideObj.GetComponent<CanBePeeled>());
+        }
+        else
+        {
+            Debug.Log("left side auto grab");
+            //objectFlesh.transform.localPosition = new Vector3(0,0,0);
+            //objectFlesh.transform.SetParent(leftSideObj.transform);
+            if (left_bounds < smallerAllowedRigVolume)
+            {
+                AddCanBeChopped();
             }
             else
             {
-                Debug.Log("left side auto grab");
-                //objectFlesh.transform.localPosition = new Vector3(0,0,0);
-                //objectFlesh.transform.SetParent(leftSideObj.transform);
+                leftController.GetComponent<VRTK_InteractGrab>().ForceRelease();
 
-                AutoGrab autoGrabRight = rightController.AddComponent<AutoGrab>();
+                /*if (rightController.GetComponent<VRTK_InteractGrab>() != null)
+                {
+                    GameObject grabbedObject = rightController.GetComponent<VRTK_InteractGrab>().GetGrabbedObject();
+                    Debug.Log(grabbedObject);
+                    if (grabbedObject != null && grabbedObject.GetComponent<VRTK_InteractableObject>() != null)
+                    {
+                        grabbedObject.GetComponent<VRTK_InteractableObject>().Ungrabbed(rightController.GetComponent<VRTK_InteractGrab>());
+
+                    }
+                }*/
+                AutoGrab autoGrabRight = leftController.AddComponent<AutoGrab>();
                 autoGrabRight.interactTouch = autoGrabRight.GetComponent<VRTK_InteractTouch>();
                 autoGrabRight.interactGrab = autoGrabRight.GetComponent<VRTK_InteractGrab>();
                 autoGrabRight.objectToGrab = leftSideObj.GetComponent<VRTK_InteractableObject>();
@@ -279,10 +308,10 @@ public class CanBePeeled : CanBeChopped {
                 objectFlesh.transform.rotation = leftSideObj.transform.rotation;
 
                 parent = leftSideObj;
-            
-                Destroy(rightSideObj.GetComponent<CanBePeeled>());
             }
-        }
+
+            Destroy(rightSideObj.GetComponent<CanBePeeled>());
+        }        
 
         // End thread
         yield return Ninja.JumpBack;
