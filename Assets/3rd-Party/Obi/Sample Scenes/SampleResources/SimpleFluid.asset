@@ -11,11 +11,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45b3b3073315a4191bcde3b6ca445dc7, type: 3}
   m_Name: SimpleFluid
   m_EditorClassIdentifier: 
-  resolution: 0.8
+  resolution: 60
   restDensity: 1000
-  smoothing: 2
+  smoothing: 1
   viscosity: 0.02
-  surfaceTension: 0.2
+  surfaceTension: 0.06
   buoyancy: -1
   atmosphericDrag: 0
   atmosphericPressure: 0
