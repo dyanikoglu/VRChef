@@ -1,18 +1,16 @@
 fileFormatVersion: 2
-guid: 11756aee7e4a0014cad6f9043e6e8d7a
-timeCreated: 1516189624
+guid: 21f452724760cf34ba8c2c1ee598e274
+timeCreated: 1518717470
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
     100000: //RootNode
-    100002: default
     400000: //RootNode
-    400002: default
-    2100000: defaultMat
-    2300000: default
-    3300000: default
-    4300000: default
+    2100000: No Name
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: Circle
   externalObjects: {}
   materials:
     importMaterials: 1

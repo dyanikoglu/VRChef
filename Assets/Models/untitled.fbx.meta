@@ -1,31 +1,24 @@
 fileFormatVersion: 2
-guid: 0a363894abbe0ab4b8b07eaab60fb1cd
-timeCreated: 1517930465
+guid: 2ec62dde02b96ed4d8ce6b88f631e345
+timeCreated: 1518721169
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
-    100000: barrel.001
-    100002: Cap
-    100004: Cylinder002
+    100000: Camera
+    100002: Lamp
+    100004: Sphere
     100006: //RootNode
-    400000: barrel.001
-    400002: Cap
-    400004: Cylinder002
+    400000: Camera
+    400002: Lamp
+    400004: Sphere
     400006: //RootNode
-    2100000: muka.002
-    2100002: Sugar
-    2100004: Crome
-    2100006: Tee
-    2300000: barrel.001
-    2300002: Cap
-    2300004: Cylinder002
-    3300000: barrel.001
-    3300002: Cap
-    3300004: Cylinder002
-    4300000: barrel.001
-    4300002: Cylinder002
-    4300004: Cap
+    2000000: Camera
+    2100000: No Name
+    2300000: Sphere
+    3300000: Sphere
+    4300000: Sphere
+    10800000: Lamp
   externalObjects: {}
   materials:
     importMaterials: 1
