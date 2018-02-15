@@ -2,8 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using CielaSpike;
-using VRTK;
-using VRTK.GrabAttachMechanics;
 
 public class CanBeChopped : FoodCharacteristic
 {
@@ -32,6 +30,8 @@ public class CanBeChopped : FoodCharacteristic
     public GameObject rootObjectAfterSlice;
     public AudioClip[] choppingSoundBoard;
     public float smallerAllowedPieceVolume = 0.0001f;
+    public bool spawnFluid = false;
+    public Color spawnFluidColor = Color.white;
 
     public void Start()
     {
@@ -80,7 +80,6 @@ public class CanBeChopped : FoodCharacteristic
         StartCoroutine(SliceDelay());
     }
 
-    // TODO Fix capping material UV-Map
     public virtual IEnumerator Cut()
     {
         // Jump to main thread for running UNITY API calls
@@ -200,15 +199,17 @@ public class CanBeChopped : FoodCharacteristic
         right_HalfMesh.name = "Split Mesh Right";
 
         // assign the game objects
-        gameObject.name = "left side";
+        gameObject.name = "left_side";
         gameObject.GetComponent<MeshFilter>().mesh = left_HalfMesh;
 
         GameObject leftSideObj = gameObject;
 
-        GameObject rightSideObj = new GameObject("right side", typeof(MeshFilter), typeof(MeshRenderer));
+        // Clone left side's components to right side.
+        GameObject rightSideObj = GameObject.Instantiate(leftSideObj);
         rightSideObj.transform.position = gameObject.transform.position;
         rightSideObj.transform.rotation = gameObject.transform.rotation;
         rightSideObj.GetComponent<MeshFilter>().mesh = right_HalfMesh;
+        rightSideObj.name = "right_side";
 
         if (gameObject.transform.parent != null)
         {
@@ -225,33 +226,8 @@ public class CanBeChopped : FoodCharacteristic
         HandleCollisions(leftSideObj);
         HandleCollisions(rightSideObj);
 
-        // Create required components & set parameters on right piece, copy component values to new one.
-        CanBeChopped cbc = rightSideObj.AddComponent<CanBeChopped>();
-        cbc.capMaterial = this.capMaterial;
-        cbc.sliceTimeout = this.sliceTimeout;
-        cbc.colliderSkinWidth = this.colliderSkinWidth;
-        cbc.detachChildrenOnSlice = this.detachChildrenOnSlice;
-        cbc.newPieceMassMultiplier = this.newPieceMassMultiplier;
-        cbc.canBeChoppedWhileOnHand = this.canBeChoppedWhileOnHand;
-        cbc._rootObject = this._rootObject;
-        cbc.choppingSoundBoard = this.choppingSoundBoard;
-        cbc.smallerAllowedPieceVolume = this.smallerAllowedPieceVolume;
-        ////
-
-        // Sound effects preparation
-        AudioSource asrc = rightSideObj.AddComponent<AudioSource>();
-        asrc.spatialBlend = 1f;
-        asrc.volume = 0.4f;
-        asrc.playOnAwake = false;
-        ////
-
-
-        // Other Stuff
-        VRTK_InteractableObject vrtk_io = rightSideObj.AddComponent<VRTK_InteractableObject>();
-        VRTK_FixedJointGrabAttach vrtk_fjga = rightSideObj.AddComponent<VRTK_FixedJointGrabAttach>();
-        vrtk_io.isGrabbable = true;
-        vrtk_fjga.precisionGrab = true;
-        /////
+        CanBeChopped cbc = rightSideObj.GetComponent<CanBeChopped>();
+        cbc.SetRootObject(_rootObject);
 
         //// Check if new pieces are too small. If so, prevent chopping them into more smaller parts.
         Renderer rend = GetComponent<Renderer>();
@@ -275,32 +251,13 @@ public class CanBeChopped : FoodCharacteristic
 
     public virtual void HandleCollisions(GameObject piece)
     {
-        Rigidbody rb;
-
-        if (!piece.GetComponent<Rigidbody>())
-        {
-            rb = piece.AddComponent<Rigidbody>();
-            rb.mass = GetComponent<Rigidbody>().mass * newPieceMassMultiplier;
-        }
-
-        else
-        {
-            rb = piece.GetComponent<Rigidbody>();
-        }
-
+        Rigidbody rb = piece.GetComponent<Rigidbody>();
         rb.isKinematic = true;
-
-        // Reset mesh collider
-        if (piece.GetComponent<Collider>())
-        {
-            Destroy(piece.GetComponent<Collider>());
-        }
-
+        Destroy(piece.GetComponent<Collider>());
         MeshCollider mc = piece.AddComponent<MeshCollider>();
         mc.skinWidth = colliderSkinWidth;
         mc.cookingOptions = MeshColliderCookingOptions.InflateConvexMesh | MeshColliderCookingOptions.CookForFasterSimulation | MeshColliderCookingOptions.WeldColocatedVertices | MeshColliderCookingOptions.EnableMeshCleaning;
         mc.convex = true;
-
         rb.isKinematic = false;
     }
 
@@ -635,6 +592,11 @@ public class CanBeChopped : FoodCharacteristic
     public void SetOnDelay(bool b)
     {
         _onDelay = b;
+    }
+
+    public void SetRootObject(GameObject r)
+    {
+        _rootObject = r;
     }
 
     public void SetStartedChopping(bool b)

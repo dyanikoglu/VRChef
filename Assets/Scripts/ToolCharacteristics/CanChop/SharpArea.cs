@@ -1,9 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Obi;
 
 // Detects chopping states of choppable objects
 public class SharpArea : MonoBehaviour {
+
+    private ObiEmitter _obiEmitter;
+    private ObiParticleRenderer _obiParticleRenderer;
 
     public CanChop canChopRef;
 
@@ -13,6 +17,20 @@ public class SharpArea : MonoBehaviour {
         {
             canChopRef = transform.parent.GetComponent<CanChop>();
         }
+
+        if (canChopRef.fluidEmitterRef != null)
+        {
+            _obiEmitter = canChopRef.fluidEmitterRef.GetComponent<ObiEmitter>();
+            _obiParticleRenderer = canChopRef.fluidEmitterRef.GetComponent<ObiParticleRenderer>();
+        }
+
+    }
+
+    IEnumerator FluidSpawn()
+    {
+        _obiEmitter.speed = 0.1f;
+        yield return new WaitForSeconds(0.1f);
+        _obiEmitter.speed = 0;
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -24,6 +42,12 @@ public class SharpArea : MonoBehaviour {
         {
             comp.SetStartedChopping(true);
             comp.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+
+            if (comp.spawnFluid)
+            {
+                _obiParticleRenderer.particleColor = comp.spawnFluidColor;
+                StartCoroutine(FluidSpawn());
+            }
         }
     }
 
@@ -39,6 +63,11 @@ public class SharpArea : MonoBehaviour {
             {
                 rand++;
                 rand = rand % comp.choppingSoundBoard.Length;
+            }
+
+            if (comp.spawnFluid)
+            {
+                StartCoroutine(FluidSpawn());
             }
 
             canChopRef.PlayChoppingSound(comp.choppingSoundBoard[rand]);

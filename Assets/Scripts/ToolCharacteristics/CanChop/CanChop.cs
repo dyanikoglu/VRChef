@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using VRTK;
+using Obi;
 
 public class CanChop : ToolCharacteristic {
     private bool _canChop = true;
@@ -11,11 +12,17 @@ public class CanChop : ToolCharacteristic {
     public bool chopOnlyWhileToolOnHand = true;
     public float preventChoppingDelayOnGrab = 0.5f;
     public SharpArea sharpAreaRef;
+    public GameObject fluidEmitterRef;
 
     public void Start()
     {
         _prevFramePosition = transform.position;
         GetComponent<VRTK_InteractableObject>().InteractableObjectGrabbed += OnGrab;
+
+        if (!fluidEmitterRef)
+        {
+            Debug.LogError("Fluid Emitter Ref. can't be null in " + this.gameObject.name);
+        }
     }
 
     public void OnGrab(object sender, InteractableObjectEventArgs e)
