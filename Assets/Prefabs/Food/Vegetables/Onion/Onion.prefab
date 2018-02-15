@@ -29,7 +29,7 @@ GameObject:
   - component: {fileID: 114687580072335534}
   - component: {fileID: 114975631404875502}
   - component: {fileID: 82112119731331680}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Onion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -237,6 +237,8 @@ MonoBehaviour:
     type: 2}
   choppingSoundBoard: []
   smallerAllowedPieceVolume: 0.0001
+  spawnFluid: 0
+  spawnFluidColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &114975631404875502
 MonoBehaviour:
   m_ObjectHideFlags: 1

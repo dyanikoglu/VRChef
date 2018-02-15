@@ -28,7 +28,7 @@ GameObject:
   - component: {fileID: 114449391869101322}
   - component: {fileID: 65121737933985220}
   - component: {fileID: 54940223884349428}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Ribs_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -216,3 +216,5 @@ MonoBehaviour:
     type: 2}
   choppingSoundBoard: []
   smallerAllowedPieceVolume: 0.0001
+  spawnFluid: 0
+  spawnFluidColor: {r: 1, g: 1, b: 1, a: 1}

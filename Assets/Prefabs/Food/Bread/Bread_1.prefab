@@ -28,7 +28,7 @@ GameObject:
   - component: {fileID: 114683441603290446}
   - component: {fileID: 114400178684345564}
   - component: {fileID: 114894405725627570}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Bread_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -170,6 +170,8 @@ MonoBehaviour:
     type: 2}
   choppingSoundBoard: []
   smallerAllowedPieceVolume: 0.0001
+  spawnFluid: 0
+  spawnFluidColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &114683441603290446
 MonoBehaviour:
   m_ObjectHideFlags: 1

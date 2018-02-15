@@ -183,7 +183,7 @@ Material:
     - _WetnessProperties: 1
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 1, g: 0.30147058, b: 0.30147058, a: 1}
+    - _Color: {r: 0.7794118, g: 0.29227942, b: 0.29227942, a: 1}
     - _DecalColor: {r: 1, g: 1, b: 1, a: 1}
     - _DetailAlbedoMapVelocity: {r: 0, g: 0, b: 0, a: 0}
     - _DissolveGlowColor: {r: 1, g: 1, b: 1, a: 1}

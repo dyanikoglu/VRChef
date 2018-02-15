@@ -23,25 +23,22 @@ public class SharpArea : MonoBehaviour {
             _obiEmitter = canChopRef.fluidEmitterRef.GetComponent<ObiEmitter>();
             _obiParticleRenderer = canChopRef.fluidEmitterRef.GetComponent<ObiParticleRenderer>();
         }
-
     }
 
-    IEnumerator FluidSpawn()
+    private IEnumerator FluidSpawn()
     {
-        _obiEmitter.speed = 0.05f;
-        yield return new WaitForSeconds(0.25f);
+        _obiEmitter.speed = canChopRef.spawnedFluidSpeed;
+        yield return new WaitForSeconds(canChopRef.fluidSpawnTimeInterval);
         _obiEmitter.speed = 0;
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        CanBeChopped comp = collision.collider.gameObject.GetComponent<CanBeChopped>();
+        CanBeChopped comp = other.gameObject.GetComponent<CanBeChopped>();
 
-        // Freeze this object when knife collides.
         if (comp && canChopRef.IsToolAvailable() && comp.ChopAvailability() && !comp.GetStartedChopping())
         {
             comp.SetStartedChopping(true);
-            comp.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
 
             if (comp.spawnFluid)
             {
@@ -51,9 +48,9 @@ public class SharpArea : MonoBehaviour {
         }
     }
 
-    private void OnCollisionStay(Collision collision)
+    private void OnTriggerStay(Collider other)
     {
-        CanBeChopped comp = collision.collider.gameObject.GetComponent<CanBeChopped>();
+        CanBeChopped comp = other.gameObject.GetComponent<CanBeChopped>();
 
         if (comp && canChopRef.IsToolAvailable() && comp.ChopAvailability() && canChopRef.GetIsMoving())
         {
@@ -69,9 +66,9 @@ public class SharpArea : MonoBehaviour {
         }
     }
 
-    private void OnCollisionExit(Collision collision)
+    private void OnTriggerExit(Collider other)
     {
-        CanBeChopped comp = collision.collider.gameObject.GetComponent<CanBeChopped>();
+        CanBeChopped comp = other.gameObject.GetComponent<CanBeChopped>();
 
         // Unfreeze this object when knife collision ends, also begin slicing process.
         if (comp && canChopRef.IsToolAvailable() && comp.ChopAvailability() && comp.GetStartedChopping())
@@ -80,8 +77,6 @@ public class SharpArea : MonoBehaviour {
 
             // Block new chopping requests until current one ends.
             comp.SetOnDelay(false);
-
-            comp.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
 
             // Slice object using knife's current position & rotation
             comp.BeginSlice(transform.position, transform.up);

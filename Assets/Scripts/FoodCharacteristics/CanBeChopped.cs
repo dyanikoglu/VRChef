@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using CielaSpike;
 
 public class CanBeChopped : FoodCharacteristic
-{
+{   
     protected Mesh_Maker _leftSide = new Mesh_Maker();
     protected Mesh_Maker _rightSide = new Mesh_Maker();
     protected Plane _blade;
@@ -251,14 +251,11 @@ public class CanBeChopped : FoodCharacteristic
 
     public virtual void HandleCollisions(GameObject piece)
     {
-        Rigidbody rb = piece.GetComponent<Rigidbody>();
-        rb.isKinematic = true;
         Destroy(piece.GetComponent<Collider>());
         MeshCollider mc = piece.AddComponent<MeshCollider>();
         mc.skinWidth = colliderSkinWidth;
-        mc.cookingOptions = MeshColliderCookingOptions.InflateConvexMesh | MeshColliderCookingOptions.WeldColocatedVertices | MeshColliderCookingOptions.EnableMeshCleaning;
+        mc.cookingOptions = MeshColliderCookingOptions.InflateConvexMesh;
         mc.convex = true;
-        rb.isKinematic = false;
     }
 
     #region ComplexMeshCuttingStuff

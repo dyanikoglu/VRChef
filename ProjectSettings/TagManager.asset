@@ -16,8 +16,8 @@ TagManager:
   - UI
   - 
   - 
-  - ChoopedPartCollision
-  - ChoppedPartNoCollision
+  - KnifeColliderArea
+  - Food
   - Fluid
   - 
   - 

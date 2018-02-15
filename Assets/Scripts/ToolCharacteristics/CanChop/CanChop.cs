@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using VRTK;
-using Obi;
 
 public class CanChop : ToolCharacteristic {
     private bool _canChop = true;
@@ -13,6 +12,8 @@ public class CanChop : ToolCharacteristic {
     public float preventChoppingDelayOnGrab = 0.5f;
     public SharpArea sharpAreaRef;
     public GameObject fluidEmitterRef;
+    public float spawnedFluidSpeed = 0.05f;
+    public float fluidSpawnTimeInterval = 0.25f;
 
     public void Start()
     {
@@ -66,7 +67,7 @@ public class CanChop : ToolCharacteristic {
         return true;
     }
 
-    public void FixedUpdate()
+    private void FixedUpdate()
     {
         // Update position values of object. Required for detecting knife's movement status.
         _translationAmount = (transform.position - _prevFramePosition).magnitude;

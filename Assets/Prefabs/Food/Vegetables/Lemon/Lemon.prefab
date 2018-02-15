@@ -28,7 +28,7 @@ GameObject:
   - component: {fileID: 136213532038398416}
   - component: {fileID: 54735856248199752}
   - component: {fileID: 82066241637955826}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Lemon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -88,7 +88,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1191873762173958}
-  m_Mesh: {fileID: 4300000, guid: 5e3c6747f9f33e741a21a17ab8f51367, type: 3}
+  m_Mesh: {fileID: 4300000, guid: d1ebaa5c4bc88024fb72d1d170311a39, type: 3}
 --- !u!54 &54735856248199752
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -206,6 +206,8 @@ MonoBehaviour:
     type: 2}
   choppingSoundBoard: []
   smallerAllowedPieceVolume: 0.0001
+  spawnFluid: 0
+  spawnFluidColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &114437390402663760
 MonoBehaviour:
   m_ObjectHideFlags: 1
