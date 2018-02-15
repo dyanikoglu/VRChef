@@ -256,7 +256,7 @@ public class CanBeChopped : FoodCharacteristic
         Destroy(piece.GetComponent<Collider>());
         MeshCollider mc = piece.AddComponent<MeshCollider>();
         mc.skinWidth = colliderSkinWidth;
-        mc.cookingOptions = MeshColliderCookingOptions.InflateConvexMesh | MeshColliderCookingOptions.CookForFasterSimulation | MeshColliderCookingOptions.WeldColocatedVertices | MeshColliderCookingOptions.EnableMeshCleaning;
+        mc.cookingOptions = MeshColliderCookingOptions.InflateConvexMesh | MeshColliderCookingOptions.WeldColocatedVertices | MeshColliderCookingOptions.EnableMeshCleaning;
         mc.convex = true;
         rb.isKinematic = false;
     }

@@ -28,8 +28,8 @@ public class SharpArea : MonoBehaviour {
 
     IEnumerator FluidSpawn()
     {
-        _obiEmitter.speed = 0.1f;
-        yield return new WaitForSeconds(0.1f);
+        _obiEmitter.speed = 0.05f;
+        yield return new WaitForSeconds(0.25f);
         _obiEmitter.speed = 0;
     }
 
@@ -63,11 +63,6 @@ public class SharpArea : MonoBehaviour {
             {
                 rand++;
                 rand = rand % comp.choppingSoundBoard.Length;
-            }
-
-            if (comp.spawnFluid)
-            {
-                StartCoroutine(FluidSpawn());
             }
 
             canChopRef.PlayChoppingSound(comp.choppingSoundBoard[rand]);

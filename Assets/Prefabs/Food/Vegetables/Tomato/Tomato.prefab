@@ -62,7 +62,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1526205933625466}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -0.391, y: 1.221, z: 0.465}
+  m_LocalPosition: {x: -0.04906915, y: 1.256, z: 0.47040442}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4815484175322478}
@@ -391,6 +391,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 1f535bcdafe041c4080ce5b9d95c6883, type: 3}
   - {fileID: 8300000, guid: 7396f6acf63b9e04785c51246ba60181, type: 3}
   smallerAllowedPieceVolume: 0.0001
+  spawnFluid: 1
+  spawnFluidColor: {r: 1, g: 0.43382353, b: 0.43382353, a: 1}
 --- !u!135 &135627522531075860
 SphereCollider:
   m_ObjectHideFlags: 1
