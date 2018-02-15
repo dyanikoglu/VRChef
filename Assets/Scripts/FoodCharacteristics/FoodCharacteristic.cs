@@ -6,17 +6,20 @@ using VRTK;
 
 public class FoodCharacteristic : MonoBehaviour
 {
+    private bool _isChoppedPiece = false;
+    // Keep adding required characteristic status booleans
+    //...
+    //...
+    //...
 
-    // Use this for initialization
-    void Start()
+    public bool GetIsChoppedPiece()
     {
-
+        return _isChoppedPiece;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void SetIsChoppedPiece(bool isChoppedPiece)
     {
-
+        this._isChoppedPiece = isChoppedPiece;
     }
 
     public bool GetIsGrabbed()

@@ -241,6 +241,11 @@ public class CanBeChopped : FoodCharacteristic
         {
             cbc.currentlyChoppable = false;
         }
+
+        // Finally, mark them as chopped pieces
+        cbc.SetIsChoppedPiece(true);
+        this.SetIsChoppedPiece(true);
+        
         /////
 
         // End thread
