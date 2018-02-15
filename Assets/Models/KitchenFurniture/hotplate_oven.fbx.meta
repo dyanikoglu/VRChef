@@ -1,17 +1,39 @@
 fileFormatVersion: 2
-guid: 520c2177e339d4d4e83c3553b683ab36
-timeCreated: 1517526039
-licenseType: Pro
+guid: 60b830428b405a04ab8ff18f1ef76c38
+timeCreated: 1518734025
+licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
-    100000: //RootNode
-    400000: //RootNode
-    2100000: 'Material #3015'
-    2300000: //RootNode
-    3300000: //RootNode
-    4300000: frypan_base_002
-    9500000: //RootNode
+    100000: cook_006_5.001
+    100002: cook_006_5.004
+    100004: cook_006_5.005
+    100006: cook_006_5.007
+    100008: cook_006_5.008
+    100010: //RootNode
+    400000: cook_006_5.001
+    400002: cook_006_5.004
+    400004: cook_006_5.005
+    400006: cook_006_5.007
+    400008: cook_006_5.008
+    400010: //RootNode
+    2100000: 06 - Default
+    2100002: black(90)
+    2300000: cook_006_5.001
+    2300002: cook_006_5.004
+    2300004: cook_006_5.005
+    2300006: cook_006_5.007
+    2300008: cook_006_5.008
+    3300000: cook_006_5.001
+    3300002: cook_006_5.004
+    3300004: cook_006_5.005
+    3300006: cook_006_5.007
+    3300008: cook_006_5.008
+    4300000: cook_006_5.008
+    4300002: cook_006_5.007
+    4300004: cook_006_5.005
+    4300006: cook_006_5.004
+    4300008: cook_006_5.001
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -61,7 +83,7 @@ ModelImporter:
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
-    useFileScale: 0
+    useFileScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
@@ -86,7 +108,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  animationType: 0
   humanoidOversampling: 1
   additionalBone: 0
   userData: 

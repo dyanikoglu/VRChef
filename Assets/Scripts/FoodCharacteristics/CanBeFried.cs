@@ -14,7 +14,12 @@ public class CanBeFried : MonoBehaviour
 
     public float fryingTimeInSeconds;
     [SerializeField]
-    bool isFried;
+
+    public bool isFried;
+    public bool fryingStarted;
+    public bool fryingStopped;
+    public bool onCanFry;
+    public GameObject canFryObject;
 
     private MaterialPropertyBlock propertyBlock;
 
@@ -24,11 +29,18 @@ public class CanBeFried : MonoBehaviour
         myMaterial = GetComponent<Renderer>().material;
         propertyBlock = new MaterialPropertyBlock();
 
+        fryingStarted = false;
         isFried = false;
+        onCanFry = false;
+        fryingStopped = false;
     }
     // Use this for initialization
     void Start()
     {
+        //if (GetComponent<CanBeChopped>())
+        //{
+        //    GetComponent<CanBeChopped>().capMaterial = myMaterial;
+        //}
 
         objectTexture = myMaterial.mainTexture;
         if (!objectTexture)
@@ -56,23 +68,64 @@ public class CanBeFried : MonoBehaviour
         myMaterial.SetFloat("_Blend", 0f);
 
 
+
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log(collision.collider.name);
-        if(collision.collider.name.Contains("Cube") && !isFried)
+        if (collision.gameObject.GetComponent<CanFry>())
         {
-            Debug.Log("wtf");
-            StartFrying();
+            //Debug.Log("start frying");
+            onCanFry = true;
+            canFryObject = collision.gameObject;
+            //StartFrying();
         }
     }
 
-    void StartFrying()
+    private void OnCollisionExit(Collision collision)
     {
+        if (collision.gameObject.GetComponent<CanFry>())
+        {
+            //Debug.Log("stop frying");
+            onCanFry = false;
+            //StartFrying();
+        }
+    }
 
+    private void Update()
+    {
+        if (onCanFry)
+        {
+            //Debug.Log(!isFried + " - " + !fryingStarted + " - " + canFryObject.GetComponent<CanFry>().getCanFry());
+            if(!isFried && !fryingStarted && canFryObject.GetComponent<CanFry>().getCanFry())
+            {
+                StartFrying();
+            }
+        }
+        else
+        {
+            if(fryingStarted && !fryingStopped)
+            {
+                StopFrying();
+            }
+        }
+    }
+
+    public void StartFrying()
+    {
         // to animate object's frying process
         StartCoroutine("Fry");
+        Debug.Log("start frying");
+    }
+
+    public void StopFrying()
+    {
+        // to stop object's frying process
+        StopCoroutine("Fry");
+        fryingStopped = true;
+
+        Debug.Log("stop frying");
+
     }
 
     IEnumerator Fry()
@@ -83,7 +136,7 @@ public class CanBeFried : MonoBehaviour
          * object's texture include only it's fried texture
          * <Method Summary>
          */
-
+        fryingStarted = true;
         float blend = myMaterial.GetFloat("_Blend");
         while (blend < 1f)
         {
@@ -94,7 +147,10 @@ public class CanBeFried : MonoBehaviour
             GetComponent<Renderer>().GetPropertyBlock(propertyBlock);
             propertyBlock.SetFloat("_Blend", blend);
             GetComponent<Renderer>().SetPropertyBlock(propertyBlock);
-
+            //if (GetComponent<CanBeChopped>())
+            //{
+            //    GetComponent<CanBeChopped>().capMaterial = GetComponent<Renderer>().material;
+            //}
             yield return new WaitForSeconds(fadeValue);
         }
         isFried = true;

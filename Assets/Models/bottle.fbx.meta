@@ -1,17 +1,16 @@
 fileFormatVersion: 2
-guid: 520c2177e339d4d4e83c3553b683ab36
-timeCreated: 1517526039
-licenseType: Pro
+guid: 1833c940a08fe40468232179e4a85560
+timeCreated: 1518700014
+licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
     100000: //RootNode
     400000: //RootNode
-    2100000: 'Material #3015'
+    2100000: Bottle
     2300000: //RootNode
     3300000: //RootNode
-    4300000: frypan_base_002
-    9500000: //RootNode
+    4300000: Botlle
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -86,7 +85,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  animationType: 0
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
