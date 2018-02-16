@@ -52,7 +52,7 @@ public class SharpArea : MonoBehaviour {
     {
         CanBeChopped comp = other.gameObject.GetComponent<CanBeChopped>();
 
-        if (comp && canChopRef.IsToolAvailable() && comp.ChopAvailability() && canChopRef.GetIsMoving())
+        if (comp && canChopRef.IsToolAvailable() && comp.ChopAvailability() && canChopRef.GetIsMoving() && comp.choppingSoundBoard.Length != 0)
         {
             int rand = Random.Range(0, comp.choppingSoundBoard.Length);
 

@@ -1,18 +1,23 @@
 fileFormatVersion: 2
-guid: cca2904c3ecf88c45a589a981f89a8bd
-timeCreated: 1518816251
+guid: 9bdc87910e25fb148a53e460cad3bbdb
+timeCreated: 1518819661
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
     100000: //RootNode
     400000: //RootNode
-    2100000: Model_030_Frankfurter_Pork
+    2100000: 'Material #2'
     2300000: //RootNode
     3300000: //RootNode
-    4300000: Sausage
+    4300000: Broccoli
     9500000: //RootNode
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 'Material #2'
+    second: {fileID: 2100000, guid: 4939f9b20e3924a48ba400ce1344c483, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -47,10 +52,10 @@ ModelImporter:
     addColliders: 0
     importVisibility: 1
     importBlendShapes: 1
-    importCameras: 1
-    importLights: 1
+    importCameras: 0
+    importLights: 0
     swapUVChannels: 0
-    generateSecondaryUV: 0
+    generateSecondaryUV: 1
     useFileUnits: 1
     optimizeMeshForGPU: 1
     keepQuads: 0
@@ -67,7 +72,7 @@ ModelImporter:
     normalImportMode: 0
     tangentImportMode: 3
     normalCalculationMode: 4
-  importAnimation: 1
+  importAnimation: 0
   copyAvatar: 0
   humanDescription:
     serializedVersion: 2

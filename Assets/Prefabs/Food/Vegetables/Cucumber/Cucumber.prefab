@@ -9,51 +9,51 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1392186719744358}
+  m_RootGameObject: {fileID: 1692210584001098}
   m_IsPrefabParent: 1
---- !u!1 &1392186719744358
+--- !u!1 &1692210584001098
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4465164796816360}
-  - component: {fileID: 33342438265506012}
-  - component: {fileID: 23521999802601234}
-  - component: {fileID: 54318507149223102}
-  - component: {fileID: 136070717286634030}
-  - component: {fileID: 114725937244909298}
-  - component: {fileID: 114303409653489188}
-  - component: {fileID: 114712170664851286}
-  - component: {fileID: 114213087347000774}
-  - component: {fileID: 114560716107783544}
+  - component: {fileID: 4881925526659804}
+  - component: {fileID: 33749224206548930}
+  - component: {fileID: 23274088018229908}
+  - component: {fileID: 54882777017928142}
+  - component: {fileID: 136960430617145620}
+  - component: {fileID: 114356933455586090}
+  - component: {fileID: 114948749935786140}
+  - component: {fileID: 114212481567402398}
+  - component: {fileID: 114389259728330388}
+  - component: {fileID: 114322126832555872}
   m_Layer: 9
-  m_Name: SpringOnion
+  m_Name: Cucumber
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4465164796816360
+--- !u!4 &4881925526659804
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1392186719744358}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.255, y: 1.2811, z: -0.24}
-  m_LocalScale: {x: 0.75, y: 0.75, z: 0.75}
+  m_GameObject: {fileID: 1692210584001098}
+  m_LocalRotation: {x: -0.000000059604645, y: 0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.067672506, y: 1.2122, z: 0.7026058}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &23521999802601234
+--- !u!23 &23274088018229908
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1392186719744358}
+  m_GameObject: {fileID: 1692210584001098}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -62,7 +62,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: e3d0fef8eb7fea140809f4df5d491202, type: 2}
+  - {fileID: 2100000, guid: f40a708dcc03db54e990466e528e891b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -82,21 +82,21 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!33 &33342438265506012
+--- !u!33 &33749224206548930
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1392186719744358}
-  m_Mesh: {fileID: 4300000, guid: 767203912e421084fb6080818a7ad364, type: 3}
---- !u!54 &54318507149223102
+  m_GameObject: {fileID: 1692210584001098}
+  m_Mesh: {fileID: 4300000, guid: c6b78050b55b6404ca7f259e78f646c2, type: 3}
+--- !u!54 &54882777017928142
 Rigidbody:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1392186719744358}
+  m_GameObject: {fileID: 1692210584001098}
   serializedVersion: 2
-  m_Mass: 0.5
+  m_Mass: 0.15
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -104,12 +104,12 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114213087347000774
+--- !u!114 &114212481567402398
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1392186719744358}
+  m_GameObject: {fileID: 1692210584001098}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a3abaf4521bf2344ea21ed3020b98eb2, type: 3}
@@ -125,8 +125,8 @@ MonoBehaviour:
   validDrop: 1
   grabOverrideButton: 0
   allowedGrabControllers: 0
-  grabAttachMechanicScript: {fileID: 114303409653489188}
-  secondaryGrabActionScript: {fileID: 114712170664851286}
+  grabAttachMechanicScript: {fileID: 114356933455586090}
+  secondaryGrabActionScript: {fileID: 114948749935786140}
   isUsable: 0
   holdButtonToUse: 1
   useOnlyIfGrabbed: 0
@@ -136,12 +136,28 @@ MonoBehaviour:
   objectHighlighter: {fileID: 0}
   touchHighlightColor: {r: 0, g: 0, b: 0, a: 0}
   usingState: 0
---- !u!114 &114303409653489188
+--- !u!114 &114322126832555872
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1392186719744358}
+  m_GameObject: {fileID: 1692210584001098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bb67acb9b2d88a49b40cd6a4cc7738b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  requiredCookTime: 300
+  requiredCookHeat: 150
+  cookingUpdateFreq: 0.5
+  cookingStartDelay: 0
+  cookEffectTint: {r: 1, g: 1, b: 1, a: 1}
+--- !u!114 &114356933455586090
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1692210584001098}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8afa0b205791c9f4496bf2814aeac078, type: 3}
@@ -155,45 +171,18 @@ MonoBehaviour:
   onGrabCollisionDelay: 0
   destroyImmediatelyOnThrow: 1
   breakForce: 1500
---- !u!114 &114560716107783544
+--- !u!114 &114389259728330388
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1392186719744358}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3bb67acb9b2d88a49b40cd6a4cc7738b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  requiredCookTime: 300
-  requiredCookHeat: 150
-  cookingUpdateFreq: 0.5
-  cookingStartDelay: 0
-  cookEffectTint: {r: 1, g: 1, b: 1, a: 1}
---- !u!114 &114712170664851286
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1392186719744358}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18055ba762aa3994f9c10208cd088bc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &114725937244909298
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1392186719744358}
+  m_GameObject: {fileID: 1692210584001098}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 245aa739fea004bcaa2da96fef6f8599, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  capMaterial: {fileID: 2100000, guid: 3599a1476cb2a624c8ca564d0410c910, type: 2}
+  capMaterial: {fileID: 2100000, guid: 74aaccba6faed1d42b8498503c6ca1f8, type: 2}
   sliceTimeout: 0.5
   currentlyChoppable: 1
   colliderSkinWidth: 0.001
@@ -207,16 +196,27 @@ MonoBehaviour:
   maximumChopCount: 32
   spawnFluid: 0
   spawnFluidColor: {r: 1, g: 1, b: 1, a: 1}
---- !u!136 &136070717286634030
+--- !u!114 &114948749935786140
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1692210584001098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18055ba762aa3994f9c10208cd088bc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!136 &136960430617145620
 CapsuleCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1392186719744358}
+  m_GameObject: {fileID: 1692210584001098}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.011400431
-  m_Height: 0.3356162
+  m_Radius: 0.015079061
+  m_Height: 0.0939105
   m_Direction: 2
-  m_Center: {x: 0, y: -0, z: 0}
+  m_Center: {x: -0.001275545, y: 0, z: 0}
