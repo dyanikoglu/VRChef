@@ -30,6 +30,7 @@ public class CanBeChopped : FoodCharacteristic
     public GameObject rootObjectAfterSlice;
     public AudioClip[] choppingSoundBoard;
     public float smallerAllowedPieceVolume = 0.0001f;
+    public int maximumChopCount = 32;
     public bool spawnFluid = false;
     public Color spawnFluidColor = Color.white;
 
@@ -170,7 +171,7 @@ public class CanBeChopped : FoodCharacteristic
             }
         }
 
-        // Jump to main thread for running UNITY API calls
+        /////////////////////  Jump to main thread for running UNITY API calls
         yield return Ninja.JumpToUnity;
 
         // The capping Material will be at the end
@@ -242,11 +243,15 @@ public class CanBeChopped : FoodCharacteristic
             cbc.currentlyChoppable = false;
         }
 
+        // Update maximum chopping action counts
+        this.maximumChopCount -= 1;
+        cbc.maximumChopCount = this.maximumChopCount;
+
         // Finally, mark them as chopped pieces
         cbc.SetIsChoppedPiece(true);
         this.SetIsChoppedPiece(true);
         
-        /////
+        ///////////////////
 
         // End thread
         yield return Ninja.JumpBack;
@@ -254,6 +259,7 @@ public class CanBeChopped : FoodCharacteristic
         yield break;
     }
 
+    // Produces new convex mesh collisions for new pieces.
     public virtual void HandleCollisions(GameObject piece)
     {
         Destroy(piece.GetComponent<Collider>());
@@ -586,6 +592,7 @@ public class CanBeChopped : FoodCharacteristic
 
     #endregion
 
+    #region Mutators
     public int GetPrevPlayedSFX()
     {
         return _prevPlayedSFX;
@@ -613,11 +620,21 @@ public class CanBeChopped : FoodCharacteristic
 
     public bool ChopAvailability()
     {
+        // Maximum chopping action limit is reached, halt.
+        if (maximumChopCount == 0)
+        {
+            return false;
+        }
+
+        // Object is grabbed, but chopping while object on hand is prohibited, halt.
         if (GetIsGrabbed() && !canBeChoppedWhileOnHand)
         {
             return false;
         }
 
+        // Return true if object is not on delay, and currently in choppable state.
         return _onDelay && currentlyChoppable;
     }
+
+    #endregion
 }
