@@ -36,7 +36,7 @@ public class CanMixedIn : ToolCharacteristic {
     {
         if (other.gameObject.GetComponent<CanMix>() != null)
         {
-            for (int i=2; i < gameObject.transform.childCount; i++)
+            for (int i=1; i < gameObject.transform.childCount; i++)
             {
                 gameObject.transform.GetChild(i).transform.Rotate(Vector3.up * 400 * Time.deltaTime, Space.World); 
             }
@@ -46,10 +46,10 @@ public class CanMixedIn : ToolCharacteristic {
             rotateCount++;
             if (rotateCount > 200)
             {
-                gameObject.transform.GetChild(1).gameObject.transform.position = gameObject.transform.position;
-                gameObject.transform.GetChild(1).gameObject.SetActive(true);
+                gameObject.transform.GetChild(0).gameObject.transform.position = gameObject.transform.position;
+                gameObject.transform.GetChild(0).gameObject.SetActive(true);
                 emitter.enabled = false;
-                for (int i = 2; i < gameObject.transform.childCount; i++)
+                for (int i = 1; i < gameObject.transform.childCount; i++)
                 {
                     Destroy(gameObject.transform.GetChild(i).gameObject);
                     material.atmosphericPressure = (float)0;
