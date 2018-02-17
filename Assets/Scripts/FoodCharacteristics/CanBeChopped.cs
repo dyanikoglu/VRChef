@@ -29,7 +29,7 @@ public class CanBeChopped : FoodCharacteristic
     public bool canBeChoppedWhileOnHand = true;
     public GameObject rootObjectAfterSlice;
     public AudioClip[] choppingSoundBoard;
-    public float smallerAllowedPieceVolume = 0.0001f;
+    //public float smallerAllowedPieceVolume = 0.0001f;
     public int maximumChopCount = 32;
     public bool spawnFluid = false;
     public Color spawnFluidColor = Color.white;
@@ -41,8 +41,9 @@ public class CanBeChopped : FoodCharacteristic
 
     protected IEnumerator SliceDelay()
     {
-        yield return new WaitForSeconds(sliceTimeout);
         _onDelay = true;
+        yield return new WaitForSeconds(sliceTimeout);
+        _onDelay = false;
     }
 
     public virtual void BeginSlice(Vector3 anchorPoint, Vector3 normalDirection)
@@ -78,7 +79,6 @@ public class CanBeChopped : FoodCharacteristic
 
         // Run the cpu-heavy object cutting process async from script execution. This multithreaded solution resolves most of freezing problems in game. 
         this.StartCoroutineAsync(Cut());
-        StartCoroutine(SliceDelay());
     }
 
     public virtual IEnumerator Cut()
@@ -231,17 +231,17 @@ public class CanBeChopped : FoodCharacteristic
         cbc.SetRootObject(_rootObject);
 
         //// Check if new pieces are too small. If so, prevent chopping them into more smaller parts.
-        Renderer rend = GetComponent<Renderer>();
-        if(rend.bounds.size.x * rend.bounds.size.y * rend.bounds.size.z < smallerAllowedPieceVolume)
-        {
-            currentlyChoppable = false;
-        }
+        //Renderer rend = GetComponent<Renderer>();
+        //if(rend.bounds.size.x * rend.bounds.size.y * rend.bounds.size.z < smallerAllowedPieceVolume)
+        //{
+        //    currentlyChoppable = false;
+        //}
 
-        rend = rightSideObj.GetComponent<Renderer>();
-        if (rend.bounds.size.x * rend.bounds.size.y * rend.bounds.size.z < smallerAllowedPieceVolume)
-        {
-            cbc.currentlyChoppable = false;
-        }
+        //rend = rightSideObj.GetComponent<Renderer>();
+        //if (rend.bounds.size.x * rend.bounds.size.y * rend.bounds.size.z < smallerAllowedPieceVolume)
+        //{
+        //    cbc.currentlyChoppable = false;
+        //}
 
         // Update maximum chopping action counts
         this.maximumChopCount -= 1;
@@ -250,7 +250,9 @@ public class CanBeChopped : FoodCharacteristic
         // Finally, mark them as chopped pieces
         cbc.SetIsChoppedPiece(true);
         this.SetIsChoppedPiece(true);
-        
+
+        this.StartCoroutine(SliceDelay());
+
         ///////////////////
 
         // End thread
@@ -633,7 +635,7 @@ public class CanBeChopped : FoodCharacteristic
         }
 
         // Return true if object is not on delay, and currently in choppable state.
-        return _onDelay && currentlyChoppable;
+        return !_onDelay && currentlyChoppable;
     }
 
     #endregion

@@ -10,6 +10,7 @@ public class SharpArea : MonoBehaviour {
     private ObiParticleRenderer _obiParticleRenderer;
 
     public CanChop canChopRef;
+    public Collider colliderAreaRef;
 
     private void Start()
     {
@@ -22,6 +23,11 @@ public class SharpArea : MonoBehaviour {
         {
             _obiEmitter = canChopRef.fluidEmitterRef.GetComponent<ObiEmitter>();
             _obiParticleRenderer = canChopRef.fluidEmitterRef.GetComponent<ObiParticleRenderer>();
+        }
+
+        if(!colliderAreaRef)
+        {
+            Physics.IgnoreCollision(colliderAreaRef, this.GetComponent<Collider>());
         }
     }
 
