@@ -58,10 +58,10 @@ public class SharpArea : MonoBehaviour {
         {
 
             // If knife is not at a state that can slice the object (e.g, hand is holding it on reverse, or player is trying to cut object with non-sharp area), do not cut the object.
-            if(Vector3.Distance(sharpAreaRef.transform.position, other.gameObject.transform.position) < Vector3.Distance(nonSharpAreaRef.transform.position, other.gameObject.transform.position))
-            {
-                return;
-            }
+            //if(Vector3.Distance(sharpAreaRef.transform.position, other.gameObject.transform.position) < Vector3.Distance(nonSharpAreaRef.transform.position, other.gameObject.transform.position))
+            //{
+            //    return;
+            //}
             ////
 
             comp.BeginSlice(transform.position, transform.up);
