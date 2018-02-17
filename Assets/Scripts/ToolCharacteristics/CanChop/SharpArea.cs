@@ -13,7 +13,9 @@ public class SharpArea : MonoBehaviour {
 
     public CanChop canChopRef;
     public Collider colliderAreaRef;
-
+    public GameObject sharpAreaRef;
+    public GameObject nonSharpAreaRef;
+    
     private void Start()
     {
         prevFrameLocation = transform.position;
@@ -54,6 +56,14 @@ public class SharpArea : MonoBehaviour {
 
         if (comp && velocity > comp.minKnifeVelocityToChop && canChopRef.IsToolAvailable() && comp.ChopAvailability())
         {
+
+            // If knife is not at a state that can slice the object (e.g, hand is holding it on reverse, or player is trying to cut object with non-sharp area), do not cut the object.
+            if(Vector3.Distance(sharpAreaRef.transform.position, other.gameObject.transform.position) < Vector3.Distance(nonSharpAreaRef.transform.position, other.gameObject.transform.position))
+            {
+                return;
+            }
+            ////
+
             comp.BeginSlice(transform.position, transform.up);
 
             if (comp.spawnFluid)

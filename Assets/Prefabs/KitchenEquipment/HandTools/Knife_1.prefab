@@ -43,6 +43,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1158023022935036
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4967572345061182}
+  m_Layer: 0
+  m_Name: NonSharAreaPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1250880784181460
 GameObject:
   m_ObjectHideFlags: 0
@@ -84,6 +99,21 @@ GameObject:
   - component: {fileID: 82567051590507054}
   m_Layer: 0
   m_Name: DropAudioSource
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1301753310913156
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4895845964698442}
+  m_Layer: 0
+  m_Name: SharpAreaPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -239,7 +269,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1393125309089826}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -0.104, y: 1.3955, z: 0.439}
+  m_LocalPosition: {x: -0.429, y: 1.3955, z: 0.326}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4009089723063104}
@@ -250,6 +280,8 @@ Transform:
   - {fileID: 4996765546406816}
   - {fileID: 4893725600614556}
   - {fileID: 4740729643352570}
+  - {fileID: 4967572345061182}
+  - {fileID: 4895845964698442}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
@@ -265,6 +297,32 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4772913922016620}
   m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4895845964698442
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1301753310913156}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.033300012, y: 0, z: -0.0081}
+  m_LocalScale: {x: 1, y: 1.0000005, z: 1.0000005}
+  m_Children: []
+  m_Father: {fileID: 4772913922016620}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4967572345061182
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1158023022935036}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.0333, y: -0, z: 0.012}
+  m_LocalScale: {x: 1, y: 1.0000005, z: 1.0000005}
+  m_Children: []
+  m_Father: {fileID: 4772913922016620}
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4984168619471992
 Transform:
@@ -344,10 +402,10 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!54 &54721435462986482
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -362,7 +420,7 @@ Rigidbody:
   m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!65 &65394792771904146
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -397,8 +455,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.13334346, y: 0.00090795744, z: 0.019031294}
-  m_Center: {x: 0.051813535, y: 0.000027983915, z: 0.0033845014}
+  m_Size: {x: 0.1316062, y: 0.0027811525, z: 0.020041173}
+  m_Center: {x: 0.052682146, y: -0.00010442785, z: 0.003860181}
 --- !u!82 &82247366119524462
 AudioSource:
   m_ObjectHideFlags: 1
@@ -24834,6 +24892,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canChopRef: {fileID: 114530045915540794}
+  colliderAreaRef: {fileID: 65394792771904146}
+  sharpAreaRef: {fileID: 1301753310913156}
+  nonSharpAreaRef: {fileID: 1158023022935036}
 --- !u!114 &114789313644720180
 MonoBehaviour:
   m_ObjectHideFlags: 1
