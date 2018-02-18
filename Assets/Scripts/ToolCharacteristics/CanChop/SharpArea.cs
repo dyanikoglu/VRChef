@@ -7,8 +7,8 @@ using Obi;
 public class SharpArea : MonoBehaviour {
 
     private ObiEmitter _obiEmitter;
-    private float velocity = 0;
-    private Vector3 prevFrameLocation;
+    private float _velocity = 0;
+    private Vector3 _prevFrameLocation;
     private ObiParticleRenderer _obiParticleRenderer;
 
     public CanChop canChopRef;
@@ -18,7 +18,7 @@ public class SharpArea : MonoBehaviour {
     
     private void Start()
     {
-        prevFrameLocation = transform.position;
+        _prevFrameLocation = transform.position;
 
         if (canChopRef == null)
         {
@@ -39,8 +39,8 @@ public class SharpArea : MonoBehaviour {
 
     private void FixedUpdate()
     {
-        velocity = Vector3.Distance(transform.position, prevFrameLocation);
-        prevFrameLocation = transform.position;
+        _velocity = Vector3.Distance(transform.position, _prevFrameLocation);
+        _prevFrameLocation = transform.position;
     }
 
     private IEnumerator FluidSpawn()
@@ -50,20 +50,12 @@ public class SharpArea : MonoBehaviour {
         _obiEmitter.speed = 0;
     }
 
-    private void OnTriggerExit(Collider other)
+    private IEnumerator CheckIfStillInsideMesh(CanBeChopped comp, Collider sharpArea, Collider other)
     {
-        CanBeChopped comp = other.gameObject.GetComponent<CanBeChopped>();
-
-        if (comp && velocity > comp.minKnifeVelocityToChop && canChopRef.IsToolAvailable() && comp.ChopAvailability())
+        yield return new WaitForSeconds(canChopRef.intersectionCheckCooldown);
+        
+        if(!sharpArea.bounds.Intersects(other.bounds))
         {
-
-            // If knife is not at a state that can slice the object (e.g, hand is holding it on reverse, or player is trying to cut object with non-sharp area), do not cut the object.
-            //if(Vector3.Distance(sharpAreaRef.transform.position, other.gameObject.transform.position) < Vector3.Distance(nonSharpAreaRef.transform.position, other.gameObject.transform.position))
-            //{
-            //    return;
-            //}
-            ////
-
             comp.BeginSlice(transform.position, transform.up);
 
             if (comp.spawnFluid)
@@ -72,5 +64,28 @@ public class SharpArea : MonoBehaviour {
                 StartCoroutine(FluidSpawn());
             }
         }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        CanBeChopped comp = other.gameObject.GetComponent<CanBeChopped>();
+
+        if (CheckConditions(other, comp))
+        {
+            // Kinda hack. If knife is not at a state that it can slice the object(e.g, hand is holding it on reverse, or player is trying to cut object with non - sharp area), do not cut the object.
+            Vector3 meshCenter = other.GetComponent<Renderer>().bounds.center; // Get mesh's center position in world coordinates
+            if (Vector3.Distance(sharpAreaRef.transform.position, meshCenter) < Vector3.Distance(nonSharpAreaRef.transform.position, meshCenter))
+            {
+                return;
+            }
+
+            // Check if knife is still intersecting with victim mesh after a cooldown. Then, slice the mesh if conditions are met.
+            StartCoroutine(CheckIfStillInsideMesh(comp, GetComponent<Collider>(), other));
+        }
+    }
+
+    private bool CheckConditions(Collider other, CanBeChopped comp)
+    {
+        return comp && (_velocity > comp.minKnifeVelocityToChop || other.GetComponent<Rigidbody>().velocity.magnitude > canChopRef.meshPassThroughMinVelocity) && canChopRef.IsToolAvailable() && comp.ChopAvailability();
     }
 }

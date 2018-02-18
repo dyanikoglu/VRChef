@@ -3,13 +3,28 @@ using System.Collections.Generic;
 using UnityEngine;
 using VRTK;
 
+// Main class for objects that can chop meshes.
 public class CanChop : ToolCharacteristic {
     private bool _canChop = true;
     private Vector3 _prevFramePosition;
     private float _translationAmount;
 
+    // Chop object only if this object is in grabbed state.
     public bool chopOnlyWhileToolOnHand = true;
+
+    // After grabbing this object, chopping actions will be prevented for 'preventChoppingDelayOnGrab' seconds.
     public float preventChoppingDelayOnGrab = 0.5f;
+
+    // If knife changed it's position as 'minTranslationAmountForMoving' in world coordinates minimum, we will say that knife is moving.
+    public float minTranslationAmountForMoving = 0.0005f;
+
+    // After 'intersectionCheckCooldown' seconds the OnTriggerExit event fired, check if knife is still intersecting with victim object. 
+    // If so, do not slice the object.
+    public float intersectionCheckCooldown = 0.1f;
+
+    // If knife is not moving, but an object passed through the knife with a velocity, slice the object if it passed with that amount of min. velocity.
+    public float meshPassThroughMinVelocity = 1f;
+
     public SharpArea sharpAreaRef;
     public GameObject fluidEmitterRef;
     public float spawnedFluidSpeed = 0.05f;
@@ -74,9 +89,9 @@ public class CanChop : ToolCharacteristic {
         _prevFramePosition = transform.position;
     }
 
-    // Returns if knife is visibly moving
+    // Returns true if knife is visibly moving
     public bool GetIsMoving()
     {
-        return _translationAmount >= 0.0005f;
+        return _translationAmount >= minTranslationAmountForMoving;
     }
 }

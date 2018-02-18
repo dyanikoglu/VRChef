@@ -269,7 +269,6 @@ public class CanBePeeled : CanBeChopped {
                 cbc.canBeChoppedWhileOnHand = this.canBeChoppedWhileOnHand;
                 cbc._rootObject = this._rootObject;
                 cbc.choppingSoundBoard = this.choppingSoundBoard;
-                cbc.smallerAllowedPieceVolume = this.smallerAllowedPieceVolume;
                 cbc.objectFlesh = this.objectFlesh;
                 ////
             }

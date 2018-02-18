@@ -30,7 +30,6 @@ public class CanBeChopped : FoodCharacteristic
     public bool canBeChoppedWhileOnHand = true;
     public GameObject rootObjectAfterSlice;
     public AudioClip[] choppingSoundBoard;
-    public float smallerAllowedPieceVolume = 0.00001f;
     public int maximumChopCount = 32;
     public bool spawnFluid = false;
     public Color spawnFluidColor = Color.white;
@@ -231,19 +230,6 @@ public class CanBeChopped : FoodCharacteristic
 
         CanBeChopped cbc = rightSideObj.GetComponent<CanBeChopped>();
         cbc.SetRootObject(_rootObject);
-
-        // Check if new pieces are too small. If so, prevent chopping them into more smaller parts.
-        Renderer rend = GetComponent<Renderer>();
-        if (rend.bounds.size.x * rend.bounds.size.y * rend.bounds.size.z < smallerAllowedPieceVolume)
-        {
-            currentlyChoppable = false;
-        }
-
-        rend = rightSideObj.GetComponent<Renderer>();
-        if (rend.bounds.size.x * rend.bounds.size.y * rend.bounds.size.z < smallerAllowedPieceVolume)
-        {
-            cbc.currentlyChoppable = false;
-        }
 
         // Update maximum chopping action counts
         this.maximumChopCount -= 1;
