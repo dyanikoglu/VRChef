@@ -60,6 +60,7 @@ public class SharpArea : MonoBehaviour {
 
             if (comp.spawnFluid)
             {
+                canChopRef.fluidEmitterRef.transform.position = other.transform.position;
                 _obiParticleRenderer.particleColor = comp.spawnFluidColor;
                 StartCoroutine(FluidSpawn());
             }

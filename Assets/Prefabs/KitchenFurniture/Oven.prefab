@@ -108,6 +108,7 @@ GameObject:
   - component: {fileID: 33091812891235034}
   - component: {fileID: 23670891355072600}
   - component: {fileID: 65018909842869628}
+  - component: {fileID: 114821666593617150}
   m_Layer: 0
   m_Name: kitchen_island_134
   m_TagString: Untagged
@@ -919,6 +920,8 @@ GameObject:
   - component: {fileID: 114812101308042148}
   - component: {fileID: 114483034600375194}
   - component: {fileID: 82460294254336682}
+  - component: {fileID: 114963382792765654}
+  - component: {fileID: 114938385750308324}
   m_Layer: 0
   m_Name: cook_010_04
   m_TagString: Untagged
@@ -1413,6 +1416,7 @@ GameObject:
   - component: {fileID: 65788159896232444}
   - component: {fileID: 65453678256981556}
   - component: {fileID: 65104767341502856}
+  - component: {fileID: 114955846895568192}
   m_Layer: 0
   m_Name: cook_010_06
   m_TagString: Untagged
@@ -6446,7 +6450,7 @@ MonoBehaviour:
   allowedGrabControllers: 0
   grabAttachMechanicScript: {fileID: 0}
   secondaryGrabActionScript: {fileID: 0}
-  isUsable: 1
+  isUsable: 0
   holdButtonToUse: 0
   useOnlyIfGrabbed: 0
   pointerActivatesUseAction: 0
@@ -6557,6 +6561,21 @@ MonoBehaviour:
   objectHighlighter: {fileID: 0}
   touchHighlightColor: {r: 0, g: 0, b: 0, a: 0}
   usingState: 0
+--- !u!114 &114821666593617150
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1065696897264362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6757b231cedd544c583ef8aeaf773b2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  material: {fileID: 0}
+  phase: 0
+  thickness: 0
+  unityCollider: {fileID: 65018909842869628}
 --- !u!114 &114848032541069882
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6568,6 +6587,48 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18055ba762aa3994f9c10208cd088bc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114938385750308324
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1617580073200070}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6757b231cedd544c583ef8aeaf773b2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  material: {fileID: 0}
+  phase: 0
+  thickness: 0
+  unityCollider: {fileID: 65056303959430544}
+--- !u!114 &114955846895568192
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1987848934846606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6757b231cedd544c583ef8aeaf773b2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  material: {fileID: 0}
+  phase: 0
+  thickness: 0
+  unityCollider: {fileID: 65714778972762658}
+--- !u!114 &114963382792765654
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1617580073200070}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62359d80fdc0e4315ab6331b78ec5b90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  kinematicForParticles: 0
 --- !u!135 &135165206983594142
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -6600,7 +6661,7 @@ SphereCollider:
   m_GameObject: {fileID: 1253747390645050}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.008199944
   m_Center: {x: -0.0000000060535967, y: 0.00000023841858, z: 0.000000050873496}

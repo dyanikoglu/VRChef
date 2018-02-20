@@ -376,6 +376,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   capMaterial: {fileID: 2100000, guid: b59228fbdc0bd2a48ab7549e79dd45a5, type: 2}
+  minKnifeVelocityToChop: 0.002
   sliceTimeout: 0.6
   currentlyChoppable: 1
   colliderSkinWidth: 0.0001
@@ -390,7 +391,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 54b085ac518fbc048a206fa475f30995, type: 3}
   - {fileID: 8300000, guid: 1f535bcdafe041c4080ce5b9d95c6883, type: 3}
   - {fileID: 8300000, guid: 7396f6acf63b9e04785c51246ba60181, type: 3}
-  smallerAllowedPieceVolume: 0.0001
+  maximumChopCount: 32
   spawnFluid: 1
   spawnFluidColor: {r: 1, g: 0.43382353, b: 0.43382353, a: 1}
 --- !u!135 &135627522531075860

@@ -26,7 +26,6 @@ GameObject:
   - component: {fileID: 114953933642391286}
   - component: {fileID: 114462302224988290}
   - component: {fileID: 114080590483827272}
-  - component: {fileID: 114314113112408656}
   - component: {fileID: 114209594079977010}
   m_Layer: 9
   m_Name: Mushroom
@@ -139,31 +138,6 @@ MonoBehaviour:
   cookingUpdateFreq: 0.5
   cookingStartDelay: 0
   cookEffectTint: {r: 1, g: 1, b: 1, a: 1}
---- !u!114 &114314113112408656
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1056125327470242}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 245aa739fea004bcaa2da96fef6f8599, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  capMaterial: {fileID: 2100000, guid: 84ff5b3e3a0df3b4a96fb975bbfd378f, type: 2}
-  sliceTimeout: 0.5
-  currentlyChoppable: 1
-  colliderSkinWidth: 0.001
-  newPieceMassMultiplier: 0.5
-  detachChildrenOnSlice: 1
-  canBeChoppedWhileOnHand: 1
-  rootObjectAfterSlice: {fileID: 1585260972204234, guid: 5f8fbf704cd6e0d4a92f39272ea99503,
-    type: 2}
-  choppingSoundBoard: []
-  smallerAllowedPieceVolume: 0.0001
-  maximumChopCount: 32
-  spawnFluid: 0
-  spawnFluidColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &114462302224988290
 MonoBehaviour:
   m_ObjectHideFlags: 1
