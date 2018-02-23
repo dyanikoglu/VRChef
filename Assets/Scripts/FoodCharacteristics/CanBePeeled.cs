@@ -187,6 +187,9 @@ public class CanBePeeled : CanBeChopped {
         rightSideObj.transform.rotation = gameObject.transform.rotation;
         rightSideObj.GetComponent<MeshFilter>().mesh = right_HalfMesh;
 
+        leftSideObj.layer = 9;
+        rightSideObj.layer = 9;
+
         if (gameObject.transform.parent != null)
         {
             rightSideObj.transform.parent = gameObject.transform.parent;
@@ -323,6 +326,7 @@ public class CanBePeeled : CanBeChopped {
         objectFlesh.transform.parent = null;
         parent = null;
         objectFlesh.AddComponent<Rigidbody>();
+        base.SetIsPeeled(true);
         /*MeshCollider cmc = objectFlesh.GetComponent<MeshCollider>();
         cmc.cookingOptions = MeshColliderCookingOptions.InflateConvexMesh;
         cmc.skinWidth = colliderSkinWidth;

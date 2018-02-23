@@ -40,7 +40,7 @@ public class CanBeSqueezed : FoodCharacteristic
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other is CapsuleCollider)
+        if (other is CapsuleCollider && GetIsChoppedPiece())
         {
             transform.eulerAngles = new Vector3(180, transform.eulerAngles.y, 0);
             transform.position = other.transform.position;
@@ -48,7 +48,7 @@ public class CanBeSqueezed : FoodCharacteristic
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.GetComponent<CanSqueeze>() != null)
+        if (collision.gameObject.GetComponent<CanSqueeze>() != null && GetIsChoppedPiece())
         {
             currentSqueezer = collision.gameObject;
 
@@ -63,7 +63,7 @@ public class CanBeSqueezed : FoodCharacteristic
 
     private void OnCollisionExit(Collision collision)
     {
-        if (collision.gameObject.GetComponent<CanSqueeze>() != null)
+        if (collision.gameObject.GetComponent<CanSqueeze>() != null && GetIsChoppedPiece())
         {
             canSpin = false;
             currentSqueezer.GetComponent<VRTK.VRTK_InteractableObject>().isGrabbable = true;
@@ -79,7 +79,7 @@ public class CanBeSqueezed : FoodCharacteristic
     {
         if ((OVRInput.Get(OVRInput.Button.Four) || OVRInput.Get(OVRInput.Button.Two)))
         {
-            if (canSpin && !finished)
+            if (canSpin && !finished && GetIsChoppedPiece())
             {
                 GetComponent<VRTK.VRTK_InteractableObject>().isGrabbable = false;
                 transform.Rotate(Vector3.up * 200 * Time.deltaTime, Space.Self);
@@ -95,6 +95,7 @@ public class CanBeSqueezed : FoodCharacteristic
                 if (rotationAngle >= 360 * 3)
                 {
                     GetComponent<Renderer>().materials[1].mainTexture = squeezedTexture;
+                    base.SetIsSqueezed(true);
                     rotationAngle = 0;
                     finished = true;
                     currentSqueezer.GetComponent<CanSqueeze>().AddWater();
