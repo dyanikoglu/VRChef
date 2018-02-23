@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CanBeDropandSmash : MonoBehaviour {
+public class CanBeDropandSmash : FoodCharacteristic {
     public GameObject smashable;
     public GameObject smashed;
     public GameObject smashedJuice;
@@ -18,7 +18,7 @@ public class CanBeDropandSmash : MonoBehaviour {
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.relativeVelocity.magnitude > 3 && gameObject==smashable)
+        if (collision.relativeVelocity.magnitude > 3 && gameObject==smashable && base.GetIsChoppedPiece()==false && collision.gameObject.GetComponent<CanBeChopped>()==null && collision.gameObject.GetComponent<CanChop>()==null)
         {
             _smashed = Instantiate(smashed, transform.position, smashed.transform.rotation);
             _smashedJuice = Instantiate(smashedJuice, transform.position, smashedJuice.transform.rotation);
