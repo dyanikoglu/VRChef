@@ -21,13 +21,13 @@ GameObject:
   - component: {fileID: 4193970839491474}
   - component: {fileID: 33235987287312802}
   - component: {fileID: 23118815369229524}
-  - component: {fileID: 65616382159047340}
   - component: {fileID: 114232778439681900}
   - component: {fileID: 114100420363453248}
   - component: {fileID: 54319257754135206}
   - component: {fileID: 114138674152776642}
   - component: {fileID: 114248827923294016}
-  m_Layer: 0
+  - component: {fileID: 64391483784967992}
+  m_Layer: 9
   m_Name: potato
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1609411215709016}
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -0.1961, y: 1.1988, z: 0.7676}
+  m_LocalPosition: {x: 0.7305621, y: 1.806, z: 0.406}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -103,8 +103,8 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &65616382159047340
-BoxCollider:
+--- !u!64 &64391483784967992
+MeshCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -112,9 +112,11 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.10922066, y: 0.06305804, z: 0.06545765}
-  m_Center: {x: 0.0022679828, y: -0.000039730217, z: -0.00030630638}
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: -1
+  m_SkinWidth: 0.0001
+  m_Mesh: {fileID: 4300000, guid: 9faf072ec74c0eb45b702d10ec5c87e1, type: 3}
 --- !u!114 &114100420363453248
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -141,6 +143,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   capMaterial: {fileID: 2100000, guid: e1ce5d33010df3c4a82a36cc80c32441, type: 2}
+  minKnifeVelocityToChop: 0.003
   sliceTimeout: 0.5
   currentlyChoppable: 1
   colliderSkinWidth: 0.001
@@ -150,7 +153,9 @@ MonoBehaviour:
   rootObjectAfterSlice: {fileID: 1585260972204234, guid: 5f8fbf704cd6e0d4a92f39272ea99503,
     type: 2}
   choppingSoundBoard: []
-  smallerAllowedPieceVolume: 0.0001
+  maximumChopCount: 32
+  spawnFluid: 0
+  spawnFluidColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &114232778439681900
 MonoBehaviour:
   m_ObjectHideFlags: 1

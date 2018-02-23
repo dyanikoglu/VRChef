@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 23895679151759364}
   - component: {fileID: 114035224800701522}
   - component: {fileID: 64923428618502026}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Potato_flesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 114877724442122340}
   - component: {fileID: 64441128446300226}
   - component: {fileID: 114625955115967930}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: potato_rig
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -217,6 +217,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   capMaterial: {fileID: 2100000, guid: e1ce5d33010df3c4a82a36cc80c32441, type: 2}
+  minKnifeVelocityToChop: 0.003
   sliceTimeout: 0.5
   currentlyChoppable: 1
   colliderSkinWidth: 0.001
@@ -227,7 +228,9 @@ MonoBehaviour:
     type: 2}
   choppingSoundBoard:
   - {fileID: 8300000, guid: 1f535bcdafe041c4080ce5b9d95c6883, type: 3}
-  smallerAllowedPieceVolume: 0.0001
+  maximumChopCount: 32
+  spawnFluid: 0
+  spawnFluidColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &114239618030958052
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -243,8 +246,8 @@ MonoBehaviour:
   allowedNearTouchControllers: 0
   allowedTouchControllers: 0
   ignoredColliders: []
-  isGrabbable: 1
-  holdButtonToGrab: 1
+  isGrabbable: 0
+  holdButtonToGrab: 0
   stayGrabbedOnTeleport: 1
   validDrop: 1
   grabOverrideButton: 0
@@ -272,6 +275,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   capMaterial: {fileID: 2100000, guid: d701f942843c9ac4b96973f57a254337, type: 2}
+  minKnifeVelocityToChop: 0.003
   sliceTimeout: 1
   currentlyChoppable: 1
   colliderSkinWidth: 0.001
@@ -282,9 +286,11 @@ MonoBehaviour:
     type: 2}
   choppingSoundBoard:
   - {fileID: 8300000, guid: 1f535bcdafe041c4080ce5b9d95c6883, type: 3}
-  smallerAllowedPieceVolume: 0.0001
+  maximumChopCount: 32
+  spawnFluid: 0
+  spawnFluidColor: {r: 1, g: 1, b: 1, a: 1}
   objectFlesh: {fileID: 1561027823761570}
-  smallerAllowedRigVolume: 0.0001
+  smallerAllowedRigVolume: 0.0004
 --- !u!114 &114625955115967930
 MonoBehaviour:
   m_ObjectHideFlags: 1
