@@ -184,6 +184,7 @@ public class CanBeChopped : FoodCharacteristic
             newMats[mats.Length] = capMaterial;
             mats = newMats;
         }
+
         _capMatSub = mats.Length - 1; // for later use
         yield return Ninja.JumpBack;
 
@@ -220,9 +221,16 @@ public class CanBeChopped : FoodCharacteristic
 
         rightSideObj.transform.localScale = gameObject.transform.localScale;
 
+        if (GetComponent<CanBeFried>() && GetComponent<CanBeFried>().GetIsFried())
+        {
+            mats[0] = GetComponent<CanBeFried>().friedMaterial;
+        }
+
         // assign mats
         leftSideObj.GetComponent<MeshRenderer>().materials = mats;
         rightSideObj.GetComponent<MeshRenderer>().materials = mats;
+
+
 
         // Handle new colliders of left & right pieces
         HandleCollisions(leftSideObj);

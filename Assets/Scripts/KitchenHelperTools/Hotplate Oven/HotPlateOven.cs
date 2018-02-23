@@ -28,4 +28,10 @@ public class HotPlateOven : MonoBehaviour {
             }
         }
 	}
+
+    // add rigidbody and try again.
+    private void OnCollisionEnter(Collision collision)
+    {
+        Debug.Log("Collision with " + collision.collider.name + " is caught in Main script!");
+    }
 }

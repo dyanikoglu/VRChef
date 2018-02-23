@@ -139,7 +139,7 @@ Light:
   serializedVersion: 8
   m_Type: 1
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
-  m_Intensity: 1
+  m_Intensity: 0.5
   m_Range: 10
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -316,7 +316,6 @@ MonoBehaviour:
   shaderWithBlending: {fileID: 4800000, guid: 073aa28c7c0f1de4bbdc031476b16c3d, type: 3}
   friedTexture: {fileID: 2800000, guid: 67047faea160d2d42a3e1d1a50503de1, type: 3}
   fryingTimeInSeconds: 0
-  isFried: 0
   fryingStarted: 0
   fryingStopped: 0
   onCanFry: 0
@@ -896,7 +895,7 @@ Prefab:
     - target: {fileID: 224000012623161658, guid: d46cf6b1ad9d84a48ae7548a2a6b41b3,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 688
+      value: 816
       objectReference: {fileID: 0}
     - target: {fileID: 224000012623161658, guid: d46cf6b1ad9d84a48ae7548a2a6b41b3,
         type: 2}
@@ -1986,6 +1985,51 @@ Prefab:
       propertyPath: buttons.Array.data[3]
       value: 
       objectReference: {fileID: 740228909}
+    - target: {fileID: 33978428031543582, guid: d801583ecbbdd7247a950b59ed78c5df,
+        type: 2}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 4300008, guid: 60b830428b405a04ab8ff18f1ef76c38, type: 3}
+    - target: {fileID: 33470373104487418, guid: d801583ecbbdd7247a950b59ed78c5df,
+        type: 2}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 4300006, guid: 60b830428b405a04ab8ff18f1ef76c38, type: 3}
+    - target: {fileID: 33392302316469184, guid: d801583ecbbdd7247a950b59ed78c5df,
+        type: 2}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 4300002, guid: 60b830428b405a04ab8ff18f1ef76c38, type: 3}
+    - target: {fileID: 33729735042759412, guid: d801583ecbbdd7247a950b59ed78c5df,
+        type: 2}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 4300000, guid: 60b830428b405a04ab8ff18f1ef76c38, type: 3}
+    - target: {fileID: 33192018687138640, guid: d801583ecbbdd7247a950b59ed78c5df,
+        type: 2}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 4300004, guid: 60b830428b405a04ab8ff18f1ef76c38, type: 3}
+    - target: {fileID: 23008954004457832, guid: d801583ecbbdd7247a950b59ed78c5df,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ad54aca713cde9f4daec9164fbb7f81a, type: 2}
+    - target: {fileID: 23248251952623502, guid: d801583ecbbdd7247a950b59ed78c5df,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ad54aca713cde9f4daec9164fbb7f81a, type: 2}
+    - target: {fileID: 23900101216570002, guid: d801583ecbbdd7247a950b59ed78c5df,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ad54aca713cde9f4daec9164fbb7f81a, type: 2}
+    - target: {fileID: 23951944771710804, guid: d801583ecbbdd7247a950b59ed78c5df,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ad54aca713cde9f4daec9164fbb7f81a, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d801583ecbbdd7247a950b59ed78c5df, type: 2}
   m_IsPrefabParent: 0
@@ -4422,7 +4466,6 @@ MonoBehaviour:
   shaderWithBlending: {fileID: 4800000, guid: 073aa28c7c0f1de4bbdc031476b16c3d, type: 3}
   friedTexture: {fileID: 2800000, guid: 67047faea160d2d42a3e1d1a50503de1, type: 3}
   fryingTimeInSeconds: 0
-  isFried: 0
   fryingStarted: 0
   fryingStopped: 0
   onCanFry: 0

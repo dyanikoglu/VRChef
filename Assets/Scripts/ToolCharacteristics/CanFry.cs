@@ -65,7 +65,7 @@ public class CanFry : MonoBehaviour {
         return isPlate;
     }
 
-    public bool getCanFry()
+    public bool GetCanFry()
     {
         return canFry;
     }

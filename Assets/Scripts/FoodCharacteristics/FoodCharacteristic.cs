@@ -7,10 +7,17 @@ using VRTK;
 public class FoodCharacteristic : MonoBehaviour
 {
     private bool _isChoppedPiece = false;
+    private bool _isFried = false;
+
     // Keep adding required characteristic status booleans
     //...
     //...
     //...
+
+    public bool GetIsGrabbed()
+    {
+        return GetComponent<VRTK_InteractableObject>().IsGrabbed();
+    }
 
     public bool GetIsChoppedPiece()
     {
@@ -22,8 +29,13 @@ public class FoodCharacteristic : MonoBehaviour
         this._isChoppedPiece = isChoppedPiece;
     }
 
-    public bool GetIsGrabbed()
+    public void SetIsFried(bool flag)
     {
-        return GetComponent<VRTK_InteractableObject>().IsGrabbed();
+        _isFried = flag;
+    }
+
+    public bool GetIsFried()
+    {
+        return _isFried;
     }
 }
