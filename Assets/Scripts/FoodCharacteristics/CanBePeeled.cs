@@ -326,7 +326,7 @@ public class CanBePeeled : CanBeChopped {
         objectFlesh.transform.parent = null;
         parent = null;
         objectFlesh.AddComponent<Rigidbody>();
-        base.SetIsPeeled(true);
+        objectFlesh.GetComponent<FoodCharacteristic>().SetIsPeeled(true);
         /*MeshCollider cmc = objectFlesh.GetComponent<MeshCollider>();
         cmc.cookingOptions = MeshColliderCookingOptions.InflateConvexMesh;
         cmc.skinWidth = colliderSkinWidth;
