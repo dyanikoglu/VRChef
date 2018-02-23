@@ -10,6 +10,7 @@ public class FoodCharacteristic : MonoBehaviour
     private bool _isFried = false;
     private bool _isSqueezed = false;
     private bool _isPeeled = false;
+    private bool _isHalfSmashed = false;
 
     // Keep adding required characteristic status booleans
     //...
@@ -59,5 +60,15 @@ public class FoodCharacteristic : MonoBehaviour
     public void SetIsPeeled(bool isPeeled)
     {
         this._isPeeled = isPeeled;
+    }
+
+    public bool GetIsHalfSmashed()
+    {
+        return _isHalfSmashed;
+    }
+
+    public void SetIsHalfSmashed(bool isHalfSmashed)
+    {
+        this._isHalfSmashed = isHalfSmashed;
     }
 }

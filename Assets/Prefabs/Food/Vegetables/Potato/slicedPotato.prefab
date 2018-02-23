@@ -227,3 +227,4 @@ MonoBehaviour:
   smashable: {fileID: 1336879228730784}
   smashed: {fileID: 1835790101553934, guid: 27ece1bddb1233f4a80d9199575e5ac9, type: 2}
   smashSound: {fileID: 8300000, guid: 52d2c0298aa8e4f45baddc37b0a43422, type: 3}
+  smashBowl: {fileID: 0}

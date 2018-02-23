@@ -18,7 +18,7 @@ public class CanBeDropandSmash : FoodCharacteristic {
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.relativeVelocity.magnitude > 3 && gameObject==smashable && base.GetIsChoppedPiece()==false && collision.gameObject.GetComponent<CanBeChopped>()==null && collision.gameObject.GetComponent<CanChop>()==null)
+        if (collision.relativeVelocity.magnitude > 3 && gameObject==smashable && gameObject.GetComponent<FoodCharacteristic>().GetIsChoppedPiece()==false && collision.gameObject.GetComponent<CanBeChopped>()==null && collision.gameObject.GetComponent<CanChop>()==null)
         {
             _smashed = Instantiate(smashed, transform.position, smashed.transform.rotation);
             _smashedJuice = Instantiate(smashedJuice, transform.position, smashedJuice.transform.rotation);
