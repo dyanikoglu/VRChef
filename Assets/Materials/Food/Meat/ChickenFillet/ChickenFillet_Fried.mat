@@ -6,7 +6,7 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: ChickenFillet_Body
+  m_Name: ChickenFillet_Fried
   m_Shader: {fileID: 4800000, guid: 12c5a1911ed698d45920f1c6fa4d6d57, type: 3}
   m_ShaderKeywords: _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A _WETNESS_ON
   m_LightmapFlags: 4
