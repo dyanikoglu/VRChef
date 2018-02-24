@@ -28,6 +28,7 @@ GameObject:
   - component: {fileID: 114168630856395670}
   - component: {fileID: 114320536878446480}
   - component: {fileID: 114649360912450264}
+  - component: {fileID: 114563667766815772}
   m_Layer: 9
   m_Name: Sausage
   m_TagString: Untagged
@@ -135,6 +136,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   capMaterial: {fileID: 2100000, guid: 9c55be95c2b5a56498c49575373d8b15, type: 2}
+  minKnifeVelocityToChop: 0.003
   sliceTimeout: 0.5
   currentlyChoppable: 1
   colliderSkinWidth: 0.001
@@ -144,10 +146,20 @@ MonoBehaviour:
   rootObjectAfterSlice: {fileID: 1585260972204234, guid: 5f8fbf704cd6e0d4a92f39272ea99503,
     type: 2}
   choppingSoundBoard: []
-  smallerAllowedPieceVolume: 0.0001
   maximumChopCount: 32
   spawnFluid: 0
   spawnFluidColor: {r: 1, g: 1, b: 1, a: 1}
+--- !u!114 &114563667766815772
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1844102278425872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0580f3b8e0fd90441b1e89c39c8d522f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114631333796666298
 MonoBehaviour:
   m_ObjectHideFlags: 1

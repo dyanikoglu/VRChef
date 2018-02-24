@@ -29,6 +29,7 @@ GameObject:
   - component: {fileID: 114687580072335534}
   - component: {fileID: 114975631404875502}
   - component: {fileID: 82112119731331680}
+  - component: {fileID: 114145333250601242}
   m_Layer: 9
   m_Name: Onion
   m_TagString: Untagged
@@ -185,6 +186,17 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!114 &114145333250601242
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1959105890375198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0580f3b8e0fd90441b1e89c39c8d522f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114321632312933206
 MonoBehaviour:
   m_ObjectHideFlags: 1

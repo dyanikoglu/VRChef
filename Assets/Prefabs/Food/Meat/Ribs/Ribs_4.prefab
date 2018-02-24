@@ -28,6 +28,7 @@ GameObject:
   - component: {fileID: 114449391869101322}
   - component: {fileID: 65121737933985220}
   - component: {fileID: 54940223884349428}
+  - component: {fileID: 114644167404790232}
   m_Layer: 9
   m_Name: Ribs_4
   m_TagString: Untagged
@@ -194,6 +195,17 @@ MonoBehaviour:
   cookingUpdateFreq: 0.5
   cookingStartDelay: 0
   cookEffectTint: {r: 1, g: 1, b: 1, a: 1}
+--- !u!114 &114644167404790232
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1992050522961380}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0580f3b8e0fd90441b1e89c39c8d522f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114934196714580910
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -206,6 +218,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   capMaterial: {fileID: 2100000, guid: 17051550ae92bff4bb00f9a447c75948, type: 2}
+  minKnifeVelocityToChop: 0.003
   sliceTimeout: 0.5
   currentlyChoppable: 1
   colliderSkinWidth: 0.001
@@ -215,6 +228,6 @@ MonoBehaviour:
   rootObjectAfterSlice: {fileID: 1585260972204234, guid: 5f8fbf704cd6e0d4a92f39272ea99503,
     type: 2}
   choppingSoundBoard: []
-  smallerAllowedPieceVolume: 0.0001
+  maximumChopCount: 32
   spawnFluid: 0
   spawnFluidColor: {r: 1, g: 1, b: 1, a: 1}

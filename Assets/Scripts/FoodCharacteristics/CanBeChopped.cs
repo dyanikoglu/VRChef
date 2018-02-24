@@ -221,15 +221,16 @@ public class CanBeChopped : FoodCharacteristic
 
         rightSideObj.transform.localScale = gameObject.transform.localScale;
 
-        if (GetComponent<CanBeFried>() && GetComponent<CanBeFried>().GetIsFried())
+        // Check for fried object material assign
+        if (GetComponent<FoodStatus>().GetIsFried())
         {
             mats[0] = GetComponent<CanBeFried>().friedMaterial;
         }
+        //
 
         // assign mats
         leftSideObj.GetComponent<MeshRenderer>().materials = mats;
         rightSideObj.GetComponent<MeshRenderer>().materials = mats;
-
 
 
         // Handle new colliders of left & right pieces
@@ -244,8 +245,8 @@ public class CanBeChopped : FoodCharacteristic
         cbc.maximumChopCount = this.maximumChopCount;
 
         // Finally, mark them as chopped pieces
-        cbc.SetIsChoppedPiece(true);
-        this.SetIsChoppedPiece(true);
+        leftSideObj.GetComponent<FoodStatus>().SetIsChoppedPiece(true);
+        rightSideObj.GetComponent<FoodStatus>().SetIsChoppedPiece(true);
 
         ///////////////////
 

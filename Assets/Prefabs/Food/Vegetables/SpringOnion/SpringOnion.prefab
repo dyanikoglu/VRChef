@@ -28,6 +28,7 @@ GameObject:
   - component: {fileID: 114712170664851286}
   - component: {fileID: 114213087347000774}
   - component: {fileID: 114560716107783544}
+  - component: {fileID: 114764898875719576}
   m_Layer: 9
   m_Name: SpringOnion
   m_TagString: Untagged
@@ -207,6 +208,17 @@ MonoBehaviour:
   maximumChopCount: 32
   spawnFluid: 0
   spawnFluidColor: {r: 1, g: 1, b: 1, a: 1}
+--- !u!114 &114764898875719576
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1392186719744358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0580f3b8e0fd90441b1e89c39c8d522f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!136 &136070717286634030
 CapsuleCollider:
   m_ObjectHideFlags: 1

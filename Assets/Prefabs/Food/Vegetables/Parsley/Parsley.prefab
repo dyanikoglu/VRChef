@@ -28,6 +28,7 @@ GameObject:
   - component: {fileID: 114181636063698992}
   - component: {fileID: 114151542475096534}
   - component: {fileID: 114615093320735852}
+  - component: {fileID: 114532313594997276}
   m_Layer: 9
   m_Name: Parsley
   m_TagString: Untagged
@@ -183,6 +184,17 @@ MonoBehaviour:
   objectHighlighter: {fileID: 0}
   touchHighlightColor: {r: 0, g: 0, b: 0, a: 0}
   usingState: 0
+--- !u!114 &114532313594997276
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1134971989739160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0580f3b8e0fd90441b1e89c39c8d522f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114615093320735852
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -195,6 +207,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   capMaterial: {fileID: 2100000, guid: 35291759f3dbef94fa8ae801094740d7, type: 2}
+  minKnifeVelocityToChop: 0.003
   sliceTimeout: 0.5
   currentlyChoppable: 1
   colliderSkinWidth: 0.001
@@ -204,7 +217,6 @@ MonoBehaviour:
   rootObjectAfterSlice: {fileID: 1585260972204234, guid: 5f8fbf704cd6e0d4a92f39272ea99503,
     type: 2}
   choppingSoundBoard: []
-  smallerAllowedPieceVolume: 0.0001
   maximumChopCount: 32
   spawnFluid: 0
   spawnFluidColor: {r: 1, g: 1, b: 1, a: 1}
