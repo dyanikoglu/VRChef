@@ -7,6 +7,8 @@ public class CanBeFried : FoodCharacteristic
 
     [SerializeField]
     public Texture objectTexture;
+
+    public Material[] myMaterials;
     public Material myMaterial;
 
     public Shader shaderWithBlending;
@@ -103,18 +105,34 @@ public class CanBeFried : FoodCharacteristic
 
     public void StartFrying()
     {
-        // to animate object's frying process
+        int i = 0;
+        myMaterials = new Material[GetComponent<Renderer>().materials.Length];
+        Debug.Log(GetComponent<Renderer>().materials.Length);
+        foreach(Material m in GetComponent<Renderer>().materials)
+        {
+            myMaterials[i] = m;
 
-        // replace shader with one can blend textures
+            myMaterials[i].shader = shaderWithBlending;
+
+            myMaterials[i].SetTexture("_MainTex", objectTexture);
+            myMaterials[i].SetTexture("_Texture2", friedTexture);
+            myMaterials[i].SetFloat("_Blend", 0f);
+            i++;
+
+            Debug.Log(i);
+        }
+
+        /*
+         // replace shader with one can blend textures
         myMaterial.shader = shaderWithBlending;
 
         // set textures of object. (One for initial state, one for fried state)
         myMaterial.SetTexture("_MainTex", objectTexture);
         myMaterial.SetTexture("_Texture2", friedTexture);
         myMaterial.SetFloat("_Blend", 0f);
+        */
 
-
-
+        // to animate object's frying process
         StartCoroutine("Fry");
         Debug.Log("start frying");
     }
@@ -126,7 +144,6 @@ public class CanBeFried : FoodCharacteristic
         fryingStopped = true;
 
         Debug.Log("stop frying");
-
     }
 
     IEnumerator Fry()
@@ -138,6 +155,22 @@ public class CanBeFried : FoodCharacteristic
          * <Method Summary>
          */
         fryingStarted = true;
+
+        float blend = myMaterials[0].GetFloat("_Blend");
+
+        while (blend < 1f)
+        {
+            float fadeValue = Time.deltaTime / fryingTimeInSeconds;
+            blend += fadeValue;
+
+            for (int i = 0; i < myMaterials.Length; i++)
+            {
+                myMaterials[i].SetFloat("_Blend", blend);
+            }
+            yield return new WaitForSeconds(fadeValue);
+
+        }
+        /*
         float blend = myMaterial.GetFloat("_Blend");
         while (blend < 1f)
         {
@@ -148,13 +181,17 @@ public class CanBeFried : FoodCharacteristic
             GetComponent<Renderer>().GetPropertyBlock(propertyBlock);
             propertyBlock.SetFloat("_Blend", blend);
             GetComponent<Renderer>().SetPropertyBlock(propertyBlock);
-            //if (GetComponent<CanBeChopped>())
-            //{
-            //    GetComponent<CanBeChopped>().capMaterial = GetComponent<Renderer>().material;
-            //}
+
             yield return new WaitForSeconds(fadeValue);
         }
+        */
         SetIsFried(true);
+
+        // not only need to change myMaterial but also change GetComponent...
+        for (int i = 0; i < myMaterials.Length; i++)
+        {
+            myMaterials[i] = friedMaterial;
+        }
 
         // if this food has been fried properly, then make it's inside fried too.
         // this block makes cutting fried objects works.
