@@ -8,14 +8,25 @@ public class CreateRecipeScene : MonoBehaviour {
     // Use this for initialization
     void Start() {
         //getTheIngredients();
-        //for each ingredient call the method for placing the ingredients.
-        Instantiate(ingredients[0], places[0].transform.position, ingredients[0].transform.rotation);
+        int i = 0;
+        for(int j = 0; j < ingredients.Length; j++)
+        {
+            CreateObjectInScene(ingredients[j], places[i], 2);
+            i++;
+            if(i > places.Length)
+            {
+                i = 0;
+            }
+        } 
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
+    void CreateObjectInScene(GameObject ingredient, GameObject place, int quantity)
+    {
+        for (int i = 0; i < quantity; i++)
+        {
+            Instantiate(ingredient, place.transform.position, ingredient.transform.rotation);
+        }
+    }
 
 
 }
