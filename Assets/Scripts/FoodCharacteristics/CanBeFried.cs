@@ -24,6 +24,8 @@ public class CanBeFried : FoodCharacteristic
     public bool onCanFry;
     public GameObject canFryObject;
 
+    float blend = 0;
+
     private MaterialPropertyBlock propertyBlock;
 
     public Material friedMaterial;
@@ -119,7 +121,6 @@ public class CanBeFried : FoodCharacteristic
             myMaterials[i].SetFloat("_Blend", 0f);
             i++;
 
-            Debug.Log(i);
         }
 
         /*
@@ -143,6 +144,12 @@ public class CanBeFried : FoodCharacteristic
         StopCoroutine("Fry");
         fryingStopped = true;
 
+        /* modify */
+
+        fryingStarted = false;
+
+        /* modify */
+
         Debug.Log("stop frying");
     }
 
@@ -156,7 +163,7 @@ public class CanBeFried : FoodCharacteristic
          */
         fryingStarted = true;
 
-        float blend = myMaterials[0].GetFloat("_Blend");
+        //blend = myMaterials[0].GetFloat("_Blend");
 
         while (blend < 1f)
         {
@@ -192,6 +199,7 @@ public class CanBeFried : FoodCharacteristic
         {
             myMaterials[i] = friedMaterial;
         }
+        GetComponent<Renderer>().sharedMaterials = myMaterials;
 
         // if this food has been fried properly, then make it's inside fried too.
         // this block makes cutting fried objects works.
@@ -199,6 +207,7 @@ public class CanBeFried : FoodCharacteristic
         {
             GetComponent<CanBeChopped>().capMaterial = friedMaterial;
         }
+
 
     }
 
