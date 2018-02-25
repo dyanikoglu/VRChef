@@ -29,13 +29,13 @@ public class CanBeSmashed : FoodCharacteristic {
         {
             isCollidedWithBowl = true;
         }
-        if (col.gameObject.GetComponent<CanSmash>() != null && isBoiled && gameObject.GetComponent<FoodCharacteristic>().GetIsPeeled())
+        if (col.gameObject.GetComponent<CanSmash>() != null && isBoiled && gameObject.GetComponent<FoodStatus>().GetIsPeeled())
         {
             AudioSource.PlayClipAtPoint(smashSound, transform.position);
 
             if (smashCount == 4)
             {
-                if(gameObject.GetComponent<FoodCharacteristic>().GetIsHalfSmashed()==false)
+                if(gameObject.GetComponent<FoodStatus>().GetIsHalfSmashed()==false)
                 { 
                     _smashed=Instantiate(smashed, smashable.transform.position,smashed.transform.rotation);
                     float size_y = _smashed.transform.GetChild(0).GetComponent<Renderer>().bounds.size.y;
@@ -48,8 +48,8 @@ public class CanBeSmashed : FoodCharacteristic {
                     _smashed.transform.GetChild(0).transform.localScale = rescale;
                     _smashed.transform.GetChild(1).transform.localScale = rescale;
                     Destroy(gameObject);
-                    _smashed.GetComponent<FoodCharacteristic>().SetIsPeeled(true);
-                    _smashed.GetComponent<FoodCharacteristic>().SetIsHalfSmashed(true);
+                    _smashed.GetComponent<FoodStatus>().SetIsPeeled(true);
+                    _smashed.GetComponent<FoodStatus>().SetIsHalfSmashed(true);
                 }
                 else
                 {
