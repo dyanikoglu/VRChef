@@ -2,26 +2,38 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CanBoil : MonoBehaviour {
+public class CanBoil : FoodCharacteristic {
 
     public bool canBoil = false;
 
     // Use this for initialization
     void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
+    }
+
+    // Update is called once per frame
+    void Update () {
+        /*if (canBoil)
+        {
+            GetComponent<Rigidbody>().isKinematic = true;
+            GetComponent<MeshCollider>().convex = false;
+        }*/
+        /*meshCollider = gameObject.AddComponent<MeshCollider>() as MeshCollider;
+        meshCollider.cookingOptions = MeshColliderCookingOptions.InflateConvexMesh;
+        meshCollider.skinWidth = 0.01f;
+        meshCollider.convex = true;*/
+    }
 
     private void OnCollisionEnter(Collision collision)
     {
         if (!canBoil && collision.transform.parent)
         {
-            Debug.Log("enter " + collision.collider.name);
+            //Debug.Log("enter " + collision.collider.name);
             canBoil = OnOven(collision.collider.transform.parent.gameObject, collision.collider.transform.parent.transform.parent);
+        }
+        if (canBoil)
+        {
+            Debug.Log("enter " + collision.collider.name);
         }
     }
 
@@ -47,4 +59,5 @@ public class CanBoil : MonoBehaviour {
         Debug.Log("onOven: " + isPlate);
         return isPlate;
     }
+
 }

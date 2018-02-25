@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CanBeBoiled : MonoBehaviour {
+public class CanBeBoiled : ToolCharacteristic {
 
 	// Use this for initialization
 	void Start () {
