@@ -40,7 +40,7 @@ public class CanBeSqueezed : FoodCharacteristic
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other is CapsuleCollider && GetIsChoppedPiece())
+        if (other is CapsuleCollider && GetComponent<FoodStatus>().GetIsChoppedPiece())
         {
             transform.eulerAngles = new Vector3(180, transform.eulerAngles.y, 0);
             transform.position = other.transform.position;
@@ -48,7 +48,7 @@ public class CanBeSqueezed : FoodCharacteristic
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.GetComponent<CanSqueeze>() != null && GetIsChoppedPiece())
+        if (collision.gameObject.GetComponent<CanSqueeze>() != null && GetComponent<FoodStatus>().GetIsChoppedPiece())
         {
             currentSqueezer = collision.gameObject;
 
@@ -63,7 +63,7 @@ public class CanBeSqueezed : FoodCharacteristic
 
     private void OnCollisionExit(Collision collision)
     {
-        if (collision.gameObject.GetComponent<CanSqueeze>() != null && GetIsChoppedPiece())
+        if (collision.gameObject.GetComponent<CanSqueeze>() != null && GetComponent<FoodStatus>().GetIsChoppedPiece())
         {
             canSpin = false;
             currentSqueezer.GetComponent<VRTK.VRTK_InteractableObject>().isGrabbable = true;
@@ -79,7 +79,7 @@ public class CanBeSqueezed : FoodCharacteristic
     {
         if ((OVRInput.Get(OVRInput.Button.Four) || OVRInput.Get(OVRInput.Button.Two)))
         {
-            if (canSpin && !finished && GetIsChoppedPiece())
+            if (canSpin && !finished && GetComponent<FoodStatus>().GetIsChoppedPiece())
             {
                 GetComponent<VRTK.VRTK_InteractableObject>().isGrabbable = false;
                 transform.Rotate(Vector3.up * 200 * Time.deltaTime, Space.Self);
@@ -95,7 +95,7 @@ public class CanBeSqueezed : FoodCharacteristic
                 if (rotationAngle >= 360 * 3)
                 {
                     GetComponent<Renderer>().materials[1].mainTexture = squeezedTexture;
-                    base.SetIsSqueezed(true);
+                    GetComponent<FoodStatus>().SetIsSqueezed(true);
                     rotationAngle = 0;
                     finished = true;
                     currentSqueezer.GetComponent<CanSqueeze>().AddWater();

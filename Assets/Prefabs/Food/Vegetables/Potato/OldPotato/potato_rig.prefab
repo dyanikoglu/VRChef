@@ -24,8 +24,7 @@ GameObject:
   - component: {fileID: 114035224800701522}
   - component: {fileID: 64923428618502026}
   - component: {fileID: 114890309893806194}
-  - component: {fileID: 114929303721045322}
-  - component: {fileID: 114770440855899516}
+  - component: {fileID: 114759106821302106}
   m_Layer: 9
   m_Name: Potato_flesh
   m_TagString: Untagged
@@ -49,6 +48,7 @@ GameObject:
   - component: {fileID: 114877724442122340}
   - component: {fileID: 64441128446300226}
   - component: {fileID: 114625955115967930}
+  - component: {fileID: 114267129342492382}
   m_Layer: 9
   m_Name: potato_rig
   m_TagString: Untagged
@@ -63,7 +63,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1716986235917160}
   m_LocalRotation: {x: -0.7071068, y: -0, z: 0.000000029802322, w: 0.7071067}
-  m_LocalPosition: {x: -0.1622, y: 1.2098876, z: 0.2563}
+  m_LocalPosition: {x: 0.764, y: 1.793, z: 0.096}
   m_LocalScale: {x: 1.1486976, y: 1.1486897, z: 1.1486895}
   m_Children:
   - {fileID: 4087528049495058}
@@ -249,8 +249,8 @@ MonoBehaviour:
   allowedNearTouchControllers: 0
   allowedTouchControllers: 0
   ignoredColliders: []
-  isGrabbable: 0
-  holdButtonToGrab: 0
+  isGrabbable: 1
+  holdButtonToGrab: 1
   stayGrabbedOnTeleport: 1
   validDrop: 1
   grabOverrideButton: 0
@@ -266,6 +266,17 @@ MonoBehaviour:
   objectHighlighter: {fileID: 0}
   touchHighlightColor: {r: 0, g: 0, b: 0, a: 0}
   usingState: 0
+--- !u!114 &114267129342492382
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1716986235917160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0580f3b8e0fd90441b1e89c39c8d522f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114427227539150900
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -293,7 +304,7 @@ MonoBehaviour:
   spawnFluid: 0
   spawnFluidColor: {r: 1, g: 1, b: 1, a: 1}
   objectFlesh: {fileID: 1561027823761570}
-  smallerAllowedRigVolume: 0.004
+  smallerAllowedRigVolume: 0.0004
 --- !u!114 &114625955115967930
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -313,7 +324,7 @@ MonoBehaviour:
   onGrabCollisionDelay: 0
   destroyImmediatelyOnThrow: 1
   breakForce: 1500
---- !u!114 &114770440855899516
+--- !u!114 &114759106821302106
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -321,14 +332,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1561027823761570}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f201bc5273b099b42a9f495d91c69a49, type: 3}
+  m_Script: {fileID: 11500000, guid: 0580f3b8e0fd90441b1e89c39c8d522f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  smashable: {fileID: 1561027823761570}
-  smashed: {fileID: 1336879228730784, guid: 06f89c2fd7bb7594dbafc393c632c374, type: 2}
-  smashSound: {fileID: 8300000, guid: 52d2c0298aa8e4f45baddc37b0a43422, type: 3}
-  iscollidedWithSmasher: 0
-  isCollidedWithBowl: 0
 --- !u!114 &114877724442122340
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -341,22 +347,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &114890309893806194
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1561027823761570}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f201bc5273b099b42a9f495d91c69a49, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  smashable: {fileID: 1561027823761570}
-  smashed: {fileID: 1336879228730784, guid: 06f89c2fd7bb7594dbafc393c632c374, type: 2}
-  smashSound: {fileID: 8300000, guid: 52d2c0298aa8e4f45baddc37b0a43422, type: 3}
-  iscollidedWithSmasher: 0
-  isCollidedWithBowl: 0
---- !u!114 &114929303721045322
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}

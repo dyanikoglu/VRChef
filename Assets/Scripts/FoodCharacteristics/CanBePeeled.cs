@@ -326,14 +326,9 @@ public class CanBePeeled : CanBeChopped {
         objectFlesh.transform.parent = null;
         parent = null;
         objectFlesh.AddComponent<Rigidbody>();
-        objectFlesh.GetComponent<FoodCharacteristic>().SetIsPeeled(true);
-        /*MeshCollider cmc = objectFlesh.GetComponent<MeshCollider>();
-        cmc.cookingOptions = MeshColliderCookingOptions.InflateConvexMesh;
-        cmc.skinWidth = colliderSkinWidth;
-        cmc.convex = true;*/
+        objectFlesh.GetComponent<FoodStatus>().SetIsPeeled(true);
         objectFlesh.GetComponent<CanBeChopped>().enabled = true;
         objectFlesh.AddComponent<VRTK_InteractableObject>().isGrabbable = true;
-        Debug.Log(knives);
         foreach (CanChop knife in knives)
         {
             Physics.IgnoreCollision(objectFlesh.GetComponent<Collider>(), knife.GetComponent<Collider>(), false);
