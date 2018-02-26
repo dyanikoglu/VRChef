@@ -9,13 +9,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 45b3b3073315a4191bcde3b6ca445dc7, type: 3}
-  m_Name: EmitterMaterialForMixing
+  m_Name: Important_Fluid
   m_EditorClassIdentifier: 
-  resolution: 80
+  resolution: 200
   restDensity: 1000
-  smoothing: 3.5
+  smoothing: 1
   viscosity: 0.02
-  surfaceTension: 0.06
+  surfaceTension: 0.01
   buoyancy: -1
   atmosphericDrag: 0
   atmosphericPressure: 0

@@ -12,9 +12,9 @@ public class CanMixedIn : ToolCharacteristic {
     void Start () {
         collided=false;
         rotateCount=0;
-        ObiEmitterMaterialFluid material = (ObiEmitterMaterialFluid)emitter.gameObject.GetComponent<ObiEmitter>().EmitterMaterial;
+        /*ObiEmitterMaterialFluid material = (ObiEmitterMaterialFluid)emitter.gameObject.GetComponent<ObiEmitter>().EmitterMaterial;
         material.atmosphericPressure = (float)0;
-        emitter.Solver.UpdateActiveParticles();
+        emitter.Solver.UpdateActiveParticles();*/
     }
 	
 	// Update is called once per frame
@@ -36,30 +36,30 @@ public class CanMixedIn : ToolCharacteristic {
     {
         if (other.gameObject.GetComponent<CanMix>() != null)
         {
-            for (int i=1; i < gameObject.transform.childCount; i++)
+            for (int i=2; i < gameObject.transform.childCount; i++)
             {
                 gameObject.transform.GetChild(i).transform.Rotate(Vector3.up * 400 * Time.deltaTime, Space.World); 
             }
-            ObiEmitterMaterialFluid material = (ObiEmitterMaterialFluid)emitter.gameObject.GetComponent<ObiEmitter>().EmitterMaterial;
+            /*ObiEmitterMaterialFluid material = (ObiEmitterMaterialFluid)emitter.gameObject.GetComponent<ObiEmitter>().EmitterMaterial;
             material.atmosphericPressure = (float)10;
-            emitter.Solver.UpdateActiveParticles();
+            emitter.Solver.UpdateActiveParticles();*/
             rotateCount++;
-            if (rotateCount > 200)
+            if (rotateCount > 100)
             {
-                gameObject.transform.GetChild(0).gameObject.transform.position = gameObject.transform.position;
-                gameObject.transform.GetChild(0).gameObject.SetActive(true);
+                gameObject.transform.GetChild(1).gameObject.transform.position = gameObject.transform.position;
+                gameObject.transform.GetChild(1).gameObject.SetActive(true);
                 emitter.enabled = false;
-                for (int i = 1; i < gameObject.transform.childCount; i++)
+                for (int i = 2; i < gameObject.transform.childCount; i++)
                 {
                     Destroy(gameObject.transform.GetChild(i).gameObject);
-                    material.atmosphericPressure = (float)0;
-                    emitter.Solver.UpdateActiveParticles();
+                    /*material.atmosphericPressure = (float)0;
+                    emitter.Solver.UpdateActiveParticles();*/
                 }
             }
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    /*private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.GetComponent<CanMix>() != null)
         {
@@ -67,7 +67,9 @@ public class CanMixedIn : ToolCharacteristic {
             material.atmosphericPressure = (float)0;
             emitter.Solver.UpdateActiveParticles();
         }
-    }
+    }*/
+
+
 
 
 
