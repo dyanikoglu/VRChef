@@ -4,37 +4,37 @@ using UnityEngine;
 
 namespace RecipeModule
 {
-    public class Fry : Action
+    public class Boil : Action
     {
-        public enum FryType
+        public enum BoilType
         {
-            Overfried, Fried, Underdone
+            Overboiled, Boiled, Underdone
         }
 
         private float requiredHeat;
         private float requiredTime;
-        private FryType fryType;
+        private BoilType boilType;
 
-        public Fry() : base()
+        public Boil() : base()
         {
-            this.actionType = ActionType.Cook;
+            this.actionType = ActionType.Boil;
             requiredHeat = 0;
             requiredTime = 0;
-            fryType = 0;
+            boilType = 0;
         }
 
-        public Fry(int stepNumber, Food foodToBeFried, float requiredHeat, float requiredTime, FryType fryType) : base(ActionType.Fry, stepNumber, foodToBeFried)
+        public Boil(int stepNumber, Food foodToBeBoiled, float requiredHeat, float requiredTime, BoilType boilType) : base(ActionType.Boil, stepNumber, foodToBeBoiled)
         {
             this.requiredHeat = requiredHeat;
             this.requiredTime = requiredTime;
-            this.fryType = fryType;
+            this.boilType = boilType;
 
             DeriveResultedFood();
         }
 
         new private void DeriveResultedFood()
         {
-            resultedFood.SetIsFried(true);
+            resultedFood.SetIsBoiled(true);
         }
 
         #region Mutators
@@ -59,14 +59,14 @@ namespace RecipeModule
             this.requiredHeat = requiredHeat;
         }
 
-        public FryType GetFryType()
+        public BoilType GetBoilType()
         {
-            return fryType;
+            return boilType;
         }
 
-        public void SetCookType(FryType fryType)
+        public void SetBoilType(BoilType boilType)
         {
-            this.fryType = fryType;
+            this.boilType = boilType;
         }
 
         #endregion

@@ -6,10 +6,19 @@ namespace RecipeModule
 {
     public class Peel : Action
     {
-
-        public Peel()
+        public Peel(): base()
         {
             this.actionType = ActionType.Peel;
+        }
+
+        public Peel(int stepNumber, Food foodToBePeeled) : base(ActionType.Peel, stepNumber, foodToBePeeled)
+        {
+            DeriveResultedFood();
+        }
+
+        new protected void DeriveResultedFood()
+        {
+            resultedFood.SetIsPeeled(true);
         }
     }
 }

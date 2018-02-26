@@ -29,22 +29,12 @@ namespace RecipeModule
             this.pieceVolumeSize = pieceVolumeSize;
             this.maxPieceVolume = CalculateMaxPieceVolume(foodToBeChopped.GetPrefab());
 
-            DeriveResultedFoods();
+            DeriveResultedFood();
         }
 
-        /*
-         * Derives new food object after the action
-         */
-        private void DeriveResultedFoods()
+        new private void DeriveResultedFood()
         {
-            Food choppedFood = new Food(involvedFood);
-            choppedFood.SetIsChopped(true);
-            choppedFood.SetActionDerivedBy(this);
-
-            involvedFood.SetNext(choppedFood);
-            choppedFood.SetPrev(involvedFood);
-
-            this.resultedFood = choppedFood;
+            resultedFood.SetIsChopped(true);
         }
 
         /*

@@ -6,10 +6,19 @@ namespace RecipeModule
 {
     public class Break : Action
     {
-
-        public Break()
+        public Break() : base()
         {
             this.actionType = ActionType.Break;
+        }
+
+        public Break(int stepNumber, Food foodToBeBroken) : base(ActionType.Break, stepNumber, foodToBeBroken)
+        {
+            DeriveResultedFood();
+        }
+
+        new protected void DeriveResultedFood()
+        {
+            resultedFood.SetIsBroken(true);
         }
     }
 }

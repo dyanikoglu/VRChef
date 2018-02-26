@@ -29,19 +29,12 @@ namespace RecipeModule
             this.requiredTime = requiredTime;
             this.cookType = cookType;
 
-            DeriveResultedFoods();
+            DeriveResultedFood();
         }
 
-        private void DeriveResultedFoods()
+        new private void DeriveResultedFood()
         {
-            Food cookedFood = new Food(involvedFood);
-            cookedFood.SetIsCooked(true);
-            cookedFood.SetActionDerivedBy(this);
-
-            involvedFood.SetNext(cookedFood);
-            cookedFood.SetPrev(involvedFood);
-
-            this.resultedFood = cookedFood;
+            resultedFood.SetIsCooked(true);
         }
 
         #region Mutators

@@ -16,6 +16,8 @@ namespace RecipeModule
         private bool isBroken;
         private bool isSmashed;
         private bool isBoiled;
+        private bool isMixed;
+        private bool isPutTogether;
 
         private Food next;
         private Food prev;
@@ -32,6 +34,8 @@ namespace RecipeModule
             isBroken = false;
             isSmashed = false;
             isBoiled = false;
+            isMixed = false;
+            isPutTogether = false;
 
             actionDerivedBy = null;
 
@@ -51,6 +55,8 @@ namespace RecipeModule
             isBroken = f.isBroken;
             isSmashed = f.isSmashed;
             isBoiled = f.isBoiled;
+            isMixed = f.isMixed;
+            isPutTogether = f.isPutTogether;
 
             actionDerivedBy = null;
 
@@ -70,6 +76,8 @@ namespace RecipeModule
             isBroken = false;
             isSmashed = false;
             isBoiled = false;
+            isMixed = false;
+            isPutTogether = false;
 
             actionDerivedBy = null;
 
@@ -139,6 +147,66 @@ namespace RecipeModule
         public bool GetIsCooked()
         {
             return isCooked;
+        }
+
+        public void SetIsPeeled(bool isPeeled)
+        {
+            this.isPeeled = isPeeled;
+        }
+
+        public bool GetIsPeeled()
+        {
+            return isPeeled;
+        }
+
+        public void SetIsSqueezed(bool isSqueezed)
+        {
+            this.isSqueezed = isSqueezed;
+        }
+
+        public bool GetIsSquuezed()
+        {
+            return isSqueezed;
+        }
+
+        public void SetIsSmashed(bool isSmashed)
+        {
+            this.isSmashed = isSmashed;
+        }
+
+        public bool GetIsSmashed()
+        {
+            return isSmashed;
+        }
+
+        public void SetIsFried(bool isFried)
+        {
+            this.isFried = isFried;
+        }
+
+        public bool GetIsFried()
+        {
+            return isFried;
+        }
+
+        public void SetIsBroken(bool isBroken)
+        {
+            this.isBroken = isBroken;
+        }
+
+        public bool GetIsBroken()
+        {
+            return isBroken;
+        }
+
+        public void SetIsBoiled(bool isBoiled)
+        {
+            this.isBoiled = isBoiled;
+        }
+
+        public bool GetIsBoiled()
+        {
+            return isBoiled;
         }
 
         #endregion

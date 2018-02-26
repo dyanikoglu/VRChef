@@ -6,6 +6,19 @@ namespace RecipeModule
 {
     public class Squeeze : Action
     {
-        
+        public Squeeze() : base()
+        {
+            this.actionType = ActionType.Squeeze;
+        }
+
+        public Squeeze(int stepNumber, Food foodToBeSqueezed) : base(ActionType.Squeeze, stepNumber, foodToBeSqueezed)
+        {
+            DeriveResultedFood();
+        }
+
+        new protected void DeriveResultedFood()
+        {
+            resultedFood.SetIsSqueezed(true);
+        }
     }
 }

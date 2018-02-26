@@ -8,7 +8,7 @@ namespace RecipeModule
     {
         public enum ActionType
         {
-            Fry, Chop, Peel, Cook, Squeeze, Break, Smash, Mix, PutTogether
+            Fry, Chop, Peel, Cook, Squeeze, Break, Smash, Mix, PutTogether, Boil
         }
 
         protected Food involvedFood;
@@ -29,6 +29,19 @@ namespace RecipeModule
             this.actionType = actionType;
             this.stepNumber = stepNumber;
             this.involvedFood = involvedFood;
+
+            DeriveResultedFood();
+        }
+
+        protected void DeriveResultedFood()
+        {
+            Food derivedFood = new Food(involvedFood);
+            derivedFood.SetActionDerivedBy(this);
+
+            involvedFood.SetNext(derivedFood);
+            derivedFood.SetPrev(involvedFood);
+
+            this.resultedFood = derivedFood;
         }
 
         #region Mutators

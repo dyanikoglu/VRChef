@@ -6,9 +6,19 @@ namespace RecipeModule
 {
     public class Smash : Action
     {
-        public Smash()
+        public Smash() : base()
         {
             this.actionType = ActionType.Smash;
+        }
+
+        public Smash(int stepNumber, Food foodToBeSmashed) : base(ActionType.Smash, stepNumber, foodToBeSmashed)
+        {
+            DeriveResultedFood();
+        }
+
+        new protected void DeriveResultedFood()
+        {
+            resultedFood.SetIsSmashed(true);
         }
     }
 }
