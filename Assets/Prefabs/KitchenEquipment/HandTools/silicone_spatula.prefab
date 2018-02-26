@@ -60,8 +60,6 @@ GameObject:
   - component: {fileID: 114178697518410474}
   - component: {fileID: 114478874632539900}
   - component: {fileID: 114663075690770314}
-  - component: {fileID: 114829666757600370}
-  - component: {fileID: 114330994316984744}
   m_Layer: 0
   m_Name: silicone_spatula
   m_TagString: Untagged
@@ -203,7 +201,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -262,21 +260,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18055ba762aa3994f9c10208cd088bc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114330994316984744
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1722249322518450}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6757b231cedd544c583ef8aeaf773b2a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  material: {fileID: 0}
-  phase: 0
-  thickness: 0
-  unityCollider: {fileID: 65506585812259570}
 --- !u!114 &114478874632539900
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -316,15 +299,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98fb32bb7b333f644a5f39e536b46f01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114829666757600370
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1722249322518450}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62359d80fdc0e4315ab6331b78ec5b90, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  kinematicForParticles: 0

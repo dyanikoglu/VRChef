@@ -6,7 +6,7 @@ public class FoodStatus : MonoBehaviour {
     private bool _isChoppedPiece = false;
     private bool _isFried = false;
     private bool _isSqueezed = false;
-    private bool _isPeeled = false;
+    public bool _isPeeled = false;
     private bool _isHalfSmashed = false;
     private bool _isBurnedAfterFrying = false;
 

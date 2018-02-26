@@ -13,6 +13,7 @@ public class CanBeSmashed : FoodCharacteristic {
     bool isHalfSmashedAll = true;
     public bool iscollidedWithSmasher = false;
     public bool isCollidedWithBowl = false;
+    public GameObject bowl;
     void Start()
     {
         smashCount = 0;
@@ -21,14 +22,16 @@ public class CanBeSmashed : FoodCharacteristic {
 
     void OnCollisionEnter(Collision col)
     {
-        if (col.gameObject.GetComponent<CanSmash>() != null)
+        if (!iscollidedWithSmasher && col.gameObject.GetComponent<CanSmash>() != null)
         {
             iscollidedWithSmasher = true;
         }
-        if (col.gameObject.GetComponent<CanMixedIn>() != null)
+        if (!isCollidedWithBowl && col.gameObject.GetComponent<CanMixedIn>() != null)
         {
             isCollidedWithBowl = true;
+            bowl = col.gameObject;
         }
+        
         if (col.gameObject.GetComponent<CanSmash>() != null && isBoiled && gameObject.GetComponent<FoodStatus>().GetIsPeeled())
         {
             AudioSource.PlayClipAtPoint(smashSound, transform.position);
@@ -54,15 +57,19 @@ public class CanBeSmashed : FoodCharacteristic {
                 else
                 {
                     CanBeSmashed [] smashedObjects = FindObjectsOfType<CanBeSmashed>();
+                    bool destroyed = false;
                     foreach (CanBeSmashed smashedObject in smashedObjects)
                     {
                         if (smashedObject.isCollidedWithBowl && smashedObject.iscollidedWithSmasher)
                         {
                             Destroy(smashedObject.smashable);
+                            destroyed = true;
                         }
                     }
-                    _smashed = Instantiate(smashed, smashable.transform.position, smashed.transform.rotation);
-        
+                    if (destroyed)
+                    {
+                        _smashed = Instantiate(smashed, bowl.transform.position, smashed.transform.rotation);
+                    }
                 }
             }
 

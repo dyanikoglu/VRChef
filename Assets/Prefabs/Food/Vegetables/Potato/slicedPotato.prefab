@@ -56,6 +56,7 @@ GameObject:
   - component: {fileID: 65564727840747394}
   - component: {fileID: 114597698446408308}
   - component: {fileID: 54672751556411518}
+  - component: {fileID: 114632376245546484}
   m_Layer: 0
   m_Name: slicedPotato
   m_TagString: Untagged
@@ -227,4 +228,16 @@ MonoBehaviour:
   smashable: {fileID: 1336879228730784}
   smashed: {fileID: 1835790101553934, guid: 27ece1bddb1233f4a80d9199575e5ac9, type: 2}
   smashSound: {fileID: 8300000, guid: 52d2c0298aa8e4f45baddc37b0a43422, type: 3}
-  smashBowl: {fileID: 0}
+  iscollidedWithSmasher: 0
+  isCollidedWithBowl: 0
+--- !u!114 &114632376245546484
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1336879228730784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0580f3b8e0fd90441b1e89c39c8d522f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
