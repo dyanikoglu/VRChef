@@ -8,6 +8,45 @@ namespace RecipeModule
     {
         private List<Food> _initialFoods;
         private List<Action> _actions;
+        private int totalStepCount = 0;
+
+        public void ReorderActions()
+        {
+            List<Action> newActions = new List<Action>(_actions.Count);
+            
+            foreach(Action a in _actions)
+            {
+                newActions.Insert(a.GetStepNumber(), a);
+            }
+
+            this._actions = newActions;
+        }
+
+        public void RemoveAction(Action a)
+        {
+            if(_initialFoods.Contains(a.GetInvolvedFood())) {
+                _initialFoods.Remove(a.GetInvolvedFood());
+            }
+
+            Food f = a.GetInvolvedFood();
+
+            while(f != null)
+            {
+                f = a.GetInvolvedFood().GetNext();
+
+                if (a.GetInvolvedFood().GetNext() != null)
+                {
+                    a.GetInvolvedFood().GetNext().SetPrev(null);
+                }
+
+                if (a.GetInvolvedFood().GetPrev() != null)
+                {
+                    a.GetInvolvedFood().GetPrev().SetNext(null);
+                }
+            }
+
+            _actions.Remove(a);
+        }
 
         public Action DescribeNewChopAction(int stepNumber, GameObject foodObject, int requiredPieceCount, Chop.PieceVolumeSize pieceVolumeSize)
         {
@@ -18,6 +57,8 @@ namespace RecipeModule
 
             _actions.Add(action);
 
+            totalStepCount++;
+
             return action;
         }
 
@@ -26,6 +67,8 @@ namespace RecipeModule
             Chop action = new Chop(stepNumber, foodToBeChopped, requiredPieceCount, pieceVolumeSize);
 
             _actions.Add(action);
+
+            totalStepCount++;
 
             return action;
         }
@@ -39,6 +82,8 @@ namespace RecipeModule
 
             _actions.Add(action);
 
+            totalStepCount++;
+
             return action;
         }
 
@@ -47,6 +92,8 @@ namespace RecipeModule
             Cook action = new Cook(stepNumber, foodToBeCooked, requiredHeat, requiredTime, cookType);
 
             _actions.Add(action);
+
+            totalStepCount++;
 
             return action;
         }
@@ -60,6 +107,8 @@ namespace RecipeModule
 
             _actions.Add(action);
 
+            totalStepCount++;
+
             return action;
         }
 
@@ -68,6 +117,8 @@ namespace RecipeModule
             Peel action = new Peel(stepNumber, foodToBePeeled);
 
             _actions.Add(action);
+
+            totalStepCount++;
 
             return action;
         }
@@ -81,6 +132,8 @@ namespace RecipeModule
 
             _actions.Add(action);
 
+            totalStepCount++;
+
             return action;
         }
 
@@ -89,6 +142,8 @@ namespace RecipeModule
             Squeeze action = new Squeeze(stepNumber, foodToBePeeled);
 
             _actions.Add(action);
+
+            totalStepCount++;
 
             return action;
         }
@@ -102,6 +157,8 @@ namespace RecipeModule
 
             _actions.Add(action);
 
+            totalStepCount++;
+
             return action;
         }
 
@@ -110,6 +167,8 @@ namespace RecipeModule
             Smash action = new Smash(stepNumber, foodToBePeeled);
 
             _actions.Add(action);
+
+            totalStepCount++;
 
             return action;
         }
@@ -123,6 +182,8 @@ namespace RecipeModule
 
             _actions.Add(action);
 
+            totalStepCount++;
+
             return action;
         }
         
@@ -131,6 +192,8 @@ namespace RecipeModule
             Fry action = new Fry(stepNumber, foodToBeFried, requiredHeat, requiredTime, fryType);
 
             _actions.Add(action);
+
+            totalStepCount++;
 
             return action;
         }
@@ -144,6 +207,8 @@ namespace RecipeModule
 
             _actions.Add(action);
 
+            totalStepCount++;
+
             return action;
         }
 
@@ -152,6 +217,8 @@ namespace RecipeModule
             Break action = new Break(stepNumber, foodToBeBroken);
 
             _actions.Add(action);
+
+            totalStepCount++;
 
             return action;
         }
@@ -165,6 +232,8 @@ namespace RecipeModule
 
             _actions.Add(action);
 
+            totalStepCount++;
+
             return action;
         }
 
@@ -174,8 +243,10 @@ namespace RecipeModule
 
             _actions.Add(action);
 
+            totalStepCount++;
+
             return action;
-        }
+        }  
 
         #region Mutators
 
@@ -187,6 +258,11 @@ namespace RecipeModule
         public List<Action> GetActions()
         {
             return _actions;
+        }
+
+        public int GetTotalStepCount()
+        {
+            return totalStepCount;
         }
 
         #endregion
