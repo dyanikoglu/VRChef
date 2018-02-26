@@ -8,23 +8,44 @@ namespace RecipeModule
     {
         public enum ActionType
         {
-            Fry, Chop, Peel, Cook, Break, Smash, Mix, PutTogether
+            Fry, Chop, Peel, Cook, Squeeze, Break, Smash, Mix, PutTogether
         }
 
-        protected List<InvolvedFood> involvedFoods;
+        protected Food involvedFood;
+        protected Food resultedFood;
         protected ActionType actionType;
         protected int stepNumber;
 
+        public Action()
+        {
+            involvedFood = null;
+            resultedFood = null;
+            actionType = 0;
+            stepNumber = -1;
+        }
+
+        public Action(ActionType actionType, int stepNumber, Food involvedFood)
+        {
+            this.actionType = actionType;
+            this.stepNumber = stepNumber;
+            this.involvedFood = involvedFood;
+        }
+
         #region Mutators
+
+        public Food GetResultedFood()
+        {
+            return resultedFood;
+        }
+
+        public Food GetInvolvedFood()
+        {
+            return involvedFood;
+        }
 
         public ActionType GetActionType()
         {
             return actionType;
-        }
-
-        public int GetInvolvedFoodCount()
-        {
-            return involvedFoods.Count;
         }
 
         public void SetActionType(ActionType actionType)
@@ -40,11 +61,6 @@ namespace RecipeModule
         public void SetStepNumber(int stepNumber)
         {
             this.stepNumber = stepNumber;
-        }
-
-        public List<InvolvedFood> GetInvolvedFoods()
-        {
-            return involvedFoods;
         }
 
         #endregion

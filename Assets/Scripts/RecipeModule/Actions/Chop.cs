@@ -15,19 +15,36 @@ namespace RecipeModule
             Small, Middle, Big
         }
 
-        public Chop()
+        public Chop() : base()
         {
             this.actionType = ActionType.Chop;
             this.requiredPieceCount = 0;
+            this.pieceVolumeSize = 0;
+            this.maxPieceVolume = 0;
         }
 
-        public Chop(int requiredPieceCount, PieceVolumeSize pieceVolumeSize, InvolvedFood foodToBeChopped)
+        public Chop(int stepNumber, Food foodToBeChopped, int requiredPieceCount, PieceVolumeSize pieceVolumeSize) : base(ActionType.Chop, stepNumber, foodToBeChopped)
         {
-            this.actionType = ActionType.Chop;
             this.requiredPieceCount = requiredPieceCount;
             this.pieceVolumeSize = pieceVolumeSize;
-            this.involvedFoods.Add(foodToBeChopped);
             this.maxPieceVolume = CalculateMaxPieceVolume(foodToBeChopped.GetPrefab());
+
+            DeriveResultedFoods();
+        }
+
+        /*
+         * Derives new food object after the action
+         */
+        private void DeriveResultedFoods()
+        {
+            Food choppedFood = new Food(involvedFood);
+            choppedFood.SetIsChopped(true);
+            choppedFood.SetActionDerivedBy(this);
+
+            involvedFood.SetNext(choppedFood);
+            choppedFood.SetPrev(involvedFood);
+
+            this.resultedFood = choppedFood;
         }
 
         /*
