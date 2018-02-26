@@ -29,6 +29,7 @@ GameObject:
   - component: {fileID: 114151844786433544}
   - component: {fileID: 114722390234876610}
   - component: {fileID: 114561217806177198}
+  - component: {fileID: 114930374344006048}
   m_Layer: 9
   m_Name: ChickenFillet
   m_TagString: Untagged
@@ -43,7 +44,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1368941182478898}
   m_LocalRotation: {x: 0.00000011795295, y: -0.000000081390716, z: -0.7341979, w: 0.6789355}
-  m_LocalPosition: {x: -0.3088264, y: 1.1849406, z: 1.067787}
+  m_LocalPosition: {x: -0.84, y: 1.105, z: 0.359}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -142,14 +143,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectTexture: {fileID: 0}
+  myMaterials: []
+  myMaterial: {fileID: 0}
   shaderWithBlending: {fileID: 4800000, guid: 073aa28c7c0f1de4bbdc031476b16c3d, type: 3}
   friedTexture: {fileID: 2800000, guid: 9f029069ad821ca4ea0365aa5956950b, type: 3}
   fryingTimeInSeconds: 5
-  isFried: 0
   fryingStarted: 0
   fryingStopped: 0
   onCanFry: 0
   canFryObject: {fileID: 0}
+  friedMaterial: {fileID: 2100000, guid: ba8db8d100304094a93141c34487ab8e, type: 2}
 --- !u!114 &114561217806177198
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -196,7 +199,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 245aa739fea004bcaa2da96fef6f8599, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  capMaterial: {fileID: 2100000, guid: 25e3958cc58c84f41b7a9050cdbcccc3, type: 2}
+  capMaterial: {fileID: 2100000, guid: bedb529becf3f154588d9bb35690cf2d, type: 2}
+  minKnifeVelocityToChop: 0.003
   sliceTimeout: 0.5
   currentlyChoppable: 1
   colliderSkinWidth: 0.001
@@ -206,10 +210,20 @@ MonoBehaviour:
   rootObjectAfterSlice: {fileID: 1585260972204234, guid: 5f8fbf704cd6e0d4a92f39272ea99503,
     type: 2}
   choppingSoundBoard: []
-  smallerAllowedPieceVolume: 0.0001
   maximumChopCount: 32
   spawnFluid: 0
   spawnFluidColor: {r: 1, g: 1, b: 1, a: 1}
+--- !u!114 &114930374344006048
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1368941182478898}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0580f3b8e0fd90441b1e89c39c8d522f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114948673530446998
 MonoBehaviour:
   m_ObjectHideFlags: 1

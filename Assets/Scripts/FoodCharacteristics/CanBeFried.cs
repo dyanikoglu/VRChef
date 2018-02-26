@@ -1,11 +1,8 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CanBeFried : FoodCharacteristic
 {
-
-    [SerializeField]
     public Texture objectTexture;
 
     public Material[] myMaterials;
@@ -16,9 +13,7 @@ public class CanBeFried : FoodCharacteristic
     public Texture friedTexture;
 
     public float fryingTimeInSeconds;
-    [SerializeField]
 
-    //public bool isFried;
     public bool fryingStarted;
     public bool fryingStopped;
     public bool onCanFry;
@@ -29,6 +24,7 @@ public class CanBeFried : FoodCharacteristic
     private MaterialPropertyBlock propertyBlock;
 
     public Material friedMaterial;
+    public Color burnedColor;
 
     private void Awake()
     {
@@ -37,9 +33,10 @@ public class CanBeFried : FoodCharacteristic
         propertyBlock = new MaterialPropertyBlock();
 
         fryingStarted = false;
-        //isFried = false;
         onCanFry = false;
         fryingStopped = false;
+
+        friedMaterial.SetFloat("_WetWeight", 0);
     }
 
     // Use this for initialization
@@ -68,10 +65,8 @@ public class CanBeFried : FoodCharacteristic
     {
         if (collision.gameObject.GetComponent<CanFry>())
         {
-            //Debug.Log("start frying");
             onCanFry = true;
             canFryObject = collision.gameObject;
-            //StartFrying();
         }
     }
 
@@ -79,9 +74,7 @@ public class CanBeFried : FoodCharacteristic
     {
         if (collision.gameObject.GetComponent<CanFry>())
         {
-            //Debug.Log("stop frying");
             onCanFry = false;
-            //StartFrying();
         }
     }
 
@@ -89,10 +82,13 @@ public class CanBeFried : FoodCharacteristic
     {
         if (onCanFry)
         {
-            //Debug.Log(!isFried + " - " + !fryingStarted + " - " + canFryObject.GetComponent<CanFry>().getCanFry());
-            if(!GetIsFried() && !fryingStarted && canFryObject.GetComponent<CanFry>().GetCanFry())
+            if(!GetComponent<FoodStatus>().GetIsFried() && !fryingStarted && canFryObject.GetComponent<CanFry>().GetCanFry())
             {
                 StartFrying();
+            }
+            else if (!canFryObject.GetComponent<CanFry>().GetCanFry())
+            {
+                StopFrying();
             }
         }
         else
@@ -109,8 +105,8 @@ public class CanBeFried : FoodCharacteristic
     {
         int i = 0;
         myMaterials = new Material[GetComponent<Renderer>().materials.Length];
-        Debug.Log(GetComponent<Renderer>().materials.Length);
-        foreach(Material m in GetComponent<Renderer>().materials)
+
+        foreach (Material m in GetComponent<Renderer>().materials)
         {
             myMaterials[i] = m;
 
@@ -120,22 +116,12 @@ public class CanBeFried : FoodCharacteristic
             myMaterials[i].SetTexture("_Texture2", friedTexture);
             myMaterials[i].SetFloat("_Blend", 0f);
             i++;
-
         }
 
-        /*
-         // replace shader with one can blend textures
-        myMaterial.shader = shaderWithBlending;
-
-        // set textures of object. (One for initial state, one for fried state)
-        myMaterial.SetTexture("_MainTex", objectTexture);
-        myMaterial.SetTexture("_Texture2", friedTexture);
-        myMaterial.SetFloat("_Blend", 0f);
-        */
+        GetComponent<Renderer>().sharedMaterials = myMaterials;
 
         // to animate object's frying process
         StartCoroutine("Fry");
-        Debug.Log("start frying");
     }
 
     public void StopFrying()
@@ -143,14 +129,7 @@ public class CanBeFried : FoodCharacteristic
         // to stop object's frying process
         StopCoroutine("Fry");
         fryingStopped = true;
-
-        /* modify */
-
         fryingStarted = false;
-
-        /* modify */
-
-        Debug.Log("stop frying");
     }
 
     IEnumerator Fry()
@@ -162,37 +141,27 @@ public class CanBeFried : FoodCharacteristic
          * <Method Summary>
          */
         fryingStarted = true;
-
-        //blend = myMaterials[0].GetFloat("_Blend");
+        float fadeValue = 0f;
 
         while (blend < 1f)
         {
-            float fadeValue = Time.deltaTime / fryingTimeInSeconds;
+            fadeValue = Time.deltaTime / fryingTimeInSeconds;
             blend += fadeValue;
 
             for (int i = 0; i < myMaterials.Length; i++)
             {
                 myMaterials[i].SetFloat("_Blend", blend);
+
+                if (GetComponent<CanBeChopped>())
+                {
+                    GetComponent<CanBeChopped>().capMaterial = myMaterials[i];
+                }
             }
             yield return new WaitForSeconds(fadeValue);
 
         }
-        /*
-        float blend = myMaterial.GetFloat("_Blend");
-        while (blend < 1f)
-        {
-            //myMaterial.SetFloat("_Blend", blend);
-            float fadeValue = Time.deltaTime / fryingTimeInSeconds;
-            blend += fadeValue;
 
-            GetComponent<Renderer>().GetPropertyBlock(propertyBlock);
-            propertyBlock.SetFloat("_Blend", blend);
-            GetComponent<Renderer>().SetPropertyBlock(propertyBlock);
-
-            yield return new WaitForSeconds(fadeValue);
-        }
-        */
-        SetIsFried(true);
+        GetComponent<FoodStatus>().SetIsFried(true);
 
         // not only need to change myMaterial but also change GetComponent...
         for (int i = 0; i < myMaterials.Length; i++)
@@ -208,7 +177,29 @@ public class CanBeFried : FoodCharacteristic
             GetComponent<CanBeChopped>().capMaterial = friedMaterial;
         }
 
+        yield return new WaitForSeconds(3f);
 
+
+        for (int i = 0; i < GetComponent<Renderer>().sharedMaterials.Length; i++)
+        {
+            GetComponent<Renderer>().sharedMaterials[i].SetColor("_WetTint", burnedColor);
+        }
+
+        float burnedLevel = 0f;
+
+        while(burnedLevel < 1f)
+        {
+            fadeValue = Time.deltaTime / fryingTimeInSeconds;
+            burnedLevel += fadeValue;
+            if(burnedLevel > 0.5f)
+            {
+                GetComponent<FoodStatus>().SetIsBurned(true);
+            }
+            for (int i = 0; i < GetComponent<Renderer>().sharedMaterials.Length; i++)
+            {
+                GetComponent<Renderer>().sharedMaterials[i].SetFloat("_WetWeight", burnedLevel);
+            }
+            yield return new WaitForSeconds(fadeValue);
+        }
     }
-
 }

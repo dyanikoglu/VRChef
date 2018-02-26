@@ -30,7 +30,7 @@
    float3 t1 = tex2D (_MainTex, IN.uv_MainTex).rgb;
    float3 t2 = tex2D (_Texture2, IN.uv_MainTex).rgb;
    o.Albedo = lerp(t1, t2, _Blend);
-   o.Normal = UnpackNormal (tex2D (_BumpMap, IN.uv_BumpMap));
+   //o.Normal = UnpackNormal (tex2D (_BumpMap, IN.uv_BumpMap));
  }
  ENDCG
 

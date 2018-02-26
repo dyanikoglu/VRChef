@@ -8,7 +8,7 @@ Material:
   m_PrefabInternal: {fileID: 0}
   m_Name: ChickenFillet_Fried
   m_Shader: {fileID: 4800000, guid: 12c5a1911ed698d45920f1c6fa4d6d57, type: 3}
-  m_ShaderKeywords: _DETAIL_MULX2 _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A
+  m_ShaderKeywords: _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A _WETNESS_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -109,7 +109,7 @@ Material:
     - _DetailMaskStrength: 1
     - _DetailMode: 0
     - _DetailNormalMapScale: 1
-    - _DetailT: 1
+    - _DetailT: 0
     - _DetailWeight: 1
     - _Dissolve: 0
     - _DissolveCutoff: 0
@@ -150,7 +150,7 @@ Material:
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SpecularTint: 0
-    - _Specularity: 1
+    - _Specularity: 0
     - _SrcBlend: 1
     - _TeamColor: 0
     - _TeamColorMasksAsTint: 0
@@ -162,7 +162,7 @@ Material:
     - _WetNormalMapUV: 0
     - _WetRoughness: 0.9
     - _WetWeight: 0
-    - _WetnessProperties: 0
+    - _WetnessProperties: 1
     - _ZWrite: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
@@ -181,4 +181,4 @@ Material:
     - _TeamColorMasks: {r: 1, g: 1, b: 1, a: 0}
     - _WetMaskVelocity: {r: 0, g: 0, b: 0, a: 0}
     - _WetNormalMapVelocity: {r: 0, g: 0, b: 0, a: 0}
-    - _WetTint: {r: 1, g: 1, b: 1, a: 1}
+    - _WetTint: {r: 0.3372549, g: 0.22745098, b: 0.22745098, a: 1}
