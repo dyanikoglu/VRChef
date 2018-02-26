@@ -3133,6 +3133,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canBoil: 0
+  hasFluid: 0
 --- !u!1 &376389613
 GameObject:
   m_ObjectHideFlags: 0
@@ -3647,6 +3648,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canBoil: 0
+  hasFluid: 0
 --- !u!114 &471575986
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4552,11 +4554,6 @@ Prefab:
     - target: {fileID: 4589549363474276, guid: 1bfddc75aaaad8d499b97e7695f2e886, type: 2}
       propertyPath: m_RootOrder
       value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 114303832635735600, guid: 1bfddc75aaaad8d499b97e7695f2e886,
-        type: 2}
-      propertyPath: grabAttachMechanicScript
-      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1bfddc75aaaad8d499b97e7695f2e886, type: 2}
@@ -9723,7 +9720,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4924106221939102, guid: 861b350be6c87134ea773eb0c99d53ed, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 1.029
+      value: 0.156
       objectReference: {fileID: 0}
     - target: {fileID: 4924106221939102, guid: 861b350be6c87134ea773eb0c99d53ed, type: 2}
       propertyPath: m_LocalPosition.y
@@ -9731,7 +9728,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4924106221939102, guid: 861b350be6c87134ea773eb0c99d53ed, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -0.099
+      value: 0.047
       objectReference: {fileID: 0}
     - target: {fileID: 4924106221939102, guid: 861b350be6c87134ea773eb0c99d53ed, type: 2}
       propertyPath: m_LocalRotation.x
@@ -9752,11 +9749,6 @@ Prefab:
     - target: {fileID: 4924106221939102, guid: 861b350be6c87134ea773eb0c99d53ed, type: 2}
       propertyPath: m_RootOrder
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 54224087229673490, guid: 861b350be6c87134ea773eb0c99d53ed,
-        type: 2}
-      propertyPath: m_Mass
-      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 861b350be6c87134ea773eb0c99d53ed, type: 2}
@@ -11501,7 +11493,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4380485524605262, guid: f9c77eb89e3282c46af01b4ffbc2b962, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 1.095
+      value: 0.024
       objectReference: {fileID: 0}
     - target: {fileID: 4380485524605262, guid: f9c77eb89e3282c46af01b4ffbc2b962, type: 2}
       propertyPath: m_LocalPosition.y
@@ -11509,7 +11501,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4380485524605262, guid: f9c77eb89e3282c46af01b4ffbc2b962, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 0.137
+      value: -0.034
       objectReference: {fileID: 0}
     - target: {fileID: 4380485524605262, guid: f9c77eb89e3282c46af01b4ffbc2b962, type: 2}
       propertyPath: m_LocalRotation.x
@@ -11855,7 +11847,6 @@ GameObject:
   - component: {fileID: 1944673309}
   - component: {fileID: 1944673308}
   - component: {fileID: 1944673307}
-  - component: {fileID: 1944673311}
   m_Layer: 0
   m_Name: desk
   m_TagString: Untagged
@@ -11877,7 +11868,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: a8e9150b77c0b534da8475c0ea9af051, type: 2}
+  - {fileID: 2100000, guid: f3208d5fbffe36f40952c45a04526195, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -11929,21 +11920,6 @@ Transform:
   m_Father: {fileID: 840502762}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
---- !u!114 &1944673311
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1944673306}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6757b231cedd544c583ef8aeaf773b2a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  material: {fileID: 0}
-  phase: 0
-  thickness: 0
-  unityCollider: {fileID: 1944673308}
 --- !u!1 &1948148113
 GameObject:
   m_ObjectHideFlags: 0
@@ -13466,7 +13442,7 @@ Prefab:
     - target: {fileID: 224000012623161658, guid: d46cf6b1ad9d84a48ae7548a2a6b41b3,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 816
+      value: 972
       objectReference: {fileID: 0}
     - target: {fileID: 224000012623161658, guid: d46cf6b1ad9d84a48ae7548a2a6b41b3,
         type: 2}

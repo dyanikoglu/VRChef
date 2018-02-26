@@ -51,6 +51,7 @@ public class HotPlateOven : MonoBehaviour {
     {
         if (collision.gameObject.GetComponent<CanFry>())
         {
+            //TODO: is there a contact 0?
             string name = collision.contacts[0].thisCollider.name;
             int index = Int32.Parse(name[name.Length - 1] + "");
             canFryObjectsOnMe[index] = collision.gameObject;
@@ -61,6 +62,7 @@ public class HotPlateOven : MonoBehaviour {
     {
         if (collision.gameObject.GetComponent<CanFry>())
         {
+            //TODO: is there a contact 0?
             string name = collision.contacts[0].thisCollider.name;
             int index = Int32.Parse(name[name.Length - 1]+"");
             canFryObjectsOnMe[index] = null;

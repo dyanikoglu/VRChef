@@ -5,6 +5,8 @@ using UnityEngine;
 public class CanBoil : FoodCharacteristic {
 
     public bool canBoil = false;
+    [SerializeField]
+    bool hasFluid = false;
 
     // Use this for initialization
     void Start () {
@@ -13,22 +15,13 @@ public class CanBoil : FoodCharacteristic {
 
     // Update is called once per frame
     void Update () {
-        /*if (canBoil)
-        {
-            GetComponent<Rigidbody>().isKinematic = true;
-            GetComponent<MeshCollider>().convex = false;
-        }*/
-        /*meshCollider = gameObject.AddComponent<MeshCollider>() as MeshCollider;
-        meshCollider.cookingOptions = MeshColliderCookingOptions.InflateConvexMesh;
-        meshCollider.skinWidth = 0.01f;
-        meshCollider.convex = true;*/
+
     }
 
     private void OnCollisionEnter(Collision collision)
     {
         if (!canBoil && collision.transform.parent)
         {
-            //Debug.Log("enter " + collision.collider.name);
             canBoil = OnOven(collision.collider.transform.parent.gameObject, collision.collider.transform.parent.transform.parent);
         }
         if (canBoil)
@@ -56,8 +49,11 @@ public class CanBoil : FoodCharacteristic {
 
             }
         }
-        Debug.Log("onOven: " + isPlate);
         return isPlate;
     }
 
+    public void SetHasFluid(bool flag)
+    {
+        hasFluid = flag;
+    }
 }

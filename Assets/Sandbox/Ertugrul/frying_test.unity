@@ -113,6 +113,22 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &24154240 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1009358489646502, guid: f007e47d2b45afa4d8ee6c2706a6e530,
+    type: 2}
+  m_PrefabInternal: {fileID: 1142282695}
+--- !u!114 &24154241
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 24154240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6efd222d18e14e0b99e22b7fa35448c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &33521903
 GameObject:
   m_ObjectHideFlags: 0
@@ -6839,6 +6855,43 @@ Transform:
   m_Father: {fileID: 1745454803}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &902116950 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1547918116192870, guid: e04b7a05237736d4faf01d438148ed70,
+    type: 2}
+  m_PrefabInternal: {fileID: 561479611}
+--- !u!65 &902116970 stripped
+BoxCollider:
+  m_PrefabParentObject: {fileID: 65633059374186270, guid: e04b7a05237736d4faf01d438148ed70,
+    type: 2}
+  m_PrefabInternal: {fileID: 561479611}
+--- !u!114 &902116975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 902116950}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62359d80fdc0e4315ab6331b78ec5b90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  kinematicForParticles: 0
+--- !u!114 &902116976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 902116950}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6757b231cedd544c583ef8aeaf773b2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  material: {fileID: 11400000, guid: d368f2c47473d4bfb8dd9f08073cb403, type: 2}
+  phase: 0
+  thickness: 0
+  unityCollider: {fileID: 902116970}
 --- !u!114 &928243411 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114801036383491560, guid: f007e47d2b45afa4d8ee6c2706a6e530,
@@ -7926,6 +7979,14 @@ Prefab:
     - target: {fileID: 4065921290007788, guid: f007e47d2b45afa4d8ee6c2706a6e530, type: 2}
       propertyPath: m_LocalPosition.y
       value: -0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 1313197022816772, guid: f007e47d2b45afa4d8ee6c2706a6e530, type: 2}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1009358489646502, guid: f007e47d2b45afa4d8ee6c2706a6e530, type: 2}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f007e47d2b45afa4d8ee6c2706a6e530, type: 2}
