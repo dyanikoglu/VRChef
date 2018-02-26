@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4961632979934274}
   - component: {fileID: 33052875323530182}
   - component: {fileID: 23514181699567798}
-  - component: {fileID: 64805956086746782}
+  - component: {fileID: 65928251069785750}
   m_Layer: 0
   m_Name: barrel.001
   m_TagString: Untagged
@@ -40,11 +40,11 @@ GameObject:
   - component: {fileID: 33082611756452120}
   - component: {fileID: 23660167684158476}
   - component: {fileID: 54732353303842466}
-  - component: {fileID: 64181738140553308}
   - component: {fileID: 114378940438874532}
   - component: {fileID: 114399404745931942}
   - component: {fileID: 114077226269496580}
   - component: {fileID: 114709135193113856}
+  - component: {fileID: 65236100284198384}
   m_Layer: 0
   m_Name: spoonwithfloor3
   m_TagString: Untagged
@@ -178,8 +178,8 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!64 &64181738140553308
-MeshCollider:
+--- !u!65 &65236100284198384
+BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -187,13 +187,11 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 1
-  m_CookingOptions: -1
-  m_SkinWidth: 0.00001
-  m_Mesh: {fileID: 4300000, guid: cc52305888ac0b74db1c9de444bcf649, type: 3}
---- !u!64 &64805956086746782
-MeshCollider:
+  serializedVersion: 2
+  m_Size: {x: 0.05087325, y: 0.32563502, z: 0.030710269}
+  m_Center: {x: -0.000000029785499, y: -0.15241751, z: -0.0012043489}
+--- !u!65 &65928251069785750
+BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -201,11 +199,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 1
-  m_CookingOptions: -1
-  m_SkinWidth: 0.00001
-  m_Mesh: {fileID: 4300002, guid: cc52305888ac0b74db1c9de444bcf649, type: 3}
+  serializedVersion: 2
+  m_Size: {x: 0.11437065, y: 0.043341625, z: 0.083457865}
+  m_Center: {x: 0.0002673622, y: 0.00040665278, z: 0.0014887992}
 --- !u!114 &114077226269496580
 MonoBehaviour:
   m_ObjectHideFlags: 1
