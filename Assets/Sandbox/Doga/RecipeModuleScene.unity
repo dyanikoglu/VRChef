@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.57481706, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -286,25 +286,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b2abff756908c04f87459d5bcb2cf72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  foodList:
-  - {fileID: 1452935899471422, guid: 1aeb60da572f0b44f8b3e51c1eb79d78, type: 2}
-  - {fileID: 1368941182478898, guid: 2b14d90d67d69f84aa5551bc63fe9c29, type: 2}
-  - {fileID: 1694132096736814, guid: 862423e6fd07b1749996216e98cfd075, type: 2}
-  - {fileID: 1527963754086240, guid: a830c90c12d8df8409ac1f074ae053f9, type: 2}
-  - {fileID: 1982070404840640, guid: 053b11af8c16bb447b7e18cd72f698ae, type: 2}
-  - {fileID: 1992050522961380, guid: bd6c52cf56867c44c810a12e0c632bb1, type: 2}
-  - {fileID: 1844102278425872, guid: 7e776915f206d6e429007c7d21786efb, type: 2}
-  - {fileID: 1935546344200766, guid: 3976a27ceb1d2324fba2e52215e3f068, type: 2}
-  - {fileID: 1104670023196620, guid: 1c9ee3be3ed93e249afc877e46ab9bfb, type: 2}
-  - {fileID: 1692210584001098, guid: 3238c60c629e05b47988a4a29d9e16ed, type: 2}
-  - {fileID: 1979662662822110, guid: 97484bbe50e5efb4dae90f47e3ab72aa, type: 2}
-  - {fileID: 1191873762173958, guid: 7f12cfcb1eee05149b1fd817e49923d4, type: 2}
-  - {fileID: 1056125327470242, guid: 363ff91343c67c44289f2820a81ede52, type: 2}
-  - {fileID: 1959105890375198, guid: 44560be6047388c45b9003592c976e3f, type: 2}
-  - {fileID: 1134971989739160, guid: 85e9837cc646a2743a7474028391e2b7, type: 2}
-  - {fileID: 1427298701175874, guid: 079d096920d5b5b48ad9253535967ec7, type: 2}
-  - {fileID: 1392186719744358, guid: a797a4cc7481d7b468ef7c0503a614ef, type: 2}
-  - {fileID: 1526205933625466, guid: 3da641c2c23a40e4797b4d8079a7f7a6, type: 2}
 --- !u!4 &1967880652
 Transform:
   m_ObjectHideFlags: 0
@@ -318,3 +299,47 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2091299731
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 2091299732}
+  - component: {fileID: 2091299733}
+  m_Layer: 0
+  m_Name: RecipeAutoUI
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2091299732
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2091299731}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 11.939534, y: 4.7295356, z: 7.836272}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2091299733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2091299731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fe84d24bd0783d46aa4ab451e75abf1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  recipe: {fileID: 1967880651}
+  tomato: {fileID: 1526205933625466, guid: 3da641c2c23a40e4797b4d8079a7f7a6, type: 2}
+  potato: {fileID: 1427298701175874, guid: 079d096920d5b5b48ad9253535967ec7, type: 2}
+  onion: {fileID: 1959105890375198, guid: 44560be6047388c45b9003592c976e3f, type: 2}

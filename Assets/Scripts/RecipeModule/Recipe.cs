@@ -10,6 +10,12 @@ namespace RecipeModule
         private List<Action> _actions;
         private int totalStepCount = 0;
 
+        private void Start()
+        {
+            _initialFoods = new List<Food>();
+            _actions = new List<Action>();
+        }
+
         public void ReorderActions()
         {
             List<Action> newActions = new List<Action>(_actions.Count);
@@ -48,7 +54,7 @@ namespace RecipeModule
             _actions.Remove(a);
         }
 
-        public Action DescribeNewChopAction(int stepNumber, GameObject foodObject, int requiredPieceCount, Chop.PieceVolumeSize pieceVolumeSize)
+        public Food DescribeNewChopAction(int stepNumber, GameObject foodObject, int requiredPieceCount, Chop.PieceVolumeSize pieceVolumeSize)
         {
             Food f = new Food(foodObject);
             _initialFoods.Add(f);
@@ -59,10 +65,10 @@ namespace RecipeModule
 
             totalStepCount++;
 
-            return action;
+            return action.GetResultedFood();
         }
 
-        public Action DescribeNewChopAction(int stepNumber, Food foodToBeChopped, int requiredPieceCount, Chop.PieceVolumeSize pieceVolumeSize)
+        public Food DescribeNewChopAction(int stepNumber, Food foodToBeChopped, int requiredPieceCount, Chop.PieceVolumeSize pieceVolumeSize)
         {
             Chop action = new Chop(stepNumber, foodToBeChopped, requiredPieceCount, pieceVolumeSize);
 
@@ -70,10 +76,10 @@ namespace RecipeModule
 
             totalStepCount++;
 
-            return action;
+            return action.GetResultedFood();
         }
 
-        public Action DescribeNewCookAction(int stepNumber, GameObject foodObject, float requiredHeat, float requiredTime, Cook.CookType cookType)
+        public Food DescribeNewCookAction(int stepNumber, GameObject foodObject, float requiredHeat, float requiredTime, Cook.CookType cookType)
         {
             Food f = new Food(foodObject);
             _initialFoods.Add(f);
@@ -84,10 +90,10 @@ namespace RecipeModule
 
             totalStepCount++;
 
-            return action;
+            return action.GetResultedFood();
         }
 
-        public Action DescribeNewCookAction(int stepNumber, Food foodToBeCooked, float requiredHeat, float requiredTime, Cook.CookType cookType)
+        public Food DescribeNewCookAction(int stepNumber, Food foodToBeCooked, float requiredHeat, float requiredTime, Cook.CookType cookType)
         {
             Cook action = new Cook(stepNumber, foodToBeCooked, requiredHeat, requiredTime, cookType);
 
@@ -95,10 +101,10 @@ namespace RecipeModule
 
             totalStepCount++;
 
-            return action;
+            return action.GetResultedFood();
         }
 
-        public Action DescribeNewPeelAction(int stepNumber, GameObject foodObject)
+        public Food DescribeNewPeelAction(int stepNumber, GameObject foodObject)
         {
             Food f = new Food(foodObject);
             _initialFoods.Add(f);
@@ -109,10 +115,10 @@ namespace RecipeModule
 
             totalStepCount++;
 
-            return action;
+            return action.GetResultedFood();
         }
 
-        public Action DescribeNewPeelAction(int stepNumber, Food foodToBePeeled)
+        public Food DescribeNewPeelAction(int stepNumber, Food foodToBePeeled)
         {
             Peel action = new Peel(stepNumber, foodToBePeeled);
 
@@ -120,10 +126,10 @@ namespace RecipeModule
 
             totalStepCount++;
 
-            return action;
+            return action.GetResultedFood();
         }
 
-        public Action DescribeNewSqueezeAction(int stepNumber, GameObject foodObject)
+        public Food DescribeNewSqueezeAction(int stepNumber, GameObject foodObject)
         {
             Food f = new Food(foodObject);
             _initialFoods.Add(f);
@@ -134,10 +140,10 @@ namespace RecipeModule
 
             totalStepCount++;
 
-            return action;
+            return action.GetResultedFood();
         }
 
-        public Action DescribeNewSqueezeAction(int stepNumber, Food foodToBePeeled)
+        public Food DescribeNewSqueezeAction(int stepNumber, Food foodToBePeeled)
         {
             Squeeze action = new Squeeze(stepNumber, foodToBePeeled);
 
@@ -145,10 +151,10 @@ namespace RecipeModule
 
             totalStepCount++;
 
-            return action;
+            return action.GetResultedFood();
         }
 
-        public Action DescribeNewSmashAction(int stepNumber, GameObject foodObject)
+        public Food DescribeNewSmashAction(int stepNumber, GameObject foodObject)
         {
             Food f = new Food(foodObject);
             _initialFoods.Add(f);
@@ -159,10 +165,10 @@ namespace RecipeModule
 
             totalStepCount++;
 
-            return action;
+            return action.GetResultedFood();
         }
 
-        public Action DescribeNewSmashAction(int stepNumber, Food foodToBePeeled)
+        public Food DescribeNewSmashAction(int stepNumber, Food foodToBePeeled)
         {
             Smash action = new Smash(stepNumber, foodToBePeeled);
 
@@ -170,10 +176,10 @@ namespace RecipeModule
 
             totalStepCount++;
 
-            return action;
+            return action.GetResultedFood();
         }
 
-        public Action DescribeNewFryAction(int stepNumber, GameObject foodObject, float requiredHeat, float requiredTime, Fry.FryType fryType)
+        public Food DescribeNewFryAction(int stepNumber, GameObject foodObject, float requiredHeat, float requiredTime, Fry.FryType fryType)
         {
             Food f = new Food(foodObject);
             _initialFoods.Add(f);
@@ -184,10 +190,10 @@ namespace RecipeModule
 
             totalStepCount++;
 
-            return action;
+            return action.GetResultedFood();
         }
         
-        public Action DescribeNewFryAction(int stepNumber, Food foodToBeFried, float requiredHeat, float requiredTime, Fry.FryType fryType)
+        public Food DescribeNewFryAction(int stepNumber, Food foodToBeFried, float requiredHeat, float requiredTime, Fry.FryType fryType)
         {
             Fry action = new Fry(stepNumber, foodToBeFried, requiredHeat, requiredTime, fryType);
 
@@ -195,10 +201,10 @@ namespace RecipeModule
 
             totalStepCount++;
 
-            return action;
+            return action.GetResultedFood();
         }
 
-        public Action DescribeNewBreakAction(int stepNumber, GameObject foodObject)
+        public Food DescribeNewBreakAction(int stepNumber, GameObject foodObject)
         {
             Food f = new Food(foodObject);
             _initialFoods.Add(f);
@@ -209,10 +215,10 @@ namespace RecipeModule
 
             totalStepCount++;
 
-            return action;
+            return action.GetResultedFood();
         }
 
-        public Action DescribeNewBreakAction(int stepNumber, Food foodToBeBroken)
+        public Food DescribeNewBreakAction(int stepNumber, Food foodToBeBroken)
         {
             Break action = new Break(stepNumber, foodToBeBroken);
 
@@ -220,10 +226,10 @@ namespace RecipeModule
 
             totalStepCount++;
 
-            return action;
+            return action.GetResultedFood();
         }
 
-        public Action DescribeNewBoilAction(int stepNumber, GameObject foodObject, float requiredHeat, float requiredTime, Boil.BoilType boilType)
+        public Food DescribeNewBoilAction(int stepNumber, GameObject foodObject, float requiredHeat, float requiredTime, Boil.BoilType boilType)
         {
             Food f = new Food(foodObject);
             _initialFoods.Add(f);
@@ -234,10 +240,10 @@ namespace RecipeModule
 
             totalStepCount++;
 
-            return action;
+            return action.GetResultedFood();
         }
 
-        public Action DescribeNewBoilAction(int stepNumber, Food foodToBeBoiled, float requiredHeat, float requiredTime, Boil.BoilType boilType)
+        public Food DescribeNewBoilAction(int stepNumber, Food foodToBeBoiled, float requiredHeat, float requiredTime, Boil.BoilType boilType)
         {
             Boil action = new Boil(stepNumber, foodToBeBoiled, requiredHeat, requiredTime, boilType);
 
@@ -245,7 +251,7 @@ namespace RecipeModule
 
             totalStepCount++;
 
-            return action;
+            return action.GetResultedFood();
         }  
 
         #region Mutators
