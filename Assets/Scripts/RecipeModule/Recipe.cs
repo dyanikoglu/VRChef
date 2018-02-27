@@ -229,6 +229,50 @@ namespace RecipeModule
             return action.GetResultedFood();
         }
 
+        public Food DescribeNewPutTogetherAction(int stepNumber, GameObject foodObject, Food destinationFood)
+        {
+            Food f = new Food(foodObject);
+            _initialFoods.Add(f);
+
+            PutTogether action = new PutTogether(stepNumber, f, destinationFood);
+
+            _actions.Add(action);
+
+            totalStepCount++;
+
+            return action.GetResultedFood();
+        }
+
+        // Both of objects are prefabs, create new Food classes for both of them
+        public Food DescribeNewPutTogetherAction(int stepNumber, GameObject foodObject, GameObject destinationFood)
+        {
+            Food f = new Food(foodObject);
+            _initialFoods.Add(f);
+
+            Food f2 = new Food(foodObject);
+            _initialFoods.Add(f2);
+
+            PutTogether action = new PutTogether(stepNumber, f, f2);
+
+            _actions.Add(action);
+
+            totalStepCount++;
+
+            return action.GetResultedFood();
+        }
+
+        public Food DescribeNewPutTogetherAction(int stepNumber, Food foodToBePutTogether, Food destinationFood)
+        {
+            PutTogether action = new PutTogether(stepNumber, foodToBePutTogether, destinationFood);
+
+            _actions.Add(action);
+
+            totalStepCount++;
+
+            return action.GetResultedFood();
+        }
+
+        
         public Food DescribeNewBoilAction(int stepNumber, GameObject foodObject, float requiredHeat, float requiredTime, Boil.BoilType boilType)
         {
             Food f = new Food(foodObject);

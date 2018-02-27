@@ -19,6 +19,8 @@ namespace RecipeModule
         private bool isMixed;
         private bool isPutTogether;
 
+        private Food stayingWith; // Indicates that this object is staying(and should stay) together with this object.
+
         private Food next;
         private Food prev;
 
@@ -207,6 +209,46 @@ namespace RecipeModule
         public bool GetIsBoiled()
         {
             return isBoiled;
+        }
+
+        public Food GetStayingWith()
+        {
+            return stayingWith;
+        }
+
+        public void SetStayingWith(Food f)
+        {
+            stayingWith = f;
+        }
+
+        public void SetPutTogether(bool isPutTogether)
+        {
+            this.isPutTogether = isPutTogether;
+        }
+
+        public bool GetPutTogether()
+        {
+            return isPutTogether;
+        }
+
+        public Food GetLatestState()
+        {
+            Food f = this;
+            while(f.next != null)
+            {
+                f = f.next;
+            }
+            return f;
+        }
+
+        public Food GetFirstState()
+        {
+            Food f = this;
+            while (f.prev != null)
+            {
+                f = f.prev;
+            }
+            return f;
         }
 
         #endregion

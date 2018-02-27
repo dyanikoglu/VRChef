@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace RecipeModule
 {
+    // TODO Remove requiredPieceCount. It's not necessary while we're controlling also pieceVolumeSize.
     public class Chop : Action
     {
         private int requiredPieceCount;
