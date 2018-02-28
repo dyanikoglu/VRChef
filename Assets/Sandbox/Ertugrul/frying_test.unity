@@ -1331,12 +1331,12 @@ Prefab:
     - target: {fileID: 224000012623161658, guid: d46cf6b1ad9d84a48ae7548a2a6b41b3,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 274
+      value: 810
       objectReference: {fileID: 0}
     - target: {fileID: 224000012623161658, guid: d46cf6b1ad9d84a48ae7548a2a6b41b3,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -70
       objectReference: {fileID: 0}
     - target: {fileID: 224000012623161658, guid: d46cf6b1ad9d84a48ae7548a2a6b41b3,
         type: 2}
@@ -1346,7 +1346,7 @@ Prefab:
     - target: {fileID: 224000012623161658, guid: d46cf6b1ad9d84a48ae7548a2a6b41b3,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 120
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d46cf6b1ad9d84a48ae7548a2a6b41b3, type: 2}
@@ -2204,6 +2204,11 @@ Prefab:
       propertyPath: burnedColor.a
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114417230950760614, guid: 2b14d90d67d69f84aa5551bc63fe9c29,
+        type: 2}
+      propertyPath: fryingSound
+      value: 
+      objectReference: {fileID: 8300000, guid: b03e5348a02d6e34eacd0bed542b47b2, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2b14d90d67d69f84aa5551bc63fe9c29, type: 2}
   m_IsPrefabParent: 0

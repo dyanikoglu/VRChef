@@ -26,6 +26,10 @@ public class CanBeFried : FoodCharacteristic
     public Material friedMaterial;
     public Color burnedColor;
 
+    public AudioClip fryingSound;
+    AudioSource source;
+    bool onlyOnce = true;
+
     private void Awake()
     {
         GetComponent<Renderer>().material = new Material(GetComponent<Renderer>().material);
@@ -59,6 +63,10 @@ public class CanBeFried : FoodCharacteristic
             objectTexture = texture;
         }
 
+        source = gameObject.AddComponent<AudioSource>();
+        source.loop = true;
+        source.clip = fryingSound;
+        source.playOnAwake = false;
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -82,6 +90,7 @@ public class CanBeFried : FoodCharacteristic
     {
         if (onCanFry)
         {
+            /* TODO: add has fluid option */
             if(!GetComponent<FoodStatus>().GetIsFried() && !fryingStarted && canFryObject.GetComponent<CanFry>().GetCanFry())
             {
                 StartFrying();
@@ -98,7 +107,6 @@ public class CanBeFried : FoodCharacteristic
                 StopFrying();
             }
         }
-
     }
 
     public void StartFrying()
@@ -120,8 +128,17 @@ public class CanBeFried : FoodCharacteristic
 
         GetComponent<Renderer>().sharedMaterials = myMaterials;
 
+        fryingStopped = false;
+
         // to animate object's frying process
         StartCoroutine("Fry");
+
+        if (onlyOnce)
+        {
+            source.loop = true;
+            source.Play();
+            onlyOnce = false;
+        }
     }
 
     public void StopFrying()
@@ -130,6 +147,11 @@ public class CanBeFried : FoodCharacteristic
         StopCoroutine("Fry");
         fryingStopped = true;
         fryingStarted = false;
+
+        source.loop = false;
+        source.Stop();
+        onlyOnce = true;
+
     }
 
     IEnumerator Fry()
@@ -177,29 +199,39 @@ public class CanBeFried : FoodCharacteristic
             GetComponent<CanBeChopped>().capMaterial = friedMaterial;
         }
 
-        yield return new WaitForSeconds(3f);
+         yield return new WaitForSeconds(3f);
 
 
-        for (int i = 0; i < GetComponent<Renderer>().sharedMaterials.Length; i++)
+         for (int i = 0; i < GetComponent<Renderer>().sharedMaterials.Length; i++)
+         {
+             GetComponent<Renderer>().sharedMaterials[i].SetColor("_WetTint", burnedColor);
+         }
+
+         float burnedLevel = 0f;
+
+         while(burnedLevel < 1f)
+         {
+             fadeValue = Time.deltaTime / fryingTimeInSeconds;
+             burnedLevel += fadeValue;
+             if(burnedLevel > 0.5f)
+             {
+                 GetComponent<FoodStatus>().SetIsBurned(true);
+             }
+             for (int i = 0; i < GetComponent<Renderer>().sharedMaterials.Length; i++)
+             {
+                 GetComponent<Renderer>().sharedMaterials[i].SetFloat("_WetWeight", burnedLevel);
+             }
+             yield return new WaitForSeconds(fadeValue);
+         }
+
+         // if it is burned, then it is useless.
+        if (GetComponents<FoodCharacteristic>().Length != 0)
         {
-            GetComponent<Renderer>().sharedMaterials[i].SetColor("_WetTint", burnedColor);
+            foreach(FoodCharacteristic fc in GetComponents<FoodCharacteristic>())
+            {
+                Destroy(fc);
+            }
         }
 
-        float burnedLevel = 0f;
-
-        while(burnedLevel < 1f)
-        {
-            fadeValue = Time.deltaTime / fryingTimeInSeconds;
-            burnedLevel += fadeValue;
-            if(burnedLevel > 0.5f)
-            {
-                GetComponent<FoodStatus>().SetIsBurned(true);
-            }
-            for (int i = 0; i < GetComponent<Renderer>().sharedMaterials.Length; i++)
-            {
-                GetComponent<Renderer>().sharedMaterials[i].SetFloat("_WetWeight", burnedLevel);
-            }
-            yield return new WaitForSeconds(fadeValue);
-        }
     }
 }

@@ -1066,3 +1066,4 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   activePlateIndices: 00000000
+  canHeatObjectsOnMe: []
