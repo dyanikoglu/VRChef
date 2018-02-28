@@ -49,6 +49,7 @@ GameObject:
   - component: {fileID: 64441128446300226}
   - component: {fileID: 114625955115967930}
   - component: {fileID: 114267129342492382}
+  - component: {fileID: 114738479396728658}
   m_Layer: 9
   m_Name: potato_rig
   m_TagString: Untagged
@@ -63,7 +64,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1716986235917160}
   m_LocalRotation: {x: -0.7071068, y: -0, z: 0.000000029802322, w: 0.7071067}
-  m_LocalPosition: {x: 0.764, y: 1.793, z: 0.096}
+  m_LocalPosition: {x: -1.0141237, y: 1.5379472, z: -0.0073263645}
   m_LocalScale: {x: 1.1486976, y: 1.1486897, z: 1.1486895}
   m_Children:
   - {fileID: 4087528049495058}
@@ -277,6 +278,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0580f3b8e0fd90441b1e89c39c8d522f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isPeeled: 0
 --- !u!114 &114427227539150900
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -324,6 +326,21 @@ MonoBehaviour:
   onGrabCollisionDelay: 0
   destroyImmediatelyOnThrow: 1
   breakForce: 1500
+--- !u!114 &114738479396728658
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1716986235917160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8d04d7212c5d8c45af27e2a9cc133b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  requiredBoilingTime: 10
+  boilingStarted: 0
+  boilingStopped: 0
+  boiledMaterial: {fileID: 2100000, guid: a8fd4894052b16e4cad7eaa9f7cd76e5, type: 2}
 --- !u!114 &114759106821302106
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -335,6 +352,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0580f3b8e0fd90441b1e89c39c8d522f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isPeeled: 0
 --- !u!114 &114877724442122340
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -362,3 +380,4 @@ MonoBehaviour:
   smashSound: {fileID: 8300000, guid: 52d2c0298aa8e4f45baddc37b0a43422, type: 3}
   iscollidedWithSmasher: 0
   isCollidedWithBowl: 0
+  bowl: {fileID: 0}

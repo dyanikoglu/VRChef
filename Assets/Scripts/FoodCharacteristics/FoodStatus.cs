@@ -6,9 +6,10 @@ public class FoodStatus : MonoBehaviour {
     private bool _isChoppedPiece = false;
     private bool _isFried = false;
     private bool _isSqueezed = false;
-    public bool _isPeeled = false;
+    private bool _isPeeled = false;
     private bool _isHalfSmashed = false;
     private bool _isBurnedAfterFrying = false;
+    public bool _isBoiled = false;
 
     // Keep adding required characteristic status booleans
     //...
@@ -74,4 +75,16 @@ public class FoodStatus : MonoBehaviour {
     {
         this._isHalfSmashed = isHalfSmashed;
     }
+
+
+    public bool GetIsBoiled()
+    {
+        return _isBoiled;
+    }
+
+    public void SetIsBoiled(bool isBoiled)
+    {
+        this._isBoiled = isBoiled;
+    }
+
 }

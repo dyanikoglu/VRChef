@@ -27,6 +27,8 @@ GameObject:
   - component: {fileID: 114138674152776642}
   - component: {fileID: 114248827923294016}
   - component: {fileID: 64391483784967992}
+  - component: {fileID: 114470208260833028}
+  - component: {fileID: 114903970397915418}
   m_Layer: 9
   m_Name: potato
   m_TagString: Untagged
@@ -41,7 +43,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1609411215709016}
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0.7305621, y: 1.806, z: 0.406}
+  m_LocalPosition: {x: 1.3382, y: 1.784, z: 0.415}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -131,6 +133,9 @@ MonoBehaviour:
   smashable: {fileID: 1609411215709016}
   smashed: {fileID: 1336879228730784, guid: 06f89c2fd7bb7594dbafc393c632c374, type: 2}
   smashSound: {fileID: 8300000, guid: 52d2c0298aa8e4f45baddc37b0a43422, type: 3}
+  iscollidedWithSmasher: 0
+  isCollidedWithBowl: 0
+  bowl: {fileID: 0}
 --- !u!114 &114138674152776642
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -199,3 +204,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76f4c4dd68146d842bd4a73e5807bef7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114470208260833028
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1609411215709016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0580f3b8e0fd90441b1e89c39c8d522f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isBoiled: 0
+--- !u!114 &114903970397915418
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1609411215709016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8d04d7212c5d8c45af27e2a9cc133b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  requiredBoilingTime: 5
+  boilingStarted: 0
+  boilingStopped: 0
+  boiledMaterial: {fileID: 0}

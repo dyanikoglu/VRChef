@@ -2,20 +2,49 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CanBoil : FoodCharacteristic {
+public class CanBoil : ToolCharacteristic {
 
     public bool canBoil = false;
+    public static int waterBoilingTime = 6;
     [SerializeField]
     bool hasFluid = false;
 
-    // Use this for initialization
-    void Start () {
+    public AudioClip boilingSound;
+    AudioSource source;
+    bool onlyOnce = true;
 
+    public bool isWaterBoiled;
+
+    private void Start()
+    {
+        source = gameObject.AddComponent<AudioSource>();
+        source.loop = true;
+        source.clip = boilingSound;
     }
 
-    // Update is called once per frame
-    void Update () {
+    private void Update()
+    {
+        if(hasFluid && canBoil)
+        {
+            StartWaterBoiling();
+        }
+        else
+        {
+            StopWaterBoiling();
+        }
+    }
 
+    IEnumerator WaterBoil()
+    {
+        yield return new WaitForSeconds(waterBoilingTime);
+        isWaterBoiled = true;
+        // start sound
+        if (onlyOnce)
+        {
+            source.loop = true;
+            source.Play();
+            onlyOnce = false;
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -46,7 +75,6 @@ public class CanBoil : FoodCharacteristic {
                         return isPlate;
                     }
                 }
-
             }
         }
         return isPlate;
@@ -55,5 +83,26 @@ public class CanBoil : FoodCharacteristic {
     public void SetHasFluid(bool flag)
     {
         hasFluid = flag;
+    }
+
+    private void StartWaterBoiling()
+    {
+        StartCoroutine("WaterBoil");
+    }
+
+    void StopWaterBoiling()
+    {
+        if (!isWaterBoiled)
+        {
+            StopCoroutine("WaterBoil");
+        }
+        source.loop = false;
+        source.Stop();
+        onlyOnce = true;
+    }
+
+    public bool GetCanBoil()
+    {
+        return canBoil;
     }
 }
