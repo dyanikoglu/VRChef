@@ -55,12 +55,19 @@ public class FluidCollisionDetection : MonoBehaviour
                             collidedParticles.Add(index);
                         }
                     }
-                    if (!collidedWithBowl && collider.transform.parent.transform.parent.gameObject.GetComponent<CanMixedIn>() != null)
+                    if(!collidedWithBowl && collider.transform.parent)
                     {
-                        collidedWithBowl = true;
-                        List<Obi.ObiEmitter> emitters = collider.transform.parent.transform.parent.gameObject.GetComponent<CanMixedIn>().emitters;
-                        emitters.Add(gameObject.GetComponent<ObiEmitter>());
+                        if (!collidedWithBowl && collider.transform.parent.transform.parent)
+                        {
+                            if (!collidedWithBowl && collider.transform.parent.transform.parent.gameObject.GetComponent<CanMixedIn>() != null)
+                            {
+                                collidedWithBowl = true;
+                                List<Obi.ObiEmitter> emitters = collider.transform.parent.transform.parent.gameObject.GetComponent<CanMixedIn>().emitters;
+                                emitters.Add(gameObject.GetComponent<ObiEmitter>());
+                            }
+                        }
                     }
+                    
                 }
                 
             }
