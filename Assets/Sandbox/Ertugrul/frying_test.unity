@@ -1331,12 +1331,12 @@ Prefab:
     - target: {fileID: 224000012623161658, guid: d46cf6b1ad9d84a48ae7548a2a6b41b3,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 816
+      value: 274
       objectReference: {fileID: 0}
     - target: {fileID: 224000012623161658, guid: d46cf6b1ad9d84a48ae7548a2a6b41b3,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -70
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224000012623161658, guid: d46cf6b1ad9d84a48ae7548a2a6b41b3,
         type: 2}
@@ -1346,7 +1346,7 @@ Prefab:
     - target: {fileID: 224000012623161658, guid: d46cf6b1ad9d84a48ae7548a2a6b41b3,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 120
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d46cf6b1ad9d84a48ae7548a2a6b41b3, type: 2}
@@ -3993,51 +3993,6 @@ Prefab:
       propertyPath: buttons.Array.data[3]
       value: 
       objectReference: {fileID: 740228909}
-    - target: {fileID: 33978428031543582, guid: d801583ecbbdd7247a950b59ed78c5df,
-        type: 2}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 4300008, guid: 60b830428b405a04ab8ff18f1ef76c38, type: 3}
-    - target: {fileID: 33470373104487418, guid: d801583ecbbdd7247a950b59ed78c5df,
-        type: 2}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 4300006, guid: 60b830428b405a04ab8ff18f1ef76c38, type: 3}
-    - target: {fileID: 33392302316469184, guid: d801583ecbbdd7247a950b59ed78c5df,
-        type: 2}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 4300002, guid: 60b830428b405a04ab8ff18f1ef76c38, type: 3}
-    - target: {fileID: 33729735042759412, guid: d801583ecbbdd7247a950b59ed78c5df,
-        type: 2}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 4300000, guid: 60b830428b405a04ab8ff18f1ef76c38, type: 3}
-    - target: {fileID: 33192018687138640, guid: d801583ecbbdd7247a950b59ed78c5df,
-        type: 2}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 4300004, guid: 60b830428b405a04ab8ff18f1ef76c38, type: 3}
-    - target: {fileID: 23008954004457832, guid: d801583ecbbdd7247a950b59ed78c5df,
-        type: 2}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: ad54aca713cde9f4daec9164fbb7f81a, type: 2}
-    - target: {fileID: 23248251952623502, guid: d801583ecbbdd7247a950b59ed78c5df,
-        type: 2}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: ad54aca713cde9f4daec9164fbb7f81a, type: 2}
-    - target: {fileID: 23900101216570002, guid: d801583ecbbdd7247a950b59ed78c5df,
-        type: 2}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: ad54aca713cde9f4daec9164fbb7f81a, type: 2}
-    - target: {fileID: 23951944771710804, guid: d801583ecbbdd7247a950b59ed78c5df,
-        type: 2}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: ad54aca713cde9f4daec9164fbb7f81a, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d801583ecbbdd7247a950b59ed78c5df, type: 2}
   m_IsPrefabParent: 0
@@ -7431,26 +7386,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1084096778}
   m_Mesh: {fileID: 4300020, guid: e99803b507045754b820e9d17ba7f3aa, type: 3}
---- !u!1 &1088350420 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1659981908290672, guid: d801583ecbbdd7247a950b59ed78c5df,
-    type: 2}
-  m_PrefabInternal: {fileID: 555332008}
---- !u!54 &1088350423
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1088350420}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1 &1100341946
 GameObject:
   m_ObjectHideFlags: 0

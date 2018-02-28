@@ -11,9 +11,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45b3b3073315a4191bcde3b6ca445dc7, type: 3}
   m_Name: Water For Boiling
   m_EditorClassIdentifier: 
-  resolution: 10
-  restDensity: 1
-  smoothing: 3
+  resolution: 250
+  restDensity: 1000
+  smoothing: 2.5
   viscosity: 0.01
   surfaceTension: 1
   buoyancy: -1

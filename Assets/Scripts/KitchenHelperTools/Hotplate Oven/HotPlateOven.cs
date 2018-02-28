@@ -9,11 +9,11 @@ public class HotPlateOven : MonoBehaviour {
     public GameObject[] buttons;        // one button controlling each plate's heat
     public bool[] activePlateIndices;
     
-    GameObject[] canFryObjectsOnMe;
+    public GameObject[] canHeatObjectsOnMe;
 
     private void Start()
     {
-        canFryObjectsOnMe = new GameObject[4];
+        canHeatObjectsOnMe = new GameObject[4];
     }
 
     // Update is called once per frame
@@ -28,9 +28,16 @@ public class HotPlateOven : MonoBehaviour {
                 plates[i].GetComponent<Renderer>().material.color = Color.red;
                 activePlateIndices[i] = true;
 
-                if (canFryObjectsOnMe[i])
+                if (canHeatObjectsOnMe[i])
                 {
-                    canFryObjectsOnMe[i].GetComponent<CanFry>().canFry = true;
+                    if (canHeatObjectsOnMe[i].GetComponent<CanFry>())
+                    {
+                        canHeatObjectsOnMe[i].GetComponent<CanFry>().canFry = true;
+                    }
+                    if (canHeatObjectsOnMe[i].GetComponent<CanBoil>())
+                    {
+                        canHeatObjectsOnMe[i].GetComponent<CanBoil>().canBoil = true;
+                    }
                 }
             }
             else
@@ -39,9 +46,16 @@ public class HotPlateOven : MonoBehaviour {
                 plates[i].GetComponent<Renderer>().material.color = Color.white;
                 activePlateIndices[i] = false;
 
-                if (canFryObjectsOnMe[i])
+                if (canHeatObjectsOnMe[i])
                 {
-                    canFryObjectsOnMe[i].GetComponent<CanFry>().canFry = false;
+                    if (canHeatObjectsOnMe[i].GetComponent<CanFry>())
+                    {
+                        canHeatObjectsOnMe[i].GetComponent<CanFry>().canFry = false;
+                    }
+                    if (canHeatObjectsOnMe[i].GetComponent<CanBoil>())
+                    {
+                        canHeatObjectsOnMe[i].GetComponent<CanBoil>().canBoil = false;
+                    }
                 }
             }
         }
@@ -49,23 +63,30 @@ public class HotPlateOven : MonoBehaviour {
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.GetComponent<CanFry>())
+        if (collision.gameObject.GetComponent<CanFry>() || collision.gameObject.GetComponent<CanBoil>())
         {
-            //TODO: is there a contact 0?
             string name = collision.contacts[0].thisCollider.name;
             int index = Int32.Parse(name[name.Length - 1] + "");
-            canFryObjectsOnMe[index] = collision.gameObject;
+            canHeatObjectsOnMe[index] = collision.gameObject;
         }
     }
 
     private void OnCollisionExit(Collision collision)
     {
-        if (collision.gameObject.GetComponent<CanFry>())
+        for(int i = 0; i < canHeatObjectsOnMe.Length; i++)
         {
-            //TODO: is there a contact 0?
-            string name = collision.contacts[0].thisCollider.name;
-            int index = Int32.Parse(name[name.Length - 1]+"");
-            canFryObjectsOnMe[index] = null;
+            if(canHeatObjectsOnMe[i] == collision.gameObject)
+            {
+                canHeatObjectsOnMe[i] = null;
+                if (collision.gameObject.GetComponent<CanFry>())
+                {
+                    collision.gameObject.GetComponent<CanFry>().canFry = false;
+                }
+                else if (collision.gameObject.GetComponent<CanBoil>())
+                {
+                    collision.gameObject.GetComponent<CanBoil>().canBoil = false;
+                }
+            }
         }
     }
 }
