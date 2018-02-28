@@ -143,11 +143,6 @@ Transform:
   m_Father: {fileID: 448307131}
   m_RootOrder: 58
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2530177 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1264326080939626, guid: e47dbd2988ea2f145b79c6d906542937,
-    type: 2}
-  m_PrefabInternal: {fileID: 175033995}
 --- !u!1 &8546341
 GameObject:
   m_ObjectHideFlags: 0
@@ -4640,6 +4635,11 @@ Prefab:
         type: 2}
       propertyPath: m_ConnectedAnchor.z
       value: 0.52515477
+      objectReference: {fileID: 0}
+    - target: {fileID: 59407963032850948, guid: e47dbd2988ea2f145b79c6d906542937,
+        type: 2}
+      propertyPath: m_ConnectedAnchor.x
+      value: -2.9413435
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e47dbd2988ea2f145b79c6d906542937, type: 2}
@@ -9239,11 +9239,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 320269406}
   m_Mesh: {fileID: 4300886, guid: 0746bbcc3e17a7d4ead07f84e57e7265, type: 3}
---- !u!1 &321340099 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1937636261253770, guid: e47dbd2988ea2f145b79c6d906542937,
-    type: 2}
-  m_PrefabInternal: {fileID: 175033995}
 --- !u!1 &324526416
 GameObject:
   m_ObjectHideFlags: 0
@@ -13563,11 +13558,6 @@ Transform:
   m_Father: {fileID: 2113151940}
   m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &450529677 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1687548699722766, guid: e47dbd2988ea2f145b79c6d906542937,
-    type: 2}
-  m_PrefabInternal: {fileID: 175033995}
 --- !u!1 &451989812
 GameObject:
   m_ObjectHideFlags: 0
@@ -19907,11 +19897,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 661847981}
   m_Mesh: {fileID: 4300898, guid: 0746bbcc3e17a7d4ead07f84e57e7265, type: 3}
---- !u!1 &662408236 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1056282164027060, guid: e47dbd2988ea2f145b79c6d906542937,
-    type: 2}
-  m_PrefabInternal: {fileID: 175033995}
 --- !u!4 &667323435 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 01a8eb53ec3b42843afe457b2987f3bc, type: 3}
@@ -21883,7 +21868,7 @@ Prefab:
     - target: {fileID: 224000012623161658, guid: d46cf6b1ad9d84a48ae7548a2a6b41b3,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 699
+      value: 923
       objectReference: {fileID: 0}
     - target: {fileID: 224000012623161658, guid: d46cf6b1ad9d84a48ae7548a2a6b41b3,
         type: 2}
@@ -52013,11 +51998,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.029537944, y: 0.6767607, z: 0.22011366}
   m_Center: {x: 0.00000047667908, y: -0.00068359694, z: 0.118259214}
---- !u!1 &1611166398 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1991232064154018, guid: e47dbd2988ea2f145b79c6d906542937,
-    type: 2}
-  m_PrefabInternal: {fileID: 175033995}
 --- !u!1 &1613432097
 GameObject:
   m_ObjectHideFlags: 0
@@ -53803,11 +53783,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1637095447}
   m_Mesh: {fileID: 4301116, guid: 0746bbcc3e17a7d4ead07f84e57e7265, type: 3}
---- !u!1 &1646621974 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1179219092629422, guid: e47dbd2988ea2f145b79c6d906542937,
-    type: 2}
-  m_PrefabInternal: {fileID: 175033995}
 --- !u!1 &1648773351
 GameObject:
   m_ObjectHideFlags: 0
@@ -54877,11 +54852,6 @@ MonoBehaviour:
   phase: 0
   thickness: 0
   unityCollider: {fileID: 1663037508}
---- !u!1 &1670242749 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1933141892293982, guid: e47dbd2988ea2f145b79c6d906542937,
-    type: 2}
-  m_PrefabInternal: {fileID: 175033995}
 --- !u!1 &1670364189
 GameObject:
   m_ObjectHideFlags: 0
@@ -59928,16 +59898,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   places:
-  - {fileID: 1646621974}
   - {fileID: 1270855433}
-  - {fileID: 450529677}
-  - {fileID: 1473095609}
   - {fileID: 1876068669}
-  - {fileID: 321340099}
-  - {fileID: 1611166398}
-  - {fileID: 2530177}
-  - {fileID: 1670242749}
-  - {fileID: 662408236}
+  - {fileID: 1473095609}
 --- !u!114 &1837812372
 MonoBehaviour:
   m_ObjectHideFlags: 0

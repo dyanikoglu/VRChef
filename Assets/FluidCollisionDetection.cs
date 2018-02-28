@@ -17,6 +17,8 @@ public class FluidCollisionDetection : MonoBehaviour
 
     Obi.ObiSolver.ObiCollisionEventArgs collisionEvent;
 
+    bool collidedWithBowl = false;
+
     void Awake()
     {
         solver = GetComponent<Obi.ObiSolver>();
@@ -53,14 +55,21 @@ public class FluidCollisionDetection : MonoBehaviour
                             collidedParticles.Add(index);
                         }
                     }
+                    if (!collidedWithBowl && collider.transform.parent.transform.parent.gameObject.GetComponent<CanMixedIn>() != null)
+                    {
+                        collidedWithBowl = true;
+                        List<Obi.ObiEmitter> emitters = collider.transform.parent.transform.parent.gameObject.GetComponent<CanMixedIn>().emitters;
+                        emitters.Add(gameObject.GetComponent<ObiEmitter>());
+                    }
                 }
+                
             }
         }
     }
 
     private void Update()
     {
-        if(collidedParticles.Count >= numberOfNeededFluidParticles * 0.66f)
+        if(collidedParticles.Count >= numberOfNeededFluidParticles * 0.3f)
         {
             canBoilScript.SetHasFluid(true);
             OnDisable();

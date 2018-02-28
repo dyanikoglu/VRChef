@@ -18,7 +18,32 @@ public class CanBeMixed : MonoBehaviour {
     {
         if(collision.gameObject.GetComponent<CanMixedIn>()!=null && gameObject.transform.parent != collision.gameObject.transform)
         {
-            gameObject.transform.parent = collision.gameObject.transform;
+            if (gameObject.GetComponent<CanBeMerged>() != null)
+            {
+                Vector3 _scale = collision.gameObject.transform.GetChild(2).gameObject.transform.localScale;
+                if(_scale.x==0 && _scale.y==0 && _scale.z == 0)
+                {
+                    _scale.x = _scale.x + 0.2f;
+                    _scale.y = _scale.y + 0.2f;
+                    _scale.z = _scale.z + 0.2f;
+                    collision.gameObject.transform.GetChild(2).gameObject.transform.localScale = _scale;
+                }
+                else
+                {
+                    _scale.x = _scale.x + 0.02f;
+                    _scale.y = _scale.y + 0.02f;
+                    _scale.z = _scale.z + 0.02f;
+                    Vector3 _position = collision.gameObject.transform.GetChild(2).gameObject.transform.position;
+                    _position.y = _position.y + 0.001f;
+                    collision.gameObject.transform.GetChild(2).gameObject.transform.localScale = _scale;
+                    collision.gameObject.transform.GetChild(2).gameObject.transform.position = _position;
+                }
+                Destroy(gameObject);
+            }
+            else
+            { 
+                gameObject.transform.parent = collision.gameObject.transform;
+            }
         }
     }
 }

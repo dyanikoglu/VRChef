@@ -10,7 +10,9 @@ public class CanTake: ToolCharacteristic {
     public ParticleSystem dust;
     public static bool full = false;
     Vector3 _rotation;
-	void Start () {
+   
+
+    void Start () {
         gameObject.transform.GetChild(0).gameObject.SetActive(false);
         _rotation = gameObject.transform.rotation.eulerAngles;        
     }
@@ -29,6 +31,9 @@ public class CanTake: ToolCharacteristic {
             newObject.AddComponent<Rigidbody>();
             full = false;
             newObject.AddComponent<CanBeMixed>();
+            newObject.AddComponent<CanBeMerged>();
         }
+
 	}
+
 }

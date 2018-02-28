@@ -5,16 +5,19 @@ using Obi;
 
 public class CanMixedIn : ToolCharacteristic {
     private bool collided;
-    public Obi.ObiEmitter emitter;
+    public List<Obi.ObiEmitter> emitters;
     private int rotateCount;
+    public ParticleSystem dust;
 
     // Use this for initialization
     void Start () {
         collided=false;
         rotateCount=0;
-        /*ObiEmitterMaterialFluid material = (ObiEmitterMaterialFluid)emitter.gameObject.GetComponent<ObiEmitter>().EmitterMaterial;
-        material.atmosphericPressure = (float)0;
-        emitter.Solver.UpdateActiveParticles();*/
+        Vector3 _scale = gameObject.transform.GetChild(2).transform.localScale;
+        _scale.x = 0;
+        _scale.y = 0;
+        _scale.z = 0;
+        gameObject.transform.GetChild(2).transform.localScale = _scale;
     }
 	
 	// Update is called once per frame
@@ -38,36 +41,34 @@ public class CanMixedIn : ToolCharacteristic {
         {
             for (int i=2; i < gameObject.transform.childCount; i++)
             {
-                gameObject.transform.GetChild(i).transform.Rotate(Vector3.up * 400 * Time.deltaTime, Space.World); 
+                if (gameObject.transform.GetChild(i).gameObject.GetComponent<CanBeMerged>() != null)
+                {
+                    dust.Play();
+                }
+                else
+                {
+                    gameObject.transform.GetChild(i).transform.Rotate(Vector3.up * 400 * Time.deltaTime, Space.World);
+                }
             }
-            /*ObiEmitterMaterialFluid material = (ObiEmitterMaterialFluid)emitter.gameObject.GetComponent<ObiEmitter>().EmitterMaterial;
-            material.atmosphericPressure = (float)10;
-            emitter.Solver.UpdateActiveParticles();*/
             rotateCount++;
             if (rotateCount > 100)
             {
                 gameObject.transform.GetChild(1).gameObject.transform.position = gameObject.transform.position;
                 gameObject.transform.GetChild(1).gameObject.SetActive(true);
-                emitter.enabled = false;
+                foreach(Obi.ObiEmitter emitter in emitters)
+                {
+                    emitter.enabled = false;
+                }
                 for (int i = 2; i < gameObject.transform.childCount; i++)
                 {
+                    Renderer rend = gameObject.transform.GetChild(i).gameObject.GetComponent<Renderer>();
                     Destroy(gameObject.transform.GetChild(i).gameObject);
-                    /*material.atmosphericPressure = (float)0;
-                    emitter.Solver.UpdateActiveParticles();*/
                 }
+                gameObject.GetComponent<Rigidbody>().isKinematic = false;
             }
         }
     }
 
-    /*private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.GetComponent<CanMix>() != null)
-        {
-            ObiEmitterMaterialFluid material = (ObiEmitterMaterialFluid)emitter.gameObject.GetComponent<ObiEmitter>().EmitterMaterial;
-            material.atmosphericPressure = (float)0;
-            emitter.Solver.UpdateActiveParticles();
-        }
-    }*/
 
 
 

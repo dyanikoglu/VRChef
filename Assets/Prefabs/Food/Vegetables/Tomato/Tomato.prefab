@@ -344,6 +344,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0580f3b8e0fd90441b1e89c39c8d522f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isPeeled: 0
 --- !u!114 &114815008173038502
 MonoBehaviour:
   m_ObjectHideFlags: 1
