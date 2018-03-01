@@ -5,16 +5,13 @@ using UnityEngine;
 namespace RecipeModule { 
     public class CreateRecipeScene : MonoBehaviour {
         public GameObject[] places;
-        private bool isGetActionList = false;
         int placeCount = 0;
-       // Use this for initialization
-        void Update()
+        public string recipe;
+        // Use this for initialization
+        private void Start()
         {
-            if (!isGetActionList)
-            {
-                isGetActionList = true;
-                UseActionList(gameObject.GetComponent<Recipe>().GetActions());
-            }
+            Recipe r = Recipe.LoadRecipe(recipe);
+            UseActionList(r.GetActions());
         }
 
         void CreateObjectInScene(GameObject ingredient, int quantity)
@@ -29,23 +26,26 @@ namespace RecipeModule {
         void UseActionList(List<Action> actionList)
         {
             List<GameObject> f=new List<GameObject>();
+            
             foreach(Action a in actionList)
             {
+                
+                
                 if (a.GetInvolvedFood().GetPrev() == null)
                 {
                     if (f.Count==0)
                     {
-                        f.Add(a.GetInvolvedFood().GetPrefab());
+                        f.Add(GetComponent<FindPrefab>().GetPrefab(a.GetInvolvedFood().GetFoodIdentifier()));
                     }
-                    else if (f.Contains(a.GetInvolvedFood().GetPrefab()))
+                    else if (f.Contains(GetComponent<FindPrefab>().GetPrefab(a.GetInvolvedFood().GetFoodIdentifier())))
                     {
-                        f.Add(a.GetInvolvedFood().GetPrefab());
+                        f.Add(GetComponent<FindPrefab>().GetPrefab(a.GetInvolvedFood().GetFoodIdentifier()));
                     }
                     else
                     {
                         CreateObjectInScene(f[0], f.Count);
                         f.Clear();
-                        f.Add(a.GetInvolvedFood().GetPrefab());
+                        f.Add(GetComponent<FindPrefab>().GetPrefab(a.GetInvolvedFood().GetFoodIdentifier()));
                     }
                 }
             }
