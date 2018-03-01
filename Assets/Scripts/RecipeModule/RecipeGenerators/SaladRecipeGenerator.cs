@@ -6,8 +6,6 @@ namespace RecipeModule
 {
     public class SaladRecipeGenerator : MonoBehaviour
     {
-        public Recipe recipe;
-
         public GameObject tomato;
         public GameObject cucumber;
         public GameObject cabbage;
@@ -15,6 +13,7 @@ namespace RecipeModule
 
         void Start()
         {
+            Recipe recipe = new Recipe("Salad");
             //// Recipe task list start
 
             // Chop 2 tomatoes into small pieces
@@ -29,14 +28,19 @@ namespace RecipeModule
             // Chop a cabbage into middle pieces
             Food cabbage_chopped = recipe.DescribeNewChopAction(6, cabbage, 8, Chop.PieceVolumeSize.Middle);
 
+            // Chop a pepper into middle pieces
+            Food pepper_chopped = recipe.DescribeNewChopAction(6, pepper, 8, Chop.PieceVolumeSize.Middle);
+
             // Combine all of them near tomato_1
             recipe.DescribeNewPutTogetherAction(7, tomato_chopped_2, tomato_chopped_1);
             recipe.DescribeNewPutTogetherAction(8, cucumber_chopped_1, tomato_chopped_1);
             recipe.DescribeNewPutTogetherAction(9, cucumber_chopped_2, tomato_chopped_1);
             recipe.DescribeNewPutTogetherAction(10, cucumber_chopped_3, tomato_chopped_1);
             recipe.DescribeNewPutTogetherAction(11, cabbage_chopped, tomato_chopped_1);
+            recipe.DescribeNewPutTogetherAction(12, pepper_chopped, tomato_chopped_1);
 
             //// Recipe task list end
+            Recipe.SaveRecipe(recipe);
         }
     }
 }

@@ -1,42 +1,89 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System;
+﻿using System.Collections.Generic;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 using System.IO;
 
 namespace RecipeModule { 
-    public class Recipe : MonoBehaviour
+    public class Recipe
     {
-        // Will be removed after testing
-        //public FindPrefab prefabFinder;
-        ///////
-
         [FullSerializer.fsProperty]
         private List<Food> _initialFoods;
         [FullSerializer.fsProperty]
         private List<Action> _actions;
         [FullSerializer.fsProperty]
         private int totalStepCount = 0;
+        [FullSerializer.fsProperty]
+        private string recipeName;
 
-        private void Start()
+        public Recipe(string recipeName)
         {
+            this.recipeName = recipeName;
             _initialFoods = new List<Food>();
             _actions = new List<Action>();
         }
 
-        public void Save()
+        public Recipe()
         {
-            string savedData = StringSerializationAPI.Serialize(typeof(Recipe), this);
+            this.recipeName = "";
+            _initialFoods = new List<Food>();
+            _actions = new List<Action>();
+        }
 
-            Recipe r = (Recipe) StringSerializationAPI.Deserialize(typeof(Recipe), savedData);
+        // XOR Decrypt/Encryption for saved files
+        private static string XOREncryptDecrypt(string s, string key)
+        {
+            string result = ""; ;
+            for (int i = 0; i < s.Length; i++)
+            {
+                result += (char)(s[i] ^ key[i % key.Length]);
+            }
+            return result;
+        }
 
-            // TODO Serialize r and save it to local directory
+        // Saves the recipe that given as parameter
+        public static void SaveRecipe(Recipe recipeToBeSaved)
+        {
+            // Serialize this recipe
+            string recipeData = StringSerializationAPI.Serialize(typeof(Recipe), recipeToBeSaved);
 
-            //foreach (Food f in r._initialFoods)
-            //{
-            //    print(prefabFinder.GetPrefab(f.GetFoodIdentifier()).name);
-            //}
+            BinaryFormatter bf = new BinaryFormatter();
+            FileStream file;
+
+            // If save file exists, open it
+            if (File.Exists(Application.dataPath + "/Recipes/" + recipeToBeSaved.recipeName + ".vrcr"))
+            {
+                file = File.OpenWrite(Application.dataPath + "/Recipes/" + recipeToBeSaved.recipeName + ".vrcr");
+            }
+            // Save file doesn't exist, create new one.
+            else
+            {
+                file = File.Create(Application.dataPath + "/Recipes/" + recipeToBeSaved.recipeName + ".vrcr");
+            }
+
+            bf.Serialize(file, XOREncryptDecrypt(recipeData, "VRChef"));
+            file.Close();
+        }
+       
+
+        // Loads and returns the recipe with given name as parameter
+        public static Recipe LoadRecipe(string recipeName)
+        {
+            BinaryFormatter bf = new BinaryFormatter();
+            FileStream file;
+
+            if (File.Exists(Application.dataPath + "/Recipes/" + recipeName + ".vrcr"))
+            {
+                file = File.OpenRead(Application.dataPath + "/Recipes/" + recipeName + ".vrcr");
+            }
+            else
+            {
+                return null;
+            }
+
+            Recipe loadedRecipe = (Recipe) StringSerializationAPI.Deserialize(typeof(Recipe), XOREncryptDecrypt((string)bf.Deserialize(file), "VRChef"));
+            file.Close();
+
+            return loadedRecipe;
         }
 
         public void ReorderActions()
@@ -336,6 +383,16 @@ namespace RecipeModule {
         public int GetTotalStepCount()
         {
             return totalStepCount;
+        }
+
+        public void SetRecipeName(string recipeName)
+        {
+            this.recipeName = recipeName;
+        }
+
+        public string GetRecipeName()
+        {
+            return recipeName;
         }
 
         #endregion

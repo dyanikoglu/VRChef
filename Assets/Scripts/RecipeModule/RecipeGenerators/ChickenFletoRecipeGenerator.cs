@@ -1,20 +1,19 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace RecipeModule
 {
     public class ChickenFletoRecipeGenerator : MonoBehaviour
     {
-        public Recipe recipe;
-
         public GameObject tomato;
         public GameObject potato;
         public GameObject chicken;
 
         void Start()
         {
+            Recipe recipe = new Recipe("Chicken_Fleto");
+
             //// Recipe task list start
+            recipe.SetRecipeName("Chicken_Fleto");
 
             // Chop 3 chicken fletos
             Food chicken_chopped_1 = recipe.DescribeNewChopAction(0, chicken, 2, Chop.PieceVolumeSize.Big); // Focused chicken object
@@ -52,7 +51,8 @@ namespace RecipeModule
 
             //// Recipe task list end
 
-            recipe.Save();
+            // Save recipe
+            Recipe.SaveRecipe(recipe);
         }
     }
 }
