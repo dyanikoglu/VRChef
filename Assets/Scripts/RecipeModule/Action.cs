@@ -11,9 +11,13 @@ namespace RecipeModule
             Fry, Chop, Peel, Cook, Squeeze, Break, Smash, Mix, PutTogether, Boil
         }
 
+        [FullSerializer.fsProperty]
         protected Food involvedFood;
+        [FullSerializer.fsProperty]
         protected Food resultedFood;
+        [FullSerializer.fsProperty]
         protected ActionType actionType;
+        [FullSerializer.fsProperty]
         protected int stepNumber;
 
         public Action()

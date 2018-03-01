@@ -1,19 +1,42 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System;
+using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
+using System.IO;
 
-namespace RecipeModule
-{
+namespace RecipeModule { 
     public class Recipe : MonoBehaviour
     {
+        // Will be removed after testing
+        //public FindPrefab prefabFinder;
+        ///////
+
+        [FullSerializer.fsProperty]
         private List<Food> _initialFoods;
+        [FullSerializer.fsProperty]
         private List<Action> _actions;
+        [FullSerializer.fsProperty]
         private int totalStepCount = 0;
 
         private void Start()
         {
             _initialFoods = new List<Food>();
             _actions = new List<Action>();
+        }
+
+        public void Save()
+        {
+            string savedData = StringSerializationAPI.Serialize(typeof(Recipe), this);
+
+            Recipe r = (Recipe) StringSerializationAPI.Deserialize(typeof(Recipe), savedData);
+
+            // TODO Serialize r and save it to local directory
+
+            //foreach (Food f in r._initialFoods)
+            //{
+            //    print(prefabFinder.GetPrefab(f.GetFoodIdentifier()).name);
+            //}
         }
 
         public void ReorderActions()
@@ -56,7 +79,7 @@ namespace RecipeModule
 
         public Food DescribeNewChopAction(int stepNumber, GameObject foodObject, int requiredPieceCount, Chop.PieceVolumeSize pieceVolumeSize)
         {
-            Food f = new Food(foodObject);
+            Food f = new Food(foodObject.GetComponent<FoodStatus>().foodIdentifier);
             _initialFoods.Add(f);
 
             Chop action = new Chop(stepNumber, f, requiredPieceCount, pieceVolumeSize);
@@ -81,7 +104,7 @@ namespace RecipeModule
 
         public Food DescribeNewCookAction(int stepNumber, GameObject foodObject, float requiredHeat, float requiredTime, Cook.CookType cookType)
         {
-            Food f = new Food(foodObject);
+            Food f = new Food(foodObject.GetComponent<FoodStatus>().foodIdentifier);
             _initialFoods.Add(f);
 
             Cook action = new Cook(stepNumber, f, requiredHeat, requiredTime, cookType);
@@ -106,7 +129,7 @@ namespace RecipeModule
 
         public Food DescribeNewPeelAction(int stepNumber, GameObject foodObject)
         {
-            Food f = new Food(foodObject);
+            Food f = new Food(foodObject.GetComponent<FoodStatus>().foodIdentifier);
             _initialFoods.Add(f);
 
             Peel action = new Peel(stepNumber, f);
@@ -131,7 +154,7 @@ namespace RecipeModule
 
         public Food DescribeNewSqueezeAction(int stepNumber, GameObject foodObject)
         {
-            Food f = new Food(foodObject);
+            Food f = new Food(foodObject.GetComponent<FoodStatus>().foodIdentifier);
             _initialFoods.Add(f);
 
             Squeeze action = new Squeeze(stepNumber, f);
@@ -156,7 +179,7 @@ namespace RecipeModule
 
         public Food DescribeNewSmashAction(int stepNumber, GameObject foodObject)
         {
-            Food f = new Food(foodObject);
+            Food f = new Food(foodObject.GetComponent<FoodStatus>().foodIdentifier);
             _initialFoods.Add(f);
 
             Smash action = new Smash(stepNumber, f);
@@ -181,7 +204,7 @@ namespace RecipeModule
 
         public Food DescribeNewFryAction(int stepNumber, GameObject foodObject, float requiredHeat, float requiredTime, Fry.FryType fryType)
         {
-            Food f = new Food(foodObject);
+            Food f = new Food(foodObject.GetComponent<FoodStatus>().foodIdentifier);
             _initialFoods.Add(f);
 
             Fry action = new Fry(stepNumber, f, requiredHeat, requiredTime, fryType);
@@ -206,7 +229,7 @@ namespace RecipeModule
 
         public Food DescribeNewBreakAction(int stepNumber, GameObject foodObject)
         {
-            Food f = new Food(foodObject);
+            Food f = new Food(foodObject.GetComponent<FoodStatus>().foodIdentifier);
             _initialFoods.Add(f);
 
             Break action = new Break(stepNumber, f);
@@ -231,7 +254,7 @@ namespace RecipeModule
 
         public Food DescribeNewPutTogetherAction(int stepNumber, GameObject foodObject, Food destinationFood)
         {
-            Food f = new Food(foodObject);
+            Food f = new Food(foodObject.GetComponent<FoodStatus>().foodIdentifier);
             _initialFoods.Add(f);
 
             PutTogether action = new PutTogether(stepNumber, f, destinationFood);
@@ -246,10 +269,10 @@ namespace RecipeModule
         // Both of objects are prefabs, create new Food classes for both of them
         public Food DescribeNewPutTogetherAction(int stepNumber, GameObject foodObject, GameObject destinationFood)
         {
-            Food f = new Food(foodObject);
+            Food f = new Food(foodObject.GetComponent<FoodStatus>().foodIdentifier);
             _initialFoods.Add(f);
 
-            Food f2 = new Food(foodObject);
+            Food f2 = new Food(foodObject.GetComponent<FoodStatus>().foodIdentifier);
             _initialFoods.Add(f2);
 
             PutTogether action = new PutTogether(stepNumber, f, f2);
@@ -275,7 +298,7 @@ namespace RecipeModule
         
         public Food DescribeNewBoilAction(int stepNumber, GameObject foodObject, float requiredHeat, float requiredTime, Boil.BoilType boilType)
         {
-            Food f = new Food(foodObject);
+            Food f = new Food(foodObject.GetComponent<FoodStatus>().foodIdentifier);
             _initialFoods.Add(f);
 
             Boil action = new Boil(stepNumber, f, requiredHeat, requiredTime, boilType);

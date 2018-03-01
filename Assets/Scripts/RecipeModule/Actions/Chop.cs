@@ -5,6 +5,7 @@ using UnityEngine;
 namespace RecipeModule
 {
     // TODO Remove requiredPieceCount. It's not necessary while we're controlling also pieceVolumeSize.
+    // Remove direct consistency with object's prefab
     public class Chop : Action
     {
         private int requiredPieceCount;
@@ -28,7 +29,8 @@ namespace RecipeModule
         {
             this.requiredPieceCount = requiredPieceCount;
             this.pieceVolumeSize = pieceVolumeSize;
-            this.maxPieceVolume = CalculateMaxPieceVolume(foodToBeChopped.GetPrefab());
+            
+            //this.maxPieceVolume = CalculateMaxPieceVolume(foodToBeChopped.GetPrefab());
 
             DeriveResultedFood();
         }

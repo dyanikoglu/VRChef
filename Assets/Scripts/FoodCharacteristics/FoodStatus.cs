@@ -9,12 +9,10 @@ public class FoodStatus : MonoBehaviour {
     private bool _isPeeled = false;
     private bool _isHalfSmashed = false;
     private bool _isBurnedAfterFrying = false;
-    public bool _isBoiled = false;
+    private bool _isBoiled = false;
 
-    // Keep adding required characteristic status booleans
-    //...
-    //...
-    //...
+    // Unique identifier of the object. Required for reaching out prefabs of each food.
+    public string foodIdentifier = "";
 
     public bool GetIsChoppedPiece()
     {

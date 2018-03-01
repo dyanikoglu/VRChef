@@ -51,6 +51,8 @@ namespace RecipeModule
             Food potato_cooked = recipe.DescribeNewCookAction(17, potato_chopped.GetLatestState(), 150, 600, Cook.CookType.Cooked);
 
             //// Recipe task list end
+
+            recipe.Save();
         }
     }
 }

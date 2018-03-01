@@ -1,29 +1,44 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 namespace RecipeModule
 {
     public class Food
     {
-        private GameObject objectPrefab;
-
+        [FullSerializer.fsProperty]
+        private string foodIdentifier;
+        [FullSerializer.fsProperty]
         private bool isChopped;
+        [FullSerializer.fsProperty]
         private bool isCooked;
+        [FullSerializer.fsProperty]
         private bool isFried;
+        [FullSerializer.fsProperty]
         private bool isPeeled;
+        [FullSerializer.fsProperty]
         private bool isSqueezed;
+        [FullSerializer.fsProperty]
         private bool isBroken;
+        [FullSerializer.fsProperty]
         private bool isSmashed;
+        [FullSerializer.fsProperty]
         private bool isBoiled;
+        [FullSerializer.fsProperty]
         private bool isMixed;
+        [FullSerializer.fsProperty]
         private bool isPutTogether;
 
+        [FullSerializer.fsProperty]
         private Food stayingWith; // Indicates that this object is staying(and should stay) together with this object.
 
+        [FullSerializer.fsProperty]
         private Food next;
+        [FullSerializer.fsProperty]
         private Food prev;
 
+        [FullSerializer.fsProperty]
         private Action actionDerivedBy;
 
         public Food()
@@ -44,7 +59,7 @@ namespace RecipeModule
             next = null;
             prev = null;
 
-            objectPrefab = null;
+            foodIdentifier = "";
         }
 
         public Food(Food f)
@@ -65,10 +80,10 @@ namespace RecipeModule
             next = null;
             prev = null;
 
-            objectPrefab = f.objectPrefab;
+            foodIdentifier = f.foodIdentifier;
         }
 
-        public Food(GameObject o)
+        public Food(string foodIdentifier)
         {
             isChopped = false;
             isCooked = false;
@@ -86,7 +101,7 @@ namespace RecipeModule
             next = null;
             prev = null;
 
-            objectPrefab = o;
+            this.foodIdentifier = foodIdentifier;
         }
 
         #region Mutators
@@ -121,14 +136,14 @@ namespace RecipeModule
             this.prev = prev;
         }
 
-        public GameObject GetPrefab()
+        public string GetFoodIdentifier()
         {
-            return objectPrefab;
+            return foodIdentifier;
         }
 
-        public void SetPrefab(GameObject objectPrefab)
+        public void SetFoodIdentifier(string foodIdentifier)
         {
-            this.objectPrefab = objectPrefab;
+            this.foodIdentifier = foodIdentifier;
         }
 
         public void SetIsChopped(bool isChopped)
