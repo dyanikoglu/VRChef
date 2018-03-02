@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using System;
 
 public class CanBeFried : FoodCharacteristic
 {
@@ -29,6 +30,16 @@ public class CanBeFried : FoodCharacteristic
     public AudioClip fryingSound;
     AudioSource source;
     bool onlyOnce = true;
+
+    //public override void PublishEvent()
+    //{
+    //    OnOperationDone(RecipeModule.Action.ActionType.Fry);
+    //}
+
+    public void PublishEventFake()
+    {
+        OnOperationDone(RecipeModule.Action.ActionType.Fry);
+    }
 
     private void Awake()
     {
@@ -90,8 +101,7 @@ public class CanBeFried : FoodCharacteristic
     {
         if (onCanFry)
         {
-            /* TODO: add has fluid option */
-            if(!GetComponent<FoodStatus>().GetIsFried() && !fryingStarted && canFryObject.GetComponent<CanFry>().GetCanFry())
+            if(!GetComponent<FoodStatus>().GetIsFried() && !fryingStarted && canFryObject.GetComponent<CanFry>().GetCanFry() && canFryObject.GetComponent<CanFry>().GetHasFluid())
             {
                 StartFrying();
             }
@@ -207,20 +217,26 @@ public class CanBeFried : FoodCharacteristic
              GetComponent<Renderer>().sharedMaterials[i].SetColor("_WetTint", burnedColor);
          }
 
-         float burnedLevel = 0f;
+         /*
+        float burnedLevel = 0f;
 
-         while(burnedLevel < 1f)
+        Material[] copyMaterials = new Material[GetComponent<Renderer>().sharedMaterials.Length];
+
+        for (int i = 0; i < GetComponent<Renderer>().sharedMaterials.Length; i++)
+        {
+            //GetComponent<Renderer>().sharedMaterials[i].SetFloat("_WetWeight", burnedLevel);
+            copyMaterials[i] = GetComponent<Renderer>().sharedMaterials[i];
+        }
+
+        while (burnedLevel < 1f)
          {
              fadeValue = Time.deltaTime / fryingTimeInSeconds;
              burnedLevel += fadeValue;
              if(burnedLevel > 0.5f)
              {
-                 GetComponent<FoodStatus>().SetIsBurned(true);
+                GetComponent<FoodStatus>().SetIsBurned(true);
              }
-             for (int i = 0; i < GetComponent<Renderer>().sharedMaterials.Length; i++)
-             {
-                 GetComponent<Renderer>().sharedMaterials[i].SetFloat("_WetWeight", burnedLevel);
-             }
+
              yield return new WaitForSeconds(fadeValue);
          }
 
@@ -232,6 +248,7 @@ public class CanBeFried : FoodCharacteristic
                 Destroy(fc);
             }
         }
+        */
 
     }
 }

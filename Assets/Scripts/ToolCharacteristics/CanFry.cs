@@ -6,6 +6,8 @@ public class CanFry : MonoBehaviour {
 
     public bool canFry = false;
     GameObject firstCollidedObject;
+    [SerializeField]
+    bool hasFluid;
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -42,5 +44,15 @@ public class CanFry : MonoBehaviour {
     public bool GetCanFry()
     {
         return canFry;
+    }
+
+    public void SetHasFluid(bool flag)
+    {
+        hasFluid = flag;
+    }
+
+    public bool GetHasFluid()
+    {
+        return hasFluid;
     }
 }

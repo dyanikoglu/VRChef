@@ -12,6 +12,7 @@ public class FluidCollisionDetection : MonoBehaviour
 
     int numberOfNeededFluidParticles;
     CanBoil canBoilScript;
+    CanFry canFryScript;
 
     ObiSolver solver;
 
@@ -46,6 +47,7 @@ public class FluidCollisionDetection : MonoBehaviour
                 Component collider;
                 if (ObiCollider.idToCollider.TryGetValue(contact.other, out collider))
                 {
+
                     if (collider.gameObject.GetComponent<CanBoil>())
                     {
                         canBoilScript = collider.gameObject.GetComponent<CanBoil>();
@@ -55,7 +57,18 @@ public class FluidCollisionDetection : MonoBehaviour
                             collidedParticles.Add(index);
                         }
                     }
-                    if(!collidedWithBowl && collider.transform.parent)
+
+                    else if (collider.gameObject.GetComponentInParent<CanFry>())
+                    {
+                        canFryScript = collider.gameObject.GetComponentInParent<CanFry>();
+                        int index = Int32.Parse(contact.particle.ToString());
+                        if (!collidedParticles.Contains(index))
+                        {
+                            collidedParticles.Add(index);
+                        }
+                    }
+
+                    if (!collidedWithBowl && collider.transform.parent)
                     {
                         if (!collidedWithBowl && collider.transform.parent.transform.parent)
                         {
@@ -69,17 +82,24 @@ public class FluidCollisionDetection : MonoBehaviour
                     }
                     
                 }
-                
             }
         }
     }
 
     private void Update()
     {
-        if(collidedParticles.Count >= numberOfNeededFluidParticles * 0.3f)
+        if(collidedParticles.Count >= numberOfNeededFluidParticles * 0.1f)
         {
-            canBoilScript.SetHasFluid(true);
-            OnDisable();
+            if (canBoilScript)
+            {
+                canBoilScript.SetHasFluid(true);
+                OnDisable();
+            }
+            if (canFryScript)
+            {
+                canFryScript.SetHasFluid(true);
+                OnDisable();
+            }
         }
     }
 

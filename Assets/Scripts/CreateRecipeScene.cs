@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace RecipeModule { 
-    public class CreateRecipeScene : MonoBehaviour {
+    public class CreateRecipeScene : MonoBehaviour
+    {
+        public SimulationController simulationController;
         public GameObject[] places;
         int placeCount = 0;
         public string recipe;
@@ -11,6 +13,7 @@ namespace RecipeModule {
         private void Start()
         {
             Recipe r = Recipe.LoadRecipe(recipe);
+            simulationController.SetRecipeToControl(r);
             UseActionList(r.GetActions());
         }
 
@@ -19,6 +22,7 @@ namespace RecipeModule {
             for (int i = 0; i < quantity; i++)
             {
                 Instantiate(ingredient, places[placeCount].transform.position, ingredient.transform.rotation);
+                ingredient.GetComponent<FoodCharacteristic>().OperationDone += simulationController.OnOperationDone;
             }
             placeCount++;
         }
