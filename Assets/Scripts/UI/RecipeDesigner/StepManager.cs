@@ -7,7 +7,18 @@ public class StepManager : MonoBehaviour {
 
     public GameObject emptyStepRef;
     public GameObject newStepButtonRef;
+
+    public RecipeModule.Recipe recipe;
+
+    private List<Step> steps;
+
     private int totalStepCount = 0;
+
+    private void Start()
+    {
+        recipe = new RecipeModule.Recipe("Test Recipe");
+        steps = new List<Step>();
+    }
 
     public void CreateNewStep()
     {
@@ -40,10 +51,17 @@ public class StepManager : MonoBehaviour {
         Vector3 buttonOffset = newStepButtonRef.GetComponent<RectTransform>().anchoredPosition3D;
         buttonOffset.y -= 40;
         newStepButtonRef.GetComponent<RectTransform>().anchoredPosition3D = buttonOffset;
+
+        steps.Add(newStep);
     }
 
-    private void Attach(GameObject parent, GameObject child)
+    public void UpdateSteps() 
     {
-        
+       
+       foreach(Step s in steps)
+        {
+            print("loop");
+            s.GenerateOutput(recipe);
+        }
     }
 }
