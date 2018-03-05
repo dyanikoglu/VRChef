@@ -6,7 +6,9 @@ using UnityEngine.UI;
 public class StepManager : MonoBehaviour {
 
     public GameObject emptyStepRef;
+    public GameObject emptyGroupRef;
     public GameObject newStepButtonRef;
+    public GameObject newGroupButtonRef;
 
     public RecipeModule.Recipe recipe;
 
@@ -56,6 +58,7 @@ public class StepManager : MonoBehaviour {
         steps.Add(newStep);
     }
 
+    // Push step element upwards in UI
     public void PushElement(RectTransform rt, Vector3 vec)
     {
         Vector3 offset = rt.anchoredPosition3D;
@@ -63,8 +66,84 @@ public class StepManager : MonoBehaviour {
         rt.anchoredPosition3D = offset;
     }
 
+    // Create a new foodgroup from selected steps
+    public void CreateGroupFromSelectedSteps()
+    {
+        List<Step> tickedSteps = new List<Step>();
+        float avgYPos = 0;
+        float minY = 10000;
+        float maxY = -10000;
+        foreach (Step s in steps)
+        {
+            if (s.GetToggle() && !s.outputGrouped)
+            {
+                Vector3 pos = s.GetComponent<RectTransform>().anchoredPosition3D;
+                tickedSteps.Add(s);
+
+                if(pos.y > maxY)
+                {
+                    maxY = pos.y + 25;
+                }
+
+                if(pos.y < minY)
+                {
+                    minY = pos.y + 25;
+                }
+
+                s.groupConnectorRef.SetActive(true);
+            }
+        }
+
+        avgYPos = (minY + maxY) / 2.0f;
+
+        GameObject newGroup = GameObject.Instantiate(emptyGroupRef);
+        newGroup.transform.SetParent(this.transform, false);
+
+        Vector3 groupPos = newGroup.GetComponent<RectTransform>().anchoredPosition3D;
+        groupPos.y = avgYPos;
+        newGroup.GetComponent<RectTransform>().anchoredPosition3D = groupPos;
+
+        Vector2 newDelta = new Vector2((maxY - minY) / 10.0f, 10) ;
+        newGroup.GetComponent<GroupFromSteps>().verticalLineRef.sizeDelta = newDelta;
+
+        newGroup.SetActive(true);
+    }
+
+    // Set new group button as visible if 2 or more steps are selected
+    public void NewGroupButtonVisibility()
+    {
+        List<Step> tickedSteps = new List<Step>();
+        float avgYPos = 0;
+        foreach(Step s in steps)
+        {
+            if(s.GetToggle())
+            {
+                tickedSteps.Add(s);
+                avgYPos += s.GetComponent<RectTransform>().anchoredPosition3D.y + 25;
+            }
+        }
+
+        avgYPos /= (float)tickedSteps.Count;
+
+        if (tickedSteps.Count >= 2)
+        {
+            newGroupButtonRef.SetActive(true);
+            Vector3 pos = newGroupButtonRef.GetComponent<RectTransform>().anchoredPosition3D;
+            pos = new Vector3(pos.x, avgYPos, pos.z);
+            newGroupButtonRef.GetComponent<RectTransform>().anchoredPosition3D = pos;
+        }
+
+        else
+        {
+            newGroupButtonRef.SetActive(false);
+        }
+    }
+
+    // Completely remove the step.
     public void RemoveStep(Step s)
     {
+        StepChanged(s);
+
         int removedStepNo = s.GetStepNumber();
 
         foreach (Step step in steps)
@@ -83,31 +162,123 @@ public class StepManager : MonoBehaviour {
         Destroy(s.gameObject);
         totalStepCount--;
 
-        FixMissingReferences();
+        RegenerateSteps();
     }
 
-    private void FixMissingReferences()
+    public void StepChanged(Step s)
+    {
+        // Set this step dirty
+        s.SetDirty(true);
+
+        // Check for input item conditions
+        if(s.GetInput() is FoodState)
+        {
+            FoodState input = (FoodState)(s.GetInput());
+            if (ItemClonedIntoPreviousStep(input, s.GetStepNumber()))
+            {
+                DestroyFoodState(input);
+            }
+        }
+
+        else if(s.GetInput() is FoodGroup)
+        {
+            // TODO
+        }
+
+
+        // Check for output item conditions
+        if(s.GetOutput() is FoodState)
+        {
+            FoodState outputToBeRemoved = (FoodState)(s.GetOutput());
+
+            MarkRefsAsDirty(outputToBeRemoved.clone);
+            DestroyFoodState(outputToBeRemoved);
+        }
+
+        else if(s.GetOutput() is FoodGroup)
+        {
+            //TODO
+        }
+
+        // Finally recalculate outputs of each step
+        RegenerateSteps();
+    }
+
+    // This function returns true if item given as parameter is cloned into a previous step.
+    public bool ItemClonedIntoPreviousStep(FoodState fs, int stepNo)
     {
         foreach(Step s in steps)
         {
-            FoodState inputFoodState = s.inputZoneRef.GetComponentInChildren<FoodState>();
-            if (inputFoodState && inputFoodState.GetOrigin() == null)
+            if(s.GetOutput() is FoodState)
             {
-                // If this step uses output from removed step, remove this step too.
-                RemoveStep(s);
-                break;
+                FoodState outputFood = (FoodState)(s.GetOutput());
+                if(outputFood.clone == fs && stepNo < s.GetStepNumber())
+                {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    public void DestroyFoodState(FoodState fs)
+    {
+        Destroy(fs.GetComponent<Text>());
+        Destroy(fs.gameObject);
+    }
+
+    // Assume we removed the parameter item, remove recursively the clone and generated outputs from this clone on recipe.
+    public void MarkRefsAsDirty(FoodState foodState)
+    {
+        if (foodState == null)
+        {
+            return;
+        }
+
+        foreach (Step s in steps)
+        {
+            if ((FoodState)(s.GetInput()) == foodState)
+            {
+                s.SetDirty(true);
+
+                if (s.GetOutput() is FoodState)
+                {
+                    FoodState outputToBeRemoved = (FoodState)(s.GetOutput());
+                    FoodState inputToBeRemoved = (FoodState)(s.GetInput());
+
+                    MarkRefsAsDirty(outputToBeRemoved.clone);
+                    DestroyFoodState(outputToBeRemoved);
+                    DestroyFoodState(inputToBeRemoved);
+                    break;
+                }
+
+                else if (s.GetOutput() is FoodGroup)
+                {
+                    //TODO
+                }
             }
         }
     }
 
     public void RegenerateSteps() 
     {
+        StartCoroutine(_RegenerateSteps());
+    }
+
+    private IEnumerator _RegenerateSteps()
+    {
+        // Some delay for consistency of data.
+        yield return new WaitForSeconds(0.1f);
         recipe = new RecipeModule.Recipe("Test Recipe");
         foreach (Step s in steps)
         {
-            s.GenerateOutput(recipe);
+            // If this step is marked as dirty, recalculate it's output again.
+            if (s.IsDirty())
+            {
+                s.GenerateOutput(recipe);
+                s.SetDirty(false);
+            }
         }
-
-        FixMissingReferences();
     }
 }

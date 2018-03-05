@@ -3,31 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class FoodState : MonoBehaviour {
-    private RecipeModule.Food recipeFoodRef;
-    private FoodState origin;
-
-    private void Start()
-    {
-        origin = this;
-    }
+    public RecipeModule.Food recipeFoodRef;
+    public FoodState clone = null;
 
     public void SetFood(RecipeModule.Food recipeFoodRef)
     {
         this.recipeFoodRef = recipeFoodRef;
     }
 
-    public void SetOrigin(FoodState origin)
-    {
-        this.origin = origin;
-    }
-
-    public FoodState GetOrigin()
-    {
-        return origin;
-    }
-
     public RecipeModule.Food GetFood()
     {
         return recipeFoodRef;
+    }
+
+    public void Clone(FoodState fs)
+    {
+        this.recipeFoodRef = fs.GetFood();
+        fs.clone = this;
     }
 }

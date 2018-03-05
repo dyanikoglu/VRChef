@@ -59,4 +59,11 @@ public class PseudoAction : MonoBehaviour {
     {
         return parameterNames;
     }
+
+    public void Clone(PseudoAction pa)
+    {
+        this.parameterValues = pa.GetParameterValues();
+        this.parameterNames = pa.GetParameterNames();
+        this.actionType = pa.actionType;
+    }
 }
