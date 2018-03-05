@@ -22,7 +22,6 @@ GameObject:
   - component: {fileID: 222309086158462314}
   - component: {fileID: 114599554499771414}
   - component: {fileID: 225319304713421594}
-  - component: {fileID: 114463589679002746}
   - component: {fileID: 114627288573393452}
   m_Layer: 5
   m_Name: Food
@@ -31,21 +30,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &114463589679002746
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1834060243765430}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5eb53f4b7bc15c64a910cd7d6262c898, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  restrictToDropZone: 1
-  restrictToOriginalCanvas: 0
-  forwardOffset: 0.05
-  validDropZone: {fileID: 0}
 --- !u!114 &114599554499771414
 MonoBehaviour:
   m_ObjectHideFlags: 1

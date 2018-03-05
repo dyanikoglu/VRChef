@@ -55,12 +55,11 @@ public class StepManager : MonoBehaviour {
         steps.Add(newStep);
     }
 
-    public void UpdateSteps() 
+    public void RegenerateSteps() 
     {
-       
-       foreach(Step s in steps)
+        recipe = new RecipeModule.Recipe("Test Recipe");
+        foreach (Step s in steps)
         {
-            print("loop");
             s.GenerateOutput(recipe);
         }
     }

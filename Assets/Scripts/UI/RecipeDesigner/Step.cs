@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using VRTK;
 using UnityEngine.UI;
 
 public class Step : MonoBehaviour {
@@ -36,14 +37,9 @@ public class Step : MonoBehaviour {
 
     public void GenerateOutput(RecipeModule.Recipe recipe)
     {
-        if(GetInput() == null || GetPseudoAction() == null)
+        if(GetInput() == null || GetPseudoAction() == null || outputZoneRef.transform.childCount != 0)
         {
             return;
-        }
-
-        if(outputZoneRef.transform.childCount != 0)
-        {
-            Destroy(outputZoneRef.transform.GetChild(0));
         }
 
         if(GetInput() is FoodState)
@@ -94,7 +90,13 @@ public class Step : MonoBehaviour {
 
             GameObject outputObject = GameObject.Instantiate(dummyIOFoodObject);
             outputObject.GetComponent<FoodState>().SetFood(outputFood);
+
+
+
             outputObject.transform.SetParent(outputZoneRef.transform, false);
+            VRTK_UIDraggableItem draggableItem = outputObject.AddComponent<VRTK_UIDraggableItem>();
+            draggableItem.forwardOffset = 0.05f;
+            draggableItem.restrictToDropZone = true;
         }
 
         else if(GetInput() is FoodGroup)

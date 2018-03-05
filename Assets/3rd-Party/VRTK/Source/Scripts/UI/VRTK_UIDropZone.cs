@@ -20,6 +20,7 @@ namespace VRTK
     public class VRTK_UIDropZone : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         protected VRTK_UIDraggableItem droppableItem;
+        public bool acceptMultipleItems = false;
 
         public virtual void OnPointerEnter(PointerEventData eventData)
         {
@@ -28,8 +29,11 @@ namespace VRTK
                 VRTK_UIDraggableItem dragItem = eventData.pointerDrag.GetComponent<VRTK_UIDraggableItem>();
                 if (dragItem != null && dragItem.restrictToDropZone)
                 {
-                    dragItem.validDropZone = gameObject;
-                    droppableItem = dragItem;
+                    if (acceptMultipleItems || (!acceptMultipleItems && transform.childCount == 0))
+                    {
+                        dragItem.validDropZone = gameObject;
+                        droppableItem = dragItem;
+                    }
                 }
             }
         }
