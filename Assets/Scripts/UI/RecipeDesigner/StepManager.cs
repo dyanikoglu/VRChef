@@ -50,6 +50,9 @@ public class StepManager : MonoBehaviour {
         // Assign gameobject name
         newStep.name = "Step_" + totalStepCount;
 
+        // Disable toggle
+        newStep.toggleRef.GetComponent<Toggle>().enabled = false;
+
         // Push down the new step button
         Vector3 buttonOffset = newStepButtonRef.GetComponent<RectTransform>().anchoredPosition3D;
         buttonOffset.y += spacingY;
@@ -69,17 +72,35 @@ public class StepManager : MonoBehaviour {
     // Create a new foodgroup from selected steps
     public void CreateGroupFromSelectedSteps()
     {
-        List<Step> tickedSteps = new List<Step>();
         float avgYPos = 0;
         float minY = 10000;
         float maxY = -10000;
+        List<FoodState> outputsToBeGrouped = new List<FoodState>();
         foreach (Step s in steps)
         {
-            if (s.GetToggle() && !s.outputGrouped)
+            if (s.GetToggle())
             {
-                Vector3 pos = s.GetComponent<RectTransform>().anchoredPosition3D;
-                tickedSteps.Add(s);
+                s.outputGrouped = true;
+                s.SetToggle(false);
+                s.toggleRef.GetComponent<Toggle>().enabled = false;
 
+                //Import single output into list
+                if(s.GetOutput() is FoodState)
+                {
+                    outputsToBeGrouped.Add((FoodState)(s.GetOutput()));
+                }
+
+                // Import whole group into list
+                else if(s.GetOutput() is FoodGroup)
+                {
+                    FoodGroup groupToBeImported = (FoodGroup)(s.GetOutput());
+                    foreach (FoodState fs in groupToBeImported.foodGroup)
+                    {
+                        outputsToBeGrouped.Add(fs);
+                    }
+                }
+
+                Vector3 pos = s.GetComponent<RectTransform>().anchoredPosition3D;
                 if(pos.y > maxY)
                 {
                     maxY = pos.y + 25;
@@ -105,6 +126,9 @@ public class StepManager : MonoBehaviour {
 
         Vector2 newDelta = new Vector2((maxY - minY) / 10.0f, 10) ;
         newGroup.GetComponent<GroupFromSteps>().verticalLineRef.sizeDelta = newDelta;
+
+        // Set generated list as group members
+        newGroup.GetComponent<GroupFromSteps>().SetFoodGroup(outputsToBeGrouped);
 
         newGroup.SetActive(true);
     }
@@ -167,22 +191,30 @@ public class StepManager : MonoBehaviour {
 
     public void StepChanged(Step s)
     {
-        // Set this step dirty
         s.SetDirty(true);
 
         // Check for input item conditions
-        if(s.GetInput() is FoodState)
+        if (s.GetInput() is FoodState)
         {
             FoodState input = (FoodState)(s.GetInput());
             if (ItemClonedIntoPreviousStep(input, s.GetStepNumber()))
             {
-                DestroyFoodState(input);
+                DestroyItem(input.gameObject);
             }
         }
 
         else if(s.GetInput() is FoodGroup)
-        {
+        {      
             // TODO
+        }
+
+        // Wrong type of item is dropped into input zone
+        else
+        {
+            if (s.inputZoneRef.transform.childCount == 1)
+            {
+                DestroyItem(s.inputZoneRef.transform.GetChild(0).gameObject);
+            }
         }
 
 
@@ -190,15 +222,23 @@ public class StepManager : MonoBehaviour {
         if(s.GetOutput() is FoodState)
         {
             FoodState outputToBeRemoved = (FoodState)(s.GetOutput());
-
             MarkRefsAsDirty(outputToBeRemoved.clone);
-            DestroyFoodState(outputToBeRemoved);
+            DestroyItem(outputToBeRemoved.gameObject);
         }
 
         else if(s.GetOutput() is FoodGroup)
         {
             //TODO
         }
+
+        // Wrong type of item is dropped into action zone
+        if(s.GetPseudoAction() == null)
+        {
+            if (s.actionZoneRef.transform.childCount == 1)
+            {
+                DestroyItem(s.actionZoneRef.transform.GetChild(0).gameObject);
+            }
+        } 
 
         // Finally recalculate outputs of each step
         RegenerateSteps();
@@ -222,10 +262,10 @@ public class StepManager : MonoBehaviour {
         return false;
     }
 
-    public void DestroyFoodState(FoodState fs)
+    public void DestroyItem(GameObject o)
     {
-        Destroy(fs.GetComponent<Text>());
-        Destroy(fs.gameObject);
+        Destroy(o.GetComponent<Text>());
+        Destroy(o);
     }
 
     // Assume we removed the parameter item, remove recursively the clone and generated outputs from this clone on recipe.
@@ -248,8 +288,8 @@ public class StepManager : MonoBehaviour {
                     FoodState inputToBeRemoved = (FoodState)(s.GetInput());
 
                     MarkRefsAsDirty(outputToBeRemoved.clone);
-                    DestroyFoodState(outputToBeRemoved);
-                    DestroyFoodState(inputToBeRemoved);
+                    DestroyItem(outputToBeRemoved.gameObject);
+                    DestroyItem(inputToBeRemoved.gameObject);
                     break;
                 }
 

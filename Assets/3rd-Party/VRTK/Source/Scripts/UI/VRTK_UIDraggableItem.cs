@@ -44,6 +44,7 @@ namespace VRTK
 
         public bool duplicateOnDrag = false;
         public bool cantDuplicateAfterDrag = true;
+        public bool oneCloneAtMost = false;
 
         public bool removeOnDropEmptyZone = false;
 
@@ -130,44 +131,54 @@ namespace VRTK
                     // Instantiate this object and attach it instead of.
                     if(duplicateOnDrag)
                     {
-                        GameObject cloneObject = GameObject.Instantiate(this.gameObject);
-
-                        // Clone FoodState Component
-                        if(cloneObject.GetComponent<FoodState>())
+                        // One clone can be created at the same time, do not clone this item.
+                        if (oneCloneAtMost && GetComponent<FoodState>().clone != null)
                         {
-                            cloneObject.GetComponent<FoodState>().Clone(GetComponent<FoodState>());
+                            ResetElement();
+                            validDragEnd = false;
                         }
 
-                        // Clone PseudoAction Component
-                        if (cloneObject.GetComponent<PseudoAction>())
-                        {
-                            cloneObject.GetComponent<PseudoAction>().Clone(GetComponent<PseudoAction>());
-                        }
-
-                        // Set new clone as cannot be duplicated, and can be removed by dropping to empty zone.
-                        if (cloneObject.GetComponent<VRTK_UIDraggableItem>().cantDuplicateAfterDrag)
-                        {
-                            cloneObject.GetComponent<VRTK_UIDraggableItem>().duplicateOnDrag = false;
-                            cloneObject.GetComponent<VRTK_UIDraggableItem>().removeOnDropEmptyZone = true;
-                        }
-
-                        // Set new clone as cloneable again
+                        // Clone this item
                         else
                         {
-                            cloneObject.GetComponent<VRTK_UIDraggableItem>().duplicateOnDrag = true;
-                        }
-                        
-                        ///////// RECIPE UI SPECIFIC CODE // TODO FIX THIS
-                        cloneObject.transform.SetParent(validDropZone.transform, false);
-                        cloneObject.GetComponent<RectTransform>().anchoredPosition3D = Vector3.zero;
-                        cloneObject.GetComponent<RectTransform>().localRotation = Quaternion.Euler(Vector3.zero);
+                            GameObject cloneObject = GameObject.Instantiate(this.gameObject);
 
-                        cloneObject.GetComponent<VRTK_UIDraggableItem>().enabled = true;
-                        /////////
+                            // Clone FoodState Component
+                            if (cloneObject.GetComponent<FoodState>())
+                            {
+                                cloneObject.GetComponent<FoodState>().Clone(GetComponent<FoodState>());
+                            }
 
+                            // Clone PseudoAction Component
+                            if (cloneObject.GetComponent<PseudoAction>())
+                            {
+                                cloneObject.GetComponent<PseudoAction>().Clone(GetComponent<PseudoAction>());
+                            }
 
-                        ResetElement();
-                        validDragEnd = false;
+                            // Set new clone as cannot be duplicated, and can be removed by dropping to empty zone.
+                            if (cloneObject.GetComponent<VRTK_UIDraggableItem>().cantDuplicateAfterDrag)
+                            {
+                                cloneObject.GetComponent<VRTK_UIDraggableItem>().duplicateOnDrag = false;
+                                cloneObject.GetComponent<VRTK_UIDraggableItem>().removeOnDropEmptyZone = true;
+                            }
+
+                            // Set new clone as cloneable again
+                            else
+                            {
+                                cloneObject.GetComponent<VRTK_UIDraggableItem>().duplicateOnDrag = true;
+                            }
+
+                            ///////// RECIPE UI SPECIFIC CODE // TODO FIX THIS
+                            cloneObject.transform.SetParent(validDropZone.transform, false);
+                            cloneObject.GetComponent<RectTransform>().anchoredPosition3D = Vector3.zero;
+                            cloneObject.GetComponent<RectTransform>().localRotation = Quaternion.Euler(Vector3.zero);
+
+                            cloneObject.GetComponent<VRTK_UIDraggableItem>().enabled = true;
+                            /////////
+
+                            ResetElement();
+                            validDragEnd = false;
+                        }                
                     }
 
                     else

@@ -3,14 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class FoodGroup : MonoBehaviour {
+    public List<RecipeModule.Food> recipeFoods;
+    
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    public void SetFoodGroup(List<RecipeModule.Food> l)
+    {
+        this.recipeFoods = l;
+    }
 }

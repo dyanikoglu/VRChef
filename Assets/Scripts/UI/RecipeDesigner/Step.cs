@@ -70,6 +70,7 @@ public class Step : MonoBehaviour {
             return;
         }
 
+        // If input is single object
         if(GetInput() is FoodState)
         {
             RecipeModule.Food f = ((FoodState)GetInput()).GetFood();
@@ -140,14 +141,92 @@ public class Step : MonoBehaviour {
                 Destroy(oldOutputObject);
             }
 
+            // Enable selecting this step for grouping
+            toggleRef.GetComponent<Toggle>().enabled = true;
+
             // Swap output with new one
             outputObject.transform.SetParent(outputZoneRef.transform, false);
             outputObject.transform.GetComponent<VRTK_UIDraggableItem>().enabled = true;
         }
 
+        // If input is food group
         else if(GetInput() is FoodGroup)
         {
-            // TODO Implement FoodGroup
+            List<FoodState> inputFoods = null; // ((FoodGroup)GetInput()).foodGroup;
+            List<RecipeModule.Food> outputFoods = new List<RecipeModule.Food>();
+
+            foreach (FoodState fs in inputFoods)
+            {
+                RecipeModule.Food food = fs.GetFood();
+
+                List<int> parameters;
+                RecipeModule.Food outputFood;
+
+                switch (GetPseudoAction().GetActionType())
+                {
+                    case RecipeModule.Action.ActionType.Boil:
+                        outputFood = null;
+                        break;
+                    case RecipeModule.Action.ActionType.Break:
+                        outputFood = recipe.DescribeNewBreakAction(GetStepNumber(), food);
+                        break;
+                    case RecipeModule.Action.ActionType.Chop:
+                        outputFood = recipe.DescribeNewChopAction(GetStepNumber(), food, 0, (RecipeModule.Chop.PieceVolumeSize)GetPseudoAction().GetParameterValues()[0]);
+                        break;
+                    case RecipeModule.Action.ActionType.Cook:
+                        parameters = GetPseudoAction().GetParameterValues();
+                        outputFood = recipe.DescribeNewCookAction(GetStepNumber(), food, parameters[0], parameters[1], (RecipeModule.Cook.CookType)parameters[2]);
+                        break;
+                    case RecipeModule.Action.ActionType.Fry:
+                        parameters = GetPseudoAction().GetParameterValues();
+                        outputFood = recipe.DescribeNewFryAction(GetStepNumber(), food, parameters[0], parameters[1], (RecipeModule.Fry.FryType)parameters[2]);
+                        break;
+                    case RecipeModule.Action.ActionType.Mix:
+                        outputFood = null;
+                        break;
+                    case RecipeModule.Action.ActionType.Peel:
+                        outputFood = null;
+                        break;
+                    case RecipeModule.Action.ActionType.PutTogether:
+                        outputFood = null;
+                        break;
+                    case RecipeModule.Action.ActionType.Smash:
+                        outputFood = null;
+                        break;
+                    case RecipeModule.Action.ActionType.Squeeze:
+                        outputFood = null;
+                        break;
+                    default:
+                        outputFood = null;
+                        break;
+                }
+
+                outputFoods.Add(outputFood);
+            }
+            GameObject outputObject = GameObject.Instantiate(dummyIOFoodObject);
+            //outputObject.GetComponent<FoodState>().SetFood(outputFood);
+
+            outputObject.GetComponent<VRTK_UIDraggableItem>().duplicateOnDrag = true;
+            outputObject.GetComponent<VRTK_UIDraggableItem>().cantDuplicateAfterDrag = true;
+            outputObject.GetComponent<VRTK_UIDraggableItem>().removeOnDropEmptyZone = false;
+
+            outputObject.GetComponent<Text>().color = Color.red;
+
+            // Remove existing ouput object
+            if (outputZoneRef.transform.childCount == 1)
+            {
+                GameObject oldOutputObject = outputZoneRef.transform.GetChild(0).gameObject;
+                Destroy(oldOutputObject.GetComponent<Text>());
+                Destroy(oldOutputObject);
+            }
+
+            // Enable selecting this step for grouping
+            toggleRef.GetComponent<Toggle>().enabled = true;
+
+            // Swap output with new one
+            outputObject.transform.SetParent(outputZoneRef.transform, false);
+            outputObject.transform.GetComponent<VRTK_UIDraggableItem>().enabled = true;
+  
         }
 
         outputZoneRef.transform.parent.gameObject.SetActive(true);
@@ -194,7 +273,6 @@ public class Step : MonoBehaviour {
     // Fired when a new item is put into this step, or a existing item is removed from this step.
     public void StepChanged()
     {
-        this.SetDirty(true);
         stepManager.StepChanged(this);
     }
 

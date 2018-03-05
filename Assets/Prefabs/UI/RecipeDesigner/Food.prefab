@@ -75,7 +75,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e8a13a9ffead2f468f42935b1afea06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  origin: {fileID: 0}
+  clone: {fileID: 0}
 --- !u!114 &114871788179618570
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -91,6 +91,7 @@ MonoBehaviour:
   restrictToOriginalCanvas: 0
   duplicateOnDrag: 1
   cantDuplicateAfterDrag: 1
+  oneCloneAtMost: 1
   removeOnDropEmptyZone: 0
   forwardOffset: 0.05
   validDropZone: {fileID: 0}
