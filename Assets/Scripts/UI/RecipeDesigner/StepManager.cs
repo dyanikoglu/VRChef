@@ -13,6 +13,7 @@ public class StepManager : MonoBehaviour {
     private List<Step> steps;
 
     private int totalStepCount = 0;
+    public int spacingY = -40;
 
     private void Start()
     {
@@ -41,7 +42,7 @@ public class StepManager : MonoBehaviour {
         // Push down new step object
         RectTransform rt = newStepObject.GetComponent<RectTransform>();
         Vector3 offset = emptyStepRef.GetComponent<RectTransform>().anchoredPosition3D;
-        offset.y -= totalStepCount * 40;
+        offset.y += totalStepCount * spacingY;
         rt.anchoredPosition3D = offset;
 
         // Assign gameobject name
@@ -49,10 +50,48 @@ public class StepManager : MonoBehaviour {
 
         // Push down the new step button
         Vector3 buttonOffset = newStepButtonRef.GetComponent<RectTransform>().anchoredPosition3D;
-        buttonOffset.y -= 40;
+        buttonOffset.y += spacingY;
         newStepButtonRef.GetComponent<RectTransform>().anchoredPosition3D = buttonOffset;
 
         steps.Add(newStep);
+    }
+
+    public void RemoveStep(Step s)
+    {
+        int removedStepNo = s.GetStepNumber();
+
+        foreach(Step step in steps)
+        {
+            int currentStepNumber = step.GetStepNumber();
+            if (currentStepNumber > removedStepNo)
+            {
+                // Push up each step by difference with removed step number
+                RectTransform rt = step.GetComponent<RectTransform>();
+                Vector3 offset = rt.anchoredPosition3D;
+                offset += new Vector3(0, -spacingY , 0);
+                step.SetStepNumber(currentStepNumber - 1);
+            }
+        }
+
+        steps.Remove(s);
+        Destroy(s.gameObject);
+
+        FixMissingReferences();
+    }
+
+    private void FixMissingReferences()
+    {
+        // Reverse iteration for modifying list items in real-time
+        foreach(Step s in steps)
+        {
+            FoodState inputFoodState = s.inputZoneRef.GetComponentInChildren<FoodState>();
+            if (inputFoodState && inputFoodState.GetOrigin() == null)
+            {
+                // If this step uses output from removed step, remove this step too.
+                RemoveStep(s);
+                break;
+            }
+        }
     }
 
     public void RegenerateSteps() 

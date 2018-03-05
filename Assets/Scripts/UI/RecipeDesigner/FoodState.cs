@@ -4,15 +4,35 @@ using UnityEngine;
 
 public class FoodState : MonoBehaviour {
     private RecipeModule.Food recipeFoodRef;
+    private FoodState origin;
+
+    private void Start()
+    {
+        origin = this;
+    }
 
     public void SetFood(RecipeModule.Food recipeFoodRef)
     {
         this.recipeFoodRef = recipeFoodRef;
     }
 
-    public RecipeModule.Food GetFood()
+    public void SetOrigin(FoodState origin)
     {
-        return recipeFoodRef;
+        this.origin = origin;
     }
 
+    public FoodState GetOrigin()
+    {
+        return origin;
+    }
+
+    public RecipeModule.Food GetFood()
+    {
+        if(this.origin == null)
+        {
+            return recipeFoodRef;
+        }
+
+        return this.origin.GetFood();
+    }
 }

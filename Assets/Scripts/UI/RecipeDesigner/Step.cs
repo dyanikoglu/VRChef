@@ -12,6 +12,8 @@ public class Step : MonoBehaviour {
     public GameObject outputZoneRef;
     public Toggle toggleRef;
 
+    public StepManager stepManager;
+
     // Required for generating new output food object in each step
     public GameObject dummyIOFoodObject;
 
@@ -141,6 +143,11 @@ public class Step : MonoBehaviour {
         {
             return null;
         }
+    }
+
+    public void Remove()
+    {
+        stepManager.RemoveStep(this);
     }
 
     public PseudoAction GetPseudoAction()
