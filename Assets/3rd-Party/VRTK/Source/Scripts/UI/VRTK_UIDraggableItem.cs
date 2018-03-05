@@ -1,8 +1,9 @@
-﻿// UI Draggable Item|UI|80030
+﻿    // UI Draggable Item|UI|80030
 namespace VRTK
 {
     using UnityEngine;
     using UnityEngine.EventSystems;
+    using UnityEngine.UI;
 
     /// <summary>
     /// Event Payload
@@ -40,8 +41,15 @@ namespace VRTK
         public bool restrictToDropZone = false;
         [Tooltip("If checked then the UI element can only be dropped on the original parent canvas. If unchecked the UI element can be dropped on any valid VRTK_UICanvas.")]
         public bool restrictToOriginalCanvas = false;
+
+        public bool duplicateOnDrag = false;
+        public bool cantDuplicateAfterDrag = true;
+
+        public bool removeOnDropEmptyZone = false;
+
         [Tooltip("The offset to bring the UI element forward when it is being dragged.")]
         public float forwardOffset = 0.1f;
+
 
         /// <summary>
         /// The current valid drop zone the dragged element is hovering over.
@@ -119,7 +127,31 @@ namespace VRTK
             {
                 if (validDropZone != null && validDropZone != startDropZone)
                 {
-                    transform.SetParent(validDropZone.transform);
+                    // Instantiate this object and attach it instead of.
+                    if(duplicateOnDrag)
+                    {
+                        GameObject cloneObject = GameObject.Instantiate(this.gameObject);
+
+                        if(cloneObject.GetComponent<VRTK_UIDraggableItem>().cantDuplicateAfterDrag)
+                        {
+                            cloneObject.GetComponent<VRTK_UIDraggableItem>().duplicateOnDrag = false;
+                        }
+
+                        else
+                        {
+                            cloneObject.GetComponent<VRTK_UIDraggableItem>().duplicateOnDrag = true;
+                        }
+                        
+                        cloneObject.transform.SetParent(validDropZone.transform);
+
+                        ResetElement();
+                        validDragEnd = false;
+                    }
+
+                    else
+                    {
+                        transform.SetParent(validDropZone.transform);
+                    }    
                 }
                 else
                 {
@@ -140,6 +172,15 @@ namespace VRTK
 
             if (destinationCanvas == null)
             {
+                if(removeOnDropEmptyZone)
+                {
+                    if (GetComponent<Text>())
+                    {
+                        Destroy(GetComponent<Text>());
+                    }
+                    Destroy(gameObject);
+                }
+
                 //We've been dropped off of a canvas
                 ResetElement();
                 validDragEnd = false;

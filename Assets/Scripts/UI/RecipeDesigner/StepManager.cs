@@ -88,7 +88,6 @@ public class StepManager : MonoBehaviour {
 
     private void FixMissingReferences()
     {
-        // Reverse iteration for modifying list items in real-time
         foreach(Step s in steps)
         {
             FoodState inputFoodState = s.inputZoneRef.GetComponentInChildren<FoodState>();
@@ -108,5 +107,7 @@ public class StepManager : MonoBehaviour {
         {
             s.GenerateOutput(recipe);
         }
+
+        FixMissingReferences();
     }
 }

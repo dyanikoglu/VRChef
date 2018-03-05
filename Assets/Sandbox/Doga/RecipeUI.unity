@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -2033,6 +2033,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   restrictToDropZone: 1
   restrictToOriginalCanvas: 0
+  duplicateOnDrag: 0
+  cantDuplicateAfterDrag: 1
+  removeOnDropEmptyZone: 0
   forwardOffset: 0.05
   validDropZone: {fileID: 0}
 --- !u!225 &199588520
@@ -5379,6 +5382,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   restrictToDropZone: 1
   restrictToOriginalCanvas: 0
+  duplicateOnDrag: 0
+  cantDuplicateAfterDrag: 1
+  removeOnDropEmptyZone: 0
   forwardOffset: 0.05
   validDropZone: {fileID: 0}
 --- !u!225 &510105596
@@ -7482,6 +7488,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   restrictToDropZone: 1
   restrictToOriginalCanvas: 0
+  duplicateOnDrag: 1
+  cantDuplicateAfterDrag: 1
+  removeOnDropEmptyZone: 0
   forwardOffset: 0.05
   validDropZone: {fileID: 0}
 --- !u!225 &815046147
@@ -7708,6 +7717,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   restrictToDropZone: 1
   restrictToOriginalCanvas: 0
+  duplicateOnDrag: 0
+  cantDuplicateAfterDrag: 1
+  removeOnDropEmptyZone: 0
   forwardOffset: 0.05
   validDropZone: {fileID: 0}
 --- !u!225 &818395710
@@ -8207,6 +8219,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   restrictToDropZone: 1
   restrictToOriginalCanvas: 0
+  duplicateOnDrag: 1
+  cantDuplicateAfterDrag: 1
+  removeOnDropEmptyZone: 0
   forwardOffset: 0.05
   validDropZone: {fileID: 0}
 --- !u!225 &873150842
@@ -8281,6 +8296,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   restrictToDropZone: 1
   restrictToOriginalCanvas: 0
+  duplicateOnDrag: 0
+  cantDuplicateAfterDrag: 1
+  removeOnDropEmptyZone: 0
   forwardOffset: 0.05
   validDropZone: {fileID: 0}
 --- !u!225 &882151144
@@ -9528,6 +9546,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   restrictToDropZone: 1
   restrictToOriginalCanvas: 0
+  duplicateOnDrag: 0
+  cantDuplicateAfterDrag: 1
+  removeOnDropEmptyZone: 0
   forwardOffset: 0.05
   validDropZone: {fileID: 0}
 --- !u!225 &994470060
@@ -11254,6 +11275,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   restrictToDropZone: 1
   restrictToOriginalCanvas: 0
+  duplicateOnDrag: 0
+  cantDuplicateAfterDrag: 1
+  removeOnDropEmptyZone: 0
   forwardOffset: 0.05
   validDropZone: {fileID: 0}
 --- !u!225 &1139581563
@@ -11358,6 +11382,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   restrictToDropZone: 1
   restrictToOriginalCanvas: 0
+  duplicateOnDrag: 0
+  cantDuplicateAfterDrag: 1
+  removeOnDropEmptyZone: 0
   forwardOffset: 0.05
   validDropZone: {fileID: 0}
 --- !u!225 &1146978212
@@ -13107,6 +13134,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   restrictToDropZone: 1
   restrictToOriginalCanvas: 0
+  duplicateOnDrag: 0
+  cantDuplicateAfterDrag: 1
+  removeOnDropEmptyZone: 0
   forwardOffset: 0.05
   validDropZone: {fileID: 0}
 --- !u!225 &1325949988
@@ -13430,6 +13460,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   restrictToDropZone: 1
   restrictToOriginalCanvas: 0
+  duplicateOnDrag: 0
+  cantDuplicateAfterDrag: 1
+  removeOnDropEmptyZone: 0
   forwardOffset: 0.05
   validDropZone: {fileID: 0}
 --- !u!225 &1357291569
@@ -13657,6 +13690,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   restrictToDropZone: 1
   restrictToOriginalCanvas: 0
+  duplicateOnDrag: 0
+  cantDuplicateAfterDrag: 1
+  removeOnDropEmptyZone: 0
   forwardOffset: 0.05
   validDropZone: {fileID: 0}
 --- !u!225 &1393653197
@@ -14018,6 +14054,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   restrictToDropZone: 1
   restrictToOriginalCanvas: 0
+  duplicateOnDrag: 0
+  cantDuplicateAfterDrag: 1
+  removeOnDropEmptyZone: 0
   forwardOffset: 0.05
   validDropZone: {fileID: 0}
 --- !u!225 &1406014758
@@ -14449,6 +14488,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   restrictToDropZone: 1
   restrictToOriginalCanvas: 0
+  duplicateOnDrag: 0
+  cantDuplicateAfterDrag: 1
+  removeOnDropEmptyZone: 0
   forwardOffset: 0.05
   validDropZone: {fileID: 0}
 --- !u!225 &1439050687
@@ -15762,7 +15804,7 @@ Prefab:
     - target: {fileID: 224000012623161658, guid: d46cf6b1ad9d84a48ae7548a2a6b41b3,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 715
+      value: 930
       objectReference: {fileID: 0}
     - target: {fileID: 224000012623161658, guid: d46cf6b1ad9d84a48ae7548a2a6b41b3,
         type: 2}
@@ -16526,6 +16568,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   restrictToDropZone: 1
   restrictToOriginalCanvas: 0
+  duplicateOnDrag: 0
+  cantDuplicateAfterDrag: 1
+  removeOnDropEmptyZone: 0
   forwardOffset: 0.05
   validDropZone: {fileID: 0}
 --- !u!225 &1599172482
@@ -16750,6 +16795,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   restrictToDropZone: 1
   restrictToOriginalCanvas: 0
+  duplicateOnDrag: 0
+  cantDuplicateAfterDrag: 1
+  removeOnDropEmptyZone: 0
   forwardOffset: 0.05
   validDropZone: {fileID: 0}
 --- !u!225 &1656128477
@@ -17777,6 +17825,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   restrictToDropZone: 1
   restrictToOriginalCanvas: 0
+  duplicateOnDrag: 0
+  cantDuplicateAfterDrag: 1
+  removeOnDropEmptyZone: 0
   forwardOffset: 0.05
   validDropZone: {fileID: 0}
 --- !u!225 &1782550718
@@ -17881,6 +17932,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   restrictToDropZone: 1
   restrictToOriginalCanvas: 0
+  duplicateOnDrag: 0
+  cantDuplicateAfterDrag: 1
+  removeOnDropEmptyZone: 0
   forwardOffset: 0.05
   validDropZone: {fileID: 0}
 --- !u!225 &1790171784
@@ -17985,6 +18039,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   restrictToDropZone: 1
   restrictToOriginalCanvas: 0
+  duplicateOnDrag: 0
+  cantDuplicateAfterDrag: 1
+  removeOnDropEmptyZone: 0
   forwardOffset: 0.05
   validDropZone: {fileID: 0}
 --- !u!225 &1795409650
@@ -18359,6 +18416,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   restrictToDropZone: 1
   restrictToOriginalCanvas: 0
+  duplicateOnDrag: 0
+  cantDuplicateAfterDrag: 1
+  removeOnDropEmptyZone: 0
   forwardOffset: 0.05
   validDropZone: {fileID: 0}
 --- !u!225 &1812797302
@@ -20557,6 +20617,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   restrictToDropZone: 1
   restrictToOriginalCanvas: 0
+  duplicateOnDrag: 0
+  cantDuplicateAfterDrag: 1
+  removeOnDropEmptyZone: 0
   forwardOffset: 0.05
   validDropZone: {fileID: 0}
 --- !u!225 &2055606164

@@ -41,6 +41,14 @@ public class Step : MonoBehaviour {
     {
         if(GetInput() == null || GetPseudoAction() == null)
         {
+            // Remove existing ouput object
+            if (outputZoneRef.transform.childCount == 1)
+            {
+                GameObject oldOutputObject = outputZoneRef.transform.GetChild(0).gameObject;
+                Destroy(oldOutputObject.GetComponent<Text>());
+                Destroy(oldOutputObject);
+            }
+
             return;
         }
 
@@ -93,8 +101,14 @@ public class Step : MonoBehaviour {
             GameObject outputObject = GameObject.Instantiate(dummyIOFoodObject);
             outputObject.GetComponent<FoodState>().SetFood(outputFood);
 
+            outputObject.GetComponent<VRTK_UIDraggableItem>().duplicateOnDrag = true;
+            outputObject.GetComponent<VRTK_UIDraggableItem>().cantDuplicateAfterDrag = true;
+            outputObject.GetComponent<VRTK_UIDraggableItem>().removeOnDropEmptyZone = false;
+
+            outputObject.GetComponent<Text>().color = Color.red;
+
             // Remove existing ouput object
-            if (outputZoneRef.transform.childCount != 0) {
+            if (outputZoneRef.transform.childCount == 1) {
                 GameObject oldOutputObject = outputZoneRef.transform.GetChild(0).gameObject;
                 Destroy(oldOutputObject.GetComponent<Text>());
                 Destroy(oldOutputObject);
