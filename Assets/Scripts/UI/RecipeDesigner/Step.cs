@@ -39,7 +39,7 @@ public class Step : MonoBehaviour {
 
     public void GenerateOutput(RecipeModule.Recipe recipe)
     {
-        if(GetInput() == null || GetPseudoAction() == null || outputZoneRef.transform.childCount != 0)
+        if(GetInput() == null || GetPseudoAction() == null)
         {
             return;
         }
@@ -93,8 +93,14 @@ public class Step : MonoBehaviour {
             GameObject outputObject = GameObject.Instantiate(dummyIOFoodObject);
             outputObject.GetComponent<FoodState>().SetFood(outputFood);
 
+            // Remove existing ouput object
+            if (outputZoneRef.transform.childCount != 0) {
+                GameObject oldOutputObject = outputZoneRef.transform.GetChild(0).gameObject;
+                Destroy(oldOutputObject.GetComponent<Text>());
+                Destroy(oldOutputObject);
+            }
 
-
+            // Swap output with new one
             outputObject.transform.SetParent(outputZoneRef.transform, false);
             VRTK_UIDraggableItem draggableItem = outputObject.AddComponent<VRTK_UIDraggableItem>();
             draggableItem.forwardOffset = 0.05f;

@@ -28,11 +28,6 @@ public class FoodState : MonoBehaviour {
 
     public RecipeModule.Food GetFood()
     {
-        if(this.origin == null)
-        {
-            return recipeFoodRef;
-        }
-
-        return this.origin.GetFood();
+        return recipeFoodRef;
     }
 }

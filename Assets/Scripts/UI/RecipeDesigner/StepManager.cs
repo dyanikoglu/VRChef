@@ -56,25 +56,32 @@ public class StepManager : MonoBehaviour {
         steps.Add(newStep);
     }
 
+    public void PushElement(RectTransform rt, Vector3 vec)
+    {
+        Vector3 offset = rt.anchoredPosition3D;
+        offset += vec;
+        rt.anchoredPosition3D = offset;
+    }
+
     public void RemoveStep(Step s)
     {
         int removedStepNo = s.GetStepNumber();
 
-        foreach(Step step in steps)
+        foreach (Step step in steps)
         {
             int currentStepNumber = step.GetStepNumber();
             if (currentStepNumber > removedStepNo)
             {
                 // Push up each step by difference with removed step number
-                RectTransform rt = step.GetComponent<RectTransform>();
-                Vector3 offset = rt.anchoredPosition3D;
-                offset += new Vector3(0, -spacingY , 0);
+                PushElement(step.GetComponent<RectTransform>(), new Vector3(0, -spacingY, 0));
                 step.SetStepNumber(currentStepNumber - 1);
             }
         }
+        PushElement(newStepButtonRef.GetComponent<RectTransform>(), new Vector3(0, -spacingY, 0));
 
         steps.Remove(s);
         Destroy(s.gameObject);
+        totalStepCount--;
 
         FixMissingReferences();
     }
