@@ -17,36 +17,33 @@ public class PseudoAction : MonoBehaviour {
     
     private List<string> parameterNames;
 
-    private void Start()
-    {
-        parameterNames = new List<string>();
-        parameterValues = new List<int>();
-    }
-
-    public void SetAsChop(RecipeModule.Chop.PieceVolumeSize pieceVolumeSize)
+    public void SetAsChop(RecipeModule.Chop.PieceVolumeSize pieceVolumeSize = RecipeModule.Chop.PieceVolumeSize.Middle)
     {
         this.actionType = RecipeModule.Action.ActionType.Chop;
-        this.parameterValues.Clear();
+        this.parameterNames = new List<string>();
+        this.parameterValues = new List<int>();
         this.parameterValues.Add((int)pieceVolumeSize);
     }
 
-    public void SetAsFry(RecipeModule.Fry.FryType fryType, int requiredHeat, int requiredTime)
+    public void SetAsFry(RecipeModule.Fry.FryType fryType = RecipeModule.Fry.FryType.Fried, int requiredHeat = 150, int requiredTime = 60)
     {
         this.actionType = RecipeModule.Action.ActionType.Fry;
-        this.parameterValues.Clear();
+        this.parameterNames = new List<string>();
+        this.parameterValues = new List<int>();
         this.parameterValues.Add((int)fryType);
         this.parameterValues.Add(requiredHeat);
         this.parameterValues.Add(requiredTime);
     }
 
-    public void SetAsCook(RecipeModule.Cook.CookType cookType, int requiredHeat, int requiredTime)
+    public void SetAsCook(RecipeModule.Cook.CookType cookType = RecipeModule.Cook.CookType.Cooked, int requiredHeat = 150, int requiredTime = 60)
     {
         this.actionType = RecipeModule.Action.ActionType.Cook;
-        this.parameterValues.Clear();
+        this.parameterNames = new List<string>();
+        this.parameterValues = new List<int>();
         this.parameterValues.Add((int)cookType);
         this.parameterValues.Add(requiredHeat);
         this.parameterValues.Add(requiredTime);
-    }
+    } 
 
     public RecipeModule.Action.ActionType GetActionType()
     {

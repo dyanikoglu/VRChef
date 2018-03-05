@@ -41,6 +41,11 @@ public class Step : MonoBehaviour {
             return;
         }
 
+        if(outputZoneRef.transform.childCount != 0)
+        {
+            Destroy(outputZoneRef.transform.GetChild(0));
+        }
+
         if(GetInput() is FoodState)
         {
             RecipeModule.Food f = ((FoodState)GetInput()).GetFood();
