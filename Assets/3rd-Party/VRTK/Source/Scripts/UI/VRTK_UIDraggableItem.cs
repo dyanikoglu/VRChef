@@ -149,8 +149,14 @@ namespace VRTK
                                 cloneObject.GetComponent<FoodState>().Clone(GetComponent<FoodState>());
                             }
 
+                            // Clone FoodGroup Component
+                            else if (cloneObject.GetComponent<FoodState>())
+                            {
+                                cloneObject.GetComponent<FoodGroup>().Clone(GetComponent<FoodGroup>());
+                            }
+
                             // Clone PseudoAction Component
-                            if (cloneObject.GetComponent<PseudoAction>())
+                            else if (cloneObject.GetComponent<PseudoAction>())
                             {
                                 cloneObject.GetComponent<PseudoAction>().Clone(GetComponent<PseudoAction>());
                             }
@@ -168,7 +174,7 @@ namespace VRTK
                                 cloneObject.GetComponent<VRTK_UIDraggableItem>().duplicateOnDrag = true;
                             }
 
-                            ///////// RECIPE UI SPECIFIC CODE // TODO FIX THIS
+                            ///////// RECIPE UI SPECIFIC CODE // TODO: FIX THIS
                             cloneObject.transform.SetParent(validDropZone.transform, false);
                             cloneObject.GetComponent<RectTransform>().anchoredPosition3D = Vector3.zero;
                             cloneObject.GetComponent<RectTransform>().localRotation = Quaternion.Euler(Vector3.zero);
@@ -205,7 +211,7 @@ namespace VRTK
 
             if (destinationCanvas == null)
             {
-                //////// RECIPE UI SPECIFIC CODE // TODO FIX THIS
+                //////// RECIPE UI SPECIFIC CODE // TODO: FIX THIS
                 if(removeOnDropEmptyZone)
                 {
                     Step s = null;

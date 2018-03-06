@@ -11,14 +11,4 @@ public class GroupFromSteps : MonoBehaviour {
     {
         return foodGroupZoneRef.GetComponentInChildren<FoodGroup>();
     }
-
-    public void SetFoodGroup(List<FoodState> l)
-    {
-        List<RecipeModule.Food> foodList = new List<RecipeModule.Food>();
-        foreach(FoodState fs in l)
-        {
-            foodList.Add(fs.GetFood());
-        }
-        GetFoodGroup().SetFoodGroup(foodList);
-    }
 }

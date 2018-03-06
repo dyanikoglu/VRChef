@@ -22,7 +22,9 @@ public class Step : MonoBehaviour {
     public bool outputGrouped = false;
 
     // Required for generating new output food object in each step
-    public GameObject dummyIOFoodObject;
+    public GameObject dummyOutputSingleFood;
+
+    public GameObject dummyOutputFoodGroup;
 
     public void SetStepNumber(int stepNumber)
     {
@@ -57,9 +59,10 @@ public class Step : MonoBehaviour {
     // Generate output of this step, register it to recipe data structure.
     public void GenerateOutput(RecipeModule.Recipe recipe)
     {
+        // Input or action is null, halt.
         if (GetInput() == null || GetPseudoAction() == null)
         {
-            // Remove existing ouput object
+            // Remove existing output object if it exists
             if (outputZoneRef.transform.childCount == 1)
             {
                 GameObject oldOutputObject = outputZoneRef.transform.GetChild(0).gameObject;
@@ -124,12 +127,9 @@ public class Step : MonoBehaviour {
                     break;
             }
 
-            GameObject outputObject = GameObject.Instantiate(dummyIOFoodObject);
+            // Create new output food object
+            GameObject outputObject = GameObject.Instantiate(dummyOutputSingleFood);
             outputObject.GetComponent<FoodState>().SetFood(outputFood);
-
-            outputObject.GetComponent<VRTK_UIDraggableItem>().duplicateOnDrag = true;
-            outputObject.GetComponent<VRTK_UIDraggableItem>().cantDuplicateAfterDrag = true;
-            outputObject.GetComponent<VRTK_UIDraggableItem>().removeOnDropEmptyZone = false;
 
             outputObject.GetComponent<Text>().color = Color.red;
             outputObject.GetComponent<Text>().text += f.GetFoodIdentifier() + append;
@@ -152,63 +152,58 @@ public class Step : MonoBehaviour {
         // If input is food group
         else if(GetInput() is FoodGroup)
         {
-            List<FoodState> inputFoods = null; // ((FoodGroup)GetInput()).foodGroup;
+            FoodGroup inputGroup = (FoodGroup)GetInput();
             List<RecipeModule.Food> outputFoods = new List<RecipeModule.Food>();
 
-            foreach (FoodState fs in inputFoods)
+            foreach (RecipeModule.Food f in inputGroup.recipeFoods)
             {
-                RecipeModule.Food food = fs.GetFood();
-
                 List<int> parameters;
-                RecipeModule.Food outputFood;
+                RecipeModule.Food generatedFood;
 
                 switch (GetPseudoAction().GetActionType())
                 {
                     case RecipeModule.Action.ActionType.Boil:
-                        outputFood = null;
+                        generatedFood = null;
                         break;
                     case RecipeModule.Action.ActionType.Break:
-                        outputFood = recipe.DescribeNewBreakAction(GetStepNumber(), food);
+                        generatedFood = recipe.DescribeNewBreakAction(GetStepNumber(), f);
                         break;
                     case RecipeModule.Action.ActionType.Chop:
-                        outputFood = recipe.DescribeNewChopAction(GetStepNumber(), food, 0, (RecipeModule.Chop.PieceVolumeSize)GetPseudoAction().GetParameterValues()[0]);
+                        generatedFood = recipe.DescribeNewChopAction(GetStepNumber(), f, 0, (RecipeModule.Chop.PieceVolumeSize)GetPseudoAction().GetParameterValues()[0]);
                         break;
                     case RecipeModule.Action.ActionType.Cook:
                         parameters = GetPseudoAction().GetParameterValues();
-                        outputFood = recipe.DescribeNewCookAction(GetStepNumber(), food, parameters[0], parameters[1], (RecipeModule.Cook.CookType)parameters[2]);
+                        generatedFood = recipe.DescribeNewCookAction(GetStepNumber(), f, parameters[0], parameters[1], (RecipeModule.Cook.CookType)parameters[2]);
                         break;
                     case RecipeModule.Action.ActionType.Fry:
                         parameters = GetPseudoAction().GetParameterValues();
-                        outputFood = recipe.DescribeNewFryAction(GetStepNumber(), food, parameters[0], parameters[1], (RecipeModule.Fry.FryType)parameters[2]);
+                        generatedFood = recipe.DescribeNewFryAction(GetStepNumber(), f, parameters[0], parameters[1], (RecipeModule.Fry.FryType)parameters[2]);
                         break;
                     case RecipeModule.Action.ActionType.Mix:
-                        outputFood = null;
+                        generatedFood = null;
                         break;
                     case RecipeModule.Action.ActionType.Peel:
-                        outputFood = null;
+                        generatedFood = null;
                         break;
                     case RecipeModule.Action.ActionType.PutTogether:
-                        outputFood = null;
+                        generatedFood = null;
                         break;
                     case RecipeModule.Action.ActionType.Smash:
-                        outputFood = null;
+                        generatedFood = null;
                         break;
                     case RecipeModule.Action.ActionType.Squeeze:
-                        outputFood = null;
+                        generatedFood = null;
                         break;
                     default:
-                        outputFood = null;
+                        generatedFood = null;
                         break;
                 }
 
-                outputFoods.Add(outputFood);
+                outputFoods.Add(generatedFood);
             }
-            GameObject outputObject = GameObject.Instantiate(dummyIOFoodObject);
-            //outputObject.GetComponent<FoodState>().SetFood(outputFood);
-
-            outputObject.GetComponent<VRTK_UIDraggableItem>().duplicateOnDrag = true;
-            outputObject.GetComponent<VRTK_UIDraggableItem>().cantDuplicateAfterDrag = true;
-            outputObject.GetComponent<VRTK_UIDraggableItem>().removeOnDropEmptyZone = false;
+            // Create new foodgroup object
+            GameObject outputObject = GameObject.Instantiate(dummyOutputFoodGroup);
+            outputObject.GetComponent<FoodGroup>().SetFoodGroup(outputFoods);
 
             outputObject.GetComponent<Text>().color = Color.red;
 
@@ -226,7 +221,6 @@ public class Step : MonoBehaviour {
             // Swap output with new one
             outputObject.transform.SetParent(outputZoneRef.transform, false);
             outputObject.transform.GetComponent<VRTK_UIDraggableItem>().enabled = true;
-  
         }
 
         outputZoneRef.transform.parent.gameObject.SetActive(true);

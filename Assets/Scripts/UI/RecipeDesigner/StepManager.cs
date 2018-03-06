@@ -75,7 +75,8 @@ public class StepManager : MonoBehaviour {
         float avgYPos = 0;
         float minY = 10000;
         float maxY = -10000;
-        List<FoodState> outputsToBeGrouped = new List<FoodState>();
+        List<RecipeModule.Food> outputsToBeGrouped = new List<RecipeModule.Food>();
+
         foreach (Step s in steps)
         {
             if (s.GetToggle())
@@ -87,16 +88,16 @@ public class StepManager : MonoBehaviour {
                 //Import single output into list
                 if(s.GetOutput() is FoodState)
                 {
-                    outputsToBeGrouped.Add((FoodState)(s.GetOutput()));
+                    outputsToBeGrouped.Add(((FoodState)(s.GetOutput())).recipeFoodRef);
                 }
 
-                // Import whole group into list
+                // Import a whole output group into list
                 else if(s.GetOutput() is FoodGroup)
                 {
                     FoodGroup groupToBeImported = (FoodGroup)(s.GetOutput());
-                    foreach (FoodState fs in groupToBeImported.foodGroup)
+                    foreach (RecipeModule.Food f in groupToBeImported.recipeFoods)
                     {
-                        outputsToBeGrouped.Add(fs);
+                        outputsToBeGrouped.Add(f);
                     }
                 }
 
@@ -128,7 +129,7 @@ public class StepManager : MonoBehaviour {
         newGroup.GetComponent<GroupFromSteps>().verticalLineRef.sizeDelta = newDelta;
 
         // Set generated list as group members
-        newGroup.GetComponent<GroupFromSteps>().SetFoodGroup(outputsToBeGrouped);
+        newGroup.GetComponent<GroupFromSteps>().GetFoodGroup().recipeFoods = outputsToBeGrouped;
 
         newGroup.SetActive(true);
     }
@@ -268,7 +269,7 @@ public class StepManager : MonoBehaviour {
         Destroy(o);
     }
 
-    // Assume we removed the parameter item, remove recursively the clone and generated outputs from this clone on recipe.
+    // Assume we removed the item given as parameter, destroy recursively the clone and generated outputs from this clone on recipe UI.
     public void MarkRefsAsDirty(FoodState foodState)
     {
         if (foodState == null)
