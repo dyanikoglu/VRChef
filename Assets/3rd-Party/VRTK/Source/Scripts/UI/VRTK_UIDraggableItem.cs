@@ -152,7 +152,7 @@ namespace VRTK
                             // Clone FoodGroup Component
                             else if (cloneObject.GetComponent<FoodState>())
                             {
-                                cloneObject.GetComponent<FoodGroup>().Clone(GetComponent<FoodGroup>());
+                                cloneObject.GetComponent<FoodGroupState>().Clone(GetComponent<FoodGroupState>());
                             }
 
                             // Clone PseudoAction Component

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class StepManager : MonoBehaviour {
+public class RecipeManager : MonoBehaviour {
 
     public GameObject emptyStepRef;
     public GameObject emptyGroupRef;
@@ -13,6 +13,7 @@ public class StepManager : MonoBehaviour {
     public RecipeModule.Recipe recipe;
 
     private List<Step> steps;
+    private List<GroupFromSteps> groups;
 
     private int totalStepCount = 0;
     public int spacingY = -40;
@@ -58,6 +59,10 @@ public class StepManager : MonoBehaviour {
         buttonOffset.y += spacingY;
         newStepButtonRef.GetComponent<RectTransform>().anchoredPosition3D = buttonOffset;
 
+        //Activate the step object, fix toggle checkmark
+        newStepObject.SetActive(true);
+        newStepObject.GetComponent<Step>().toggleRef.enabled = true;
+
         steps.Add(newStep);
     }
 
@@ -77,11 +82,14 @@ public class StepManager : MonoBehaviour {
         float maxY = -10000;
         List<RecipeModule.Food> outputsToBeGrouped = new List<RecipeModule.Food>();
 
+        GameObject newGroup = GameObject.Instantiate(emptyGroupRef);
+        newGroup.GetComponent<GroupFromSteps>().boundedSteps = new List<Step>();
+
         foreach (Step s in steps)
         {
             if (s.GetToggle())
             {
-                s.outputGrouped = true;
+                s.SetHasGroup(true);
                 s.SetToggle(false);
                 s.toggleRef.GetComponent<Toggle>().enabled = false;
 
@@ -92,14 +100,17 @@ public class StepManager : MonoBehaviour {
                 }
 
                 // Import a whole output group into list
-                else if(s.GetOutput() is FoodGroup)
+                else if(s.GetOutput() is FoodGroupState)
                 {
-                    FoodGroup groupToBeImported = (FoodGroup)(s.GetOutput());
+                    FoodGroupState groupToBeImported = (FoodGroupState)(s.GetOutput());
                     foreach (RecipeModule.Food f in groupToBeImported.recipeFoods)
                     {
                         outputsToBeGrouped.Add(f);
                     }
                 }
+
+                // Add this step as bounded step to group
+                newGroup.GetComponent<GroupFromSteps>().boundedSteps.Add(s);
 
                 Vector3 pos = s.GetComponent<RectTransform>().anchoredPosition3D;
                 if(pos.y > maxY)
@@ -118,7 +129,6 @@ public class StepManager : MonoBehaviour {
 
         avgYPos = (minY + maxY) / 2.0f;
 
-        GameObject newGroup = GameObject.Instantiate(emptyGroupRef);
         newGroup.transform.SetParent(this.transform, false);
 
         Vector3 groupPos = newGroup.GetComponent<RectTransform>().anchoredPosition3D;
@@ -128,10 +138,52 @@ public class StepManager : MonoBehaviour {
         Vector2 newDelta = new Vector2((maxY - minY) / 10.0f, 10) ;
         newGroup.GetComponent<GroupFromSteps>().verticalLineRef.sizeDelta = newDelta;
 
+        // Describe a PutTogether action in Recipe object
+        // TODO
+
         // Set generated list as group members
         newGroup.GetComponent<GroupFromSteps>().GetFoodGroup().recipeFoods = outputsToBeGrouped;
 
         newGroup.SetActive(true);
+    }
+    
+    public bool CheckGroupEligibility(Step s)
+    {
+        // If this step is already grouped, we cannot regroup it.
+        if(s.GetHasGroup())
+        {
+            return false;
+        }
+
+        // If output is used in another step, we can't group this step anymore.
+        if(s.GetOutput() is FoodState)
+        {
+            FoodState fs = (FoodState)s.GetOutput();
+
+            if(fs.clone != null)
+            {
+                return false;
+            }
+        }
+
+        else if (s.GetOutput() is FoodGroupState)
+        {
+            FoodGroupState fg = (FoodGroupState)s.GetOutput();
+
+            if (fg.clone != null)
+            {
+                return false;
+            }
+        }
+
+        // There is no output
+        else
+        {
+            return false;
+        }
+
+        // It can be grouped
+        return true;
     }
 
     // Set new group button as visible if 2 or more steps are selected
@@ -204,9 +256,13 @@ public class StepManager : MonoBehaviour {
             }
         }
 
-        else if(s.GetInput() is FoodGroup)
-        {      
-            // TODO
+        else if(s.GetInput() is FoodGroupState)
+        {
+            FoodGroupState input = (FoodGroupState)(s.GetInput());
+            if (GroupClonedIntoPreviousStep(input, s.GetStepNumber()))
+            {
+                DestroyItem(input.gameObject);
+            }
         }
 
         // Wrong type of item is dropped into input zone
@@ -227,7 +283,7 @@ public class StepManager : MonoBehaviour {
             DestroyItem(outputToBeRemoved.gameObject);
         }
 
-        else if(s.GetOutput() is FoodGroup)
+        else if(s.GetOutput() is FoodGroupState)
         {
             //TODO
         }
@@ -263,6 +319,36 @@ public class StepManager : MonoBehaviour {
         return false;
     }
 
+    // This function returns true if item given as parameter is cloned into a previous step.
+    public bool GroupClonedIntoPreviousStep(FoodGroupState fg, int stepNo)
+    {
+        // Check if clone is before last step in bounded steps in food group.
+        foreach (GroupFromSteps g in groups)
+        {
+            FoodGroupState foodGroup = g.GetFoodGroup();
+            if (foodGroup.clone == fg && stepNo < g.GetLastStepNumber())
+            {
+                return true;
+            }
+        }
+
+        // Check if clone is before owner step of output object.
+        foreach (Step s in steps)
+        {
+            if (s.GetOutput() is FoodGroupState)
+            {
+                FoodGroupState outputGroup = (FoodGroupState)(s.GetOutput());
+                if (outputGroup.clone == fg && stepNo < s.GetStepNumber())
+                {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    // Destroy function specific to our item objects(actions & foods) in recipe UI.
     public void DestroyItem(GameObject o)
     {
         Destroy(o.GetComponent<Text>());
@@ -294,7 +380,7 @@ public class StepManager : MonoBehaviour {
                     break;
                 }
 
-                else if (s.GetOutput() is FoodGroup)
+                else if (s.GetOutput() is FoodGroupState)
                 {
                     //TODO
                 }
@@ -311,6 +397,7 @@ public class StepManager : MonoBehaviour {
     {
         // Some delay for consistency of data.
         yield return new WaitForSeconds(0.1f);
+
         recipe = new RecipeModule.Recipe("Test Recipe");
         foreach (Step s in steps)
         {

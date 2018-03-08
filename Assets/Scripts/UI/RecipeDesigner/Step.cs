@@ -13,22 +13,33 @@ public class Step : MonoBehaviour {
     public Toggle toggleRef;
     public GameObject groupConnectorRef;
 
-    public StepManager stepManager;
+    public RecipeManager recipeManager;
 
     // This step needs to be regenerated if it's true
     public bool dirty = false;
 
     // Denotes that if this step is already grouped. Grouped steps can't be grouped again.
-    public bool outputGrouped = false;
+    public bool hasGroup = false;
 
-    // Required for generating new output food object in each step
+    // Template for generating new output food object in each step
     public GameObject dummyOutputSingleFood;
 
+    // Template for generating new output foodgroup object in each step
     public GameObject dummyOutputFoodGroup;
 
     public void SetStepNumber(int stepNumber)
     {
         this.stepNumberRef.text = stepNumber.ToString();
+    }
+
+    public bool GetHasGroup()
+    {
+        return hasGroup;
+    }
+
+    public void SetHasGroup(bool hasGroup)
+    {
+        this.hasGroup = hasGroup;
     }
 
     public int GetStepNumber()
@@ -79,60 +90,53 @@ public class Step : MonoBehaviour {
             RecipeModule.Food f = ((FoodState)GetInput()).GetFood();
 
             List<int> parameters;
-            RecipeModule.Food outputFood;
-
-            string append = "";
+            RecipeModule.Food generatedFood;
 
             switch (GetPseudoAction().GetActionType())
             {
                 case RecipeModule.Action.ActionType.Boil:
-                    append = "BO";
-                    outputFood = null;
+                    parameters = GetPseudoAction().GetParameterValues();
+                    generatedFood = recipe.DescribeNewBoilAction(GetStepNumber(), f, parameters[0], parameters[1], (RecipeModule.Boil.BoilType)parameters[2]);
                     break;
                 case RecipeModule.Action.ActionType.Break:
-                    append = "BR";
-                    outputFood = recipe.DescribeNewBreakAction(GetStepNumber(), f);
+                    generatedFood = recipe.DescribeNewBreakAction(GetStepNumber(), f);
                     break;
                 case RecipeModule.Action.ActionType.Chop:
-                    append = "CH";
-                    outputFood = recipe.DescribeNewChopAction(GetStepNumber(), f, 0, (RecipeModule.Chop.PieceVolumeSize)GetPseudoAction().GetParameterValues()[0]);
+                    generatedFood = recipe.DescribeNewChopAction(GetStepNumber(), f, 0, (RecipeModule.Chop.PieceVolumeSize)GetPseudoAction().GetParameterValues()[0]);
                     break;
                 case RecipeModule.Action.ActionType.Cook:
-                    append = "CO";
                     parameters = GetPseudoAction().GetParameterValues();
-                    outputFood = recipe.DescribeNewCookAction(GetStepNumber(), f, parameters[0], parameters[1], (RecipeModule.Cook.CookType)parameters[2]);
+                    generatedFood = recipe.DescribeNewCookAction(GetStepNumber(), f, parameters[0], parameters[1], (RecipeModule.Cook.CookType)parameters[2]);
                     break;
                 case RecipeModule.Action.ActionType.Fry:
-                    append = "FR";
                     parameters = GetPseudoAction().GetParameterValues();
-                    outputFood = recipe.DescribeNewFryAction(GetStepNumber(), f, parameters[0], parameters[1], (RecipeModule.Fry.FryType)parameters[2]);
+                    generatedFood = recipe.DescribeNewFryAction(GetStepNumber(), f, parameters[0], parameters[1], (RecipeModule.Fry.FryType)parameters[2]);
                     break;
                 case RecipeModule.Action.ActionType.Mix:
-                    outputFood = null;
+                    generatedFood = null;
+                    // Waiting for implementation of Mixing
                     break;
                 case RecipeModule.Action.ActionType.Peel:
-                    outputFood = null;
-                    break;
-                case RecipeModule.Action.ActionType.PutTogether:
-                    outputFood = null;
+                    generatedFood = recipe.DescribeNewPeelAction(GetStepNumber(), f);
                     break;
                 case RecipeModule.Action.ActionType.Smash:
-                    outputFood = null;
+                    generatedFood = recipe.DescribeNewSmashAction(GetStepNumber(), f);
                     break;
                 case RecipeModule.Action.ActionType.Squeeze:
-                    outputFood = null;
+                    generatedFood = recipe.DescribeNewSqueezeAction(GetStepNumber(), f);
                     break;
                 default:
-                    outputFood = null;
+                    // Unknown action type
+                    generatedFood = null;
                     break;
             }
 
             // Create new output food object
             GameObject outputObject = GameObject.Instantiate(dummyOutputSingleFood);
-            outputObject.GetComponent<FoodState>().SetFood(outputFood);
+            outputObject.GetComponent<FoodState>().SetFood(generatedFood);
 
             outputObject.GetComponent<Text>().color = Color.red;
-            outputObject.GetComponent<Text>().text += f.GetFoodIdentifier() + append;
+            outputObject.GetComponent<Text>().text += f.GetFoodIdentifier();
 
             // Remove existing ouput object
             if (outputZoneRef.transform.childCount == 1) {
@@ -150,9 +154,9 @@ public class Step : MonoBehaviour {
         }
 
         // If input is food group
-        else if(GetInput() is FoodGroup)
+        else if(GetInput() is FoodGroupState)
         {
-            FoodGroup inputGroup = (FoodGroup)GetInput();
+            FoodGroupState inputGroup = (FoodGroupState)GetInput();
             List<RecipeModule.Food> outputFoods = new List<RecipeModule.Food>();
 
             foreach (RecipeModule.Food f in inputGroup.recipeFoods)
@@ -163,7 +167,8 @@ public class Step : MonoBehaviour {
                 switch (GetPseudoAction().GetActionType())
                 {
                     case RecipeModule.Action.ActionType.Boil:
-                        generatedFood = null;
+                        parameters = GetPseudoAction().GetParameterValues();
+                        generatedFood = recipe.DescribeNewBoilAction(GetStepNumber(), f, parameters[0], parameters[1], (RecipeModule.Boil.BoilType)parameters[2]);
                         break;
                     case RecipeModule.Action.ActionType.Break:
                         generatedFood = recipe.DescribeNewBreakAction(GetStepNumber(), f);
@@ -181,20 +186,19 @@ public class Step : MonoBehaviour {
                         break;
                     case RecipeModule.Action.ActionType.Mix:
                         generatedFood = null;
+                        // Waiting for implementation of Mixing
                         break;
                     case RecipeModule.Action.ActionType.Peel:
-                        generatedFood = null;
-                        break;
-                    case RecipeModule.Action.ActionType.PutTogether:
-                        generatedFood = null;
+                        generatedFood = recipe.DescribeNewPeelAction(GetStepNumber(), f);
                         break;
                     case RecipeModule.Action.ActionType.Smash:
-                        generatedFood = null;
+                        generatedFood = recipe.DescribeNewSmashAction(GetStepNumber(), f);
                         break;
                     case RecipeModule.Action.ActionType.Squeeze:
-                        generatedFood = null;
+                        generatedFood = recipe.DescribeNewSqueezeAction(GetStepNumber(), f);
                         break;
                     default:
+                        // Unknown action type
                         generatedFood = null;
                         break;
                 }
@@ -203,7 +207,7 @@ public class Step : MonoBehaviour {
             }
             // Create new foodgroup object
             GameObject outputObject = GameObject.Instantiate(dummyOutputFoodGroup);
-            outputObject.GetComponent<FoodGroup>().SetFoodGroup(outputFoods);
+            outputObject.GetComponent<FoodGroupState>().SetFoodGroup(outputFoods);
 
             outputObject.GetComponent<Text>().color = Color.red;
 
@@ -226,6 +230,20 @@ public class Step : MonoBehaviour {
         outputZoneRef.transform.parent.gameObject.SetActive(true);
     }
 
+    // Checks required conditions for grouping of this step. If conditions are not met, reverts toggle back to false.
+    public void CheckGroupEligibility()
+    {
+        if(!recipeManager.CheckGroupEligibility(this))
+        {
+            // Not eligible for grouping, set toggle as false back.
+            SetToggle(false);
+        }
+
+        // Refresh new group button
+        recipeManager.NewGroupButtonVisibility();
+    }
+
+
     // Get input of this step
     public object GetInput()
     {
@@ -234,13 +252,14 @@ public class Step : MonoBehaviour {
             return inputZoneRef.GetComponentInChildren<FoodState>();
         }
 
-        else if(inputZoneRef.GetComponentInChildren<FoodGroup>())
+        else if(inputZoneRef.GetComponentInChildren<FoodGroupState>())
         {
-            return inputZoneRef.GetComponentInChildren<FoodGroup>();
+            return inputZoneRef.GetComponentInChildren<FoodGroupState>();
         }
 
         else
         {
+            // Unknown input type
             return null;
         }
     }
@@ -253,13 +272,14 @@ public class Step : MonoBehaviour {
             return outputZoneRef.GetComponentInChildren<FoodState>();
         }
 
-        else if (outputZoneRef.GetComponentInChildren<FoodGroup>())
+        else if (outputZoneRef.GetComponentInChildren<FoodGroupState>())
         {
-            return outputZoneRef.GetComponentInChildren<FoodGroup>();
+            return outputZoneRef.GetComponentInChildren<FoodGroupState>();
         }
 
         else
         {
+            // Unknown output type
             return null;
         }
     }
@@ -267,13 +287,13 @@ public class Step : MonoBehaviour {
     // Fired when a new item is put into this step, or a existing item is removed from this step.
     public void StepChanged()
     {
-        stepManager.StepChanged(this);
+        recipeManager.StepChanged(this);
     }
 
     // Remove this step from recipe
     public void Remove()
     {
-        stepManager.RemoveStep(this);
+        recipeManager.RemoveStep(this);
     }
 
     // Get action of this step
