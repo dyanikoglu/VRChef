@@ -3,22 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class FoodState : MonoBehaviour {
-    public RecipeModule.Food recipeFoodRef;
+    public string stateName = "";
     public FoodState clone = null;
 
-    public void SetFood(RecipeModule.Food recipeFoodRef)
+    public void SetStateName(string stateName)
     {
-        this.recipeFoodRef = recipeFoodRef;
+        this.stateName = stateName;
     }
 
-    public RecipeModule.Food GetFood()
+    public string GetStateName()
     {
-        return recipeFoodRef;
+        return stateName;
     }
 
     public void Clone(FoodState fs)
     {
-        this.recipeFoodRef = fs.GetFood();
+        this.stateName = fs.GetStateName();
         fs.clone = this;
     }
 }

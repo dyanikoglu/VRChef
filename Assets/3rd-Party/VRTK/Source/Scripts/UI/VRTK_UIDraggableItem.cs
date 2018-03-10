@@ -137,7 +137,7 @@ namespace VRTK
                             ResetElement();
                             validDragEnd = false;
                         }
-                        else if (oneCloneAtMost && GetComponent<FoodGroupState>() && GetComponent<FoodGroupState>().clone != null)
+                        else if (oneCloneAtMost && GetComponent<FoodStateGroup>() && GetComponent<FoodStateGroup>().clone != null)
                         {
                             ResetElement();
                             validDragEnd = false;
@@ -156,9 +156,9 @@ namespace VRTK
                             }
 
                             // Clone FoodGroup Component
-                            else if (cloneObject.GetComponent<FoodGroupState>())
+                            else if (cloneObject.GetComponent<FoodStateGroup>())
                             {
-                                cloneObject.GetComponent<FoodGroupState>().Clone(GetComponent<FoodGroupState>());
+                                cloneObject.GetComponent<FoodStateGroup>().Clone(GetComponent<FoodStateGroup>());
                             }
 
                             // Clone PseudoAction Component

@@ -13,6 +13,7 @@ public class PseudoAction : MonoBehaviour {
      * .
      * 
      */
+
     private List<int> parameterValues;
     
     private List<string> parameterNames;
@@ -62,6 +63,13 @@ public class PseudoAction : MonoBehaviour {
     public void SetAsSmash()
     {
         this.actionType = RecipeModule.Action.ActionType.Smash;
+        this.parameterNames = new List<string>();
+        this.parameterValues = new List<int>();
+    }
+
+    public void SetAsSqueeze()
+    {
+        this.actionType = RecipeModule.Action.ActionType.Squeeze;
         this.parameterNames = new List<string>();
         this.parameterValues = new List<int>();
     }

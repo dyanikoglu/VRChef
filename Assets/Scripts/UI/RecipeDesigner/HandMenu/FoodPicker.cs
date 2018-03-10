@@ -31,7 +31,7 @@ public class FoodPicker : MonoBehaviour {
 
             RecipeModule.Food f = new RecipeModule.Food(foodName);
             FoodState newFoodState = newPickupZone.GetComponentInChildren<FoodState>();
-            newFoodState.SetFood(f);
+            newFoodState.SetStateName(f.GetFoodIdentifier());
 
             Vector3 newPos = new Vector3(startX + spacingX * (loopCount % itemCountPerRow), startY + (((loopCount) / itemCountPerRow) * spacingY), 0);
             rt.anchoredPosition3D = newPos;

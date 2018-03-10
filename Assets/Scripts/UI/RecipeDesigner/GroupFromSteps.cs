@@ -10,9 +10,9 @@ public class GroupFromSteps : MonoBehaviour {
     // Outputs of these steps are gathered together and created this food group
     public List<Step> boundedSteps;
 
-    public FoodGroupState GetFoodGroup()
+    public FoodStateGroup GetFoodGroup()
     {
-        return foodGroupZoneRef.GetComponentInChildren<FoodGroupState>();
+        return foodGroupZoneRef.GetComponentInChildren<FoodStateGroup>();
     }
 
     public bool CheckForMissingSteps()

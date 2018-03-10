@@ -36,10 +36,10 @@ public class ActionPicker : MonoBehaviour {
             switch (actionType)
             {
                 case RecipeModule.Action.ActionType.Boil:
-                    // TODO
+                    newPseudoAction.SetAsBoil();
                     break;
                 case RecipeModule.Action.ActionType.Break:
-                    // TODO
+                    newPseudoAction.SetAsBreak();
                     break;
                 case RecipeModule.Action.ActionType.Chop:
                     newPseudoAction.SetAsChop();
@@ -51,22 +51,18 @@ public class ActionPicker : MonoBehaviour {
                     newPseudoAction.SetAsFry();
                     break;
                 case RecipeModule.Action.ActionType.Mix:
-                    // TODO
+                    // Waiting for implementation of Mixing Action
                     break;
                 case RecipeModule.Action.ActionType.Peel:
-                    // TODO
-                    break;
-                case RecipeModule.Action.ActionType.PutTogether:
-                    // TODO
+                    newPseudoAction.SetAsPeel();
                     break;
                 case RecipeModule.Action.ActionType.Smash:
-                    // TODO
+                    newPseudoAction.SetAsSmash();
                     break;
                 case RecipeModule.Action.ActionType.Squeeze:
-                    // TODO
+                    newPseudoAction.SetAsSqueeze();
                     break;
                 default:
-                    // TODO
                     break;
             }
 

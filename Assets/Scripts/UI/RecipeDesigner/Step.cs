@@ -68,7 +68,7 @@ public class Step : MonoBehaviour {
     }
 
     // Generate output of this step, register it to recipe data structure.
-    public void GenerateOutput(RecipeModule.Recipe recipe)
+    public void GenerateOutput()
     {
         // Input or action is null, halt.
         if (GetInput() == null || GetPseudoAction() == null)
@@ -87,56 +87,48 @@ public class Step : MonoBehaviour {
         // If input is single object
         if(GetInput() is FoodState)
         {
-            RecipeModule.Food f = ((FoodState)GetInput()).GetFood();
-
-            List<int> parameters;
-            RecipeModule.Food generatedFood;
+            string actionAppend = "";
 
             switch (GetPseudoAction().GetActionType())
             {
                 case RecipeModule.Action.ActionType.Boil:
-                    parameters = GetPseudoAction().GetParameterValues();
-                    generatedFood = recipe.DescribeNewBoilAction(GetStepNumber(), f, parameters[0], parameters[1], (RecipeModule.Boil.BoilType)parameters[2]);
+                    actionAppend = "_bo";
                     break;
                 case RecipeModule.Action.ActionType.Break:
-                    generatedFood = recipe.DescribeNewBreakAction(GetStepNumber(), f);
+                    actionAppend = "_br";
                     break;
                 case RecipeModule.Action.ActionType.Chop:
-                    generatedFood = recipe.DescribeNewChopAction(GetStepNumber(), f, 0, (RecipeModule.Chop.PieceVolumeSize)GetPseudoAction().GetParameterValues()[0]);
+                    actionAppend = "_ch";
                     break;
                 case RecipeModule.Action.ActionType.Cook:
-                    parameters = GetPseudoAction().GetParameterValues();
-                    generatedFood = recipe.DescribeNewCookAction(GetStepNumber(), f, parameters[0], parameters[1], (RecipeModule.Cook.CookType)parameters[2]);
+                    actionAppend = "_co";
                     break;
                 case RecipeModule.Action.ActionType.Fry:
-                    parameters = GetPseudoAction().GetParameterValues();
-                    generatedFood = recipe.DescribeNewFryAction(GetStepNumber(), f, parameters[0], parameters[1], (RecipeModule.Fry.FryType)parameters[2]);
+                    actionAppend = "_f";
                     break;
                 case RecipeModule.Action.ActionType.Mix:
-                    generatedFood = null;
-                    // Waiting for implementation of Mixing
+                    actionAppend = "_m";
                     break;
                 case RecipeModule.Action.ActionType.Peel:
-                    generatedFood = recipe.DescribeNewPeelAction(GetStepNumber(), f);
+                    actionAppend = "_p";
                     break;
                 case RecipeModule.Action.ActionType.Smash:
-                    generatedFood = recipe.DescribeNewSmashAction(GetStepNumber(), f);
+                    actionAppend = "_sm";
                     break;
                 case RecipeModule.Action.ActionType.Squeeze:
-                    generatedFood = recipe.DescribeNewSqueezeAction(GetStepNumber(), f);
+                    actionAppend = "_sq";
                     break;
                 default:
                     // Unknown action type
-                    generatedFood = null;
+                    actionAppend = "_?";
                     break;
             }
 
             // Create new output food object
             GameObject outputObject = GameObject.Instantiate(dummyOutputSingleFood);
-            outputObject.GetComponent<FoodState>().SetFood(generatedFood);
+            outputObject.GetComponent<FoodState>().SetStateName(outputObject.GetComponent<FoodState>().GetStateName() + actionAppend);
 
             outputObject.GetComponent<Text>().color = Color.red;
-            outputObject.GetComponent<Text>().text += f.GetFoodIdentifier();
 
             // Remove existing ouput object
             if (outputZoneRef.transform.childCount == 1) {
@@ -154,59 +146,61 @@ public class Step : MonoBehaviour {
         }
 
         // If input is food group
-        else if(GetInput() is FoodGroupState)
+        else if(GetInput() is FoodStateGroup)
         {
-            FoodGroupState inputGroup = (FoodGroupState)GetInput();
-            List<RecipeModule.Food> outputFoods = new List<RecipeModule.Food>();
-            foreach (RecipeModule.Food f in inputGroup.recipeFoods)
-            {
-                List<int> parameters;
-                RecipeModule.Food generatedFood;
+            FoodStateGroup inputGroup = (FoodStateGroup)GetInput();
+            List<FoodState> outputFoods = new List<FoodState>();
 
-                switch (GetPseudoAction().GetActionType())
-                {
-                    case RecipeModule.Action.ActionType.Boil:
-                        parameters = GetPseudoAction().GetParameterValues();
-                        generatedFood = recipe.DescribeNewBoilAction(GetStepNumber(), f, parameters[0], parameters[1], (RecipeModule.Boil.BoilType)parameters[2]);
-                        break;
-                    case RecipeModule.Action.ActionType.Break:
-                        generatedFood = recipe.DescribeNewBreakAction(GetStepNumber(), f);
-                        break;
-                    case RecipeModule.Action.ActionType.Chop:
-                        generatedFood = recipe.DescribeNewChopAction(GetStepNumber(), f, 0, (RecipeModule.Chop.PieceVolumeSize)GetPseudoAction().GetParameterValues()[0]);
-                        break;
-                    case RecipeModule.Action.ActionType.Cook:
-                        parameters = GetPseudoAction().GetParameterValues();
-                        generatedFood = recipe.DescribeNewCookAction(GetStepNumber(), f, parameters[0], parameters[1], (RecipeModule.Cook.CookType)parameters[2]);
-                        break;
-                    case RecipeModule.Action.ActionType.Fry:
-                        parameters = GetPseudoAction().GetParameterValues();
-                        generatedFood = recipe.DescribeNewFryAction(GetStepNumber(), f, parameters[0], parameters[1], (RecipeModule.Fry.FryType)parameters[2]);
-                        break;
-                    case RecipeModule.Action.ActionType.Mix:
-                        generatedFood = null;
-                        // Waiting for implementation of Mixing
-                        break;
-                    case RecipeModule.Action.ActionType.Peel:
-                        generatedFood = recipe.DescribeNewPeelAction(GetStepNumber(), f);
-                        break;
-                    case RecipeModule.Action.ActionType.Smash:
-                        generatedFood = recipe.DescribeNewSmashAction(GetStepNumber(), f);
-                        break;
-                    case RecipeModule.Action.ActionType.Squeeze:
-                        generatedFood = recipe.DescribeNewSqueezeAction(GetStepNumber(), f);
-                        break;
-                    default:
-                        // Unknown action type
-                        generatedFood = null;
-                        break;
-                }
-                outputFoods.Add(generatedFood);
+            string actionAppend = "";
+
+            switch (GetPseudoAction().GetActionType())
+            {
+                case RecipeModule.Action.ActionType.Boil:
+                    actionAppend = "_bo";
+                    break;
+                case RecipeModule.Action.ActionType.Break:
+                    actionAppend = "_br";
+                    break;
+                case RecipeModule.Action.ActionType.Chop:
+                    actionAppend = "_ch";
+                    break;
+                case RecipeModule.Action.ActionType.Cook:
+                    actionAppend = "_co";
+                    break;
+                case RecipeModule.Action.ActionType.Fry:
+                    actionAppend = "_f";
+                    break;
+                case RecipeModule.Action.ActionType.Mix:
+                    actionAppend = "_m";
+                    break;
+                case RecipeModule.Action.ActionType.Peel:
+                    actionAppend = "_p";
+                    break;
+                case RecipeModule.Action.ActionType.Smash:
+                    actionAppend = "_sm";
+                    break;
+                case RecipeModule.Action.ActionType.Squeeze:
+                    actionAppend = "_sq";
+                    break;
+                default:
+                    // Unknown action type
+                    actionAppend = "_?";
+                    break;
             }
+
+            // Create new list from input objects in group
+            foreach (FoodState fs in inputGroup.foodStates)
+            {
+                outputFoods.Add(fs);
+                fs.SetStateName(fs.GetStateName() + actionAppend);
+            }
+
             // Create new foodgroup object
             GameObject outputObject = GameObject.Instantiate(dummyOutputFoodGroup);
-            outputObject.GetComponent<FoodGroupState>().SetFoodGroup(outputFoods);
+            outputObject.GetComponent<FoodStateGroup>().SetFoodStateGroup(outputFoods);
 
+            // Set new group name
+            outputObject.GetComponent<FoodStateGroup>().SetStateName(outputObject.GetComponent<FoodStateGroup>().GetStateName() + actionAppend);
             outputObject.GetComponent<Text>().color = Color.red;
 
             // Remove existing ouput object
@@ -250,9 +244,9 @@ public class Step : MonoBehaviour {
             return inputZoneRef.GetComponentInChildren<FoodState>();
         }
 
-        else if(inputZoneRef.GetComponentInChildren<FoodGroupState>())
+        else if(inputZoneRef.GetComponentInChildren<FoodStateGroup>())
         {
-            return inputZoneRef.GetComponentInChildren<FoodGroupState>();
+            return inputZoneRef.GetComponentInChildren<FoodStateGroup>();
         }
 
         else
@@ -270,9 +264,9 @@ public class Step : MonoBehaviour {
             return outputZoneRef.GetComponentInChildren<FoodState>();
         }
 
-        else if (outputZoneRef.GetComponentInChildren<FoodGroupState>())
+        else if (outputZoneRef.GetComponentInChildren<FoodStateGroup>())
         {
-            return outputZoneRef.GetComponentInChildren<FoodGroupState>();
+            return outputZoneRef.GetComponentInChildren<FoodStateGroup>();
         }
 
         else

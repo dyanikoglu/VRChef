@@ -4,13 +4,10 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class RecipeManager : MonoBehaviour {
-
     public GameObject emptyStepRef;
     public GameObject emptyGroupRef;
     public GameObject newStepButtonRef;
     public GameObject newGroupButtonRef;
-
-    public RecipeModule.Recipe recipe;
 
     private List<Step> steps;
     private List<GroupFromSteps> groups;
@@ -20,7 +17,6 @@ public class RecipeManager : MonoBehaviour {
 
     private void Start()
     {
-        recipe = new RecipeModule.Recipe("Test Recipe");
         steps = new List<Step>();
         groups = new List<GroupFromSteps>();
     }
@@ -81,7 +77,7 @@ public class RecipeManager : MonoBehaviour {
         float avgYPos = 0;
         float minY = 10000;
         float maxY = -10000;
-        List<RecipeModule.Food> outputsToBeGrouped = new List<RecipeModule.Food>();
+        List<FoodState> outputsToBeGrouped = new List<FoodState>();
 
         GameObject newGroup = GameObject.Instantiate(emptyGroupRef);
         newGroup.GetComponent<GroupFromSteps>().boundedSteps = new List<Step>();
@@ -97,16 +93,16 @@ public class RecipeManager : MonoBehaviour {
                 //Import single output into list
                 if(s.GetOutput() is FoodState)
                 {
-                    outputsToBeGrouped.Add(((FoodState)(s.GetOutput())).recipeFoodRef);
+                    outputsToBeGrouped.Add(((FoodState)(s.GetOutput())));
                 }
 
                 // Import a whole output group into list
-                else if(s.GetOutput() is FoodGroupState)
+                else if(s.GetOutput() is FoodStateGroup)
                 {
-                    FoodGroupState groupToBeImported = (FoodGroupState)(s.GetOutput());
-                    foreach (RecipeModule.Food f in groupToBeImported.recipeFoods)
+                    FoodStateGroup groupToBeImported = (FoodStateGroup)(s.GetOutput());
+                    foreach (FoodState fs in groupToBeImported.foodStates)
                     {
-                        outputsToBeGrouped.Add(f);
+                        outputsToBeGrouped.Add(fs);
                     }
                 }
 
@@ -139,11 +135,8 @@ public class RecipeManager : MonoBehaviour {
         Vector2 newDelta = new Vector2((maxY - minY) / 10.0f, 10) ;
         newGroup.GetComponent<GroupFromSteps>().verticalLineRef.sizeDelta = newDelta;
 
-        // Describe a PutTogether action in Recipe object
-        // TODO
-
         // Set generated list as group members
-        newGroup.GetComponent<GroupFromSteps>().GetFoodGroup().recipeFoods = outputsToBeGrouped;
+        newGroup.GetComponent<GroupFromSteps>().GetFoodGroup().SetFoodStateGroup(outputsToBeGrouped);
 
         newGroup.SetActive(true);
     }
@@ -167,11 +160,11 @@ public class RecipeManager : MonoBehaviour {
             }
         }
 
-        else if (s.GetOutput() is FoodGroupState)
+        else if (s.GetOutput() is FoodStateGroup)
         {
-            FoodGroupState fg = (FoodGroupState)s.GetOutput();
+            FoodStateGroup fsg = (FoodStateGroup)s.GetOutput();
 
-            if (fg.clone != null)
+            if (fsg.clone != null)
             {
                 return false;
             }
@@ -257,9 +250,9 @@ public class RecipeManager : MonoBehaviour {
             }
         }
 
-        else if(s.GetInput() is FoodGroupState)
+        else if(s.GetInput() is FoodStateGroup)
         {
-            FoodGroupState input = (FoodGroupState)(s.GetInput());
+            FoodStateGroup input = (FoodStateGroup)(s.GetInput());
             if (GroupClonedIntoPreviousStep(input, s.GetStepNumber()))
             {
                 DestroyItem(input.gameObject);
@@ -284,10 +277,10 @@ public class RecipeManager : MonoBehaviour {
             DestroyItem(outputToBeRemoved.gameObject);
         }
 
-        else if(s.GetOutput() is FoodGroupState)
+        else if(s.GetOutput() is FoodStateGroup)
         {
-            FoodGroupState outputToBeRemoved = (FoodGroupState)(s.GetOutput());
-            //MarkRefsAsDirty(outputToBeRemoved.clone);
+            FoodStateGroup outputToBeRemoved = (FoodStateGroup)(s.GetOutput());
+            MarkRefsAsDirty(outputToBeRemoved.clone);
             DestroyItem(outputToBeRemoved.gameObject);
         }
 
@@ -323,13 +316,13 @@ public class RecipeManager : MonoBehaviour {
     }
 
     // This function returns true if item given as parameter is cloned into a previous step.
-    public bool GroupClonedIntoPreviousStep(FoodGroupState fg, int stepNo)
+    public bool GroupClonedIntoPreviousStep(FoodStateGroup fsg, int stepNo)
     {
         // Check if clone is before last step in bounded steps in food group.
         foreach (GroupFromSteps g in groups)
         {
-            FoodGroupState foodGroup = g.GetFoodGroup();
-            if (foodGroup.clone == fg && stepNo < g.GetLastStepNumber())
+            FoodStateGroup foodGroup = g.GetFoodGroup();
+            if (foodGroup.clone == fsg && stepNo < g.GetLastStepNumber())
             {
                 return true;
             }
@@ -338,10 +331,10 @@ public class RecipeManager : MonoBehaviour {
         // Check if clone is before owner step of output object.
         foreach (Step s in steps)
         {
-            if (s.GetOutput() is FoodGroupState)
+            if (s.GetOutput() is FoodStateGroup)
             {
-                FoodGroupState outputGroup = (FoodGroupState)(s.GetOutput());
-                if (outputGroup.clone == fg && stepNo < s.GetStepNumber())
+                FoodStateGroup outputGroup = (FoodStateGroup)(s.GetOutput());
+                if (outputGroup.clone == fsg && stepNo < s.GetStepNumber())
                 {
                     return true;
                 }
@@ -383,9 +376,53 @@ public class RecipeManager : MonoBehaviour {
                     break;
                 }
 
-                else if (s.GetOutput() is FoodGroupState)
+                else if (s.GetOutput() is FoodStateGroup)
                 {
-                    //TODO
+                    FoodStateGroup outputToBeRemoved = (FoodStateGroup)(s.GetOutput());
+                    FoodStateGroup inputToBeRemoved = (FoodStateGroup)(s.GetInput());
+
+                    MarkRefsAsDirty(outputToBeRemoved.clone);
+                    DestroyItem(outputToBeRemoved.gameObject);
+                    DestroyItem(inputToBeRemoved.gameObject);
+                    break;
+                }
+            }
+        }
+    }
+
+    public void MarkRefsAsDirty(FoodStateGroup foodStateGroup)
+    {
+        if (foodStateGroup == null)
+        {
+            return;
+        }
+
+        foreach (Step s in steps)
+        {
+            if ((FoodStateGroup)(s.GetInput()) == foodStateGroup)
+            {
+                s.SetDirty(true);
+
+                if (s.GetOutput() is FoodState)
+                {
+                    FoodState outputToBeRemoved = (FoodState)(s.GetOutput());
+                    FoodState inputToBeRemoved = (FoodState)(s.GetInput());
+
+                    MarkRefsAsDirty(outputToBeRemoved.clone);
+                    DestroyItem(outputToBeRemoved.gameObject);
+                    DestroyItem(inputToBeRemoved.gameObject);
+                    break;
+                }
+
+                else if (s.GetOutput() is FoodStateGroup)
+                {
+                    FoodStateGroup outputToBeRemoved = (FoodStateGroup)(s.GetOutput());
+                    FoodStateGroup inputToBeRemoved = (FoodStateGroup)(s.GetInput());
+
+                    MarkRefsAsDirty(outputToBeRemoved.clone);
+                    DestroyItem(outputToBeRemoved.gameObject);
+                    DestroyItem(inputToBeRemoved.gameObject);
+                    break;
                 }
             }
         }
@@ -401,13 +438,12 @@ public class RecipeManager : MonoBehaviour {
         // Some delay for consistency of data.
         yield return new WaitForSeconds(0.1f);
 
-        recipe = new RecipeModule.Recipe("Test Recipe");
         foreach (Step s in steps)
         {
             // If this step is marked as dirty, recalculate it's output again.
             if (s.IsDirty())
             {
-                s.GenerateOutput(recipe);
+                s.GenerateOutput();
                 s.SetDirty(false);
             }
         }

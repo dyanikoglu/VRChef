@@ -2,18 +2,29 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FoodGroupState : MonoBehaviour {
-    public List<RecipeModule.Food> recipeFoods;
-    public FoodGroupState clone = null;
+public class FoodStateGroup : MonoBehaviour {
+    public List<FoodState> foodStates;
+    public string stateName;
+    public FoodStateGroup clone = null;
 
-    public void SetFoodGroup(List<RecipeModule.Food> l)
+    public void SetFoodStateGroup(List<FoodState> l)
     {
-        this.recipeFoods = l;
+        this.foodStates = l;
     }
 
-    public void Clone(FoodGroupState fg)
+    public void SetStateName(string stateName)
     {
-        this.recipeFoods = fg.recipeFoods;
+        this.stateName = stateName;
+    }
+
+    public string GetStateName()
+    {
+        return stateName;
+    }
+
+    public void Clone(FoodStateGroup fg)
+    {
+        this.foodStates = fg.foodStates;
         fg.clone = this;
     }
 }
