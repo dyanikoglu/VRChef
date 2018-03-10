@@ -87,6 +87,8 @@ public class Step : MonoBehaviour {
         // If input is single object
         if(GetInput() is FoodState)
         {
+            string inputStateName = ((FoodState)GetInput()).GetStateName();
+
             string actionAppend = "";
 
             switch (GetPseudoAction().GetActionType())
@@ -126,8 +128,9 @@ public class Step : MonoBehaviour {
 
             // Create new output food object
             GameObject outputObject = GameObject.Instantiate(dummyOutputSingleFood);
-            outputObject.GetComponent<FoodState>().SetStateName(outputObject.GetComponent<FoodState>().GetStateName() + actionAppend);
+            outputObject.GetComponent<FoodState>().SetStateName(inputStateName + actionAppend);
 
+            outputObject.GetComponent<Text>().text = inputStateName + actionAppend;
             outputObject.GetComponent<Text>().color = Color.red;
 
             // Remove existing ouput object
@@ -200,7 +203,8 @@ public class Step : MonoBehaviour {
             outputObject.GetComponent<FoodStateGroup>().SetFoodStateGroup(outputFoods);
 
             // Set new group name
-            outputObject.GetComponent<FoodStateGroup>().SetStateName(outputObject.GetComponent<FoodStateGroup>().GetStateName() + actionAppend);
+            outputObject.GetComponent<FoodStateGroup>().SetStateName(inputGroup.GetStateName() + actionAppend);
+            outputObject.GetComponent<Text>().text = inputGroup.GetStateName() + actionAppend;
             outputObject.GetComponent<Text>().color = Color.red;
 
             // Remove existing ouput object
