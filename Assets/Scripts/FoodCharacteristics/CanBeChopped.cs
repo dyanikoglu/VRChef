@@ -21,7 +21,6 @@ public class CanBeChopped : FoodCharacteristic
     private bool _startedChopping = false;
 
     public Material capMaterial;
-    public float minKnifeVelocityToChop = 0.003f;
     public float sliceTimeout = 0.75f;
     public bool currentlyChoppable = true;
     public float colliderSkinWidth = 0.001f;

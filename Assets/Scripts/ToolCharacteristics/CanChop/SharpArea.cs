@@ -73,20 +73,20 @@ public class SharpArea : MonoBehaviour {
 
         if (CheckConditions(other, comp))
         {
-            // Kinda hack. If knife is not at a state that it can slice the object(e.g, hand is holding it on reverse, or player is trying to cut object with non - sharp area), do not cut the object.
+            //Kinda hack. If knife is not at a state that it can slice the object(e.g, hand is holding it on reverse, or player is trying to cut object with non - sharp area), do not cut the object.
             Vector3 meshCenter = other.GetComponent<Renderer>().bounds.center; // Get mesh's center position in world coordinates
             if (Vector3.Distance(sharpAreaRef.transform.position, meshCenter) < Vector3.Distance(nonSharpAreaRef.transform.position, meshCenter))
             {
                 return;
             }
 
-            // Check if knife is still intersecting with victim mesh after a cooldown. Then, slice the mesh if conditions are met.
+            //Check if knife is still intersecting with victim mesh after a cooldown. Then, slice the mesh if conditions are met.
             StartCoroutine(CheckIfStillInsideMesh(comp, GetComponent<Collider>(), other));
         }
     }
 
     private bool CheckConditions(Collider other, CanBeChopped comp)
     {
-        return comp && (_velocity > comp.minKnifeVelocityToChop || other.GetComponent<Rigidbody>().velocity.magnitude > canChopRef.meshPassThroughMinVelocity) && canChopRef.IsToolAvailable() && comp.ChopAvailability();
+        return comp && canChopRef.IsToolAvailable() && comp.ChopAvailability();
     }
 }

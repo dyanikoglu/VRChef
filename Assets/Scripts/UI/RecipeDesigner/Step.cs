@@ -158,7 +158,6 @@ public class Step : MonoBehaviour {
         {
             FoodGroupState inputGroup = (FoodGroupState)GetInput();
             List<RecipeModule.Food> outputFoods = new List<RecipeModule.Food>();
-
             foreach (RecipeModule.Food f in inputGroup.recipeFoods)
             {
                 List<int> parameters;
@@ -202,7 +201,6 @@ public class Step : MonoBehaviour {
                         generatedFood = null;
                         break;
                 }
-
                 outputFoods.Add(generatedFood);
             }
             // Create new foodgroup object

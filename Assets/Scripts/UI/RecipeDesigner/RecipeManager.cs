@@ -22,6 +22,7 @@ public class RecipeManager : MonoBehaviour {
     {
         recipe = new RecipeModule.Recipe("Test Recipe");
         steps = new List<Step>();
+        groups = new List<GroupFromSteps>();
     }
 
     public void CreateNewStep()
@@ -285,7 +286,9 @@ public class RecipeManager : MonoBehaviour {
 
         else if(s.GetOutput() is FoodGroupState)
         {
-            //TODO
+            FoodGroupState outputToBeRemoved = (FoodGroupState)(s.GetOutput());
+            //MarkRefsAsDirty(outputToBeRemoved.clone);
+            DestroyItem(outputToBeRemoved.gameObject);
         }
 
         // Wrong type of item is dropped into action zone

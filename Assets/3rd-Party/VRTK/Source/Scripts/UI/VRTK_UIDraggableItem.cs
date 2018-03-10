@@ -132,11 +132,17 @@ namespace VRTK
                     if(duplicateOnDrag)
                     {
                         // One clone can be created at the same time, do not clone this item.
-                        if (oneCloneAtMost && GetComponent<FoodState>().clone != null)
+                        if (oneCloneAtMost && GetComponent<FoodState>() && GetComponent<FoodState>().clone != null)
                         {
                             ResetElement();
                             validDragEnd = false;
                         }
+                        else if (oneCloneAtMost && GetComponent<FoodGroupState>() && GetComponent<FoodGroupState>().clone != null)
+                        {
+                            ResetElement();
+                            validDragEnd = false;
+                        }
+
 
                         // Clone this item
                         else
@@ -150,7 +156,7 @@ namespace VRTK
                             }
 
                             // Clone FoodGroup Component
-                            else if (cloneObject.GetComponent<FoodState>())
+                            else if (cloneObject.GetComponent<FoodGroupState>())
                             {
                                 cloneObject.GetComponent<FoodGroupState>().Clone(GetComponent<FoodGroupState>());
                             }

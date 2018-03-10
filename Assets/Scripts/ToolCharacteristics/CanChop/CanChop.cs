@@ -22,9 +22,6 @@ public class CanChop : ToolCharacteristic {
     // If so, do not slice the object.
     public float intersectionCheckCooldown = 0.1f;
 
-    // If knife is not moving, but an object passed through the knife with a velocity, slice the object if it passed with that amount of min. velocity.
-    public float meshPassThroughMinVelocity = 1f;
-
     public SharpArea sharpAreaRef;
     public GameObject fluidEmitterRef;
     public float spawnedFluidSpeed = 0.05f;
