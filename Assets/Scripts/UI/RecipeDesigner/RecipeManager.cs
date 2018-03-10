@@ -13,6 +13,8 @@ public class RecipeManager : MonoBehaviour {
     private List<GroupFromSteps> groups;
 
     private int totalStepCount = 0;
+    private int outputNameSequence = 1;
+    private char groupNameSequence = 'A';
     public int spacingY = -40;
 
     private void Start()
@@ -137,6 +139,11 @@ public class RecipeManager : MonoBehaviour {
 
         // Set generated list as group members
         newGroup.GetComponent<GroupFromSteps>().GetFoodGroup().SetFoodStateGroup(outputsToBeGrouped);
+
+        // Set names
+        string groupStateName = GetNewGroupName();
+        newGroup.GetComponent<GroupFromSteps>().GetFoodGroup().GetComponent<Text>().text = "Group_" + groupStateName;
+        newGroup.name = "Group_" + groupStateName;
 
         newGroup.SetActive(true);
     }
@@ -426,6 +433,18 @@ public class RecipeManager : MonoBehaviour {
                 }
             }
         }
+    }
+
+    public string GetNewGroupName()
+    {
+        string s = groupNameSequence++.ToString();
+        return s;
+    }
+
+    public string GetNewOutputName()
+    {
+        string s = outputNameSequence++.ToString();
+        return s;
     }
 
     public void RegenerateSteps() 

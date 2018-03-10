@@ -87,50 +87,11 @@ public class Step : MonoBehaviour {
         // If input is single object
         if(GetInput() is FoodState)
         {
-            string inputStateName = ((FoodState)GetInput()).GetStateName();
-
-            string actionAppend = "";
-
-            switch (GetPseudoAction().GetActionType())
-            {
-                case RecipeModule.Action.ActionType.Boil:
-                    actionAppend = "_bo";
-                    break;
-                case RecipeModule.Action.ActionType.Break:
-                    actionAppend = "_br";
-                    break;
-                case RecipeModule.Action.ActionType.Chop:
-                    actionAppend = "_ch";
-                    break;
-                case RecipeModule.Action.ActionType.Cook:
-                    actionAppend = "_co";
-                    break;
-                case RecipeModule.Action.ActionType.Fry:
-                    actionAppend = "_f";
-                    break;
-                case RecipeModule.Action.ActionType.Mix:
-                    actionAppend = "_m";
-                    break;
-                case RecipeModule.Action.ActionType.Peel:
-                    actionAppend = "_p";
-                    break;
-                case RecipeModule.Action.ActionType.Smash:
-                    actionAppend = "_sm";
-                    break;
-                case RecipeModule.Action.ActionType.Squeeze:
-                    actionAppend = "_sq";
-                    break;
-                default:
-                    // Unknown action type
-                    actionAppend = "_?";
-                    break;
-            }
-
             // Create new output food object
             GameObject outputObject = GameObject.Instantiate(dummyOutputSingleFood);
-            outputObject.GetComponent<FoodState>().SetStateName(inputStateName + actionAppend);
-
-            outputObject.GetComponent<Text>().text = inputStateName + actionAppend;
+            string stateName = recipeManager.GetNewOutputName();
+            outputObject.name = "Output_" + stateName;
+            outputObject.GetComponent<Text>().text = "Output_" + stateName;
             outputObject.GetComponent<Text>().color = Color.red;
 
             // Remove existing ouput object
@@ -154,57 +115,20 @@ public class Step : MonoBehaviour {
             FoodStateGroup inputGroup = (FoodStateGroup)GetInput();
             List<FoodState> outputFoods = new List<FoodState>();
 
-            string actionAppend = "";
-
-            switch (GetPseudoAction().GetActionType())
-            {
-                case RecipeModule.Action.ActionType.Boil:
-                    actionAppend = "_bo";
-                    break;
-                case RecipeModule.Action.ActionType.Break:
-                    actionAppend = "_br";
-                    break;
-                case RecipeModule.Action.ActionType.Chop:
-                    actionAppend = "_ch";
-                    break;
-                case RecipeModule.Action.ActionType.Cook:
-                    actionAppend = "_co";
-                    break;
-                case RecipeModule.Action.ActionType.Fry:
-                    actionAppend = "_f";
-                    break;
-                case RecipeModule.Action.ActionType.Mix:
-                    actionAppend = "_m";
-                    break;
-                case RecipeModule.Action.ActionType.Peel:
-                    actionAppend = "_p";
-                    break;
-                case RecipeModule.Action.ActionType.Smash:
-                    actionAppend = "_sm";
-                    break;
-                case RecipeModule.Action.ActionType.Squeeze:
-                    actionAppend = "_sq";
-                    break;
-                default:
-                    // Unknown action type
-                    actionAppend = "_?";
-                    break;
-            }
-
             // Create new list from input objects in group
             foreach (FoodState fs in inputGroup.foodStates)
             {
                 outputFoods.Add(fs);
-                fs.SetStateName(fs.GetStateName() + actionAppend);
             }
 
             // Create new foodgroup object
             GameObject outputObject = GameObject.Instantiate(dummyOutputFoodGroup);
             outputObject.GetComponent<FoodStateGroup>().SetFoodStateGroup(outputFoods);
 
-            // Set new group name
-            outputObject.GetComponent<FoodStateGroup>().SetStateName(inputGroup.GetStateName() + actionAppend);
-            outputObject.GetComponent<Text>().text = inputGroup.GetStateName() + actionAppend;
+            // Set new output group name
+            string stateName = recipeManager.GetNewOutputName();
+            outputObject.name = "Output_" + stateName;
+            outputObject.GetComponent<Text>().text = "Output_" + stateName;
             outputObject.GetComponent<Text>().color = Color.red;
 
             // Remove existing ouput object
