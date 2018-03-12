@@ -7,7 +7,7 @@ public class PseudoAction : MonoBehaviour {
 
     /* Cook: [0] -> 0: Overcooked, 1: Cooked, 2: Underdone | [1] -> requiredHeat | [2] -> requiredTime
      * Fry: [0] -> 0: Overfried, 1: Fried, 2: Underdone | [1] -> requiredHeat | [2] -> requiredTime
-     * Chop: [0] -> 0: Small Piece, 1: Middle Piece, 2: Big Piece
+     * Chop: [0] -> 0: Piece Count
      * ...
      * ..
      * .
@@ -18,13 +18,13 @@ public class PseudoAction : MonoBehaviour {
     
     private List<string> parameterNames;
 
-    public void SetAsChop(RecipeModule.Chop.PieceVolumeSize pieceVolumeSize = RecipeModule.Chop.PieceVolumeSize.Middle)
+    public void SetAsChop(int pieceCount = 4)
     {
         this.actionType = RecipeModule.Action.ActionType.Chop;
         this.parameterNames = new List<string>();
         this.parameterNames.Add("Piece Size");
         this.parameterValues = new List<int>();
-        this.parameterValues.Add((int)pieceVolumeSize);
+        this.parameterValues.Add(pieceCount);
     }
 
     public void SetAsFry(RecipeModule.Fry.FryType fryType = RecipeModule.Fry.FryType.Fried, int requiredHeat = 150, int requiredTime = 60)

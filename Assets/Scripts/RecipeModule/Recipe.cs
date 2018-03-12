@@ -60,7 +60,7 @@ namespace RecipeModule {
                 file = File.Create(Application.dataPath + "/Recipes/" + recipeToBeSaved.recipeName + ".vrcr");
             }
 
-            bf.Serialize(file, XOREncryptDecrypt(recipeData, "VRChef"));
+            bf.Serialize(file, recipeData);
             file.Close();
         }
        
@@ -80,7 +80,7 @@ namespace RecipeModule {
                 return null;
             }
 
-            Recipe loadedRecipe = (Recipe) StringSerializationAPI.Deserialize(typeof(Recipe), XOREncryptDecrypt((string)bf.Deserialize(file), "VRChef"));
+            Recipe loadedRecipe = (Recipe) StringSerializationAPI.Deserialize(typeof(Recipe), (string)bf.Deserialize(file));
             file.Close();
 
             return loadedRecipe;
@@ -124,12 +124,12 @@ namespace RecipeModule {
             _actions.Remove(a);
         }
 
-        public Food DescribeNewChopAction(int stepNumber, GameObject foodObject, int requiredPieceCount, Chop.PieceVolumeSize pieceVolumeSize)
+        public Food DescribeNewChopAction(int stepNumber, GameObject foodObject, int requiredPieceCount)
         {
             Food f = new Food(foodObject.GetComponent<FoodStatus>().foodIdentifier);
             _initialFoods.Add(f);
 
-            Chop action = new Chop(stepNumber, f, requiredPieceCount, pieceVolumeSize);
+            Chop action = new Chop(stepNumber, f, requiredPieceCount);
 
             _actions.Add(action);
 
@@ -138,9 +138,9 @@ namespace RecipeModule {
             return action.GetResultedFood();
         }
 
-        public Food DescribeNewChopAction(int stepNumber, Food foodToBeChopped, int requiredPieceCount, Chop.PieceVolumeSize pieceVolumeSize)
+        public Food DescribeNewChopAction(int stepNumber, Food foodToBeChopped, int requiredPieceCount)
         {
-            Chop action = new Chop(stepNumber, foodToBeChopped, requiredPieceCount, pieceVolumeSize);
+            Chop action = new Chop(stepNumber, foodToBeChopped, requiredPieceCount);
 
             _actions.Add(action);
 

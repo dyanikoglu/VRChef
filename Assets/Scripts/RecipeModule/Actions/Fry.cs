@@ -4,15 +4,18 @@ using UnityEngine;
 
 namespace RecipeModule
 {
+    [FullSerializer.fsObject]
     public class Fry : Action
     {
         public enum FryType
         {
             Overfried, Fried, Underdone
         }
-
+        [FullSerializer.fsProperty]
         private float requiredHeat;
+        [FullSerializer.fsProperty]
         private float requiredTime;
+        [FullSerializer.fsProperty]
         private FryType fryType;
 
         public Fry() : base()

@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace RecipeModule
 {
+    [FullSerializer.fsObject]
     public class Squeeze : Action
     {
         public Squeeze() : base()

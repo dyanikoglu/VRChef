@@ -12,7 +12,17 @@ namespace RecipeModule
         {    
             Recipe r = Recipe.LoadRecipe(recipeNameToLoad);
 
-            foreach(Food f in r.GetInitialFoods()) 
+            foreach(Action a in r.GetActions()) 
+            {
+                if(a is Chop)
+                {
+                    Chop c = (Chop)a;
+
+                    print(c);
+                }
+            }
+
+            foreach (Food f in r.GetInitialFoods())
             {
                 print(f.GetFoodIdentifier());
             }
