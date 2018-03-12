@@ -31,16 +31,6 @@ public class CanBeFried : FoodCharacteristic
     AudioSource source;
     bool onlyOnce = true;
 
-    //public override void PublishEvent()
-    //{
-    //    OnOperationDone(RecipeModule.Action.ActionType.Fry);
-    //}
-
-    public void PublishEventFake()
-    {
-        OnOperationDone(RecipeModule.Action.ActionType.Fry);
-    }
-
     private void Awake()
     {
         GetComponent<Renderer>().material = new Material(GetComponent<Renderer>().material);

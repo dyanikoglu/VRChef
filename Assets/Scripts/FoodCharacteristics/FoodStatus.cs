@@ -21,11 +21,13 @@ public class FoodStatus : MonoBehaviour {
 
     public void SetIsChoppedPiece(bool isChoppedPiece)
     {
+        GetComponent<FoodCharacteristic>().OnOperationDone(RecipeModule.Action.ActionType.Chop);
         this._isChoppedPiece = isChoppedPiece;
     }
 
     public void SetIsFried(bool flag)
     {
+        GetComponent<FoodCharacteristic>().OnOperationDone(RecipeModule.Action.ActionType.Fry);
         _isFried = flag;
     }
 
@@ -51,6 +53,7 @@ public class FoodStatus : MonoBehaviour {
 
     public void SetIsSqueezed(bool isSqueezed)
     {
+        GetComponent<FoodCharacteristic>().OnOperationDone(RecipeModule.Action.ActionType.Squeeze);
         this._isSqueezed = isSqueezed;
     }
 
@@ -61,6 +64,7 @@ public class FoodStatus : MonoBehaviour {
 
     public void SetIsPeeled(bool isPeeled)
     {
+        GetComponent<FoodCharacteristic>().OnOperationDone(RecipeModule.Action.ActionType.Peel);
         this._isPeeled = isPeeled;
     }
 
@@ -82,6 +86,7 @@ public class FoodStatus : MonoBehaviour {
 
     public void SetIsBoiled(bool isBoiled)
     {
+        GetComponent<FoodCharacteristic>().OnOperationDone(RecipeModule.Action.ActionType.Boil);
         this._isBoiled = isBoiled;
     }
 

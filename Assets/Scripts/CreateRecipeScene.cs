@@ -21,8 +21,8 @@ namespace RecipeModule {
         {
             for (int i = 0; i < quantity; i++)
             {
-                Instantiate(ingredient, places[placeCount].transform.position, ingredient.transform.rotation);
-                ingredient.GetComponent<FoodCharacteristic>().OperationDone += simulationController.OnOperationDone;
+                GameObject createdFood = Instantiate(ingredient, places[placeCount].transform.position, ingredient.transform.rotation);
+                createdFood.GetComponent<FoodCharacteristic>().OperationDone += simulationController.OnOperationDone;
             }
             placeCount++;
         }

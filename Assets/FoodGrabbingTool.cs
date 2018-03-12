@@ -46,7 +46,7 @@ public class FoodGrabbingTool : MonoBehaviour {
             if (!grabbedFood)
             {
                 grabbedFood = collision.gameObject;
-                Debug.Log(collision.gameObject.name);
+                //Debug.Log(collision.gameObject.name);
             }
         }
     }
