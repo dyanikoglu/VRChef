@@ -4,15 +4,18 @@ using UnityEngine;
 
 namespace RecipeModule
 {
+    [FullSerializer.fsObject]
     public class Cook : Action
     {
         public enum CookType
         {
             Overcooked, Cooked, Underdone
         }
-
+        [FullSerializer.fsProperty]
         private float requiredHeat;
+        [FullSerializer.fsProperty]
         private float requiredTime;
+        [FullSerializer.fsProperty]
         private CookType cookType;
         
         public Cook() : base()

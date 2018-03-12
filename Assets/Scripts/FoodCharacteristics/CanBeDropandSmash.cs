@@ -24,6 +24,7 @@ public class CanBeDropandSmash : FoodCharacteristic {
             _smashedJuice = Instantiate(smashedJuice, transform.position, smashedJuice.transform.rotation);
             Destroy(gameObject);
             AudioSource.PlayClipAtPoint(smashSound, transform.position);
+            GetComponent<FoodStatus>().SetIsSmashed(true);
         }
    
     }

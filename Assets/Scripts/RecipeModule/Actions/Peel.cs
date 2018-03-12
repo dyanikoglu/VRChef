@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace RecipeModule
 {
+    [FullSerializer.fsObject]
     public class Peel : Action
     {
         public Peel(): base()

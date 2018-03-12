@@ -19,7 +19,7 @@ namespace RecipeModule {
 
         void CreateObjectInScene(GameObject ingredient, int quantity)
         {
-            for (int i = 0; i < quantity; i++)
+            for (int i = 0; i < quantity*2; i++)
             {
                 GameObject createdFood = Instantiate(ingredient, places[placeCount].transform.position, ingredient.transform.rotation);
                 createdFood.GetComponent<FoodCharacteristic>().OperationDone += simulationController.OnOperationDone;
@@ -29,12 +29,103 @@ namespace RecipeModule {
 
         void UseActionList(List<Action> actionList)
         {
+            Food b;
+            foreach (Action a in actionList)
+            {
+                if(a.GetInvolvedFood().GetPrev() == null)
+                {
+                    b = a.GetInvolvedFood();
+                }
+                else
+                {
+                    b = a.GetInvolvedFood();
+                    while(b.GetPrev()!=null)
+                    {
+                        b = b.GetPrev();
+                    }
+                }
+                GameObject prefab = GetComponent<FindPrefab>().GetPrefab(b.GetFoodIdentifier());
+                if (a.GetActionType().ToString().Equals("Chop"))
+                {
+                    Chop chop = (Chop)a;
+                    if (prefab.GetComponent<CanBePeeled>())
+                    {
+                        if (prefab.transform.GetChild(0).GetComponent<CanBeChopped>()==null)
+                        {
+                            prefab.transform.GetChild(0).gameObject.AddComponent<CanBeChopped>();
+                        }
+                        prefab.transform.GetChild(0).GetComponent<CanBeChopped>().maximumChopCount = chop.GetRequiredPieceCount();
+                        
+                    }
+                    else
+                    {
+                        if (prefab.GetComponent<CanBeChopped>()==null)
+                        {
+                            prefab.AddComponent<CanBeChopped>();
+                        }
+                        prefab.GetComponent<CanBeChopped>().maximumChopCount = chop.GetRequiredPieceCount();
+                    }
+                }
+                else if (a.GetActionType().ToString().Equals("Peel"))
+                {
+                    Peel peel = (Peel)a;
+                    if (prefab.GetComponent<CanBePeeled>() == null)
+                    {
+                        prefab.AddComponent<CanBePeeled>();
+                    }
+                    //add required parameters
+                }
+                else if (a.GetActionType().ToString().Equals("Cook"))
+                {
+                    Cook cook = (Cook)a;
+                    if (prefab.GetComponent<CanBeCooked>() == null)
+                    {
+                        prefab.AddComponent<CanBeCooked>();
+                    }
+                    prefab.GetComponent<CanBeCooked>().requiredCookHeat = (int)cook.GetRequiredHeat();
+                    prefab.GetComponent<CanBeCooked>().requiredCookTime = (int)cook.GetRequiredTime();
+                    //add cooktype parameter
+                }
+                else if (a.GetActionType().ToString().Equals("Fry"))
+                {
+                    Fry fry = (Fry)a;
+                    if (prefab.GetComponent<CanBePeeled>() == null)
+                    {
+                        prefab.AddComponent<CanBePeeled>();
+                    }
+                    //add required parameters
+                }
+                else if (a.GetActionType().ToString().Equals("Squeeze"))
+                {
+                    if (prefab.GetComponent<CanBeSqueezed>() == null)
+                    {
+                        prefab.AddComponent<CanBeSqueezed>();
+                    }
+                }
+                else if (a.GetActionType().ToString().Equals("Smash"))
+                {
+                    if (prefab.GetComponent<CanBeSmashed>() == null)
+                    {
+                        prefab.AddComponent<CanBeSmashed>();
+                    }
+                }
+                else if (a.GetActionType().ToString().Equals("Break"))
+                {
+                   
+                }
+                else if (a.GetActionType().ToString().Equals("Boil"))
+                {
+                    Boil boil = (Boil)a;
+                    if (prefab.GetComponent<CanBeBoiled>() == null)
+                    {
+                        prefab.AddComponent<CanBeBoiled>();
+                    }
+                    //add required parameters
+                }
+            }
             List<GameObject> f=new List<GameObject>();
-            
             foreach(Action a in actionList)
             {
-                
-                
                 if (a.GetInvolvedFood().GetPrev() == null)
                 {
                     if (f.Count==0)

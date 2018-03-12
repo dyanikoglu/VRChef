@@ -25,13 +25,13 @@ GameObject:
   - component: {fileID: 114894782817713392}
   - component: {fileID: 114541994700161370}
   - component: {fileID: 114747983009055056}
-  - component: {fileID: 135627522531075860}
   - component: {fileID: 114237898553597202}
   - component: {fileID: 114815008173038502}
   - component: {fileID: 82550967987313596}
   - component: {fileID: 114167140868930194}
   - component: {fileID: 114842769769896674}
   - component: {fileID: 114800372913108436}
+  - component: {fileID: 65726547686519016}
   m_Layer: 9
   m_Name: Tomato
   m_TagString: Untagged
@@ -63,7 +63,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1526205933625466}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -0.391, y: 1.221, z: 0.465}
+  m_LocalPosition: {x: -0.391, y: 1.2754, z: 0.465}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4815484175322478}
@@ -180,6 +180,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &65726547686519016
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1526205933625466}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.087265305, y: 0.08726533, z: 0.06850557}
+  m_Center: {x: 0, y: 0, z: 0.0019499459}
 --- !u!82 &82550967987313596
 AudioSource:
   m_ObjectHideFlags: 1
@@ -389,7 +401,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   capMaterial: {fileID: 2100000, guid: b59228fbdc0bd2a48ab7549e79dd45a5, type: 2}
-  minKnifeVelocityToChop: 0.002
   sliceTimeout: 0.6
   currentlyChoppable: 1
   colliderSkinWidth: 0.0001
@@ -407,15 +418,3 @@ MonoBehaviour:
   maximumChopCount: 32
   spawnFluid: 1
   spawnFluidColor: {r: 1, g: 0.43382353, b: 0.43382353, a: 1}
---- !u!135 &135627522531075860
-SphereCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1526205933625466}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.043632675
-  m_Center: {x: -4.1594857e-12, y: -0.00000006006951, z: 0.0019499459}

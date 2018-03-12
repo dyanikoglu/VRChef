@@ -5,6 +5,7 @@ using UnityEngine;
 // Waiting for implementation of CanBeMixed Food Characteristic
 namespace RecipeModule
 {
+    [FullSerializer.fsObject]
     public class Mix : Action
     {
 

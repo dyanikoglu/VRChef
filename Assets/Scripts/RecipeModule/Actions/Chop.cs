@@ -4,34 +4,21 @@ using UnityEngine;
 
 namespace RecipeModule
 {
-    // TODO Remove requiredPieceCount. It's not necessary while we're controlling also pieceVolumeSize.
-    // Remove direct consistency with object's prefab
+    [FullSerializer.fsObject]
     public class Chop : Action
     {
+        [FullSerializer.fsProperty]
         private int requiredPieceCount;
-        private PieceVolumeSize pieceVolumeSize;
-        private float maxPieceVolume;
-
-        public enum PieceVolumeSize
-        {
-            Small, Middle, Big
-        }
 
         public Chop() : base()
         {
             this.actionType = ActionType.Chop;
             this.requiredPieceCount = 0;
-            this.pieceVolumeSize = 0;
-            this.maxPieceVolume = 0;
         }
 
-        public Chop(int stepNumber, Food foodToBeChopped, int requiredPieceCount, PieceVolumeSize pieceVolumeSize) : base(ActionType.Chop, stepNumber, foodToBeChopped)
+        public Chop(int stepNumber, Food foodToBeChopped, int requiredPieceCount) : base(ActionType.Chop, stepNumber, foodToBeChopped)
         {
             this.requiredPieceCount = requiredPieceCount;
-            this.pieceVolumeSize = pieceVolumeSize;
-            
-            //this.maxPieceVolume = CalculateMaxPieceVolume(foodToBeChopped.GetPrefab());
-
             DeriveResultedFood();
         }
 
@@ -40,47 +27,9 @@ namespace RecipeModule
             resultedFood.SetIsChopped(true);
         }
 
-        /*
-         * Calculates max volume of a piece by PieceVolumeSize
-         * PieceVolumeSize.Small -> %15 of initial mesh
-         * PieceVolumeSize.Middle -> %30 of initial mesh
-         * PieceVolumeSize.Big -> %60 of initial mesh
-         */
-        private float CalculateMaxPieceVolume(GameObject o)
-        {
-            float volume = o.GetComponent<Renderer>().bounds.size.x * o.GetComponent<Renderer>().bounds.size.y * o.GetComponent<Renderer>().bounds.size.z;
-            float maxPieceVolume;
-
-            switch (pieceVolumeSize)
-            {
-                case PieceVolumeSize.Small:
-                    maxPieceVolume = (volume / 100) * 20;
-                    break;
-                case PieceVolumeSize.Middle:
-                    maxPieceVolume = (volume / 100) * 30;
-                    break;
-                case PieceVolumeSize.Big:
-                    maxPieceVolume = (volume / 100) * 40;
-                    break;
-                default:
-                    maxPieceVolume = volume;
-                    break;
-            }
-
-            return maxPieceVolume;
-        }
+        
 
         #region Mutators
-        public float GetMaxPieceVolume()
-        {
-            return maxPieceVolume;
-        }
-
-        public void SetMaxPieceVolume(float maxPieceVolume)
-        {
-            this.maxPieceVolume = maxPieceVolume;
-        }
-
         public int GetRequiredPieceCount()
         {
             return requiredPieceCount;
@@ -89,16 +38,6 @@ namespace RecipeModule
         public void SetRequiredPieceCount(int requiredPieceCount)
         {
             this.requiredPieceCount = requiredPieceCount;
-        }
-
-        public PieceVolumeSize GetPieceVolumeSize()
-        {
-            return pieceVolumeSize;
-        }
-
-        public void SetPieceVolumeSize(PieceVolumeSize pieceVolumeSize)
-        {
-            this.pieceVolumeSize = pieceVolumeSize;
         }
         #endregion
     }

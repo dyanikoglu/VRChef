@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace RecipeModule
 {
+    [FullSerializer.fsObject]
     public class Smash : Action
     {
         public Smash() : base()

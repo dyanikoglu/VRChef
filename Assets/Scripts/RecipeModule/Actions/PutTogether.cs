@@ -4,8 +4,10 @@ using UnityEngine;
 
 namespace RecipeModule
 {
+    [FullSerializer.fsObject]
     public class PutTogether : Action
     {
+        [FullSerializer.fsProperty]
         Food destinationFood;
 
         public PutTogether() : base()

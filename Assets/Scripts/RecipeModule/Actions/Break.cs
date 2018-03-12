@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace RecipeModule
 {
+    [FullSerializer.fsObject]
     public class Break : Action
     {
         public Break() : base()

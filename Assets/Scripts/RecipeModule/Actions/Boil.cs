@@ -4,15 +4,18 @@ using UnityEngine;
 
 namespace RecipeModule
 {
+    [FullSerializer.fsObject]
     public class Boil : Action
     {
         public enum BoilType
         {
             Overboiled, Boiled, Underdone
         }
-
+        [FullSerializer.fsProperty]
         private float requiredHeat;
+        [FullSerializer.fsProperty]
         private float requiredTime;
+        [FullSerializer.fsProperty]
         private BoilType boilType;
 
         public Boil() : base()
