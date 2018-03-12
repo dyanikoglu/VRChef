@@ -10,6 +10,7 @@ public class FoodStatus : MonoBehaviour {
     private bool _isHalfSmashed = false;
     private bool _isBurnedAfterFrying = false;
     private bool _isBoiled = false;
+    private bool _isSmashed = false;
 
     // Unique identifier of the object. Required for reaching out prefabs of each food.
     public string foodIdentifier = "";
@@ -72,6 +73,16 @@ public class FoodStatus : MonoBehaviour {
     public void SetIsHalfSmashed(bool isHalfSmashed)
     {
         this._isHalfSmashed = isHalfSmashed;
+    }
+
+    public bool GetIsSmashed()
+    {
+        return _isSmashed;
+    }
+
+    public void SetIsSmashed(bool isSmashed)
+    {
+        this._isSmashed = isSmashed;
     }
 
 

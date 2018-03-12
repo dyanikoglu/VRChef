@@ -211,7 +211,7 @@ MonoBehaviour:
   rootObjectAfterSlice: {fileID: 1585260972204234, guid: 5f8fbf704cd6e0d4a92f39272ea99503,
     type: 2}
   choppingSoundBoard: []
-  maximumChopCount: 32
+  maximumChopCount: 2
   spawnFluid: 0
   spawnFluidColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &114930374344006048

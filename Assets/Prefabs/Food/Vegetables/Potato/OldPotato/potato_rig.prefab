@@ -221,7 +221,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   capMaterial: {fileID: 2100000, guid: e1ce5d33010df3c4a82a36cc80c32441, type: 2}
-  minKnifeVelocityToChop: 0.003
   sliceTimeout: 0.5
   currentlyChoppable: 1
   colliderSkinWidth: 0.001
@@ -232,7 +231,7 @@ MonoBehaviour:
     type: 2}
   choppingSoundBoard:
   - {fileID: 8300000, guid: 1f535bcdafe041c4080ce5b9d95c6883, type: 3}
-  maximumChopCount: 32
+  maximumChopCount: 6
   spawnFluid: 0
   spawnFluidColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &114239618030958052
@@ -278,7 +277,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0580f3b8e0fd90441b1e89c39c8d522f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _isPeeled: 0
+  foodIdentifier: Potato
 --- !u!114 &114427227539150900
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -291,7 +290,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   capMaterial: {fileID: 2100000, guid: d701f942843c9ac4b96973f57a254337, type: 2}
-  minKnifeVelocityToChop: 0
   sliceTimeout: 1
   currentlyChoppable: 1
   colliderSkinWidth: 0.001
@@ -302,7 +300,7 @@ MonoBehaviour:
     type: 2}
   choppingSoundBoard:
   - {fileID: 8300000, guid: 1f535bcdafe041c4080ce5b9d95c6883, type: 3}
-  maximumChopCount: 32
+  maximumChopCount: 6
   spawnFluid: 0
   spawnFluidColor: {r: 1, g: 1, b: 1, a: 1}
   objectFlesh: {fileID: 1561027823761570}
@@ -352,7 +350,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0580f3b8e0fd90441b1e89c39c8d522f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _isPeeled: 0
+  foodIdentifier: 
 --- !u!114 &114877724442122340
 MonoBehaviour:
   m_ObjectHideFlags: 1
