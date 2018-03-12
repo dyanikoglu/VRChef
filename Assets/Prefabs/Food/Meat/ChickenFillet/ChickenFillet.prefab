@@ -202,7 +202,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   capMaterial: {fileID: 2100000, guid: bedb529becf3f154588d9bb35690cf2d, type: 2}
-  minKnifeVelocityToChop: 0.003
   sliceTimeout: 0.5
   currentlyChoppable: 1
   colliderSkinWidth: 0.001
@@ -226,7 +225,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0580f3b8e0fd90441b1e89c39c8d522f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  foodIdentifier: Chicken Fillet
+  foodIdentifier: ChickenFillet
 --- !u!114 &114948673530446998
 MonoBehaviour:
   m_ObjectHideFlags: 1
