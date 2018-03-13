@@ -28,6 +28,7 @@ GameObject:
   - component: {fileID: 136213532038398416}
   - component: {fileID: 54735856248199752}
   - component: {fileID: 82066241637955826}
+  - component: {fileID: 114377890448439120}
   m_Layer: 9
   m_Name: Lemon
   m_TagString: Untagged
@@ -196,7 +197,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   capMaterial: {fileID: 2100000, guid: 56a2d62153214ba4290cc005ac081f92, type: 2}
-  minKnifeVelocityToChop: 0.002
   sliceTimeout: 0.5
   currentlyChoppable: 1
   colliderSkinWidth: 0.001
@@ -209,6 +209,18 @@ MonoBehaviour:
   maximumChopCount: 32
   spawnFluid: 0
   spawnFluidColor: {r: 1, g: 1, b: 1, a: 1}
+--- !u!114 &114377890448439120
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1191873762173958}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0580f3b8e0fd90441b1e89c39c8d522f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  foodIdentifier: Lemon
 --- !u!114 &114437390402663760
 MonoBehaviour:
   m_ObjectHideFlags: 1

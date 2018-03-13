@@ -1,14 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 using VRTK;
 
 public class CanBeSqueezed : FoodCharacteristic
 {
-
-    public Texture2D original;
-    public Texture2D squeezedTexture;
+    public Material squeezedMaterial;
     public ParticleSystem particleLauncher;
     public AudioClip juiceSound;
 
@@ -19,7 +16,6 @@ public class CanBeSqueezed : FoodCharacteristic
     private GameObject currentSqueezer;
     private float rotationAngle;
     private bool finished;
-    private MeshCollider meshCollider;
 
     // Use this for initialization
     void Start()
@@ -28,31 +24,37 @@ public class CanBeSqueezed : FoodCharacteristic
         finished = false;
         rotationAngle = 0;
 
-        meshCollider = gameObject.AddComponent<MeshCollider>() as MeshCollider;
-        meshCollider.cookingOptions = MeshColliderCookingOptions.InflateConvexMesh;
-        meshCollider.skinWidth = 0.01f;
-        meshCollider.convex = true;
-
-        source = gameObject.AddComponent<AudioSource>();
+        source = gameObject.GetComponent<AudioSource>();
         source.loop = true;
         source.clip = juiceSound;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other is CapsuleCollider && GetComponent<FoodStatus>().GetIsChoppedPiece())
+        if (other.gameObject.GetComponent<CanSqueeze>())
         {
-            transform.eulerAngles = new Vector3(180, transform.eulerAngles.y, 0);
-            transform.position = other.transform.position;
+            canSpin = true;
+            //    transform.eulerAngles = new Vector3(180, transform.eulerAngles.y, 0);
+            //    transform.position = other.transform.position;
         }
     }
+
+    private void OnTriggerExit(Collider other)
+    {
+        //if (other is CapsuleCollider)
+        //{
+        //    transform.eulerAngles = new Vector3(180, transform.eulerAngles.y, 0);
+        //    transform.position = other.transform.position;
+        //}
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.GetComponent<CanSqueeze>() != null && GetComponent<FoodStatus>().GetIsChoppedPiece())
         {
             currentSqueezer = collision.gameObject;
 
-            canSpin = true;
+            //canSpin = true;
             currentSqueezer.GetComponent<VRTK.VRTK_InteractableObject>().isGrabbable = false;
             currentSqueezer.GetComponent<CanSqueeze>().bowl.GetComponent<VRTK.VRTK_InteractableObject>().isGrabbable = false;
 
@@ -63,26 +65,28 @@ public class CanBeSqueezed : FoodCharacteristic
 
     private void OnCollisionExit(Collision collision)
     {
-        if (collision.gameObject.GetComponent<CanSqueeze>() != null && GetComponent<FoodStatus>().GetIsChoppedPiece())
-        {
-            canSpin = false;
-            currentSqueezer.GetComponent<VRTK.VRTK_InteractableObject>().isGrabbable = true;
-            currentSqueezer.GetComponent<CanSqueeze>().bowl.GetComponent<VRTK.VRTK_InteractableObject>().isGrabbable = true;
+        if (collision.gameObject.GetComponent<CanSqueeze>()) {
 
-            currentSqueezer.GetComponent<Rigidbody>().isKinematic = false;
-            currentSqueezer.GetComponent<CanSqueeze>().bowl.GetComponent<Rigidbody>().isKinematic = false;
+            canSpin = false;
+
+            if (GetComponent<FoodStatus>().GetIsChoppedPiece())
+            {
+                currentSqueezer.GetComponent<VRTK.VRTK_InteractableObject>().isGrabbable = true;
+                currentSqueezer.GetComponent<CanSqueeze>().bowl.GetComponent<VRTK.VRTK_InteractableObject>().isGrabbable = true;
+
+                currentSqueezer.GetComponent<Rigidbody>().isKinematic = false;
+                currentSqueezer.GetComponent<CanSqueeze>().bowl.GetComponent<Rigidbody>().isKinematic = false;
+            }
         }
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if ((OVRInput.Get(OVRInput.Button.Four) || OVRInput.Get(OVRInput.Button.Two)))
+        if (GetComponent<FoodCharacteristic>().GetIsGrabbed() && GetComponent<FoodStatus>().GetIsChoppedPiece())
         {
-            if (canSpin && !finished && GetComponent<FoodStatus>().GetIsChoppedPiece())
+            if (canSpin && !finished )
             {
-                GetComponent<VRTK.VRTK_InteractableObject>().isGrabbable = false;
-                transform.Rotate(Vector3.up * 200 * Time.deltaTime, Space.Self);
+                //transform.Rotate(Vector3.up * 200 * Time.deltaTime, Space.Self);
                 rotationAngle += 200 * Time.deltaTime;
                 particleLauncher.Emit(40);
 
@@ -94,11 +98,18 @@ public class CanBeSqueezed : FoodCharacteristic
 
                 if (rotationAngle >= 360 * 3)
                 {
-                    GetComponent<Renderer>().materials[1].mainTexture = squeezedTexture;
+                    var my_materials = GetComponent<Renderer>().materials;
+                    my_materials[1] = squeezedMaterial;
+                    GetComponent<Renderer>().materials = my_materials;
+
                     GetComponent<FoodStatus>().SetIsSqueezed(true);
                     rotationAngle = 0;
                     finished = true;
                     currentSqueezer.GetComponent<CanSqueeze>().AddWater();
+                    if (GetComponent<CanBeChopped>())
+                    {
+                        GetComponent<CanBeChopped>().capMaterial = squeezedMaterial;
+                    }
                 }
             }
             else
@@ -113,7 +124,6 @@ public class CanBeSqueezed : FoodCharacteristic
             source.Stop();
             onlyOnce = true;
             source.loop = true;
-            GetComponent<VRTK.VRTK_InteractableObject>().isGrabbable = true;
         }
 
     }
