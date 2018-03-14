@@ -4,4 +4,10 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Sandbox/Secil/MainMenuUI.unity
+    guid: 67e3c60a50ef88144a99330ee7e212b9
+  - enabled: 1
+    path: Assets/Sandbox/Doga/RecipeUI.unity
+    guid: 79ba204aba8f2b144a1543cfd0303001
