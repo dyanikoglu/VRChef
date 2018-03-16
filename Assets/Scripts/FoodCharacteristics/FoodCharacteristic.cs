@@ -15,9 +15,10 @@ public abstract class FoodCharacteristic : MonoBehaviour
 
     public virtual void OnOperationDone(RecipeModule.Action.ActionType type)
     {
+        OperationEventArgs operationEventArgs = new OperationEventArgs(type);
+
         if (OperationDone != null)
         {
-            OperationEventArgs operationEventArgs = new OperationEventArgs(type);
             OperationDone(GetComponent<FoodCharacteristic>(), operationEventArgs);
         }
     }

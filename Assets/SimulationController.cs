@@ -9,24 +9,9 @@ public class SimulationController : MonoBehaviour {
     Recipe recipeToControl;
     int currentActionIndex = 0;
 
-    public class ChoppingControl
-    {
-        public int currentNumberOfPieces;
-        public GameObject choppedObject;
-
-        public ChoppingControl(GameObject choppedObject, int currentNumberOfPieces)
-        {
-            this.currentNumberOfPieces = currentNumberOfPieces;
-            this.choppedObject = choppedObject;
-        }
-    }
-
-    public List<ChoppingControl> chopControls;
-
-    private void Start()
-    {
-        chopControls = new List<ChoppingControl>();
-    }
+    public List<int> choppedObjects;
+    public int numChoppedPieces = 0;
+    public int numSlices = 0;
 
     public void SetRecipeToControl(Recipe r)
     {
@@ -36,6 +21,7 @@ public class SimulationController : MonoBehaviour {
 
     public void OnOperationDone(FoodCharacteristic fc, OperationEventArgs e)
     {
+        //Debug.Log("operation done");
         switch (e.OperationType)
         {
             case Action.ActionType.Boil:
@@ -53,20 +39,32 @@ public class SimulationController : MonoBehaviour {
             case Action.ActionType.Chop:
                 if (actions[currentActionIndex].GetActionType() == Action.ActionType.Chop)
                 {
-                    // if user starts to chop a new object, save it
-                    if (!chopControls.Exists(item => item.choppedObject.GetInstanceID() ==  fc.GetInstanceID()))
+                    if ( (actions[currentActionIndex].GetInvolvedFood().GetFoodIdentifier() == fc.GetComponent<FoodStatus>().foodIdentifier)
+                        && !(choppedObjects.Contains(fc.transform.root.GetInstanceID())) )
                     {
-                        chopControls.Add(new ChoppingControl(fc.gameObject, 1)); // we started with 1 because to get 2 pieces at the end
+                        //Debug.Log(fc.GetComponent<FoodStatus>().foodIdentifier);
+                        numSlices++;
+                        if (numSlices == 1)
+                        {
+                            numChoppedPieces = 2;
+                        }
+                        else
+                        {
+                            numChoppedPieces++;
+                        }
+
+                        Chop chop = (Chop)actions[currentActionIndex];
+
+                        // if current food's chopping parameters is satisfied, then set current action as done, i.e. increment index
+                        if (numChoppedPieces == chop.GetRequiredPieceCount())
+                        {
+                            //Debug.Log(numChoppedPieces+ " - " + numSlices);
+                            currentActionIndex++;
+                            numChoppedPieces = 0;
+                            numSlices = 0;
+                            choppedObjects.Add(fc.transform.root.GetInstanceID());
+                        }
                     }
-
-
-
-
-                    // give feedback, i.e. update checklist.
-
-                    //find which food is being cut, update it's currentNumberOfPieces' by 1. 
-                    // if current food's chopping parameters is satisfied, then increment the index
-                    currentActionIndex++;
                 }
                 break;
 

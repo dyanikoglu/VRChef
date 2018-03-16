@@ -21,7 +21,7 @@ public class FoodStatus : MonoBehaviour {
     }
 
     public void SetIsChoppedPiece(bool isChoppedPiece)
-    {
+    {    
         GetComponent<FoodCharacteristic>().OnOperationDone(RecipeModule.Action.ActionType.Chop);
         this._isChoppedPiece = isChoppedPiece;
     }

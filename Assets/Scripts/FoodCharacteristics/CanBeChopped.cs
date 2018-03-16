@@ -245,7 +245,12 @@ public class CanBeChopped : FoodCharacteristic
 
         // Finally, mark them as chopped pieces
         leftSideObj.GetComponent<FoodStatus>().SetIsChoppedPiece(true);
+
+        //SimulationController sc = GameObject.Find("Simulation Controller").GetComponent<SimulationController>();
+        //rightSideObj.GetComponent<FoodCharacteristic>().OperationDone += sc.OnOperationDone;
+
         rightSideObj.GetComponent<FoodStatus>().SetIsChoppedPiece(true);
+
 
         ///////////////////
 
