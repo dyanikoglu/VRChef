@@ -138,11 +138,11 @@ public class RecipeManager : MonoBehaviour {
         newGroup.GetComponent<GroupFromSteps>().verticalLineRef.sizeDelta = newDelta;
 
         // Set generated list as group members
-        newGroup.GetComponent<GroupFromSteps>().GetFoodGroup().SetFoodStateGroup(outputsToBeGrouped);
+        newGroup.GetComponent<GroupFromSteps>().GetFoodStateGroup().SetFoodStateGroup(outputsToBeGrouped);
 
         // Set names
         string groupStateName = GetNewGroupName();
-        newGroup.GetComponent<GroupFromSteps>().GetFoodGroup().GetComponent<Text>().text = "Group_" + groupStateName;
+        newGroup.GetComponent<GroupFromSteps>().GetFoodStateGroup().GetComponent<Text>().text = "Group_" + groupStateName;
         newGroup.name = "Group_" + groupStateName;
 
         newGroup.SetActive(true);
@@ -217,6 +217,19 @@ public class RecipeManager : MonoBehaviour {
         }
     }
 
+    public void RemoveGroup(FoodStateGroup fsg)
+    {
+        // Mark references of this group as dirty
+        MarkRefsAsDirty(fsg);
+
+        // Destroy main group object
+        groups.Remove(fsg.transform.root.root.GetComponent<GroupFromSteps>());
+        DestroyItem(fsg.transform.root.root.gameObject);
+
+        // Regenerate Steps
+        RegenerateSteps();
+    }
+
     // Completely remove the step.
     public void RemoveStep(Step s)
     {
@@ -240,7 +253,7 @@ public class RecipeManager : MonoBehaviour {
         Destroy(s.gameObject);
         totalStepCount--;
 
-        RegenerateSteps();
+        // RegenerateSteps();
     }
 
     public void StepChanged(Step s)
@@ -328,7 +341,7 @@ public class RecipeManager : MonoBehaviour {
         // Check if clone is before last step in bounded steps in food group.
         foreach (GroupFromSteps g in groups)
         {
-            FoodStateGroup foodGroup = g.GetFoodGroup();
+            FoodStateGroup foodGroup = g.GetFoodStateGroup();
             if (foodGroup.clone == fsg && stepNo < g.GetLastStepNumber())
             {
                 return true;
@@ -354,7 +367,11 @@ public class RecipeManager : MonoBehaviour {
     // Destroy function specific to our item objects(actions & foods) in recipe UI.
     public void DestroyItem(GameObject o)
     {
-        Destroy(o.GetComponent<Text>());
+        if (o.GetComponent<Text>())
+        {
+            Destroy(o.GetComponent<Text>());
+        }
+
         Destroy(o);
     }
 

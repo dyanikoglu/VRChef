@@ -6,11 +6,12 @@ using UnityEngine;
 public class GroupFromSteps : MonoBehaviour {
     public RectTransform verticalLineRef;
     public GameObject foodGroupZoneRef;
+    public RecipeManager recipeManager;
 
     // Outputs of these steps are gathered together and created this food group
     public List<Step> boundedSteps;
 
-    public FoodStateGroup GetFoodGroup()
+    public FoodStateGroup GetFoodStateGroup()
     {
         return foodGroupZoneRef.GetComponentInChildren<FoodStateGroup>();
     }
@@ -40,5 +41,10 @@ public class GroupFromSteps : MonoBehaviour {
         }
 
         return maxNo;
+    }
+
+    public void RemoveGroup()
+    {
+        recipeManager.RemoveGroup(GetFoodStateGroup());
     }
 }
