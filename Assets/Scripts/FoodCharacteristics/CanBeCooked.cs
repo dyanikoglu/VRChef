@@ -43,6 +43,11 @@ public class CanBeCooked : FoodCharacteristic {
         StopCoroutine("CookingTimer");
         CancelInvoke("CookingUpdate");
         _currentHeat = 0;
+
+        if(_affectedMaterials[0].GetFloat("_WetWeight") >= 0.9f && _affectedMaterials[0].GetFloat("_WetWeight") <= 1.1f)
+        {
+            GetComponent<FoodStatus>().SetIsCooked(true);
+        }
     }
 
     public void SetCurrentHeat(int heat)
