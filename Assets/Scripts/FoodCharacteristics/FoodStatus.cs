@@ -11,6 +11,7 @@ public class FoodStatus : MonoBehaviour {
     private bool _isBurnedAfterFrying = false;
     private bool _isBoiled = false;
     private bool _isSmashed = false;
+    private bool _isCooked = false;
 
     // Unique identifier of the object. Required for reaching out prefabs of each food.
     public string foodIdentifier = "";
@@ -35,6 +36,17 @@ public class FoodStatus : MonoBehaviour {
     public bool GetIsFried()
     {
         return _isFried;
+    }
+
+    public void SetIsCooked(bool flag)
+    {
+        GetComponent<FoodCharacteristic>().OnOperationDone(RecipeModule.Action.ActionType.Cook);
+        _isCooked = flag;
+    }
+
+    public bool GetIsCooked()
+    {
+        return _isCooked;
     }
 
     public void SetIsBurned(bool flag)

@@ -7,11 +7,11 @@ public class SimulationController : MonoBehaviour {
 
     public List<Action> actions;
     Recipe recipeToControl;
-    int currentActionIndex = 0;
+    int currentActionIndex;
 
     public List<int> choppedObjects;
-    public int numChoppedPieces = 0;
-    public int numSlices = 0;
+    public int numChoppedPieces;
+    public int numSlices;
 
     public void SetRecipeToControl(Recipe r)
     {
@@ -19,21 +19,37 @@ public class SimulationController : MonoBehaviour {
         actions = r.GetActions();
     }
 
+    private void Start()
+    {
+        currentActionIndex = 0;
+        numChoppedPieces = 0;
+        numSlices = 0;
+
+        choppedObjects = new List<int>();
+    }
+
     public void OnOperationDone(FoodCharacteristic fc, OperationEventArgs e)
     {
-        //Debug.Log("operation done");
         switch (e.OperationType)
         {
             case Action.ActionType.Boil:
                 if (actions[currentActionIndex].GetActionType() == Action.ActionType.Boil)
                 {
-                    // give feedback, i.e. update checklist.
-                    currentActionIndex++;
+                    if (actions[currentActionIndex].GetInvolvedFood().GetFoodIdentifier() == fc.GetComponent<FoodStatus>().foodIdentifier)
+                    {
+                        // give feedback, i.e. update checklist.
+                        currentActionIndex++;
+                    }
                 }
                 break;
 
-            // this is unnecessary i think. 
+            // this case will be run for only eggs. Therefore, checking that if broken thing has a "FoodStatus" is needed.
             case Action.ActionType.Break:
+                if ( fc.GetComponent<FoodStatus>() && actions[currentActionIndex].GetInvolvedFood().GetFoodIdentifier() == fc.GetComponent<FoodStatus>().foodIdentifier)
+                {
+                    // give feedback, i.e. update checklist.
+                    currentActionIndex++;
+                }
                 break;
 
             case Action.ActionType.Chop:
@@ -68,18 +84,30 @@ public class SimulationController : MonoBehaviour {
                 }
                 break;
 
+            /* for cook and fry, convenience of process has been determined in relevant script. There is no need to check parameters here again. */
             case Action.ActionType.Cook:
+                if (actions[currentActionIndex].GetActionType() == Action.ActionType.Cook)
+                {
+                    if (actions[currentActionIndex].GetInvolvedFood().GetFoodIdentifier() == fc.GetComponent<FoodStatus>().foodIdentifier)
+                    {
+                        currentActionIndex++;
+                    }
+                }
                 break;
 
             case Action.ActionType.Fry:
                 if(actions[currentActionIndex].GetActionType() == Action.ActionType.Fry)
                 {
-                    // also obtain parameters and check if operation is valid
-                    // give feedback, i.e. update checklist.
-                    currentActionIndex++;
+                    if (actions[currentActionIndex].GetInvolvedFood().GetFoodIdentifier() == fc.GetComponent<FoodStatus>().foodIdentifier)
+                    {
+                        // also obtain parameters and check if operation is valid
+                        // give feedback, i.e. update checklist.
+                        currentActionIndex++;
+                    }
                 }
                 break;
 
+            // mix script has not been completed yet.
             case Action.ActionType.Mix:
                 break;
 

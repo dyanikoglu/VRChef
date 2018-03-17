@@ -31,6 +31,8 @@ public class CanBeFried : FoodCharacteristic
     AudioSource source;
     bool onlyOnce = true;
 
+    bool isFriedLocal;
+
     private void Awake()
     {
         GetComponent<Renderer>().material = new Material(GetComponent<Renderer>().material);
@@ -42,6 +44,8 @@ public class CanBeFried : FoodCharacteristic
         fryingStopped = false;
 
         friedMaterial.SetFloat("_WetWeight", 0);
+
+        isFriedLocal = false;
     }
 
     // Use this for initialization
@@ -152,6 +156,10 @@ public class CanBeFried : FoodCharacteristic
         source.Stop();
         onlyOnce = true;
 
+        if(isFriedLocal)
+        {
+            GetComponent<FoodStatus>().SetIsFried(true);
+        }
     }
 
     IEnumerator Fry()
@@ -183,7 +191,8 @@ public class CanBeFried : FoodCharacteristic
 
         }
 
-        GetComponent<FoodStatus>().SetIsFried(true);
+        isFriedLocal = true;
+        //GetComponent<FoodStatus>().SetIsFried(true);
 
         // not only need to change myMaterial but also change GetComponent...
         for (int i = 0; i < myMaterials.Length; i++)
@@ -207,7 +216,8 @@ public class CanBeFried : FoodCharacteristic
              GetComponent<Renderer>().sharedMaterials[i].SetColor("_WetTint", burnedColor);
          }
 
-         /*
+        isFriedLocal = false;
+        /*
         float burnedLevel = 0f;
 
         Material[] copyMaterials = new Material[GetComponent<Renderer>().sharedMaterials.Length];
@@ -225,6 +235,7 @@ public class CanBeFried : FoodCharacteristic
              if(burnedLevel > 0.5f)
              {
                 GetComponent<FoodStatus>().SetIsBurned(true);
+                break;
              }
 
              yield return new WaitForSeconds(fadeValue);
