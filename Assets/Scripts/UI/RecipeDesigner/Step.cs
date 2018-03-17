@@ -67,6 +67,22 @@ public class Step : MonoBehaviour {
         return dirty;
     }
 
+    public void OpenActionPopup()
+    {
+        // If there is an action
+        if(GetPseudoAction())
+        {
+            PseudoAction pa = GetPseudoAction();
+            ActionPopup ap = recipeManager.EnableActionPopup(pa.GetActionType().ToString(), pa.GetParameterNames(), pa.GetParameterValues());
+            ap.SetPseudoActionRef(pa);
+        }
+    }
+
+    public void CloseActionPopup()
+    {
+        recipeManager.DisableActionPopup();
+    }
+
     // Generate output of this step, register it to recipe data structure.
     public void GenerateOutput()
     {

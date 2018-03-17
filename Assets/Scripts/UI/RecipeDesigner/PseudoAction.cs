@@ -109,6 +109,16 @@ public class PseudoAction : MonoBehaviour {
         return parameterNames;
     }
 
+    public void SetParameterNames(List<string> parameterNames)
+    {
+        this.parameterNames = parameterNames;
+    }
+
+    public void SetParameterValues(List<int> parameterValues)
+    {
+        this.parameterValues = parameterValues;
+    }
+
     public void Clone(PseudoAction pa)
     {
         this.parameterValues = pa.GetParameterValues();

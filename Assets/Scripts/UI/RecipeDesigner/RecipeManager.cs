@@ -8,6 +8,7 @@ public class RecipeManager : MonoBehaviour {
     public GameObject emptyGroupRef;
     public GameObject newStepButtonRef;
     public GameObject newGroupButtonRef;
+    public GameObject actionPopupRef;
 
     private List<Step> steps;
     private List<GroupFromSteps> groups;
@@ -51,7 +52,7 @@ public class RecipeManager : MonoBehaviour {
         newStep.name = "Step_" + totalStepCount;
 
         // Disable toggle
-        newStep.toggleRef.GetComponent<Toggle>().enabled = false;
+        newStep.toggleRef.GetComponent<Toggle>().interactable = false;
 
         // Push down the new step button
         Vector3 buttonOffset = newStepButtonRef.GetComponent<RectTransform>().anchoredPosition3D;
@@ -90,7 +91,7 @@ public class RecipeManager : MonoBehaviour {
             {
                 s.SetHasGroup(true);
                 s.SetToggle(false);
-                s.toggleRef.GetComponent<Toggle>().enabled = false;
+                s.toggleRef.GetComponent<Toggle>().interactable = false;
 
                 //Import single output into list
                 if(s.GetOutput() is FoodState)
@@ -149,6 +150,48 @@ public class RecipeManager : MonoBehaviour {
         groups.Add(newGroup.GetComponent<GroupFromSteps>());
 
         newGroup.SetActive(true);
+    }
+
+    // Show action settings popup
+    public ActionPopup EnableActionPopup(string actionName, List<string> paramNames, List<int> paramValues)
+    {
+        actionPopupRef.GetComponent<ActionPopup>().headerRef.text = actionName;
+        ActionPopup actionPopup = actionPopupRef.GetComponent<ActionPopup>();
+
+        // Add parameter settings for this action type
+        for (int i = 0; i < paramValues.Count; i++)
+        {
+            GameObject newParamObj = GameObject.Instantiate(actionPopup.parameterPrefab);
+            newParamObj.transform.SetParent(actionPopup.parametersRef.transform, false);
+            Vector3 pos = newParamObj.GetComponent<RectTransform>().anchoredPosition3D;
+            pos.y = actionPopup.paramStartY + (i * actionPopup.paramIntervalY);
+            newParamObj.GetComponent<RectTransform>().anchoredPosition3D = pos;
+
+            ActionParameter ap = newParamObj.GetComponent<ActionParameter>();
+            ap.headerRef.text = paramNames[i];
+            ap.SetParamIndex(i);
+
+            // TODO Should I do something with slider min-max value, or leave them at some default bound?
+
+            ap.sliderRef.value = paramValues[i];
+        }
+
+        actionPopupRef.SetActive(true);
+
+        return actionPopup;
+    }
+
+    public void DisableActionPopup()
+    {
+        ActionPopup actionPopup = actionPopupRef.GetComponent<ActionPopup>();
+
+        // Reverse iteration, clear parameter objects
+        for (int i = actionPopup.parametersRef.transform.childCount - 1; i >= 0; i--)
+        {
+            DestroyItem(actionPopup.parametersRef.transform.GetChild(i).gameObject);
+        }
+
+        actionPopupRef.SetActive(false);
     }
     
     public bool CheckGroupEligibility(Step s)
@@ -239,7 +282,7 @@ public class RecipeManager : MonoBehaviour {
         foreach (Step s in gfs.boundedSteps)
         {
             s.hasGroup = false;
-            s.toggleRef.GetComponent<Toggle>().enabled = true;
+            s.toggleRef.GetComponent<Toggle>().interactable = true;
             s.groupConnectorRef.SetActive(false);
         }
 
