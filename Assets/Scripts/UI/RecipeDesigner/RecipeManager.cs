@@ -145,6 +145,9 @@ public class RecipeManager : MonoBehaviour {
         newGroup.GetComponent<GroupFromSteps>().GetFoodStateGroup().GetComponent<Text>().text = "Group_" + groupStateName;
         newGroup.name = "Group_" + groupStateName;
 
+        // Add this group to groups list
+        groups.Add(newGroup.GetComponent<GroupFromSteps>());
+
         newGroup.SetActive(true);
     }
     
@@ -220,14 +223,42 @@ public class RecipeManager : MonoBehaviour {
     public void RemoveGroup(FoodStateGroup fsg)
     {
         // Mark references of this group as dirty
-        MarkRefsAsDirty(fsg);
+        if (fsg.clone)
+        {
+            MarkRefsAsDirty(fsg.clone);
+            DestroyItem(fsg.clone.gameObject);
+        }
+
+        GroupFromSteps gfs = fsg.transform.parent.parent.GetComponent<GroupFromSteps>();
 
         // Destroy main group object
-        groups.Remove(fsg.transform.root.root.GetComponent<GroupFromSteps>());
-        DestroyItem(fsg.transform.root.root.gameObject);
+        groups.Remove(gfs);
+        DestroyItem(gfs.gameObject);
+
+        // Destroy grouping lines
+        foreach (Step s in gfs.boundedSteps)
+        {
+            s.hasGroup = false;
+            s.toggleRef.GetComponent<Toggle>().enabled = true;
+            s.groupConnectorRef.SetActive(false);
+        }
 
         // Regenerate Steps
         RegenerateSteps();
+    }
+
+    public void CheckGroupConsistency()
+    {
+        for(int i = groups.Count - 1; i >= 0; i--)
+        {
+            foreach (Step s in groups[i].boundedSteps)
+            {
+                if (s.GetOutput() == null)
+                {
+                    RemoveGroup(groups[i].GetFoodStateGroup());
+                }
+            }
+        }
     }
 
     // Completely remove the step.
@@ -423,7 +454,7 @@ public class RecipeManager : MonoBehaviour {
 
         foreach (Step s in steps)
         {
-            if ((FoodStateGroup)(s.GetInput()) == foodStateGroup)
+            if (s.GetInput() is FoodStateGroup && (FoodStateGroup)(s.GetInput()) == foodStateGroup)
             {
                 s.SetDirty(true);
 
@@ -483,5 +514,8 @@ public class RecipeManager : MonoBehaviour {
                 s.SetDirty(false);
             }
         }
+
+        // Check if any created group affected from this action
+        CheckGroupConsistency();
     }
 }
