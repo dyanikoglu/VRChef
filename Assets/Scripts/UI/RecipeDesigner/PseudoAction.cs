@@ -5,8 +5,8 @@ using UnityEngine;
 public class PseudoAction : MonoBehaviour {
     private RecipeModule.Action.ActionType actionType;
 
-    /* Cook: [0] -> 0: Overcooked, 1: Cooked, 2: Underdone | [1] -> requiredHeat | [2] -> requiredTime
-     * Fry: [0] -> 0: Overfried, 1: Fried, 2: Underdone | [1] -> requiredHeat | [2] -> requiredTime
+    /* Cook: [0] -> requiredHeat | [1] -> requiredTime
+     * Fry: [0] -> requiredHeat | [1] -> requiredTime
      * Chop: [0] -> 0: Piece Count
      * ...
      * ..
@@ -18,6 +18,9 @@ public class PseudoAction : MonoBehaviour {
     
     private List<string> parameterNames;
 
+    // Indicates that that action won't impact the input, output will be the same with input.
+    private bool emptyAction = false;
+
     public void SetAsChop(int pieceCount = 4)
     {
         this.actionType = RecipeModule.Action.ActionType.Chop;
@@ -27,28 +30,24 @@ public class PseudoAction : MonoBehaviour {
         this.parameterValues.Add(pieceCount);
     }
 
-    public void SetAsFry(RecipeModule.Fry.FryType fryType = RecipeModule.Fry.FryType.Fried, int requiredHeat = 150, int requiredTime = 60)
+    public void SetAsFry(int requiredHeat = 150, int requiredTime = 60)
     {
         this.actionType = RecipeModule.Action.ActionType.Fry;
         this.parameterNames = new List<string>();
-        this.parameterNames.Add("Frying Type");
         this.parameterNames.Add("Required Heat");
         this.parameterNames.Add("Required Time");
         this.parameterValues = new List<int>();
-        this.parameterValues.Add((int)fryType);
         this.parameterValues.Add(requiredHeat);
         this.parameterValues.Add(requiredTime);
     }
 
-    public void SetAsCook(RecipeModule.Cook.CookType cookType = RecipeModule.Cook.CookType.Cooked, int requiredHeat = 150, int requiredTime = 60)
+    public void SetAsCook(int requiredHeat = 150, int requiredTime = 60)
     {
         this.actionType = RecipeModule.Action.ActionType.Cook;
         this.parameterNames = new List<string>();
-        this.parameterNames.Add("Cook Type");
         this.parameterNames.Add("Required Heat");
         this.parameterNames.Add("Required Time");
         this.parameterValues = new List<int>();
-        this.parameterValues.Add((int)cookType);
         this.parameterValues.Add(requiredHeat);
         this.parameterValues.Add(requiredTime);
     } 
@@ -81,15 +80,13 @@ public class PseudoAction : MonoBehaviour {
         this.parameterValues = new List<int>();
     }
 
-    public void SetAsBoil(RecipeModule.Boil.BoilType boilType = RecipeModule.Boil.BoilType.Boiled, int requiredHeat = 150, int requiredTime = 60)
+    public void SetAsBoil(int requiredHeat = 150, int requiredTime = 60)
     {
         this.actionType = RecipeModule.Action.ActionType.Boil;
         this.parameterNames = new List<string>();
-        this.parameterNames.Add("Boiling Type");
         this.parameterNames.Add("Required Heat");
         this.parameterNames.Add("Required Time");
         this.parameterValues = new List<int>();
-        this.parameterValues.Add((int)boilType);
         this.parameterValues.Add(requiredHeat);
         this.parameterValues.Add(requiredTime);
     }
@@ -117,6 +114,16 @@ public class PseudoAction : MonoBehaviour {
     public void SetParameterValues(List<int> parameterValues)
     {
         this.parameterValues = parameterValues;
+    }
+
+    public bool GetEmptyAction()
+    {
+        return emptyAction;
+    }
+
+    public void SetEmptyAction(bool emptyAction)
+    {
+        this.emptyAction = emptyAction;
     }
 
     public void Clone(PseudoAction pa)

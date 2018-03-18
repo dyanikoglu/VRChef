@@ -149,12 +149,12 @@ namespace RecipeModule {
             return action.GetResultedFood();
         }
 
-        public Food DescribeNewCookAction(int stepNumber, GameObject foodObject, float requiredHeat, float requiredTime, Cook.CookType cookType)
+        public Food DescribeNewCookAction(int stepNumber, GameObject foodObject, float requiredHeat, float requiredTime)
         {
             Food f = new Food(foodObject.GetComponent<FoodStatus>().foodIdentifier);
             _initialFoods.Add(f);
 
-            Cook action = new Cook(stepNumber, f, requiredHeat, requiredTime, cookType);
+            Cook action = new Cook(stepNumber, f, requiredHeat, requiredTime);
 
             _actions.Add(action);
 
@@ -163,9 +163,9 @@ namespace RecipeModule {
             return action.GetResultedFood();
         }
 
-        public Food DescribeNewCookAction(int stepNumber, Food foodToBeCooked, float requiredHeat, float requiredTime, Cook.CookType cookType)
+        public Food DescribeNewCookAction(int stepNumber, Food foodToBeCooked, float requiredHeat, float requiredTime)
         {
-            Cook action = new Cook(stepNumber, foodToBeCooked, requiredHeat, requiredTime, cookType);
+            Cook action = new Cook(stepNumber, foodToBeCooked, requiredHeat, requiredTime);
 
             _actions.Add(action);
 
@@ -249,12 +249,12 @@ namespace RecipeModule {
             return action.GetResultedFood();
         }
 
-        public Food DescribeNewFryAction(int stepNumber, GameObject foodObject, float requiredHeat, float requiredTime, Fry.FryType fryType)
+        public Food DescribeNewFryAction(int stepNumber, GameObject foodObject, float requiredHeat, float requiredTime)
         {
             Food f = new Food(foodObject.GetComponent<FoodStatus>().foodIdentifier);
             _initialFoods.Add(f);
 
-            Fry action = new Fry(stepNumber, f, requiredHeat, requiredTime, fryType);
+            Fry action = new Fry(stepNumber, f, requiredHeat, requiredTime);
 
             _actions.Add(action);
 
@@ -263,9 +263,9 @@ namespace RecipeModule {
             return action.GetResultedFood();
         }
         
-        public Food DescribeNewFryAction(int stepNumber, Food foodToBeFried, float requiredHeat, float requiredTime, Fry.FryType fryType)
+        public Food DescribeNewFryAction(int stepNumber, Food foodToBeFried, float requiredHeat, float requiredTime)
         {
-            Fry action = new Fry(stepNumber, foodToBeFried, requiredHeat, requiredTime, fryType);
+            Fry action = new Fry(stepNumber, foodToBeFried, requiredHeat, requiredTime);
 
             _actions.Add(action);
 
@@ -343,12 +343,12 @@ namespace RecipeModule {
         }
 
         
-        public Food DescribeNewBoilAction(int stepNumber, GameObject foodObject, float requiredHeat, float requiredTime, Boil.BoilType boilType)
+        public Food DescribeNewBoilAction(int stepNumber, GameObject foodObject, float requiredHeat, float requiredTime)
         {
             Food f = new Food(foodObject.GetComponent<FoodStatus>().foodIdentifier);
             _initialFoods.Add(f);
 
-            Boil action = new Boil(stepNumber, f, requiredHeat, requiredTime, boilType);
+            Boil action = new Boil(stepNumber, f, requiredHeat, requiredTime);
 
             _actions.Add(action);
 
@@ -357,9 +357,9 @@ namespace RecipeModule {
             return action.GetResultedFood();
         }
 
-        public Food DescribeNewBoilAction(int stepNumber, Food foodToBeBoiled, float requiredHeat, float requiredTime, Boil.BoilType boilType)
+        public Food DescribeNewBoilAction(int stepNumber, Food foodToBeBoiled, float requiredHeat, float requiredTime)
         {
-            Boil action = new Boil(stepNumber, foodToBeBoiled, requiredHeat, requiredTime, boilType);
+            Boil action = new Boil(stepNumber, foodToBeBoiled, requiredHeat, requiredTime);
 
             _actions.Add(action);
 

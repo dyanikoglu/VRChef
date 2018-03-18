@@ -16,7 +16,10 @@ public class RecipeManager : MonoBehaviour {
     private int totalStepCount = 0;
     private int outputNameSequence = 1;
     private char groupNameSequence = 'A';
-    public int spacingY = -40;
+
+    public int stepIntervalY = -40; // Vertical space between each step
+    public int newGroupOffsetX = 220; // Horizontal offset of each new group
+    private int newGroupCount = 0;
 
     private void Start()
     {
@@ -45,7 +48,7 @@ public class RecipeManager : MonoBehaviour {
         // Push down new step object
         RectTransform rt = newStepObject.GetComponent<RectTransform>();
         Vector3 offset = emptyStepRef.GetComponent<RectTransform>().anchoredPosition3D;
-        offset.y += totalStepCount * spacingY;
+        offset.y += totalStepCount * stepIntervalY;
         rt.anchoredPosition3D = offset;
 
         // Assign gameobject name
@@ -56,7 +59,7 @@ public class RecipeManager : MonoBehaviour {
 
         // Push down the new step button
         Vector3 buttonOffset = newStepButtonRef.GetComponent<RectTransform>().anchoredPosition3D;
-        buttonOffset.y += spacingY;
+        buttonOffset.y += stepIntervalY;
         newStepButtonRef.GetComponent<RectTransform>().anchoredPosition3D = buttonOffset;
 
         //Activate the step object, fix toggle checkmark
@@ -124,6 +127,14 @@ public class RecipeManager : MonoBehaviour {
                 }
 
                 s.groupConnectorRef.SetActive(true);
+
+                // Set offsets of group connector line for this new group
+                Vector3 connectorPos = s.groupConnectorRef.GetComponent<RectTransform>().anchoredPosition3D;
+                connectorPos.x += newGroupCount * newGroupOffsetX / 2.0f;
+                s.groupConnectorRef.GetComponent<RectTransform>().anchoredPosition3D = connectorPos;
+                Vector3 connectorScale = s.groupConnectorRef.transform.localScale;
+                connectorScale.x += newGroupCount * 22;
+                s.groupConnectorRef.transform.localScale = connectorScale;
             }
         }
 
@@ -133,6 +144,8 @@ public class RecipeManager : MonoBehaviour {
 
         Vector3 groupPos = newGroup.GetComponent<RectTransform>().anchoredPosition3D;
         groupPos.y = avgYPos;
+        // Set an x offset to make it not override with previous groups
+        groupPos.x += newGroupOffsetX * newGroupCount++;
         newGroup.GetComponent<RectTransform>().anchoredPosition3D = groupPos;
 
         Vector2 newDelta = new Vector2((maxY - minY) / 10.0f, 10) ;
@@ -153,7 +166,7 @@ public class RecipeManager : MonoBehaviour {
     }
 
     // Show action settings popup
-    public ActionPopup EnableActionPopup(string actionName, List<string> paramNames, List<int> paramValues)
+    public ActionPopup ShowActionPopup(string actionName, List<string> paramNames, List<int> paramValues)
     {
         actionPopupRef.GetComponent<ActionPopup>().headerRef.text = actionName;
         ActionPopup actionPopup = actionPopupRef.GetComponent<ActionPopup>();
@@ -181,7 +194,7 @@ public class RecipeManager : MonoBehaviour {
         return actionPopup;
     }
 
-    public void DisableActionPopup()
+    public void HideActionPopup()
     {
         ActionPopup actionPopup = actionPopupRef.GetComponent<ActionPopup>();
 
@@ -317,11 +330,11 @@ public class RecipeManager : MonoBehaviour {
             if (currentStepNumber > removedStepNo)
             {
                 // Push up each step by difference with removed step number
-                PushElement(step.GetComponent<RectTransform>(), new Vector3(0, -spacingY, 0));
+                PushElement(step.GetComponent<RectTransform>(), new Vector3(0, -stepIntervalY, 0));
                 step.SetStepNumber(currentStepNumber - 1);
             }
         }
-        PushElement(newStepButtonRef.GetComponent<RectTransform>(), new Vector3(0, -spacingY, 0));
+        PushElement(newStepButtonRef.GetComponent<RectTransform>(), new Vector3(0, -stepIntervalY, 0));
 
         steps.Remove(s);
         Destroy(s.gameObject);

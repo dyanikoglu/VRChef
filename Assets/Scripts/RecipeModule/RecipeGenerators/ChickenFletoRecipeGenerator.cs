@@ -42,12 +42,12 @@ namespace RecipeModule
             Food potato_put = recipe.DescribeNewPutTogetherAction(11, potato_chopped, chicken_chopped_1);
 
             // Cook'em'all
-            Food chicken_cooked_1 = recipe.DescribeNewCookAction(12, chicken_chopped_1.GetLatestState(), 150, 600, Cook.CookType.Cooked);
-            Food chicken_cooked_2 = recipe.DescribeNewCookAction(13, chicken_chopped_2.GetLatestState(), 150, 600, Cook.CookType.Cooked);
-            Food chicken_cooked_3 = recipe.DescribeNewCookAction(14, chicken_chopped_3.GetLatestState(), 150, 600, Cook.CookType.Cooked);
-            Food tomato_cooked_1 = recipe.DescribeNewCookAction(15, tomato_chopped_1.GetLatestState(), 150, 600, Cook.CookType.Cooked);
-            Food tomato_cooked_2 = recipe.DescribeNewCookAction(16, tomato_chopped_2.GetLatestState(), 150, 600, Cook.CookType.Cooked);
-            Food potato_cooked = recipe.DescribeNewCookAction(17, potato_chopped.GetLatestState(), 150, 600, Cook.CookType.Cooked);
+            Food chicken_cooked_1 = recipe.DescribeNewCookAction(12, chicken_chopped_1.GetLatestState(), 150, 600);
+            Food chicken_cooked_2 = recipe.DescribeNewCookAction(13, chicken_chopped_2.GetLatestState(), 150, 600);
+            Food chicken_cooked_3 = recipe.DescribeNewCookAction(14, chicken_chopped_3.GetLatestState(), 150, 600);
+            Food tomato_cooked_1 = recipe.DescribeNewCookAction(15, tomato_chopped_1.GetLatestState(), 150, 600);
+            Food tomato_cooked_2 = recipe.DescribeNewCookAction(16, tomato_chopped_2.GetLatestState(), 150, 600);
+            Food potato_cooked = recipe.DescribeNewCookAction(17, potato_chopped.GetLatestState(), 150, 600);
 
             //// Recipe task list end
 
