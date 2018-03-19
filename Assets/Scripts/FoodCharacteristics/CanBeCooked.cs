@@ -17,6 +17,8 @@ public class CanBeCooked : FoodCharacteristic {
     public Color cookEffectTint = Color.white;
 
 	void Start () {
+        base.Start();
+
         _requiredCookTime = requiredCookTime * 60;
         _affectedMaterials = GetComponent<Renderer>().materials;
     }

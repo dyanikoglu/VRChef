@@ -15,6 +15,7 @@ public class CanBeSmashed : FoodCharacteristic {
     public GameObject bowl;
     void Start()
     {
+        base.Start();
         smashCount = 0;
         source = gameObject.AddComponent<AudioSource>();
     }

@@ -21,16 +21,16 @@ namespace RecipeModule
             Food chicken_chopped_3 = recipe.DescribeNewChopAction(2, chicken, 2);
 
             // Put them together - Put 2 & 3 to near of 1
-            Food chicken_put_2 = recipe.DescribeNewPutTogetherAction(3, chicken_chopped_2, chicken_chopped_1);
-            Food chicken_put_3 = recipe.DescribeNewPutTogetherAction(4, chicken_chopped_3, chicken_chopped_1);
+            Food chicken_put_2 = recipe.DescribeNewPutTogetherAction(3, chicken_chopped_2, chicken_chopped_1, 0);
+            Food chicken_put_3 = recipe.DescribeNewPutTogetherAction(4, chicken_chopped_3, chicken_chopped_1, 0);
 
             // Chop 2 tomatoes
             Food tomato_chopped_1 = recipe.DescribeNewChopAction(5, tomato, 6);
             Food tomato_chopped_2 = recipe.DescribeNewChopAction(6, tomato, 6);
 
             // Put chopped tomatoes near chicken_1
-            Food tomato_put_1 = recipe.DescribeNewPutTogetherAction(7, tomato_chopped_1, chicken_chopped_1);
-            Food tomato_put_2 = recipe.DescribeNewPutTogetherAction(8, tomato_chopped_2, chicken_chopped_1);
+            Food tomato_put_1 = recipe.DescribeNewPutTogetherAction(7, tomato_chopped_1, chicken_chopped_1, 0);
+            Food tomato_put_2 = recipe.DescribeNewPutTogetherAction(8, tomato_chopped_2, chicken_chopped_1, 0);
 
             // Peel a potato
             Food potato_peeled = recipe.DescribeNewPeelAction(9, potato);
@@ -39,7 +39,7 @@ namespace RecipeModule
             Food potato_chopped = recipe.DescribeNewChopAction(10, potato_peeled, 6);
 
             // Put chopped potato near chicken_1
-            Food potato_put = recipe.DescribeNewPutTogetherAction(11, potato_chopped, chicken_chopped_1);
+            Food potato_put = recipe.DescribeNewPutTogetherAction(11, potato_chopped, chicken_chopped_1, 0);
 
             // Cook'em'all
             Food chicken_cooked_1 = recipe.DescribeNewCookAction(12, chicken_chopped_1.GetLatestState(), 150, 600);

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using VRTK;
@@ -23,4 +24,16 @@ public abstract class FoodCharacteristic : MonoBehaviour
         }
     }
 
+    public void Start()
+    {
+        if (GetComponent<VRTK_InteractableObject>())
+        {
+            GetComponent<VRTK_InteractableObject>().InteractableObjectUngrabbed += OnMyUngrabbed;
+        }
+    }
+
+    public void OnMyUngrabbed(object sender, InteractableObjectEventArgs e)
+    {
+        OnOperationDone(RecipeModule.Action.ActionType.PutTogether);
+    }
 }

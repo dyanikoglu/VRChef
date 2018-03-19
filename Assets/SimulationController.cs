@@ -7,11 +7,14 @@ public class SimulationController : MonoBehaviour {
 
     public List<Action> actions;
     Recipe recipeToControl;
-    int currentActionIndex;
+    public int currentActionIndex;
 
     public List<int> choppedObjects;
     public int numChoppedPieces;
     public int numSlices;
+
+    public List<GameObject> foodsInRecipe;
+    public int foodIndex;
 
     public void SetRecipeToControl(Recipe r)
     {
@@ -24,8 +27,10 @@ public class SimulationController : MonoBehaviour {
         currentActionIndex = 0;
         numChoppedPieces = 0;
         numSlices = 0;
+        foodIndex = 0;
 
         choppedObjects = new List<int>();
+        foodsInRecipe = new List<GameObject>();
     }
 
     public void OnOperationDone(FoodCharacteristic fc, OperationEventArgs e)
@@ -37,7 +42,11 @@ public class SimulationController : MonoBehaviour {
                 {
                     if (actions[currentActionIndex].GetInvolvedFood().GetFoodIdentifier() == fc.GetComponent<FoodStatus>().foodIdentifier)
                     {
-                        // give feedback, i.e. update checklist.
+                        if (foodIndex == currentActionIndex)
+                        {
+                            foodsInRecipe[foodIndex] = fc.gameObject;
+                            foodIndex++;
+                        }
                         currentActionIndex++;
                     }
                 }
@@ -58,6 +67,15 @@ public class SimulationController : MonoBehaviour {
                     if ( (actions[currentActionIndex].GetInvolvedFood().GetFoodIdentifier() == fc.GetComponent<FoodStatus>().foodIdentifier)
                         && !(choppedObjects.Contains(fc.transform.root.GetInstanceID())) )
                     {
+
+                        Debug.Log(fc.transform.parent.gameObject);
+
+                        if (foodIndex == currentActionIndex)
+                        {
+                            foodsInRecipe.Add(fc.transform.parent.gameObject);
+                            foodIndex++;
+                        }
+
                         //Debug.Log(fc.GetComponent<FoodStatus>().foodIdentifier);
                         numSlices++;
                         if (numSlices == 1)
@@ -68,9 +86,8 @@ public class SimulationController : MonoBehaviour {
                         {
                             numChoppedPieces++;
                         }
-
+                        
                         Chop chop = (Chop)actions[currentActionIndex];
-
                         // if current food's chopping parameters is satisfied, then set current action as done, i.e. increment index
                         if (numChoppedPieces == chop.GetRequiredPieceCount())
                         {
@@ -90,6 +107,11 @@ public class SimulationController : MonoBehaviour {
                 {
                     if (actions[currentActionIndex].GetInvolvedFood().GetFoodIdentifier() == fc.GetComponent<FoodStatus>().foodIdentifier)
                     {
+                        if (foodIndex == currentActionIndex)
+                        {
+                            foodsInRecipe[foodIndex] = fc.gameObject;
+                            foodIndex++;
+                        }
                         currentActionIndex++;
                     }
                 }
@@ -100,6 +122,11 @@ public class SimulationController : MonoBehaviour {
                 {
                     if (actions[currentActionIndex].GetInvolvedFood().GetFoodIdentifier() == fc.GetComponent<FoodStatus>().foodIdentifier)
                     {
+                        if (foodIndex == currentActionIndex)
+                        {
+                            foodsInRecipe[foodIndex] = fc.gameObject;
+                            foodIndex++;
+                        }
                         // also obtain parameters and check if operation is valid
                         // give feedback, i.e. update checklist.
                         currentActionIndex++;
@@ -114,30 +141,78 @@ public class SimulationController : MonoBehaviour {
             case Action.ActionType.Peel:
                 if (actions[currentActionIndex].GetActionType() == Action.ActionType.Peel)
                 {
-                    // give feedback, i.e. update checklist.
-                    currentActionIndex++;
+                    if (actions[currentActionIndex].GetInvolvedFood().GetFoodIdentifier() == fc.GetComponent<FoodStatus>().foodIdentifier)
+                    {
+                        if (foodIndex == currentActionIndex)
+                        {
+                            foodsInRecipe[foodIndex] = fc.gameObject;
+                            foodIndex++;
+                        }
+                        // give feedback, i.e. update checklist.
+                        currentActionIndex++;
+                    }
                 }
                 break;
 
             case Action.ActionType.PutTogether:
+                //Debug.Log("I ungrabbed sth");
+                if (actions[currentActionIndex].GetActionType() == Action.ActionType.PutTogether)
+                {
+                    if (actions[currentActionIndex].GetInvolvedFood().GetFoodIdentifier() == fc.GetComponent<FoodStatus>().foodIdentifier)
+                    {
+                        bool isCloseEnough = true;
+                        PutTogether pt = (PutTogether)actions[currentActionIndex];
+                        GameObject destinationGameObject = foodsInRecipe[pt.GetDestinationFoodIndex()];
+                        //Debug.Log(destinationGameObject.name);
+                        //Debug.Log(fc.name);
+                        for(int i = 0; i < fc.transform.parent.childCount; i++)
+                        {
+                            float distance = Vector3.Distance(fc.transform.parent.GetChild(i).position, destinationGameObject.transform.position);
+                            Debug.Log(distance);
+                            if(distance >= .15f)
+                            {
+                                isCloseEnough = false;
+                                break;
+                            }
+                        }
+                        if (isCloseEnough)
+                        {
+                            currentActionIndex++;
+                        }
+                        //float distance = Vector3.Distance(fc.gameObject.transform.position, destinationGameObject.transform.position);
+                        //Debug.Log(distance);
+                    }
+                }
                 break;
 
-            // waiting for smash process to be done.
             case Action.ActionType.Smash:
+                if (actions[currentActionIndex].GetActionType() == Action.ActionType.Smash)
+                {
+                    if (actions[currentActionIndex].GetInvolvedFood().GetFoodIdentifier() == fc.GetComponent<FoodStatus>().foodIdentifier)
+                    {
+                        if (foodIndex == currentActionIndex)
+                        {
+                            foodsInRecipe[foodIndex] = fc.gameObject;
+                            foodIndex++;
+                        }
+                        currentActionIndex++;
+                    }
+                }
                 break;
 
+            // implement after problems in squeeze are resolved.
             case Action.ActionType.Squeeze:
                 if (actions[currentActionIndex].GetActionType() == Action.ActionType.Squeeze)
                 {
+                    if (foodIndex == currentActionIndex)
+                    {
+                        foodsInRecipe[foodIndex] = fc.gameObject;
+                        foodIndex++;
+                    }
                     // give feedback, i.e. update checklist.
                     currentActionIndex++;
                 }
                 break;
         }
-
-        if(currentActionIndex == actions.Count)
-        {
-            // display a message saying that user has succesfully completed the recipe. And finish the scene
-        } 
     }
 }

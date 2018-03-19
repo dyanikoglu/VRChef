@@ -20,6 +20,7 @@ public class CanBeSqueezed : FoodCharacteristic
     // Use this for initialization
     void Start()
     {
+        base.Start();
         canSpin = false;
         finished = false;
         rotationAngle = 0;

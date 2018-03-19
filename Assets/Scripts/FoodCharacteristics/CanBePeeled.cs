@@ -14,10 +14,11 @@ public class CanBePeeled : CanBeChopped {
     private bool smallEnough = false;
     // Use this for initialization
     void Start()
-    {        
+    {
+        base.Start();
         detachChildrenOnSlice = true;
         knives = FindObjectsOfType<CanChop>();
-        Debug.Log(knives);
+        //Debug.Log(knives);
         foreach (CanChop knife in knives)
         {
             Physics.IgnoreCollision(objectFlesh.GetComponent<Collider>(), knife.GetComponent<Collider>());

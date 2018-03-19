@@ -9,13 +9,14 @@ namespace RecipeModule
     {
         [FullSerializer.fsProperty]
         Food destinationFood;
+        int destinationFoodIndex;
 
         public PutTogether() : base()
         {
             this.actionType = ActionType.PutTogether;
         }
 
-        public PutTogether(int stepNumber, Food foodToBePut, Food destinationFood) : base(ActionType.PutTogether, stepNumber, foodToBePut)
+        public PutTogether(int stepNumber, Food foodToBePut, Food destinationFood, int destinationFoodIndex) : base(ActionType.PutTogether, stepNumber, foodToBePut)
         {
             this.destinationFood = destinationFood;
             DeriveResultedFood();
@@ -25,6 +26,21 @@ namespace RecipeModule
         {
             resultedFood.SetStayingWith(destinationFood);
             resultedFood.SetPutTogether(true);
+        }
+
+        public Food GetFootToBePut()
+        {
+            return involvedFood;
+        }
+
+        public Food GetDestinationFood()
+        {
+            return destinationFood;
+        }
+
+        public int GetDestinationFoodIndex()
+        {
+            return destinationFoodIndex;
         }
     }
 }

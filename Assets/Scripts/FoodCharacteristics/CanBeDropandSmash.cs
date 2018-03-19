@@ -13,6 +13,8 @@ public class CanBeDropandSmash : FoodCharacteristic {
     AudioSource source;
     // Use this for initialization
     void Start () {
+        base.Start();
+
         source = gameObject.AddComponent<AudioSource>();
     }
 

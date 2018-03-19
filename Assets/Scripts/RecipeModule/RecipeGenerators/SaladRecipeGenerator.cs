@@ -32,12 +32,12 @@ namespace RecipeModule
             Food pepper_chopped = recipe.DescribeNewChopAction(6, pepper, 8);
 
             // Combine all of them near tomato_1
-            recipe.DescribeNewPutTogetherAction(7, tomato_chopped_2, tomato_chopped_1);
-            recipe.DescribeNewPutTogetherAction(8, cucumber_chopped_1, tomato_chopped_1);
-            recipe.DescribeNewPutTogetherAction(9, cucumber_chopped_2, tomato_chopped_1);
-            recipe.DescribeNewPutTogetherAction(10, cucumber_chopped_3, tomato_chopped_1);
-            recipe.DescribeNewPutTogetherAction(11, cabbage_chopped, tomato_chopped_1);
-            recipe.DescribeNewPutTogetherAction(12, pepper_chopped, tomato_chopped_1);
+            recipe.DescribeNewPutTogetherAction(7, tomato_chopped_2, tomato_chopped_1, 0);
+            recipe.DescribeNewPutTogetherAction(8, cucumber_chopped_1, tomato_chopped_1, 0);
+            recipe.DescribeNewPutTogetherAction(9, cucumber_chopped_2, tomato_chopped_1, 0);
+            recipe.DescribeNewPutTogetherAction(10, cucumber_chopped_3, tomato_chopped_1, 0);
+            recipe.DescribeNewPutTogetherAction(11, cabbage_chopped, tomato_chopped_1, 0);
+            recipe.DescribeNewPutTogetherAction(12, pepper_chopped, tomato_chopped_1, 0);
 
             //// Recipe task list end
             Recipe.SaveRecipe(recipe);

@@ -51,6 +51,8 @@ public class CanBeFried : FoodCharacteristic
     // Use this for initialization
     void Start()
     {
+        base.Start();
+
         objectTexture = myMaterial.mainTexture;
         if (!objectTexture)
         {
