@@ -73,7 +73,6 @@ namespace RecipeModule {
                     {
                         prefab.AddComponent<CanBePeeled>();
                     }
-                    //add required parameters
                 }
                 else if (a.GetActionType().ToString().Equals("Cook"))
                 {
@@ -84,16 +83,15 @@ namespace RecipeModule {
                     }
                     prefab.GetComponent<CanBeCooked>().requiredCookHeat = (int)cook.GetRequiredHeat();
                     prefab.GetComponent<CanBeCooked>().requiredCookTime = (int)cook.GetRequiredTime();
-                    //add cooktype parameter
                 }
                 else if (a.GetActionType().ToString().Equals("Fry"))
                 {
                     Fry fry = (Fry)a;
-                    if (prefab.GetComponent<CanBePeeled>() == null)
+                    if (prefab.GetComponent<CanBeFried>() == null)
                     {
-                        prefab.AddComponent<CanBePeeled>();
+                        prefab.AddComponent<CanBeFried>();
                     }
-                    //add required parameters
+                    prefab.GetComponent<CanBeFried>().fryingTimeInSeconds = fry.GetRequiredTime();
                 }
                 else if (a.GetActionType().ToString().Equals("Squeeze"))
                 {
@@ -111,7 +109,7 @@ namespace RecipeModule {
                 }
                 else if (a.GetActionType().ToString().Equals("Break"))
                 {
-                   
+                   //control the if break script is added to prefab
                 }
                 else if (a.GetActionType().ToString().Equals("Boil"))
                 {
@@ -120,7 +118,7 @@ namespace RecipeModule {
                     {
                         prefab.AddComponent<CanBeBoiled>();
                     }
-                    //add required parameters
+                    prefab.GetComponent<CanBeBoiled>().requiredBoilingTime = (int)boil.GetRequiredTime();
                 }
             }
             List<GameObject> f=new List<GameObject>();
