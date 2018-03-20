@@ -8,9 +8,9 @@ Material:
   m_PrefabInternal: {fileID: 0}
   m_Name: Potato_rig
   m_Shader: {fileID: 4800000, guid: 12c5a1911ed698d45920f1c6fa4d6d57, type: 3}
-  m_ShaderKeywords: 
+  m_ShaderKeywords: _WETNESS_ON
   m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
+  m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
   stringTagMap: {}
@@ -161,8 +161,8 @@ Material:
     - _WetNormalMapScale: 1
     - _WetNormalMapUV: 0
     - _WetRoughness: 0.2
-    - _WetWeight: 0.402
-    - _WetnessProperties: 0
+    - _WetWeight: 0
+    - _WetnessProperties: 1
     - _ZWrite: 1
     m_Colors:
     - _Color: {r: 0.9852941, g: 0.9056012, b: 0.9056012, a: 1}

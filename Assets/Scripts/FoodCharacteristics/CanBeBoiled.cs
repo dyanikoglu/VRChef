@@ -5,12 +5,15 @@ using UnityEngine;
 
 public class CanBeBoiled : FoodCharacteristic
 {
-    public int requiredBoilingTime;
+    public float requiredBoilingTime;
     bool onCanBoil;
     GameObject canBoilObject;
     public bool boilingStarted;
     public bool boilingStopped;
+    public Color boilEffectTint = Color.white;
     public Material boiledMaterial;
+    float blend = 0;
+
 
     private void Awake()
     {
@@ -22,12 +25,29 @@ public class CanBeBoiled : FoodCharacteristic
     IEnumerator Boil()
     {
         boilingStarted = true;
-        yield return new WaitForSeconds(requiredBoilingTime);
-        GetComponent<Renderer>().material = boiledMaterial;
-        foreach(FoodStatus f in GetComponentsInChildren<FoodStatus>())
+        float fadeValue = 0f;
+
+        while (blend < 0.5f)
+        {
+            fadeValue = Time.deltaTime / requiredBoilingTime;
+            blend += fadeValue;
+
+            //GetComponent<Renderer>().material.SetColor("_WetTint", boilEffectTint);
+            GetComponent<Renderer>().material.SetFloat("_WetWeight", GetComponent<Renderer>().material.GetFloat("_WetWeight") + fadeValue);
+            yield return new WaitForSeconds(fadeValue);
+            //yield return new WaitForSeconds(requiredBoilingTime);
+        }
+
+        //GetComponent<Renderer>().material = boiledMaterial;
+
+        foreach (FoodStatus f in GetComponentsInChildren<FoodStatus>())
         {
             f.SetIsBoiled(true);
         }
+
+        boilingStarted = false;
+        boilingStopped = true;
+
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -73,6 +93,7 @@ public class CanBeBoiled : FoodCharacteristic
     {
         boilingStopped = false;
         boilingStarted = true;
+        GetComponent<Renderer>().material.SetColor("_WetTint", boilEffectTint);
         StartCoroutine("Boil");
     }
 

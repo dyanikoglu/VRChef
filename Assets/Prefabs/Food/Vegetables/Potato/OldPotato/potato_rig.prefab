@@ -64,9 +64,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1716986235917160}
-  m_LocalRotation: {x: -0.7071068, y: -0, z: 0.000000029802322, w: 0.7071067}
-  m_LocalPosition: {x: -1.0141237, y: 1.5379472, z: -0.0073263645}
-  m_LocalScale: {x: 1.1486976, y: 1.1486897, z: 1.1486895}
+  m_LocalRotation: {x: -0.000000029802322, y: -0.7071067, z: -0.7071068, w: 0}
+  m_LocalPosition: {x: 0.9623, y: 1.7979472, z: 0.40132636}
+  m_LocalScale: {x: 1.1486976, y: 1.1486893, z: 1.148689}
   m_Children:
   - {fileID: 4087528049495058}
   m_Father: {fileID: 0}
@@ -339,6 +339,7 @@ MonoBehaviour:
   requiredBoilingTime: 10
   boilingStarted: 0
   boilingStopped: 0
+  boilEffectTint: {r: 0.30980393, g: 0.30980393, b: 0.30980393, a: 1}
   boiledMaterial: {fileID: 2100000, guid: a8fd4894052b16e4cad7eaa9f7cd76e5, type: 2}
 --- !u!114 &114759106821302106
 MonoBehaviour:
