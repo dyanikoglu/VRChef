@@ -52,6 +52,7 @@ public class CanBeSmashed : FoodCharacteristic {
                     _smashed.transform.GetChild(1).transform.localScale = rescale;
                     Destroy(gameObject);
                     _smashed.GetComponent<FoodStatus>().SetIsPeeled(true);
+                    _smashed.GetComponent<FoodStatus>().SetIsBoiled(true);
                     _smashed.GetComponent<FoodStatus>().SetIsHalfSmashed(true);
                 }
                 else

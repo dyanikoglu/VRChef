@@ -62,7 +62,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1394389844188832}
   m_LocalRotation: {x: 0.01281102, y: -0.40566063, z: -0.028848276, w: 0.9134786}
-  m_LocalPosition: {x: 0.8344091, y: 1.7795913, z: -0.028736815}
+  m_LocalPosition: {x: -0.9082807, y: 1.5000001, z: -0.31151593}
   m_LocalScale: {x: 0.15, y: 0.15, z: 0.2}
   m_Children:
   - {fileID: 4878765371253640}
@@ -76,7 +76,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1707178231607542}
   m_LocalRotation: {x: 3.6962997e-15, y: 0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.6, y: 0, z: 0}
+  m_LocalPosition: {x: -0.007, y: -0, z: -0.008}
   m_LocalScale: {x: 0.8715415, y: 0.8715415, z: 0.9611541}
   m_Children: []
   m_Father: {fileID: 4430816962025304}
@@ -303,6 +303,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0580f3b8e0fd90441b1e89c39c8d522f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isBoiled: 0
   foodIdentifier: Cucumber
 --- !u!114 &114966171843554238
 MonoBehaviour:
@@ -315,6 +316,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0580f3b8e0fd90441b1e89c39c8d522f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isBoiled: 0
   foodIdentifier: Cucumber
 --- !u!136 &136211188879324740
 CapsuleCollider:

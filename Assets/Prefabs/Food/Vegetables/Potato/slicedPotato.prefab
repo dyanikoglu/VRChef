@@ -230,6 +230,7 @@ MonoBehaviour:
   smashSound: {fileID: 8300000, guid: 52d2c0298aa8e4f45baddc37b0a43422, type: 3}
   iscollidedWithSmasher: 0
   isCollidedWithBowl: 0
+  bowl: {fileID: 0}
 --- !u!114 &114632376245546484
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -241,3 +242,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0580f3b8e0fd90441b1e89c39c8d522f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isBoiled: 0
+  foodIdentifier: 
