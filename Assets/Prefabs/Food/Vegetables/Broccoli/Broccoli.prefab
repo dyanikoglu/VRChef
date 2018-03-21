@@ -43,7 +43,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1935546344200766}
   m_LocalRotation: {x: -0.000000059604645, y: -9.000051e-15, z: 0.0000001509958, w: 1}
-  m_LocalPosition: {x: -0.022, y: 1.2407, z: 0.449}
+  m_LocalPosition: {x: -0.11478564, y: 1.21, z: 0.3928326}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -144,7 +144,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   capMaterial: {fileID: 2100000, guid: b14b1a850d35a9645a4f63630c86a38d, type: 2}
-  minKnifeVelocityToChop: 0.002
   sliceTimeout: 0.5
   currentlyChoppable: 1
   colliderSkinWidth: 0.001

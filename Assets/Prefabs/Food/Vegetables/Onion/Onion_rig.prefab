@@ -21,7 +21,6 @@ GameObject:
   - component: {fileID: 4775760634966878}
   - component: {fileID: 33757731059188634}
   - component: {fileID: 23143950408707812}
-  - component: {fileID: 135890686868125604}
   - component: {fileID: 54896541328108168}
   - component: {fileID: 114614300960669004}
   - component: {fileID: 114592364841760928}
@@ -30,7 +29,8 @@ GameObject:
   - component: {fileID: 114004002208479638}
   - component: {fileID: 82804728544052428}
   - component: {fileID: 114975119241416870}
-  m_Layer: 0
+  - component: {fileID: 65186626708276156}
+  m_Layer: 9
   m_Name: Onion_rig
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -50,7 +50,7 @@ GameObject:
   - component: {fileID: 114786774247492456}
   - component: {fileID: 135916889318555086}
   - component: {fileID: 114798559249180168}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: onion_flesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -78,7 +78,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1034280294860504}
   m_LocalRotation: {x: 0.65616685, y: -0.2888268, z: 0.65724695, w: -0.23248783}
-  m_LocalPosition: {x: 0.514, y: 1.792, z: 0.0202}
+  m_LocalPosition: {x: 1.141, y: 1.792, z: 0.0202}
   m_LocalScale: {x: 0.10000001, y: 0.099999964, z: 0.1}
   m_Children:
   - {fileID: 4374812545070798}
@@ -182,6 +182,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &65186626708276156
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1034280294860504}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.6184442, y: 0.618444, z: 0.8405609}
+  m_Center: {x: -0.0000013857261, y: 0.00000007449898, z: 0.001830384}
 --- !u!82 &82804728544052428
 AudioSource:
   m_ObjectHideFlags: 1
@@ -414,19 +426,7 @@ MonoBehaviour:
   spawnFluid: 0
   spawnFluidColor: {r: 1, g: 1, b: 1, a: 1}
   objectFlesh: {fileID: 1370990761677140}
-  smallerAllowedRigVolume: 0.0004
---- !u!135 &135890686868125604
-SphereCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1034280294860504}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.3436048
-  m_Center: {x: 0.000000037248665, y: -0.006945804, z: -0.05469621}
+  smallerAllowedRigVolume: 0.0008
 --- !u!135 &135916889318555086
 SphereCollider:
   m_ObjectHideFlags: 1

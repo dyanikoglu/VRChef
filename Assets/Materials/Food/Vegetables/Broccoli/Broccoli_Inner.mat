@@ -132,7 +132,7 @@ Material:
     - _MainTexUV: 0
     - _MainTextures: 0
     - _MaxSamples: 20
-    - _Metal: 0.5
+    - _Metal: 0
     - _Metallic: 0
     - _MinSamples: 4
     - _Mode: 0
@@ -150,7 +150,7 @@ Material:
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SpecularTint: 0
-    - _Specularity: 1
+    - _Specularity: 0
     - _SrcBlend: 1
     - _TeamColor: 0
     - _TeamColorMasksAsTint: 0
@@ -161,11 +161,11 @@ Material:
     - _WetNormalMapScale: 1
     - _WetNormalMapUV: 0
     - _WetRoughness: 0.2
-    - _WetWeight: 0
+    - _WetWeight: 0.05
     - _WetnessProperties: 1
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 0.584721, g: 0.75735295, b: 0.5931421, a: 1}
+    - _Color: {r: 0.64186853, g: 0.7794118, b: 0.6485779, a: 1}
     - _DecalColor: {r: 1, g: 1, b: 1, a: 1}
     - _DetailAlbedoMapVelocity: {r: 0, g: 0, b: 0, a: 0}
     - _DissolveGlowColor: {r: 1, g: 1, b: 1, a: 1}
@@ -181,4 +181,4 @@ Material:
     - _TeamColorMasks: {r: 1, g: 1, b: 1, a: 0}
     - _WetMaskVelocity: {r: 0, g: 0, b: 0, a: 0}
     - _WetNormalMapVelocity: {r: 0, g: 0, b: 0, a: 0}
-    - _WetTint: {r: 1, g: 1, b: 1, a: 1}
+    - _WetTint: {r: 0.7647059, g: 0.7647059, b: 0.7647059, a: 1}

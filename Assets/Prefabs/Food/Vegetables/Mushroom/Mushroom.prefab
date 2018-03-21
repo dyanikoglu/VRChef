@@ -22,12 +22,12 @@ GameObject:
   - component: {fileID: 33565056728358592}
   - component: {fileID: 23817810522091486}
   - component: {fileID: 54412832202773512}
-  - component: {fileID: 135303814233412598}
   - component: {fileID: 114953933642391286}
   - component: {fileID: 114462302224988290}
   - component: {fileID: 114080590483827272}
   - component: {fileID: 114209594079977010}
   - component: {fileID: 114359263798461956}
+  - component: {fileID: 65903530334998394}
   m_Layer: 9
   m_Name: Mushroom
   m_TagString: Untagged
@@ -42,8 +42,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1056125327470242}
   m_LocalRotation: {x: 0.000000021855694, y: 0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.259, y: 1.262, z: 0.322}
-  m_LocalScale: {x: 1.25, y: 1.25, z: 1.25}
+  m_LocalPosition: {x: -0.27277505, y: 1.269, z: 0.66726744}
+  m_LocalScale: {x: 2.25, y: 2.25, z: 2.25}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -104,6 +104,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &65903530334998394
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1056125327470242}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.027493905, y: 0.027191471, z: 0.02907313}
+  m_Center: {x: 0.00038464746, y: 0.0020014162, z: -0.0007726067}
 --- !u!114 &114080590483827272
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -194,15 +206,3 @@ MonoBehaviour:
   objectHighlighter: {fileID: 0}
   touchHighlightColor: {r: 0, g: 0, b: 0, a: 0}
   usingState: 0
---- !u!135 &135303814233412598
-SphereCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1056125327470242}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.014536563
-  m_Center: {x: 0.0003846474, y: 0.002001416, z: -0.0007726066}

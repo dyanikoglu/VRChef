@@ -146,7 +146,7 @@ Material:
     - _RimPower: 4
     - _RimTexUV: 0
     - _RimWeight: 1
-    - _Roughness: 0.636
+    - _Roughness: 0
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SpecularTint: 0
@@ -165,7 +165,7 @@ Material:
     - _WetnessProperties: 0
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 0.77205884, g: 0.54756314, b: 0.26113757, a: 1}
+    - _Color: {r: 0.8993915, g: 1, b: 0.7647059, a: 1}
     - _DecalColor: {r: 1, g: 1, b: 1, a: 1}
     - _DetailAlbedoMapVelocity: {r: 0, g: 0, b: 0, a: 0}
     - _DissolveGlowColor: {r: 1, g: 1, b: 1, a: 1}

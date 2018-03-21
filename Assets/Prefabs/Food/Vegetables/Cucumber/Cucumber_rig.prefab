@@ -28,7 +28,7 @@ GameObject:
   - component: {fileID: 114915172932117394}
   - component: {fileID: 114070986631492122}
   - component: {fileID: 136597916308564656}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cucumber_rig
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -48,7 +48,7 @@ GameObject:
   - component: {fileID: 114966171843554238}
   - component: {fileID: 136211188879324740}
   - component: {fileID: 114160976958549164}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: cucumber_flesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -61,9 +61,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1394389844188832}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.486, y: 1.773, z: -0.225}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_LocalRotation: {x: 0.01281102, y: -0.40566063, z: -0.028848276, w: 0.9134786}
+  m_LocalPosition: {x: 0.8344091, y: 1.7795913, z: -0.028736815}
+  m_LocalScale: {x: 0.15, y: 0.15, z: 0.2}
   m_Children:
   - {fileID: 4878765371253640}
   m_Father: {fileID: 0}
@@ -76,7 +76,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1707178231607542}
   m_LocalRotation: {x: 3.6962997e-15, y: 0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.003, y: 0, z: 0}
+  m_LocalPosition: {x: 0.6, y: 0, z: 0}
   m_LocalScale: {x: 0.8715415, y: 0.8715415, z: 0.9611541}
   m_Children: []
   m_Father: {fileID: 4430816962025304}
@@ -205,14 +205,14 @@ MonoBehaviour:
   spawnFluid: 0
   spawnFluidColor: {r: 1, g: 1, b: 1, a: 1}
   objectFlesh: {fileID: 1707178231607542}
-  smallerAllowedRigVolume: 0.0004
+  smallerAllowedRigVolume: 0.0012
 --- !u!114 &114155882663066876
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1394389844188832}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a3abaf4521bf2344ea21ed3020b98eb2, type: 3}
   m_Name: 
@@ -227,8 +227,8 @@ MonoBehaviour:
   validDrop: 1
   grabOverrideButton: 0
   allowedGrabControllers: 0
-  grabAttachMechanicScript: {fileID: 0}
-  secondaryGrabActionScript: {fileID: 0}
+  grabAttachMechanicScript: {fileID: 114442022145984020}
+  secondaryGrabActionScript: {fileID: 114276191360718624}
   isUsable: 0
   holdButtonToUse: 1
   useOnlyIfGrabbed: 0
