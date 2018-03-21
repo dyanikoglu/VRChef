@@ -168,6 +168,9 @@ public class RecipeManager : MonoBehaviour {
     // Show action settings popup
     public ActionPopup ShowActionPopup(string actionName, List<string> paramNames, List<int> paramValues)
     {
+        // Reset action popup first
+        HideActionPopup(false);
+
         actionPopupRef.GetComponent<ActionPopup>().headerRef.text = actionName;
         ActionPopup actionPopup = actionPopupRef.GetComponent<ActionPopup>();
 
@@ -181,12 +184,12 @@ public class RecipeManager : MonoBehaviour {
             newParamObj.GetComponent<RectTransform>().anchoredPosition3D = pos;
 
             ActionParameter ap = newParamObj.GetComponent<ActionParameter>();
-            ap.headerRef.text = paramNames[i];
             ap.SetParamIndex(i);
-
+            ap.paramName = paramNames[i];
             // TODO Should I do something with slider min-max value, or leave them at some default bound?
-
             ap.sliderRef.value = paramValues[i];
+            ap.UpdateHeader();
+            // ap.sliderRef.onValueChanged += ap.UpdateHeader;
         }
 
         actionPopupRef.SetActive(true);
@@ -194,9 +197,20 @@ public class RecipeManager : MonoBehaviour {
         return actionPopup;
     }
 
-    public void HideActionPopup()
+    public void HideActionPopup(bool saveValues)
     {
+        if(!actionPopupRef.activeSelf)
+        {
+            return;
+        }
+
         ActionPopup actionPopup = actionPopupRef.GetComponent<ActionPopup>();
+
+        if (saveValues)
+        {
+            // Save values in action object
+            actionPopup.SaveValues();
+        }
 
         // Reverse iteration, clear parameter objects
         for (int i = actionPopup.parametersRef.transform.childCount - 1; i >= 0; i--)

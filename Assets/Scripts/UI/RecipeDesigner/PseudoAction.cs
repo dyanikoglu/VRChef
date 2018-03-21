@@ -14,7 +14,7 @@ public class PseudoAction : MonoBehaviour {
      * 
      */
 
-    private List<int> parameterValues;
+    public List<int> parameterValues;
     
     private List<string> parameterNames;
 

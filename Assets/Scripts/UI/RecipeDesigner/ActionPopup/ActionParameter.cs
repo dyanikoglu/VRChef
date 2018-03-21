@@ -7,6 +7,7 @@ public class ActionParameter : MonoBehaviour {
     public Slider sliderRef;
     public Text headerRef;
     private int paramIndex = 0;
+    public string paramName = "";
 
     public int GetParamIndex() {
         return paramIndex;
@@ -15,6 +16,11 @@ public class ActionParameter : MonoBehaviour {
     public void SetParamIndex(int i)
     {
         paramIndex = i;
+    }
+
+    public void UpdateHeader()
+    {
+        headerRef.text = paramName + ": " + sliderRef.value;
     }
 
     public int GetValue()
