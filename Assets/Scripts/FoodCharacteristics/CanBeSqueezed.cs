@@ -55,7 +55,6 @@ public class CanBeSqueezed : FoodCharacteristic
         {
             currentSqueezer = collision.gameObject;
 
-            //canSpin = true;
             currentSqueezer.GetComponent<VRTK.VRTK_InteractableObject>().isGrabbable = false;
             currentSqueezer.GetComponent<CanSqueeze>().bowl.GetComponent<VRTK.VRTK_InteractableObject>().isGrabbable = false;
 
@@ -87,8 +86,7 @@ public class CanBeSqueezed : FoodCharacteristic
         {
             if (canSpin && !finished )
             {
-                //transform.Rotate(Vector3.up * 200 * Time.deltaTime, Space.Self);
-                rotationAngle += 200 * Time.deltaTime;
+                rotationAngle += 80 * Time.deltaTime;
                 particleLauncher.Emit(40);
 
                 if (onlyOnce)
@@ -97,7 +95,7 @@ public class CanBeSqueezed : FoodCharacteristic
                     onlyOnce = false;
                 }                
 
-                if (rotationAngle >= 360 * 3)
+                if (rotationAngle >= 360 )
                 {
                     var my_materials = GetComponent<Renderer>().materials;
                     my_materials[1] = squeezedMaterial;

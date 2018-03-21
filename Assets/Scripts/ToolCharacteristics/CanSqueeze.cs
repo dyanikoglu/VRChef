@@ -10,6 +10,7 @@ public class CanSqueeze : ToolCharacteristic
     //1. on bowl, 2.on others
     CapsuleCollider capsuleCollider;
     private int childCountForWater;
+    private int numParticle = 99;
 
     // Use this for initialization
     void Start()
@@ -22,7 +23,7 @@ public class CanSqueeze : ToolCharacteristic
     // Update is called once per frame
     void Update()
     {
-        
+         
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -45,8 +46,25 @@ public class CanSqueeze : ToolCharacteristic
     {
         if(childCountForWater < 3)
         {
+            print(childCountForWater);
             bowl.transform.GetChild(childCountForWater++).gameObject.SetActive(true);
+            numParticle = 300 / childCountForWater; 
+        }
+    }
+
+    public void PourWater()
+    {
+        if (childCountForWater > 0)
+        {
+            Debug.Log(childCountForWater - 1);
+            bowl.transform.GetChild(childCountForWater-1).gameObject.SetActive(false);
+            childCountForWater--;
         }
 
+    }
+
+    public int GetNumParticle()
+    {
+        return numParticle;
     }
 }
