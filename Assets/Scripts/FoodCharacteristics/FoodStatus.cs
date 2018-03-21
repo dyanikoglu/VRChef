@@ -14,6 +14,7 @@ public class FoodStatus : MonoBehaviour {
     private bool _isSmashed = false;
     private bool _isCooked = false;
     private bool _isGrabbed = false;
+    private bool _isMixed = false;
 
     // Unique identifier of the object. Required for reaching out prefabs of each food.
     public string foodIdentifier = "";
@@ -100,6 +101,7 @@ public class FoodStatus : MonoBehaviour {
 
     public void SetIsSmashed(bool isSmashed)
     {
+        GetComponent<FoodCharacteristic>().OnOperationDone(RecipeModule.Action.ActionType.Smash);
         this._isSmashed = isSmashed;
     }
 
@@ -115,4 +117,13 @@ public class FoodStatus : MonoBehaviour {
         this._isBoiled = isBoiled;
     }
 
+    public bool GetIsMixed()
+    {
+        return _isMixed;
+    }
+
+    public void SetIsMixed(bool flag)
+    {
+        _isMixed = true;
+    }
 }

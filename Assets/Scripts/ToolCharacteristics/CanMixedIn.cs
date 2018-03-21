@@ -53,6 +53,8 @@ public class CanMixedIn : ToolCharacteristic {
             rotateCount++;
             if (rotateCount > 100)
             {
+                GetComponent<FoodStatus>().SetIsMixed(true);
+
                 gameObject.transform.GetChild(1).gameObject.transform.position = gameObject.transform.position;
                 gameObject.transform.GetChild(1).gameObject.SetActive(true);
                 foreach(Obi.ObiEmitter emitter in emitters)

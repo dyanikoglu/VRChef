@@ -34,7 +34,7 @@ namespace RecipeModule {
             float increaseZ = -0.2f;
             float increaseX = -0.1f;
             int rowCount = 0;
-            for (int i = 0; i < quantity*4; i++)
+            for (int i = 0; i < quantity*2; i++)
             {
                 Vector3 pos = places[placeCount].transform.position;
                 pos.z = pos.z + increaseZ;

@@ -16,6 +16,8 @@ public class SimulationController : MonoBehaviour {
     public List<GameObject> foodsInRecipe;
     public int foodIndex;
 
+    public GameObject taskListUI;
+
     public void SetRecipeToControl(Recipe r)
     {
         recipeToControl = r;
@@ -47,7 +49,8 @@ public class SimulationController : MonoBehaviour {
                             foodsInRecipe[foodIndex] = fc.gameObject;
                             foodIndex++;
                         }
-                        currentActionIndex++;
+                        taskListUI.GetComponent<AddActionsTaskList>().SetStepCompleted(currentActionIndex);
+                        currentActionIndex++;   
                     }
                 }
                 break;
@@ -56,7 +59,7 @@ public class SimulationController : MonoBehaviour {
             case Action.ActionType.Break:
                 if ( fc.GetComponent<FoodStatus>() && actions[currentActionIndex].GetInvolvedFood().GetFoodIdentifier() == fc.GetComponent<FoodStatus>().foodIdentifier)
                 {
-                    // give feedback, i.e. update checklist.
+                    taskListUI.GetComponent<AddActionsTaskList>().SetStepCompleted(currentActionIndex);
                     currentActionIndex++;
                 }
                 break;
@@ -92,6 +95,7 @@ public class SimulationController : MonoBehaviour {
                         if (numChoppedPieces == chop.GetRequiredPieceCount())
                         {
                             //Debug.Log(numChoppedPieces+ " - " + numSlices);
+                            taskListUI.GetComponent<AddActionsTaskList>().SetStepCompleted(currentActionIndex);
                             currentActionIndex++;
                             numChoppedPieces = 0;
                             numSlices = 0;
@@ -112,6 +116,7 @@ public class SimulationController : MonoBehaviour {
                             foodsInRecipe[foodIndex] = fc.gameObject;
                             foodIndex++;
                         }
+                        taskListUI.GetComponent<AddActionsTaskList>().SetStepCompleted(currentActionIndex);
                         currentActionIndex++;
                     }
                 }
@@ -127,8 +132,7 @@ public class SimulationController : MonoBehaviour {
                             foodsInRecipe[foodIndex] = fc.gameObject;
                             foodIndex++;
                         }
-                        // also obtain parameters and check if operation is valid
-                        // give feedback, i.e. update checklist.
+                        taskListUI.GetComponent<AddActionsTaskList>().SetStepCompleted(currentActionIndex);
                         currentActionIndex++;
                     }
                 }
@@ -136,6 +140,19 @@ public class SimulationController : MonoBehaviour {
 
             // mix script has not been completed yet.
             case Action.ActionType.Mix:
+                if (actions[currentActionIndex].GetActionType() == Action.ActionType.Mix)
+                {
+                    if (actions[currentActionIndex].GetInvolvedFood().GetFoodIdentifier() == fc.GetComponent<FoodStatus>().foodIdentifier)
+                    {
+                        if (foodIndex == currentActionIndex)
+                        {
+                            foodsInRecipe[foodIndex] = fc.gameObject;
+                            foodIndex++;
+                        }
+                        taskListUI.GetComponent<AddActionsTaskList>().SetStepCompleted(currentActionIndex);
+                        currentActionIndex++;
+                    }
+                }
                 break;
 
             case Action.ActionType.Peel:
@@ -148,7 +165,7 @@ public class SimulationController : MonoBehaviour {
                             foodsInRecipe[foodIndex] = fc.gameObject;
                             foodIndex++;
                         }
-                        // give feedback, i.e. update checklist.
+                        taskListUI.GetComponent<AddActionsTaskList>().SetStepCompleted(currentActionIndex);
                         currentActionIndex++;
                     }
                 }
@@ -177,6 +194,7 @@ public class SimulationController : MonoBehaviour {
                         }
                         if (isCloseEnough)
                         {
+                            taskListUI.GetComponent<AddActionsTaskList>().SetStepCompleted(currentActionIndex);
                             currentActionIndex++;
                         }
                         //float distance = Vector3.Distance(fc.gameObject.transform.position, destinationGameObject.transform.position);
@@ -195,12 +213,12 @@ public class SimulationController : MonoBehaviour {
                             foodsInRecipe[foodIndex] = fc.gameObject;
                             foodIndex++;
                         }
+                        taskListUI.GetComponent<AddActionsTaskList>().SetStepCompleted(currentActionIndex);
                         currentActionIndex++;
                     }
                 }
                 break;
 
-            // implement after problems in squeeze are resolved.
             case Action.ActionType.Squeeze:
                 if (actions[currentActionIndex].GetActionType() == Action.ActionType.Squeeze)
                 {
@@ -209,7 +227,7 @@ public class SimulationController : MonoBehaviour {
                         foodsInRecipe[foodIndex] = fc.gameObject;
                         foodIndex++;
                     }
-                    // give feedback, i.e. update checklist.
+                    taskListUI.GetComponent<AddActionsTaskList>().SetStepCompleted(currentActionIndex);
                     currentActionIndex++;
                 }
                 break;
