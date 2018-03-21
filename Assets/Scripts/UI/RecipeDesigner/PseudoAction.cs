@@ -6,7 +6,8 @@ public class PseudoAction : MonoBehaviour {
     private RecipeModule.Action.ActionType actionType;
 
     /* Cook: [0] -> requiredHeat | [1] -> requiredTime
-     * Fry: [0] -> requiredHeat | [1] -> requiredTime
+     * Fry: [0] -> requiredTime
+     * Boil: [0] -> requiredTime
      * Chop: [0] -> 0: Piece Count
      * ...
      * ..
@@ -30,14 +31,12 @@ public class PseudoAction : MonoBehaviour {
         this.parameterValues.Add(pieceCount);
     }
 
-    public void SetAsFry(int requiredHeat = 150, int requiredTime = 60)
+    public void SetAsFry(int requiredTime = 60)
     {
         this.actionType = RecipeModule.Action.ActionType.Fry;
         this.parameterNames = new List<string>();
-        this.parameterNames.Add("Required Heat");
         this.parameterNames.Add("Required Time");
         this.parameterValues = new List<int>();
-        this.parameterValues.Add(requiredHeat);
         this.parameterValues.Add(requiredTime);
     }
 
@@ -80,14 +79,12 @@ public class PseudoAction : MonoBehaviour {
         this.parameterValues = new List<int>();
     }
 
-    public void SetAsBoil(int requiredHeat = 150, int requiredTime = 60)
+    public void SetAsBoil(int requiredTime = 60)
     {
         this.actionType = RecipeModule.Action.ActionType.Boil;
         this.parameterNames = new List<string>();
-        this.parameterNames.Add("Required Heat");
         this.parameterNames.Add("Required Time");
         this.parameterValues = new List<int>();
-        this.parameterValues.Add(requiredHeat);
         this.parameterValues.Add(requiredTime);
     }
 

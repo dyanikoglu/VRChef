@@ -13,6 +13,8 @@ public class Step : MonoBehaviour {
     public Toggle toggleRef;
     public GameObject groupConnectorRef;
 
+    public bool parsed = false;
+
     public RecipeManager recipeManager;
 
     // This step needs to be regenerated if it's true

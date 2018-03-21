@@ -10,6 +10,8 @@ public class RecipeManager : MonoBehaviour {
     public GameObject newGroupButtonRef;
     public GameObject actionPopupRef;
 
+    public RecipeModule.Recipe recipe;
+
     private List<Step> steps;
     private List<GroupFromSteps> groups;
 
@@ -77,9 +79,176 @@ public class RecipeManager : MonoBehaviour {
         rt.anchoredPosition3D = offset;
     }
 
+    public Step GetNextRelatedStep(Step prevStep)
+    {
+        if(prevStep.GetOutput() is FoodState)
+        {
+            FoodState prevFs = (FoodState)prevStep.GetOutput();
+
+            // Check if this food is used as input in a step
+            foreach (Step s in steps)
+            {
+                if (s.GetInput() is FoodState)
+                {
+                    if ((FoodState)(s.GetInput()) == prevFs.clone)
+                    {
+                        return s;
+                    }
+                }
+            }
+
+            // Check if this food is used for creating a new group
+            foreach(GroupFromSteps gfs in groups)
+            {
+                if(gfs.boundedSteps.Contains(prevStep))
+                {
+                    // Check if this group is used as input in a step
+                    foreach (Step s in steps)
+                    {
+                        if (s.GetInput() is FoodStateGroup)
+                        {
+                            if ((FoodStateGroup)(s.GetInput()) == gfs.GetFoodStateGroup().clone)
+                            {
+                                return s;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        else if(prevStep.GetOutput() is FoodStateGroup)
+        {
+            FoodStateGroup prevFsg = (FoodStateGroup)prevStep.GetOutput();
+
+            // Check if this food group is used as input in a step
+            foreach (Step s in steps)
+            {
+                if (s.GetInput() is FoodStateGroup)
+                {
+                    if ((FoodStateGroup)(s.GetInput()) == prevFsg.clone)
+                    {
+                        return s;
+                    }
+                }
+            }
+        }
+
+        return null;
+    }
+
+    public void ContinueOnSteps(RecipeModule.Food relatedFood, Step relatedStep)
+    {
+        Step nextStep = GetNextRelatedStep(relatedStep);
+
+        if(nextStep != null)
+        {
+            PseudoAction action = nextStep.GetPseudoAction();
+            RecipeModule.Food f = null;
+            switch (action.GetActionType())
+            {
+                case RecipeModule.Action.ActionType.Boil:
+                    f = recipe.DescribeNewBoilAction(nextStep.GetStepNumber(), relatedFood, action.GetParameterValues()[0]);
+                    break;
+                case RecipeModule.Action.ActionType.Break:
+                    f = recipe.DescribeNewBreakAction(nextStep.GetStepNumber(), relatedFood);
+                    break;
+                case RecipeModule.Action.ActionType.Chop:
+                    f = recipe.DescribeNewChopAction(nextStep.GetStepNumber(), relatedFood, action.GetParameterValues()[0]);
+                    break;
+                case RecipeModule.Action.ActionType.Cook:
+                    f = recipe.DescribeNewCookAction(nextStep.GetStepNumber(), relatedFood, action.GetParameterValues()[0], action.GetParameterValues()[1]);
+                    break;
+                case RecipeModule.Action.ActionType.Fry:
+                    f = recipe.DescribeNewFryAction(nextStep.GetStepNumber(), relatedFood, action.GetParameterValues()[0]);
+                    break;
+                case RecipeModule.Action.ActionType.Peel:
+                    f = recipe.DescribeNewPeelAction(nextStep.GetStepNumber(), relatedFood);
+                    break;
+                case RecipeModule.Action.ActionType.Smash:
+                    f = recipe.DescribeNewSmashAction(nextStep.GetStepNumber(), relatedFood);
+                    break;
+                case RecipeModule.Action.ActionType.Squeeze:
+                    f = recipe.DescribeNewSqueezeAction(nextStep.GetStepNumber(), relatedFood);
+                    break;
+                default:
+                    f = null;
+                    break;
+            }
+
+            ContinueOnSteps(f, nextStep);
+        }
+
+    }
+
     public void ParseRecipe()
     {
-        // TODO Implement parsing of the recipe to a .vrcr file
+        recipe = new RecipeModule.Recipe("ADD RECIPE NAME VAR. HERE");
+
+        // Reorder steps
+        List<Step> orderedSteps = new List<Step>(steps.Count);
+        foreach (Step s in steps)
+        {
+            orderedSteps.Insert(s.GetStepNumber() - 1, s);
+        }
+
+        foreach(Step s in orderedSteps)
+        {
+            if(s.GetInput() is FoodState)
+            {
+                FoodState inputItem = (FoodState)(s.GetInput());
+
+                // This is init food
+                if (!inputItem.gameObject.name.Contains("Output"))
+                {
+                    string foodIdentifier = inputItem.gameObject.name;
+                    PseudoAction action = s.GetPseudoAction();
+                    RecipeModule.Food f = null;
+                    switch (action.GetActionType())
+                    {
+                        case RecipeModule.Action.ActionType.Boil:
+                            f = recipe.DescribeNewBoilAction(s.GetStepNumber(), foodIdentifier, action.GetParameterValues()[0]);
+                            break;
+                        case RecipeModule.Action.ActionType.Break:
+                            f = recipe.DescribeNewBreakAction(s.GetStepNumber(), foodIdentifier);
+                            break;
+                        case RecipeModule.Action.ActionType.Chop:
+                            f = recipe.DescribeNewChopAction(s.GetStepNumber(), foodIdentifier, action.GetParameterValues()[0]);
+                            break;
+                        case RecipeModule.Action.ActionType.Cook:
+                            f = recipe.DescribeNewCookAction(s.GetStepNumber(), foodIdentifier, action.GetParameterValues()[0], action.GetParameterValues()[1]);
+                            break;
+                        case RecipeModule.Action.ActionType.Fry:
+                            f = recipe.DescribeNewFryAction(s.GetStepNumber(), foodIdentifier, action.GetParameterValues()[0]);
+                            break;
+                        case RecipeModule.Action.ActionType.Peel:
+                            f = recipe.DescribeNewPeelAction(s.GetStepNumber(), foodIdentifier);
+                            break;
+                        case RecipeModule.Action.ActionType.Smash:
+                            f = recipe.DescribeNewSmashAction(s.GetStepNumber(), foodIdentifier);
+                            break;
+                        case RecipeModule.Action.ActionType.Squeeze:
+                            f = recipe.DescribeNewSqueezeAction(s.GetStepNumber(), foodIdentifier);
+                            break;
+                        default:
+                            f = null;
+                            break;
+                    }
+
+                    ContinueOnSteps(f, s);
+                }
+            }
+        }
+
+        foreach(RecipeModule.Action a in recipe.GetActions())
+        {
+            print(a.GetActionType());
+        }
+
+        foreach (RecipeModule.Food f in recipe.GetInitialFoods())
+        {
+            print(f.GetFoodIdentifier());
+        }
     }
 
     // Create a new foodgroup from selected steps

@@ -138,6 +138,20 @@ namespace RecipeModule {
             return action.GetResultedFood();
         }
 
+        public Food DescribeNewChopAction(int stepNumber, string identifier, int requiredPieceCount)
+        {
+            Food f = new Food(identifier);
+            _initialFoods.Add(f);
+
+            Chop action = new Chop(stepNumber, f, requiredPieceCount);
+
+            _actions.Add(action);
+
+            totalStepCount++;
+
+            return action.GetResultedFood();
+        }
+
         public Food DescribeNewChopAction(int stepNumber, Food foodToBeChopped, int requiredPieceCount)
         {
             Chop action = new Chop(stepNumber, foodToBeChopped, requiredPieceCount);
@@ -152,6 +166,20 @@ namespace RecipeModule {
         public Food DescribeNewCookAction(int stepNumber, GameObject foodObject, float requiredHeat, float requiredTime)
         {
             Food f = new Food(foodObject.GetComponent<FoodStatus>().foodIdentifier);
+            _initialFoods.Add(f);
+
+            Cook action = new Cook(stepNumber, f, requiredHeat, requiredTime);
+
+            _actions.Add(action);
+
+            totalStepCount++;
+
+            return action.GetResultedFood();
+        }
+
+        public Food DescribeNewCookAction(int stepNumber, string identifier, float requiredHeat, float requiredTime)
+        {
+            Food f = new Food(identifier);
             _initialFoods.Add(f);
 
             Cook action = new Cook(stepNumber, f, requiredHeat, requiredTime);
@@ -188,6 +216,20 @@ namespace RecipeModule {
             return action.GetResultedFood();
         }
 
+        public Food DescribeNewPeelAction(int stepNumber, string identifier)
+        {
+            Food f = new Food(identifier);
+            _initialFoods.Add(f);
+
+            Peel action = new Peel(stepNumber, f);
+
+            _actions.Add(action);
+
+            totalStepCount++;
+
+            return action.GetResultedFood();
+        }
+
         public Food DescribeNewPeelAction(int stepNumber, Food foodToBePeeled)
         {
             Peel action = new Peel(stepNumber, foodToBePeeled);
@@ -202,6 +244,20 @@ namespace RecipeModule {
         public Food DescribeNewSqueezeAction(int stepNumber, GameObject foodObject)
         {
             Food f = new Food(foodObject.GetComponent<FoodStatus>().foodIdentifier);
+            _initialFoods.Add(f);
+
+            Squeeze action = new Squeeze(stepNumber, f);
+
+            _actions.Add(action);
+
+            totalStepCount++;
+
+            return action.GetResultedFood();
+        }
+
+        public Food DescribeNewSqueezeAction(int stepNumber, string identifier)
+        {
+            Food f = new Food(identifier);
             _initialFoods.Add(f);
 
             Squeeze action = new Squeeze(stepNumber, f);
@@ -238,6 +294,20 @@ namespace RecipeModule {
             return action.GetResultedFood();
         }
 
+        public Food DescribeNewSmashAction(int stepNumber, string identifier)
+        {
+            Food f = new Food(identifier);
+            _initialFoods.Add(f);
+
+            Smash action = new Smash(stepNumber, f);
+
+            _actions.Add(action);
+
+            totalStepCount++;
+
+            return action.GetResultedFood();
+        }
+
         public Food DescribeNewSmashAction(int stepNumber, Food foodToBePeeled)
         {
             Smash action = new Smash(stepNumber, foodToBePeeled);
@@ -249,12 +319,12 @@ namespace RecipeModule {
             return action.GetResultedFood();
         }
 
-        public Food DescribeNewFryAction(int stepNumber, GameObject foodObject, float requiredHeat, float requiredTime)
+        public Food DescribeNewFryAction(int stepNumber, GameObject foodObject, float requiredTime)
         {
             Food f = new Food(foodObject.GetComponent<FoodStatus>().foodIdentifier);
             _initialFoods.Add(f);
 
-            Fry action = new Fry(stepNumber, f, requiredHeat, requiredTime);
+            Fry action = new Fry(stepNumber, f, requiredTime);
 
             _actions.Add(action);
 
@@ -262,10 +332,24 @@ namespace RecipeModule {
 
             return action.GetResultedFood();
         }
-        
-        public Food DescribeNewFryAction(int stepNumber, Food foodToBeFried, float requiredHeat, float requiredTime)
+
+        public Food DescribeNewFryAction(int stepNumber, string identifier, float requiredTime)
         {
-            Fry action = new Fry(stepNumber, foodToBeFried, requiredHeat, requiredTime);
+            Food f = new Food(identifier);
+            _initialFoods.Add(f);
+
+            Fry action = new Fry(stepNumber, f, requiredTime);
+
+            _actions.Add(action);
+
+            totalStepCount++;
+
+            return action.GetResultedFood();
+        }
+
+        public Food DescribeNewFryAction(int stepNumber, Food foodToBeFried, float requiredTime)
+        {
+            Fry action = new Fry(stepNumber, foodToBeFried, requiredTime);
 
             _actions.Add(action);
 
@@ -288,6 +372,20 @@ namespace RecipeModule {
             return action.GetResultedFood();
         }
 
+        public Food DescribeNewBreakAction(int stepNumber, string identifier)
+        {
+            Food f = new Food(identifier);
+            _initialFoods.Add(f);
+
+            Break action = new Break(stepNumber, f);
+
+            _actions.Add(action);
+
+            totalStepCount++;
+
+            return action.GetResultedFood();
+        }
+
         public Food DescribeNewBreakAction(int stepNumber, Food foodToBeBroken)
         {
             Break action = new Break(stepNumber, foodToBeBroken);
@@ -298,38 +396,6 @@ namespace RecipeModule {
 
             return action.GetResultedFood();
         }
-
-        //public Food DescribeNewPutTogetherAction(int stepNumber, GameObject foodObject, Food destinationFood)
-        //{
-        //    Food f = new Food(foodObject.GetComponent<FoodStatus>().foodIdentifier);
-        //    _initialFoods.Add(f);
-
-        //    PutTogether action = new PutTogether(stepNumber, f, destinationFood);
-
-        //    _actions.Add(action);
-
-        //    totalStepCount++;
-
-        //    return action.GetResultedFood();
-        //}
-
-        // Both of objects are prefabs, create new Food classes for both of them
-        //public Food DescribeNewPutTogetherAction(int stepNumber, GameObject foodObject, GameObject destinationFood)
-        //{
-        //    Food f = new Food(foodObject.GetComponent<FoodStatus>().foodIdentifier);
-        //    _initialFoods.Add(f);
-
-        //    Food f2 = new Food(foodObject.GetComponent<FoodStatus>().foodIdentifier);
-        //    _initialFoods.Add(f2);
-
-        //    PutTogether action = new PutTogether(stepNumber, f, f2);
-
-        //    _actions.Add(action);
-
-        //    totalStepCount++;
-
-        //    return action.GetResultedFood();
-        //}
 
         public Food DescribeNewPutTogetherAction(int stepNumber, Food foodToBePutTogether, Food destinationFood, int foodNo)
         {
@@ -343,12 +409,12 @@ namespace RecipeModule {
         }
 
         
-        public Food DescribeNewBoilAction(int stepNumber, GameObject foodObject, float requiredHeat, float requiredTime)
+        public Food DescribeNewBoilAction(int stepNumber, GameObject foodObject, float requiredTime)
         {
             Food f = new Food(foodObject.GetComponent<FoodStatus>().foodIdentifier);
             _initialFoods.Add(f);
 
-            Boil action = new Boil(stepNumber, f, requiredHeat, requiredTime);
+            Boil action = new Boil(stepNumber, f, requiredTime);
 
             _actions.Add(action);
 
@@ -357,9 +423,23 @@ namespace RecipeModule {
             return action.GetResultedFood();
         }
 
-        public Food DescribeNewBoilAction(int stepNumber, Food foodToBeBoiled, float requiredHeat, float requiredTime)
+        public Food DescribeNewBoilAction(int stepNumber, string identifier, float requiredTime)
         {
-            Boil action = new Boil(stepNumber, foodToBeBoiled, requiredHeat, requiredTime);
+            Food f = new Food(identifier);
+            _initialFoods.Add(f);
+
+            Boil action = new Boil(stepNumber, f, requiredTime);
+
+            _actions.Add(action);
+
+            totalStepCount++;
+
+            return action.GetResultedFood();
+        }
+
+        public Food DescribeNewBoilAction(int stepNumber, Food foodToBeBoiled, float requiredTime)
+        {
+            Boil action = new Boil(stepNumber, foodToBeBoiled, requiredTime);
 
             _actions.Add(action);
 
