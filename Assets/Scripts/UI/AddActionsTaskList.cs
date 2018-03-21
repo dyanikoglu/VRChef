@@ -7,11 +7,11 @@ namespace RecipeModule
     public class AddActionsTaskList : MonoBehaviour
     {
         public GameObject taskUI;
-        public string recipe;
+        public GameObject objectSpawner;
         // Use this for initialization
         void Start()
         {
-            Recipe r = Recipe.LoadRecipe(recipe);
+            Recipe r=objectSpawner.GetComponent<CreateRecipeScene>().GetRecipe();
             List<Action> actions = r.GetActions();
             GameObject a;
             

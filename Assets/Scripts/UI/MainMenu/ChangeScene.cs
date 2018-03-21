@@ -64,7 +64,7 @@ public class ChangeScene : MonoBehaviour {
 
     void ButtonHandler(int buttonInt)
     {
-        objectSpawnerPrefab.GetComponent<CreateRecipeScene>().recipe = recipes[buttonInt];
+        objectSpawnerPrefab.GetComponent<CreateRecipeScene>().recipeString = recipes[buttonInt];
         SceneManager.LoadScene("DuplicateKitchen");
     }
 

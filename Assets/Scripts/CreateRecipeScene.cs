@@ -8,13 +8,25 @@ namespace RecipeModule {
         public SimulationController simulationController;
         public GameObject[] places;
         int placeCount = 0;
-        public string recipe;
+        public string recipeString;
+        private Recipe recipe;
         // Use this for initialization
         private void Start()
         {
-            Recipe r = Recipe.LoadRecipe(recipe);
+            Recipe r = Recipe.LoadRecipe(recipeString);
+            SetRecipe(r);
             simulationController.SetRecipeToControl(r);
             UseActionList(r.GetActions());
+        }
+
+        public void SetRecipe(Recipe _recipe)
+        {
+            this.recipe = _recipe;
+        }
+
+        public Recipe GetRecipe()
+        {
+            return this.recipe;
         }
 
         void CreateObjectInScene(GameObject ingredient, int quantity)
