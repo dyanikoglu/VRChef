@@ -9,7 +9,7 @@ namespace RecipeModule
     {
         public enum ActionType
         {
-            Fry, Chop, Peel, Cook, Squeeze, Break, Smash, Mix, PutTogether, Boil
+            Fry, Chop, Peel, Cook, Squeeze, Break, Smash, Mix, PutTogether, Boil, Empty
         }
 
         [FullSerializer.fsProperty]

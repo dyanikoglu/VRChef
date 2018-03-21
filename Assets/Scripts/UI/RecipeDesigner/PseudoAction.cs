@@ -91,6 +91,13 @@ public class PseudoAction : MonoBehaviour {
         this.parameterValues.Add(requiredTime);
     }
 
+    public void SetAsEmptyAction()
+    {
+        this.actionType = RecipeModule.Action.ActionType.Empty;
+        this.parameterNames = new List<string>();
+        this.parameterValues = new List<int>();
+    }
+
     public RecipeModule.Action.ActionType GetActionType()
     {
         return actionType;
@@ -114,16 +121,6 @@ public class PseudoAction : MonoBehaviour {
     public void SetParameterValues(List<int> parameterValues)
     {
         this.parameterValues = parameterValues;
-    }
-
-    public bool GetEmptyAction()
-    {
-        return emptyAction;
-    }
-
-    public void SetEmptyAction(bool emptyAction)
-    {
-        this.emptyAction = emptyAction;
     }
 
     public void Clone(PseudoAction pa)

@@ -107,7 +107,18 @@ public class Step : MonoBehaviour {
         {
             // Create new output food object
             GameObject outputObject = GameObject.Instantiate(dummyOutputSingleFood);
-            string stateName = recipeManager.GetNewOutputName();
+
+            // Set new output name
+            string stateName = "";
+            if(GetPseudoAction().GetActionType() == RecipeModule.Action.ActionType.Empty)
+            {
+                stateName = ((FoodState)GetInput()).gameObject.name;
+            }
+            else
+            {
+                stateName = recipeManager.GetNewOutputName();
+            }
+
             outputObject.name = "Output_" + stateName;
             outputObject.GetComponent<Text>().text = "Output_" + stateName;
             outputObject.GetComponent<Text>().color = Color.red;
@@ -144,7 +155,16 @@ public class Step : MonoBehaviour {
             outputObject.GetComponent<FoodStateGroup>().SetFoodStateGroup(outputFoods);
 
             // Set new output group name
-            string stateName = recipeManager.GetNewOutputName();
+            string stateName;
+            if (GetPseudoAction().GetActionType() == RecipeModule.Action.ActionType.Empty)
+            {
+                stateName = inputGroup.gameObject.name;
+            }
+            else
+            {
+                stateName = recipeManager.GetNewOutputName();
+            }
+
             outputObject.name = "Output_" + stateName;
             outputObject.GetComponent<Text>().text = "Output_" + stateName;
             outputObject.GetComponent<Text>().color = Color.red;

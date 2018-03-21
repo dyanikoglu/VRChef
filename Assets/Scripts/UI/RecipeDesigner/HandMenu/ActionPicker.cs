@@ -20,7 +20,7 @@ public class ActionPicker : MonoBehaviour {
         int currentY = startY;
         int loopCount = 0;
 
-        
+        // Create an action item for each action type in ActionType enum
         foreach (RecipeModule.Action.ActionType actionType in Enum.GetValues(typeof(RecipeModule.Action.ActionType)))
         {
             GameObject newPickupZone = GameObject.Instantiate(dummyPickupZoneRef);
@@ -75,5 +75,24 @@ public class ActionPicker : MonoBehaviour {
 
             loopCount++;
         }
+
+        // Also create an empty action in list
+        GameObject newPickupZoneEmpty = GameObject.Instantiate(dummyPickupZoneRef);
+        newPickupZoneEmpty.transform.SetParent(viewportContentRef.transform, false);
+
+        string actionNameEmpty = "Empty Action";
+
+        newPickupZoneEmpty.GetComponentInChildren<Text>().text = actionNameEmpty;
+        RectTransform rtEmpty = newPickupZoneEmpty.GetComponent<RectTransform>();
+
+        PseudoAction newPseudoActionEmpty = newPickupZoneEmpty.transform.GetChild(0).gameObject.AddComponent<PseudoAction>();
+        newPseudoActionEmpty.SetAsEmptyAction();
+
+        Vector3 newPosEmptyAction = new Vector3(startX + spacingX * (loopCount % itemCountPerRow), startY + (((loopCount) / itemCountPerRow) * spacingY), 0);
+        rtEmpty.anchoredPosition3D = newPosEmptyAction;
+
+        newPickupZoneEmpty.gameObject.name = actionNameEmpty + "PickupZone";
+        newPseudoActionEmpty.gameObject.name = actionNameEmpty;
+        ////////////////////////////////////////////
     }
 }

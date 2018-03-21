@@ -77,6 +77,11 @@ public class RecipeManager : MonoBehaviour {
         rt.anchoredPosition3D = offset;
     }
 
+    public void ParseRecipe()
+    {
+        // TODO Implement parsing of the recipe to a .vrcr file
+    }
+
     // Create a new foodgroup from selected steps
     public void CreateGroupFromSelectedSteps()
     {
@@ -559,9 +564,21 @@ public class RecipeManager : MonoBehaviour {
         return s;
     }
 
+    public string GetCurrentGroupName()
+    {
+        string s = groupNameSequence.ToString();
+        return s;
+    }
+
     public string GetNewOutputName()
     {
         string s = outputNameSequence++.ToString();
+        return s;
+    }
+
+    public string GetCurrentOutputName()
+    {
+        string s = outputNameSequence.ToString();
         return s;
     }
 
