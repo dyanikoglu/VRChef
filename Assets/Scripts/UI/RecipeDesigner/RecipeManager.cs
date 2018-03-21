@@ -171,6 +171,10 @@ public class RecipeManager : MonoBehaviour {
                 case RecipeModule.Action.ActionType.Squeeze:
                     f = recipe.DescribeNewSqueezeAction(nextStep.GetStepNumber(), relatedFood);
                     break;
+                case RecipeModule.Action.ActionType.Empty:
+                    // Do nothing, use same food object
+                    f = relatedFood;
+                    break;
                 default:
                     f = null;
                     break;
@@ -183,7 +187,7 @@ public class RecipeManager : MonoBehaviour {
 
     public void ParseRecipe()
     {
-        recipe = new RecipeModule.Recipe("ADD RECIPE NAME VAR. HERE");
+        recipe = new RecipeModule.Recipe("test_recipe");
 
         // Reorder steps
         List<Step> orderedSteps = new List<Step>(steps.Count);
@@ -199,9 +203,9 @@ public class RecipeManager : MonoBehaviour {
                 FoodState inputItem = (FoodState)(s.GetInput());
 
                 // This is init food
-                if (!inputItem.gameObject.name.Contains("Output"))
+                if (!inputItem.GetComponent<Text>().text.Contains("Output"))
                 {
-                    string foodIdentifier = inputItem.gameObject.name;
+                    string foodIdentifier = inputItem.GetComponent<Text>().text;
                     PseudoAction action = s.GetPseudoAction();
                     RecipeModule.Food f = null;
                     switch (action.GetActionType())
@@ -242,13 +246,20 @@ public class RecipeManager : MonoBehaviour {
 
         foreach(RecipeModule.Action a in recipe.GetActions())
         {
-            print(a.GetActionType());
+            print("Action Name: " + a.GetActionType());
+            print("Step: " + a.GetStepNumber());
+            print("Input Food: " + a.GetInvolvedFood().GetFoodIdentifier());
+            print("Output Food: " + a.GetResultedFood().GetFoodIdentifier());
+            print("\n");
         }
 
+        print("Initial Foods");
         foreach (RecipeModule.Food f in recipe.GetInitialFoods())
         {
             print(f.GetFoodIdentifier());
         }
+
+        RecipeModule.Recipe.SaveRecipe(recipe);
     }
 
     // Create a new foodgroup from selected steps

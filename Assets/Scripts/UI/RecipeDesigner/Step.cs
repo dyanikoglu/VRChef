@@ -88,7 +88,7 @@ public class Step : MonoBehaviour {
     }
 
     // Generate output of this step, register it to recipe data structure.
-    public void GenerateOutput()
+    public bool GenerateOutput()
     {
         // Input or action is null, halt.
         if (GetInput() == null || GetPseudoAction() == null)
@@ -101,7 +101,7 @@ public class Step : MonoBehaviour {
                 Destroy(oldOutputObject);
             }
 
-            return;
+            return false;
         }
 
         // If input is single object
@@ -188,6 +188,8 @@ public class Step : MonoBehaviour {
         }
 
         outputZoneRef.transform.parent.gameObject.SetActive(true);
+
+        return true;
     }
 
     // Checks required conditions for grouping of this step. If conditions are not met, reverts toggle back to false.
