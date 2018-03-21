@@ -384,7 +384,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bb67acb9b2d88a49b40cd6a4cc7738b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  requiredCookTime: 60
+  requiredCookTime: 600
   requiredCookHeat: 150
   cookingUpdateFreq: 0.5
   cookingStartDelay: 0
@@ -415,6 +415,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 54b085ac518fbc048a206fa475f30995, type: 3}
   - {fileID: 8300000, guid: 1f535bcdafe041c4080ce5b9d95c6883, type: 3}
   - {fileID: 8300000, guid: 7396f6acf63b9e04785c51246ba60181, type: 3}
-  maximumChopCount: 32
+  maximumChopCount: 6
   spawnFluid: 1
   spawnFluidColor: {r: 1, g: 0.43382353, b: 0.43382353, a: 1}

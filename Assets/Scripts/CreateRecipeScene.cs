@@ -31,9 +31,27 @@ namespace RecipeModule {
 
         void CreateObjectInScene(GameObject ingredient, int quantity)
         {
-            for (int i = 0; i < quantity*2; i++)
+            float increaseZ = -0.2f;
+            float increaseX = -0.1f;
+            int rowCount = 0;
+            for (int i = 0; i < quantity*4; i++)
             {
-                GameObject createdFood = Instantiate(ingredient, places[placeCount].transform.position, ingredient.transform.rotation);
+                Vector3 pos = places[placeCount].transform.position;
+                pos.z = pos.z + increaseZ;
+                pos.x = pos.x + increaseX;
+                GameObject createdFood = Instantiate(ingredient, pos, ingredient.transform.rotation);
+                if (rowCount == 3)
+                {
+                    rowCount = 0;
+                    increaseX = increaseX + 0.1f;
+                    increaseZ = -0.2f;
+                }
+                else
+                {
+                    rowCount++;
+                    increaseZ = increaseZ + 0.1f;
+                }
+                
                 createdFood.GetComponent<FoodCharacteristic>().OperationDone += simulationController.OnOperationDone;
             }
             placeCount++;

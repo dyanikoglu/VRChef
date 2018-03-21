@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using VRTK;
 
 public class FoodStatus : MonoBehaviour { 
     private bool _isChoppedPiece = false;
@@ -12,6 +13,7 @@ public class FoodStatus : MonoBehaviour {
     private bool _isBoiled = false;
     private bool _isSmashed = false;
     private bool _isCooked = false;
+    private bool _isGrabbed = false;
 
     // Unique identifier of the object. Required for reaching out prefabs of each food.
     public string foodIdentifier = "";

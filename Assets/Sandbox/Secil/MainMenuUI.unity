@@ -1395,7 +1395,7 @@ MonoBehaviour:
   template: {fileID: 1557006325}
   buttonPrefab: {fileID: 1408090518106082, guid: 6842f20d12a444f44848fbccb59c70d2,
     type: 2}
-  objectSpawnerPrefab: {fileID: 1307260857988180, guid: a74d607d23ffa644eb7d587e81f0fd13,
+  objectSpawnerPrefab: {fileID: 1482364160132740, guid: 1eedd99b9f44d394f826314d0c3b068a,
     type: 2}
 --- !u!4 &1495829112
 Transform:

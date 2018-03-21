@@ -8,21 +8,30 @@ namespace RecipeModule
     {
         public GameObject taskUI;
         public GameObject objectSpawner;
+        int positionY;
+        bool isActive;
+        Vector3 scale;
         // Use this for initialization
         void Start()
         {
+            scale = gameObject.transform.localScale;
+            positionY = 150;
+            isActive = true;
             Recipe r=objectSpawner.GetComponent<CreateRecipeScene>().GetRecipe();
             List<Action> actions = r.GetActions();
             GameObject a;
             
             foreach( Action action in actions)
             {
-                Vector3 pos = taskUI.transform.position;
-                pos.y = pos.y - 20;
-                taskUI.transform.position = pos;
-                a = Instantiate(taskUI, taskUI.transform.position, taskUI.transform.rotation);
-                a.transform.GetChild(0).gameObject.SetActive(true);
+                a = Instantiate(taskUI);
                 a.transform.SetParent(gameObject.transform);
+                Vector3 pos= gameObject.transform.GetChild(0).GetComponent<RectTransform>().localPosition;
+                pos.y = pos.y - positionY;
+                a.GetComponent<RectTransform>().localPosition = pos;
+                a.GetComponent<RectTransform>().localRotation = gameObject.transform.GetChild(0).GetComponent<RectTransform>().localRotation;
+                a.GetComponent<RectTransform>().localScale = gameObject.transform.GetChild(0).GetComponent<RectTransform>().localScale;
+                a.transform.GetChild(0).gameObject.SetActive(false);
+                positionY = positionY + 50;
                 if (action.GetActionType().ToString().Equals("Boil"))
                 {
                     Boil boil = (Boil)action;
@@ -54,9 +63,36 @@ namespace RecipeModule
                 }
                 
             }
-            Vector3 pos1 = taskUI.transform.position;
-            pos1.y = 360;
-            taskUI.transform.position = pos1;
+        }
+
+        private void Update()
+        {
+            if (OVRInput.Get(OVRInput.Button.One, OVRInput.Controller.RTouch)|| OVRInput.Get(OVRInput.Button.One, OVRInput.Controller.LTouch))
+            {
+                if (isActive)
+                {
+                    StartCoroutine(WaitForNotPressButtonToMakeUnactive());
+                }
+                else
+                {
+                    StartCoroutine(WaitForNotPressButtonToMakeActive());
+
+                }
+            }
+        }
+
+        IEnumerator WaitForNotPressButtonToMakeUnactive()
+        {
+            gameObject.transform.localScale = new Vector3(0, 0, 0);
+            yield return new WaitForSeconds(1);
+            isActive = false;
+        }
+
+        IEnumerator WaitForNotPressButtonToMakeActive()
+        {
+            gameObject.transform.localScale = scale;
+            yield return new WaitForSeconds(1);
+            isActive = true;
         }
 
         public void SetStepCompleted(int stepNumber)
