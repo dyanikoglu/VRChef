@@ -138,6 +138,52 @@ namespace RecipeModule {
                 }
             }
 
+            for (int i = 1; i <= maxStepNumber; i++)
+            {
+                int stepCountWithSameNo = 0;
+
+                foreach (Action a in _actions)
+                {
+                    if (a.GetStepNumber() == i)
+                    {
+                        stepCountWithSameNo++;
+                    }
+                }
+
+                if(stepCountWithSameNo > 1)
+                {
+                    foreach (Action a in _actions)
+                    {
+                        if (a.GetStepNumber() > i)
+                        {
+                            a.SetStepNumber(a.GetStepNumber() + stepCountWithSameNo - 1);
+                        }
+                    }
+
+                    int increment = 0;
+
+                    foreach (Action a in _actions)
+                    {
+                        if (a.GetStepNumber() == i)
+                        {
+                            a.SetStepNumber(a.GetStepNumber() + increment++);
+                        }
+                    }
+
+                    maxStepNumber += stepCountWithSameNo - 1;
+                }
+            }
+
+
+            maxStepNumber = -1;
+            foreach (Action a in _actions)
+            {
+                if (a.GetStepNumber() > maxStepNumber)
+                {
+                    maxStepNumber = a.GetStepNumber();
+                }
+            }
+
             // Create reordered action list
             List<Action> newActions = new List<Action>(_actions.Count);
 
