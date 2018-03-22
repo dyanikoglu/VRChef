@@ -20,8 +20,10 @@ namespace RecipeModule
             Recipe r=objectSpawner.GetComponent<CreateRecipeScene>().GetRecipe();
             List<Action> actions = r.GetActions();
             GameObject a;
-            
-            foreach( Action action in actions)
+
+            int prevStepNumber = 0;
+
+            foreach ( Action action in actions)
             {
                 a = Instantiate(taskUI);
                 a.transform.SetParent(gameObject.transform);
@@ -32,25 +34,31 @@ namespace RecipeModule
                 a.GetComponent<RectTransform>().localScale = gameObject.transform.GetChild(0).GetComponent<RectTransform>().localScale;
                 a.transform.GetChild(0).gameObject.SetActive(false);
                 positionY = positionY + 50;
+
+                string header = "    ";
+                if (prevStepNumber != action.GetStepNumber()) {
+                    header = action.GetStepNumber() + "- ";
+                }
+                
                 if (action.GetActionType().ToString().Equals("Boil"))
                 {
                     Boil boil = (Boil)action;
-                    a.GetComponent<Text>().text = "Boil " + boil.GetInvolvedFood().GetFoodIdentifier()+" "+boil.GetRequiredTime()+" seconds";
+                    a.GetComponent<Text>().text = header + "Boil " + boil.GetInvolvedFood().GetFoodIdentifier()+" "+boil.GetRequiredTime()+" seconds";
                 }
                 else if (action.GetActionType().ToString().Equals("Chop"))
                 {
                     Chop chop = (Chop)action;
-                    a.GetComponent<Text>().text = "Chop " + chop.GetInvolvedFood().GetFoodIdentifier() + " to " + chop.GetRequiredPieceCount() + " pieces";
+                    a.GetComponent<Text>().text = header + "Chop " + chop.GetInvolvedFood().GetFoodIdentifier() + " to " + chop.GetRequiredPieceCount() + " pieces";
                 }
                 else if (action.GetActionType().ToString().Equals("Cook"))
                 {
                     Cook cook = (Cook)action;
-                    a.GetComponent<Text>().text = "Cook " + cook.GetInvolvedFood().GetFoodIdentifier() + " " + cook.GetRequiredTime() + " seconds in " + cook.GetRequiredHeat() + " celcius";
+                    a.GetComponent<Text>().text = header + "Cook " + cook.GetInvolvedFood().GetFoodIdentifier() + " " + cook.GetRequiredTime() + " seconds in " + cook.GetRequiredHeat() + " celcius";
                 }
                 else if (action.GetActionType().ToString().Equals("Fry"))
                 {
                     Fry fry = (Fry)action;
-                    a.GetComponent<Text>().text = "Fry " + fry.GetInvolvedFood().GetFoodIdentifier() + " " + fry.GetRequiredTime() + " seconds";
+                    a.GetComponent<Text>().text = header + "Fry " + fry.GetInvolvedFood().GetFoodIdentifier() + " " + fry.GetRequiredTime() + " seconds";
                 }
                 else if (action.GetActionType().ToString().Equals("PutTogether"))
                 {
@@ -59,8 +67,10 @@ namespace RecipeModule
                 }
                 else
                 {
-                    a.GetComponent<Text>().text = action.GetActionType() + " " + action.GetInvolvedFood().GetFoodIdentifier();
+                    a.GetComponent<Text>().text = header + action.GetActionType() + " " + action.GetInvolvedFood().GetFoodIdentifier();
                 }
+
+                prevStepNumber = action.GetStepNumber();
                 
             }
         }

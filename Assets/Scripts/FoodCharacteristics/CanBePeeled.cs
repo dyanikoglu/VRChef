@@ -12,6 +12,8 @@ public class CanBePeeled : CanBeChopped {
     private GameObject parent = null;
     private CanChop[] knives;
     private bool smallEnough = false;
+    private GameObject initialRig;
+
     // Use this for initialization
     void Start()
     {
@@ -25,7 +27,7 @@ public class CanBePeeled : CanBeChopped {
             Physics.IgnoreCollision(objectFlesh.GetComponent<Collider>(), knife.sharpAreaRef.GetComponent<Collider>());
         }
         Physics.IgnoreCollision(objectFlesh.GetComponent<Collider>(), GetComponent<Collider>());
-        base.Start();
+        initialRig = gameObject;
     }
 
     public override void BeginSlice(Vector3 anchorPoint, Vector3 normalDirection)
@@ -274,6 +276,7 @@ public class CanBePeeled : CanBeChopped {
                 cbc._rootObject = this._rootObject;
                 cbc.choppingSoundBoard = this.choppingSoundBoard;
                 cbc.objectFlesh = this.objectFlesh;
+                cbc.initialRig = leftSideObj;
                 ////
             }
             Destroy(leftSideObj.GetComponent<CanBePeeled>());
@@ -328,6 +331,7 @@ public class CanBePeeled : CanBeChopped {
         parent = null;
         objectFlesh.AddComponent<Rigidbody>();
         objectFlesh.GetComponent<FoodStatus>().SetIsPeeled(true);
+        initialRig.GetComponent<FoodStatus>().SetIsPeeled(true);
         objectFlesh.GetComponent<CanBeChopped>().enabled = true;
         objectFlesh.AddComponent<VRTK_InteractableObject>().isGrabbable = true;
         foreach (CanChop knife in knives)

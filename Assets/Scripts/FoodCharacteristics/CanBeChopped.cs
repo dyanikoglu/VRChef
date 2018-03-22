@@ -243,11 +243,16 @@ public class CanBeChopped : FoodCharacteristic
         this.maximumChopCount -= 1;
         cbc.maximumChopCount = this.maximumChopCount;
 
+        foreach(CanBeChopped child in this.transform.parent.GetComponentsInChildren<CanBeChopped>())
+        {
+            child.maximumChopCount = this.maximumChopCount;
+        }
+
         // Finally, mark them as chopped pieces
         leftSideObj.GetComponent<FoodStatus>().SetIsChoppedPiece(true);
 
-        //SimulationController sc = GameObject.Find("Simulation Controller").GetComponent<SimulationController>();
-        //rightSideObj.GetComponent<FoodCharacteristic>().OperationDone += sc.OnOperationDone;
+        SimulationController sc = GameObject.Find("Simulation Controller").GetComponent<SimulationController>();
+        rightSideObj.GetComponent<FoodStatus>().OperationDone += sc.OnOperationDone;
 
         rightSideObj.GetComponent<FoodStatus>().SetIsChoppedPiece(true);
 
@@ -621,11 +626,11 @@ public class CanBeChopped : FoodCharacteristic
 
     public bool ChopAvailability()
     {
-        // Maximum chopping action limit is reached, halt.
-        if (maximumChopCount == 0)
-        {
-            return false;
-        }
+        //// Maximum chopping action limit is reached, halt.
+        //if (maximumChopCount == 1)
+        //{
+        //    return false;
+        //}
 
         // Object is grabbed, but chopping while object on hand is prohibited, halt.
         if (GetIsGrabbed() && !canBeChoppedWhileOnHand)

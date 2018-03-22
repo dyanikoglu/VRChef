@@ -18,6 +18,12 @@ public class SimulationController : MonoBehaviour {
 
     public GameObject taskListUI;
 
+    public List<GameObject> cookObjects;
+    public List<GameObject> fryObjects;
+    public List<int> cookCounts;
+    public List<int> fryCounts;
+    public bool recipeDone = false;
+
     public void SetRecipeToControl(Recipe r)
     {
         recipeToControl = r;
@@ -33,10 +39,23 @@ public class SimulationController : MonoBehaviour {
 
         choppedObjects = new List<int>();
         foodsInRecipe = new List<GameObject>();
+
+        cookObjects = new List<GameObject>();
+        fryObjects = new List<GameObject>();
+        cookCounts = new List<int>();
+        fryCounts = new List<int>();
     }
 
     public void OnOperationDone(FoodCharacteristic fc, OperationEventArgs e)
     {
+        Debug.Log("operation done");
+        if (recipeDone)
+        {
+            return;
+        }
+
+        Debug.Log("operation cont'");
+
         switch (e.OperationType)
         {
             case Action.ActionType.Boil:
@@ -46,7 +65,7 @@ public class SimulationController : MonoBehaviour {
                     {
                         if (foodIndex == currentActionIndex)
                         {
-                            foodsInRecipe[foodIndex] = fc.gameObject;
+                            foodsInRecipe.Add(fc.transform.GetChild(0).gameObject);
                             foodIndex++;
                         }
                         taskListUI.GetComponent<AddActionsTaskList>().SetStepCompleted(currentActionIndex);
@@ -59,6 +78,11 @@ public class SimulationController : MonoBehaviour {
             case Action.ActionType.Break:
                 if ( fc.GetComponent<FoodStatus>() && actions[currentActionIndex].GetInvolvedFood().GetFoodIdentifier() == fc.GetComponent<FoodStatus>().foodIdentifier)
                 {
+                    if (foodIndex == currentActionIndex)
+                    {
+                        foodsInRecipe.Add(fc.transform.parent.gameObject);
+                        foodIndex++;
+                    }
                     taskListUI.GetComponent<AddActionsTaskList>().SetStepCompleted(currentActionIndex);
                     currentActionIndex++;
                 }
@@ -70,9 +94,6 @@ public class SimulationController : MonoBehaviour {
                     if ( (actions[currentActionIndex].GetInvolvedFood().GetFoodIdentifier() == fc.GetComponent<FoodStatus>().foodIdentifier)
                         && !(choppedObjects.Contains(fc.transform.root.GetInstanceID())) )
                     {
-
-                        Debug.Log(fc.transform.parent.gameObject);
-
                         if (foodIndex == currentActionIndex)
                         {
                             foodsInRecipe.Add(fc.transform.parent.gameObject);
@@ -80,26 +101,29 @@ public class SimulationController : MonoBehaviour {
                         }
 
                         //Debug.Log(fc.GetComponent<FoodStatus>().foodIdentifier);
-                        numSlices++;
-                        if (numSlices == 1)
-                        {
-                            numChoppedPieces = 2;
-                        }
-                        else
-                        {
-                            numChoppedPieces++;
-                        }
+                        //numSlices++;
+                        //if (numSlices == 1)
+                        //{
+                        //    numChoppedPieces = 2;
+                        //}
+                        //else
+                        //{
+                        //    numChoppedPieces++;
+                        //}
+                        numChoppedPieces++;
                         
                         Chop chop = (Chop)actions[currentActionIndex];
                         // if current food's chopping parameters is satisfied, then set current action as done, i.e. increment index
+                        //if (fc.GetComponent<CanBeChopped>().maximumChopCount == 1)
+                        //Debug.Log(chop.GetRequiredPieceCount());
                         if (numChoppedPieces == chop.GetRequiredPieceCount())
                         {
                             //Debug.Log(numChoppedPieces+ " - " + numSlices);
                             taskListUI.GetComponent<AddActionsTaskList>().SetStepCompleted(currentActionIndex);
                             currentActionIndex++;
+                            choppedObjects.Add(fc.transform.root.GetInstanceID());
                             numChoppedPieces = 0;
                             numSlices = 0;
-                            choppedObjects.Add(fc.transform.root.GetInstanceID());
                         }
                     }
                 }
@@ -113,11 +137,25 @@ public class SimulationController : MonoBehaviour {
                     {
                         if (foodIndex == currentActionIndex)
                         {
-                            foodsInRecipe[foodIndex] = fc.gameObject;
+                            foodsInRecipe.Add(fc.transform.parent.gameObject);
                             foodIndex++;
                         }
-                        taskListUI.GetComponent<AddActionsTaskList>().SetStepCompleted(currentActionIndex);
-                        currentActionIndex++;
+
+                        if (!cookObjects.Contains(fc.transform.parent.gameObject))
+                        {
+                            cookObjects.Add(fc.transform.parent.gameObject);
+                            cookCounts.Add(0);
+                        }
+
+                        GameObject obj = cookObjects.Find(x => x.GetInstanceID() == fc.transform.parent.gameObject.GetInstanceID());
+                        int index = cookObjects.IndexOf(obj);
+                        cookCounts[index]++;
+                        if (cookCounts[index] >= fc.transform.parent.childCount - 2)
+                        {
+                            cookCounts[index] = 0;
+                            taskListUI.GetComponent<AddActionsTaskList>().SetStepCompleted(currentActionIndex);
+                            currentActionIndex++;
+                        }
                     }
                 }
                 break;
@@ -129,11 +167,25 @@ public class SimulationController : MonoBehaviour {
                     {
                         if (foodIndex == currentActionIndex)
                         {
-                            foodsInRecipe[foodIndex] = fc.gameObject;
+                            foodsInRecipe.Add(fc.transform.parent.gameObject);
                             foodIndex++;
                         }
-                        taskListUI.GetComponent<AddActionsTaskList>().SetStepCompleted(currentActionIndex);
-                        currentActionIndex++;
+
+                        if (!fryObjects.Contains(fc.transform.parent.gameObject))
+                        {
+                            fryObjects.Add(fc.transform.parent.gameObject);
+                            fryCounts.Add(0);
+                        }
+
+                        GameObject obj = fryObjects.Find(x => x.GetInstanceID() == fc.transform.parent.gameObject.GetInstanceID());
+                        int index = fryObjects.IndexOf(obj);
+                        fryCounts[index]++;
+                        if (fryCounts[index] >= fc.transform.parent.childCount - 2)
+                        {
+                            fryCounts[index] = 0;
+                            taskListUI.GetComponent<AddActionsTaskList>().SetStepCompleted(currentActionIndex);
+                            currentActionIndex++;
+                        }
                     }
                 }
                 break;
@@ -146,7 +198,7 @@ public class SimulationController : MonoBehaviour {
                     {
                         if (foodIndex == currentActionIndex)
                         {
-                            foodsInRecipe[foodIndex] = fc.gameObject;
+                            foodsInRecipe.Add(fc.transform.parent.gameObject);
                             foodIndex++;
                         }
                         taskListUI.GetComponent<AddActionsTaskList>().SetStepCompleted(currentActionIndex);
@@ -162,7 +214,7 @@ public class SimulationController : MonoBehaviour {
                     {
                         if (foodIndex == currentActionIndex)
                         {
-                            foodsInRecipe[foodIndex] = fc.gameObject;
+                            foodsInRecipe.Add(fc.transform.parent.gameObject);
                             foodIndex++;
                         }
                         taskListUI.GetComponent<AddActionsTaskList>().SetStepCompleted(currentActionIndex);
@@ -204,13 +256,15 @@ public class SimulationController : MonoBehaviour {
                 break;
 
             case Action.ActionType.Smash:
+                Debug.Log("smash started");
                 if (actions[currentActionIndex].GetActionType() == Action.ActionType.Smash)
                 {
                     if (actions[currentActionIndex].GetInvolvedFood().GetFoodIdentifier() == fc.GetComponent<FoodStatus>().foodIdentifier)
                     {
+                        Debug.Log("comin' food: " + fc.name);
                         if (foodIndex == currentActionIndex)
                         {
-                            foodsInRecipe[foodIndex] = fc.gameObject;
+                            foodsInRecipe.Add(fc.transform.parent.gameObject);
                             foodIndex++;
                         }
                         taskListUI.GetComponent<AddActionsTaskList>().SetStepCompleted(currentActionIndex);
@@ -224,13 +278,17 @@ public class SimulationController : MonoBehaviour {
                 {
                     if (foodIndex == currentActionIndex)
                     {
-                        foodsInRecipe[foodIndex] = fc.gameObject;
+                        foodsInRecipe.Add(fc.transform.parent.gameObject);
                         foodIndex++;
                     }
                     taskListUI.GetComponent<AddActionsTaskList>().SetStepCompleted(currentActionIndex);
                     currentActionIndex++;
                 }
                 break;
+        }
+        if (currentActionIndex == actions.Count)
+        {
+            recipeDone = true;
         }
     }
 }

@@ -72,6 +72,7 @@ MonoBehaviour:
   - {fileID: 1526205933625466, guid: 3da641c2c23a40e4797b4d8079a7f7a6, type: 2}
   - {fileID: 1904689801345286, guid: d8d3b2188e406244dbc41a2fb167897d, type: 2}
   - {fileID: 1002723272048336, guid: 7dc4a3293212ece49b5a0bd938ca73c5, type: 2}
+  - {fileID: 1979662662822110, guid: 97484bbe50e5efb4dae90f47e3ab72aa, type: 2}
 --- !u!114 &114718935841128014
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -93,4 +94,4 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  recipeString: Chicken_Fleto
+  recipeString: test_recipe

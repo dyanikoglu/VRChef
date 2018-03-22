@@ -6,7 +6,6 @@ using VRTK;
 public class CanBeSqueezed : FoodCharacteristic
 {
     public Material squeezedMaterial;
-    public ParticleSystem particleLauncher;
     public AudioClip juiceSound;
 
     AudioSource source;
@@ -16,6 +15,7 @@ public class CanBeSqueezed : FoodCharacteristic
     private GameObject currentSqueezer;
     private float rotationAngle;
     private bool finished;
+    private ParticleSystem particleLauncher;
 
     // Use this for initialization
     void Start()
@@ -54,6 +54,7 @@ public class CanBeSqueezed : FoodCharacteristic
         if (collision.gameObject.GetComponent<CanSqueeze>() != null && GetComponent<FoodStatus>().GetIsChoppedPiece())
         {
             currentSqueezer = collision.gameObject;
+            particleLauncher = currentSqueezer.transform.GetChild(0).GetComponent<ParticleSystem>();
 
             currentSqueezer.GetComponent<VRTK.VRTK_InteractableObject>().isGrabbable = false;
             currentSqueezer.GetComponent<CanSqueeze>().bowl.GetComponent<VRTK.VRTK_InteractableObject>().isGrabbable = false;

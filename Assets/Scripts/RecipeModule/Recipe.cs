@@ -184,6 +184,8 @@ namespace RecipeModule {
                 }
             }
 
+            Debug.Log(maxStepNumber);
+
             // Create reordered action list
             List<Action> newActions = new List<Action>(_actions.Count);
 

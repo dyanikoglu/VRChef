@@ -34,9 +34,9 @@ public class Timer : DigitalScreen {
 
         GetComponent<AudioSource>().Play();
 
-        if (val + 60 <= MAX_VALUE)
+        if (val + 5 <= MAX_VALUE)
         {
-            SetTimer(val + 60);
+            SetTimer(val + 5);
         }
 
         else
@@ -54,9 +54,9 @@ public class Timer : DigitalScreen {
 
         GetComponent<AudioSource>().Play();
 
-        if (val - 60 >= 0)
+        if (val - 5 >= 0)
         {
-            SetTimer(val - 60);
+            SetTimer(val - 5);
         }
 
         else
@@ -67,8 +67,8 @@ public class Timer : DigitalScreen {
 
     private void TimerUpdate()
     {
-        int minutes = val-- / 60;
-        int hours = minutes / 60;
+        int minutes = val--;
+        int hours = val / 60;
         minutes = minutes % 60;
 
         // Set hour digit
@@ -109,8 +109,8 @@ public class Timer : DigitalScreen {
     {
         val = seconds;
 
-        int minutes = seconds / 60;
-        int hours = minutes / 60;
+        int minutes = seconds;
+        int hours = seconds / 60;
         minutes = minutes % 60;
 
         // Set hour digit

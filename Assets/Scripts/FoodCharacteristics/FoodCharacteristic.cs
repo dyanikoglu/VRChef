@@ -10,7 +10,7 @@ public abstract class FoodCharacteristic : MonoBehaviour
     {
         return GetComponent<VRTK_InteractableObject>().IsGrabbed();
     }
-
+    /*
     public delegate void OperationDoneEventHandler(FoodCharacteristic fc, OperationEventArgs e);
     public virtual event OperationDoneEventHandler OperationDone;
 
@@ -24,16 +24,20 @@ public abstract class FoodCharacteristic : MonoBehaviour
         }
     }
 
-    public void Start()
-    {
-        if (GetComponent<VRTK_InteractableObject>())
-        {
-            GetComponent<VRTK_InteractableObject>().InteractableObjectUngrabbed += OnMyUngrabbed;
-        }
-    }
+
 
     public void OnMyUngrabbed(object sender, InteractableObjectEventArgs e)
     {
         OnOperationDone(RecipeModule.Action.ActionType.PutTogether);
+    }
+        */
+
+
+    public void Start()
+    {
+        //if (GetComponent<VRTK_InteractableObject>())
+        //{
+        //    GetComponent<VRTK_InteractableObject>().InteractableObjectUngrabbed += OnMyUngrabbed;
+        //}
     }
 }

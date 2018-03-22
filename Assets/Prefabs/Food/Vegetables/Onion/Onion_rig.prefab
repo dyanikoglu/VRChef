@@ -50,6 +50,7 @@ GameObject:
   - component: {fileID: 114786774247492456}
   - component: {fileID: 135916889318555086}
   - component: {fileID: 114798559249180168}
+  - component: {fileID: 114804559919301468}
   m_Layer: 9
   m_Name: onion_flesh
   m_TagString: Untagged
@@ -301,6 +302,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0580f3b8e0fd90441b1e89c39c8d522f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isSmashed: 0
+  _isCooked: 0
   foodIdentifier: Onion
 --- !u!114 &114532735928202852
 MonoBehaviour:
@@ -399,7 +402,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0580f3b8e0fd90441b1e89c39c8d522f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isSmashed: 0
+  _isCooked: 0
   foodIdentifier: Onion
+--- !u!114 &114804559919301468
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1370990761677140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07d65345e0d3b1449ade98b4bed86692, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectTexture: {fileID: 0}
+  myMaterials: []
+  myMaterial: {fileID: 0}
+  shaderWithBlending: {fileID: 4800000, guid: 073aa28c7c0f1de4bbdc031476b16c3d, type: 3}
+  friedTexture: {fileID: 2800000, guid: 4316bdd3e0de5f54ba0dcd229ffb0e88, type: 3}
+  fryingTimeInSeconds: 20
+  fryingStarted: 0
+  fryingStopped: 0
+  onCanFry: 0
+  canFryObject: {fileID: 0}
+  friedMaterial: {fileID: 2100000, guid: df4ff0a6d52554443abd001c5901ead9, type: 2}
+  burnedColor: {r: 0, g: 0, b: 0, a: 0}
+  fryingSound: {fileID: 8300000, guid: b03e5348a02d6e34eacd0bed542b47b2, type: 3}
 --- !u!114 &114975119241416870
 MonoBehaviour:
   m_ObjectHideFlags: 1

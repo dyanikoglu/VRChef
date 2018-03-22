@@ -22,7 +22,7 @@ public class HotPlateOven : MonoBehaviour {
         // check if user switchs on or off one of plates
 		for(int i = 0; i < buttons.Length; i++)
         {
-            if (buttons[i].transform.localRotation.eulerAngles.z <= 95 && buttons[i].transform.localRotation.eulerAngles.z > 65)
+            if (buttons[i].transform.localRotation.eulerAngles.z <= 120 && buttons[i].transform.localRotation.eulerAngles.z > 65)
             {
                 plates[i].transform.GetChild(0).gameObject.SetActive(true);
                 plates[i].GetComponent<Renderer>().material.color = Color.red;

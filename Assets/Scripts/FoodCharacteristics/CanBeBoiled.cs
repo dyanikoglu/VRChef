@@ -44,6 +44,7 @@ public class CanBeBoiled : FoodCharacteristic
         {
             f.SetIsBoiled(true);
         }
+        //GetComponent<FoodStatus>().SetIsBoiled(true);
 
         boilingStarted = false;
         boilingStopped = true;

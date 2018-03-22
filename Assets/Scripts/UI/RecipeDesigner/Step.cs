@@ -81,7 +81,7 @@ public class Step : MonoBehaviour {
         if(GetPseudoAction())
         {
             PseudoAction pa = GetPseudoAction();
-            ActionPopup ap = recipeManager.ShowActionPopup(pa.GetActionType().ToString(), pa.GetParameterNames(), pa.GetParameterValues());
+            ActionPopup ap = recipeManager.ShowActionPopup(pa.GetActionType().ToString(), pa.GetParameterNames(), pa.GetParameterValues(), pa.GetParameterMins(), pa.GetParameterMaxs());
 
             // If ap is not available, return
             if(ap == null)

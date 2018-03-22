@@ -1,0 +1,184 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Onion_Fried
+  m_Shader: {fileID: 4800000, guid: 12c5a1911ed698d45920f1c6fa4d6d57, type: 3}
+  m_ShaderKeywords: _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A _WETNESS_ON
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _Ao2Map:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BumpMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DecalTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailAlbedoMap:
+        m_Texture: {fileID: 2800000, guid: 9f029069ad821ca4ea0365aa5956950b, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailNormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DissolveTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EmissionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _IncandescenceMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: 4316bdd3e0de5f54ba0dcd229ffb0e88, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MetallicGlossMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _OcclusionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ParallaxMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _RimTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SpecTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TeamColorMaskMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _WetMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _WetNormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _AO2: 0
+    - _AdvancedOptions: 0
+    - _Ao2MapUV: 1
+    - _Ao2Occlusion: 1
+    - _BaseColorVertexTint: 0
+    - _BumpMode: 0
+    - _BumpScale: 1
+    - _Cutoff: 0.5
+    - _Decal: 0
+    - _DecalAlphaVertexTint: 0
+    - _DecalSpecularity: 0.5
+    - _DecalTexUV: 0
+    - _DecalWeight: 1
+    - _DetailAlbedoMapUV: 0
+    - _DetailMaskSource: 0
+    - _DetailMaskStrength: 1
+    - _DetailMode: 0
+    - _DetailNormalMapScale: 1
+    - _DetailT: 0
+    - _DetailWeight: 1
+    - _Dissolve: 0
+    - _DissolveCutoff: 0
+    - _DissolveEdgeWidth: 0.01
+    - _DissolveGlowWeight: 1
+    - _DissolveTexUV: 0
+    - _DstBlend: 0
+    - _Emission: 0
+    - _EmissionWeight: 1
+    - _EnableInstancing: 0
+    - _ForwardRenderingOptions: 0
+    - _GlossMapScale: 1
+    - _Glossiness: 0.5
+    - _GlossyReflections: 1
+    - _HasBumpMap: 0
+    - _IncandescenceMapUV: 0
+    - _Lightmapping: 1
+    - _MainPhysicalProperties: 0
+    - _MainRoughnessSource: 1
+    - _MainTexUV: 0
+    - _MainTextures: 0
+    - _MaxSamples: 20
+    - _Metal: 0
+    - _Metallic: 0
+    - _MinSamples: 4
+    - _Mode: 0
+    - _Occlusion: 1
+    - _OcclusionStrength: 1
+    - _Parallax: 0.02
+    - _ParallaxT: 0
+    - _RenderQueue: 0
+    - _Rim: 0
+    - _RimBias: 0
+    - _RimPower: 4
+    - _RimTexUV: 0
+    - _RimWeight: 1
+    - _Roughness: 0.9
+    - _SmoothnessTextureChannel: 0
+    - _SpecularHighlights: 1
+    - _SpecularTint: 0
+    - _Specularity: 0
+    - _SrcBlend: 1
+    - _TeamColor: 0
+    - _TeamColorMasksAsTint: 0
+    - _UVSec: 0
+    - _WetMaskSource: 0
+    - _WetMaskStrength: 1
+    - _WetMaskUV: 0
+    - _WetNormalMapScale: 1
+    - _WetNormalMapUV: 0
+    - _WetRoughness: 0.9
+    - _WetWeight: 0
+    - _WetnessProperties: 1
+    - _ZWrite: 1
+    m_Colors:
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _DecalColor: {r: 1, g: 1, b: 1, a: 1}
+    - _DetailAlbedoMapVelocity: {r: 0, g: 0, b: 0, a: 0}
+    - _DissolveGlowColor: {r: 1, g: 1, b: 1, a: 1}
+    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _IncandescenceMapVelocity: {r: 0, g: 0, b: 0, a: 0}
+    - _MainTexVelocity: {r: 0, g: 0, b: 0, a: 0}
+    - _RimColor: {r: 1, g: 1, b: 1, a: 1}
+    - _RimTexVelocity: {r: 0, g: 0, b: 0, a: 0}
+    - _TeamColor0: {r: 1, g: 0, b: 0, a: 1}
+    - _TeamColor1: {r: 0, g: 1, b: 0, a: 1}
+    - _TeamColor2: {r: 0, g: 0, b: 1, a: 1}
+    - _TeamColor3: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+    - _TeamColorMasks: {r: 1, g: 1, b: 1, a: 0}
+    - _WetMaskVelocity: {r: 0, g: 0, b: 0, a: 0}
+    - _WetNormalMapVelocity: {r: 0, g: 0, b: 0, a: 0}
+    - _WetTint: {r: 0, g: 0, b: 0, a: 0}

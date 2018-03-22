@@ -23,6 +23,11 @@ public class ActionParameter : MonoBehaviour {
         headerRef.text = paramName + ": " + sliderRef.value;
     }
 
+    public void Update()
+    {
+        UpdateHeader();
+    }
+
     public int GetValue()
     {
         return (int)sliderRef.value;

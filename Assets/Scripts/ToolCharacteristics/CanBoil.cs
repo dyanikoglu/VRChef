@@ -53,10 +53,6 @@ public class CanBoil : ToolCharacteristic {
         {
             canBoil = OnOven(collision.collider.transform.parent.gameObject, collision.collider.transform.parent.transform.parent);
         }
-        if (canBoil)
-        {
-            Debug.Log("enter " + collision.collider.name);
-        }
     }
 
     bool OnOven(GameObject plate, Transform parent)

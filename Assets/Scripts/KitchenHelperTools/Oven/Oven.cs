@@ -84,7 +84,7 @@ public class Oven : MonoBehaviour {
 
     public void OvenHeatOn()
     {
-        if(GetCurrentTimerValue() < 60)
+        if(GetCurrentTimerValue() < 5)
         {
             return;
         }

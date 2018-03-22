@@ -13,6 +13,8 @@ public class CanBeSmashed : FoodCharacteristic {
     public bool iscollidedWithSmasher = false;
     public bool isCollidedWithBowl = false;
     public GameObject bowl;
+    //public GameObject initialFood;
+
     void Start()
     {
         base.Start();
@@ -50,20 +52,30 @@ public class CanBeSmashed : FoodCharacteristic {
                     rescale.z = smashable.GetComponent<Renderer>().bounds.size.z * rescale.z / (size_z*2);
                     _smashed.transform.GetChild(0).transform.localScale = rescale;
                     _smashed.transform.GetChild(1).transform.localScale = rescale;
+//                    initialFood = gameObject;
+  //                  _smashed.GetComponent<CanBeSmashed>().initialFood = this.initialFood;
                     Destroy(gameObject);
                     _smashed.GetComponent<FoodStatus>().SetIsPeeled(true);
                     _smashed.GetComponent<FoodStatus>().SetIsBoiled(true);
                     _smashed.GetComponent<FoodStatus>().SetIsHalfSmashed(true);
+
                 }
                 else
                 {
                     CanBeSmashed [] smashedObjects = FindObjectsOfType<CanBeSmashed>();
                     bool destroyed = false;
+
+                    SimulationController sc = GameObject.Find("Simulation Controller").GetComponent<SimulationController>();
+                    smashable.GetComponent<FoodStatus>().OperationDone += sc.OnOperationDone;
+
+                    smashable.GetComponent<FoodStatus>().SetIsSmashed(true);
+
                     foreach (CanBeSmashed smashedObject in smashedObjects)
                     {
                         if (smashedObject.isCollidedWithBowl && smashedObject.iscollidedWithSmasher)
                         {
-                            Destroy(smashedObject.smashable);
+                            //Destroy(smashedObject.smashable);
+                            smashedObject.smashable.gameObject.SetActive(false);
                             destroyed = true;
                         }
                     }
@@ -71,7 +83,7 @@ public class CanBeSmashed : FoodCharacteristic {
                     {
                         _smashed = Instantiate(smashed, bowl.transform.position, smashed.transform.rotation);
                     }
-                    GetComponent<FoodStatus>().SetIsSmashed(true);
+                    //_smashed.GetComponent<FoodStatus>().SetIsSmashed(true);
                 }
             }
 

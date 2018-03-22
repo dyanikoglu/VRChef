@@ -33,11 +33,15 @@ public class CanBeCooked : FoodCharacteristic {
     {
         _effectPercentage = (float)_currentHeat / (float)requiredCookHeat;
         _neededUpdateCount = (int) ((float)requiredCookTime / cookingUpdateFreq);
-        _deltaValue =  (1.0f / (float)(_neededUpdateCount)) * _effectPercentage;
+        _deltaValue =  (0.8f / (float)(_neededUpdateCount)) * _effectPercentage;
 
         StartCoroutine(CookingTimer(cookForSecs));
         InvokeRepeating("CookingUpdate", cookingStartDelay, cookingUpdateFreq);
-        _affectedMaterials[0].SetColor("_WetTint", cookEffectTint);
+
+        foreach (Material mat in _affectedMaterials)
+        {
+            mat.SetColor("_WetTint", cookEffectTint);
+        }
     }
 
     public void EndCook()
@@ -46,10 +50,12 @@ public class CanBeCooked : FoodCharacteristic {
         CancelInvoke("CookingUpdate");
         _currentHeat = 0;
 
-        if(_affectedMaterials[0].GetFloat("_WetWeight") >= 0.9f && _affectedMaterials[0].GetFloat("_WetWeight") <= 1.1f)
-        {
-            GetComponent<FoodStatus>().SetIsCooked(true);
-        }
+        GetComponent<FoodStatus>().SetIsCooked(true);
+
+        //if(_affectedMaterials[0].GetFloat("_WetWeight") >= 0.7f && _affectedMaterials[0].GetFloat("_WetWeight") <= 0.9f)
+        //{
+        //    GetComponent<FoodStatus>().SetIsCooked(true);
+        //}
     }
 
     public void SetCurrentHeat(int heat)
@@ -60,9 +66,12 @@ public class CanBeCooked : FoodCharacteristic {
     // Add option for selecting/cooking multiple materials
     private void CookingUpdate()
     {
-        if (_affectedMaterials[0].GetFloat("_WetWeight") < 1.5f)
+        foreach (Material mat in _affectedMaterials)
         {
-            _affectedMaterials[0].SetFloat("_WetWeight", _affectedMaterials[0].GetFloat("_WetWeight") + _deltaValue);
+            if (mat.GetFloat("_WetWeight") < 1.1f)
+            {
+                mat.SetFloat("_WetWeight", _affectedMaterials[0].GetFloat("_WetWeight") + _deltaValue);
+            }
         }
     }
 }

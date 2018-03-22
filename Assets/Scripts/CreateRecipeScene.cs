@@ -52,7 +52,7 @@ namespace RecipeModule {
                     increaseZ = increaseZ + 0.1f;
                 }
                 
-                createdFood.GetComponent<FoodCharacteristic>().OperationDone += simulationController.OnOperationDone;
+                createdFood.GetComponent<FoodStatus>().OperationDone += simulationController.OnOperationDone;
             }
             placeCount++;
         }
@@ -80,50 +80,77 @@ namespace RecipeModule {
                     Chop chop = (Chop)a;
                     if (prefab.GetComponent<CanBePeeled>())
                     {
-                        if (prefab.transform.GetChild(0).GetComponent<CanBeChopped>()==null)
+                        /* if (prefab.transform.GetChild(0).GetComponent<CanBeChopped>()==null)
                         {
                             prefab.transform.GetChild(0).gameObject.AddComponent<CanBeChopped>();
-                        }
+                        }*/
                         prefab.transform.GetChild(0).GetComponent<CanBeChopped>().maximumChopCount = chop.GetRequiredPieceCount();
                         
                     }
                     else
                     {
-                        if (prefab.GetComponent<CanBeChopped>()==null)
+                        /*if (prefab.GetComponent<CanBeChopped>()==null)
                         {
                             prefab.AddComponent<CanBeChopped>();
-                        }
+                        }*/
                         prefab.GetComponent<CanBeChopped>().maximumChopCount = chop.GetRequiredPieceCount();
                     }
                 }
-                else if (a.GetActionType().ToString().Equals("Peel"))
+                /*else if (a.GetActionType().ToString().Equals("Peel"))
                 {
                     Peel peel = (Peel)a;
                     if (prefab.GetComponent<CanBePeeled>() == null)
                     {
                         prefab.AddComponent<CanBePeeled>();
                     }
-                }
+                }*/
                 else if (a.GetActionType().ToString().Equals("Cook"))
                 {
                     Cook cook = (Cook)a;
-                    if (prefab.GetComponent<CanBeCooked>() == null)
+                    if (prefab.GetComponent<CanBePeeled>())
                     {
-                        prefab.AddComponent<CanBeCooked>();
+                        /*if (prefab.transform.GetChild(0).GetComponent<CanBeCooked>() == null)
+                        {
+                            prefab.transform.GetChild(0).gameObject.AddComponent<CanBeCooked>();
+                        }*/
+                        prefab.transform.GetChild(0).GetComponent<CanBeCooked>().requiredCookHeat = (int)cook.GetRequiredHeat();
+                        prefab.transform.GetChild(0).GetComponent<CanBeCooked>().requiredCookTime = (int)cook.GetRequiredTime();
+
+
                     }
-                    prefab.GetComponent<CanBeCooked>().requiredCookHeat = (int)cook.GetRequiredHeat();
-                    prefab.GetComponent<CanBeCooked>().requiredCookTime = (int)cook.GetRequiredTime();
+                    else
+                    {
+                        /*if (prefab.GetComponent<CanBeCooked>() == null)
+                        {
+                            prefab.AddComponent<CanBeCooked>();
+                        }*/
+                        prefab.GetComponent<CanBeCooked>().requiredCookHeat = (int)cook.GetRequiredHeat();
+                        prefab.GetComponent<CanBeCooked>().requiredCookTime = (int)cook.GetRequiredTime();
+                    }
+                  
                 }
                 else if (a.GetActionType().ToString().Equals("Fry"))
                 {
                     Fry fry = (Fry)a;
-                    if (prefab.GetComponent<CanBeFried>() == null)
+                    if (prefab.GetComponent<CanBePeeled>())
                     {
-                        prefab.AddComponent<CanBeFried>();
+                        /*if (prefab.transform.GetChild(0).GetComponent<CanBeFried>() == null)
+                        {
+                            prefab.transform.GetChild(0).gameObject.AddComponent<CanBeFried>();
+                        }*/
+                        prefab.transform.GetChild(0).GetComponent<CanBeFried>().fryingTimeInSeconds = fry.GetRequiredTime();
+
                     }
-                    prefab.GetComponent<CanBeFried>().fryingTimeInSeconds = fry.GetRequiredTime();
+                    else
+                    {
+                        /*if (prefab.GetComponent<CanBeFried>() == null)
+                        {
+                            prefab.AddComponent<CanBeFried>();
+                        }*/
+                        prefab.GetComponent<CanBeFried>().fryingTimeInSeconds = fry.GetRequiredTime();
+                    }
                 }
-                else if (a.GetActionType().ToString().Equals("Squeeze"))
+                /*else if (a.GetActionType().ToString().Equals("Squeeze"))
                 {
                     if (prefab.GetComponent<CanBeSqueezed>() == null)
                     {
@@ -132,22 +159,19 @@ namespace RecipeModule {
                 }
                 else if (a.GetActionType().ToString().Equals("Smash"))
                 {
-                    if (prefab.GetComponent<CanBeSmashed>() == null)
-                    {
-                        prefab.AddComponent<CanBeSmashed>();
-                    }
+                    continue;
                 }
                 else if (a.GetActionType().ToString().Equals("Break"))
                 {
                    //control the if break script is added to prefab
-                }
+                }*/
                 else if (a.GetActionType().ToString().Equals("Boil"))
                 {
                     Boil boil = (Boil)a;
-                    if (prefab.GetComponent<CanBeBoiled>() == null)
+                    /*if (prefab.GetComponent<CanBeBoiled>() == null)
                     {
                         prefab.AddComponent<CanBeBoiled>();
-                    }
+                    }*/
                     prefab.GetComponent<CanBeBoiled>().requiredBoilingTime = (int)boil.GetRequiredTime();
                 }
             }

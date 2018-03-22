@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 23701911977724132}
   - component: {fileID: 114122878154463718}
   - component: {fileID: 114351721089225608}
+  - component: {fileID: 114322303000759050}
   m_Layer: 0
   m_Name: Egg
   m_TagString: Untagged
@@ -98,6 +99,18 @@ MonoBehaviour:
   insideEggPrefab: {fileID: 1112730980135388, guid: 286bde981a6b2594599c0e60ce4c12b6,
     type: 2}
   isCracked: 0
+--- !u!114 &114322303000759050
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1979662662822110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0580f3b8e0fd90441b1e89c39c8d522f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  foodIdentifier: Egg
 --- !u!114 &114351721089225608
 MonoBehaviour:
   m_ObjectHideFlags: 1

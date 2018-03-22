@@ -29,6 +29,7 @@ GameObject:
   - component: {fileID: 114666111695548082}
   - component: {fileID: 114604399149669646}
   - component: {fileID: 114890505912508542}
+  - component: {fileID: 114732481300626054}
   m_Layer: 9
   m_Name: Broccoli
   m_TagString: Untagged
@@ -156,6 +157,22 @@ MonoBehaviour:
   maximumChopCount: 32
   spawnFluid: 0
   spawnFluidColor: {r: 1, g: 1, b: 1, a: 1}
+--- !u!114 &114732481300626054
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1935546344200766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8d04d7212c5d8c45af27e2a9cc133b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  requiredBoilingTime: 20
+  boilingStarted: 0
+  boilingStopped: 0
+  boilEffectTint: {r: 0.5254902, g: 0.6117647, b: 0.52156866, a: 1}
+  boiledMaterial: {fileID: 2100000, guid: 9e09567934c83fa4f97ff00a4bc03d47, type: 2}
 --- !u!114 &114797535369249386
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -218,6 +235,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0580f3b8e0fd90441b1e89c39c8d522f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isSmashed: 0
+  _isCooked: 0
   foodIdentifier: Broccoli
 --- !u!136 &136062241828483582
 CapsuleCollider:

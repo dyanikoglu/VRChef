@@ -141,6 +141,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0580f3b8e0fd90441b1e89c39c8d522f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isCooked: 0
   foodIdentifier: Bread_1
 --- !u!114 &114252333980581040
 MonoBehaviour:
@@ -173,7 +174,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   capMaterial: {fileID: 2100000, guid: bbf6e7bdc8cc2934686d289ab6bbded0, type: 2}
-  minKnifeVelocityToChop: 0.002
   sliceTimeout: 0.5
   currentlyChoppable: 1
   colliderSkinWidth: 0.001
@@ -229,7 +229,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bb67acb9b2d88a49b40cd6a4cc7738b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  requiredCookTime: 60
+  requiredCookTime: 30
   requiredCookHeat: 150
   cookingUpdateFreq: 0.5
   cookingStartDelay: 0

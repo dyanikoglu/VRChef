@@ -29,6 +29,7 @@ GameObject:
   - component: {fileID: 54735856248199752}
   - component: {fileID: 82066241637955826}
   - component: {fileID: 114377890448439120}
+  - component: {fileID: 114528408005222376}
   m_Layer: 9
   m_Name: Lemon
   m_TagString: Untagged
@@ -43,7 +44,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1191873762173958}
   m_LocalRotation: {x: 0.038326956, y: -0.052242678, z: 0.6208436, w: 0.7812522}
-  m_LocalPosition: {x: -0.2521, y: 1.2904, z: 0.0453}
+  m_LocalPosition: {x: 0.014086127, y: 1.2736231, z: 0.62507576}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -220,6 +221,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0580f3b8e0fd90441b1e89c39c8d522f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isSmashed: 0
+  _isCooked: 0
   foodIdentifier: Lemon
 --- !u!114 &114437390402663760
 MonoBehaviour:
@@ -264,6 +267,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18055ba762aa3994f9c10208cd088bc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114528408005222376
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1191873762173958}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb569bd4895971f4194b62a874f55a90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  squeezedMaterial: {fileID: 2100000, guid: 6422e492e74daa84fbc5a1e71c6772c9, type: 2}
+  particleLauncher: {fileID: 0}
+  juiceSound: {fileID: 8300000, guid: 5487e33010a56cf4589225bff81afb71, type: 3}
 --- !u!114 &114833560541319162
 MonoBehaviour:
   m_ObjectHideFlags: 1

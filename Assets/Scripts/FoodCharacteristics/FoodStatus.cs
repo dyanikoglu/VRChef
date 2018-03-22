@@ -11,13 +11,28 @@ public class FoodStatus : MonoBehaviour {
     private bool _isHalfSmashed = false;
     private bool _isBurnedAfterFrying = false;
     private bool _isBoiled = false;
-    private bool _isSmashed = false;
-    private bool _isCooked = false;
+    public bool _isSmashed = false;
+    public bool _isCooked = false;
     private bool _isGrabbed = false;
     private bool _isMixed = false;
 
     // Unique identifier of the object. Required for reaching out prefabs of each food.
     public string foodIdentifier = "";
+    
+
+    public delegate void OperationDoneEventHandler(FoodCharacteristic fc, OperationEventArgs e);
+    public virtual event OperationDoneEventHandler OperationDone;
+
+    public virtual void OnOperationDone(RecipeModule.Action.ActionType type)
+    {
+        OperationEventArgs operationEventArgs = new OperationEventArgs(type);
+
+        if (OperationDone != null)
+        {
+            OperationDone(GetComponent<FoodCharacteristic>(), operationEventArgs);
+        }
+    }
+
 
     public bool GetIsChoppedPiece()
     {
@@ -26,13 +41,13 @@ public class FoodStatus : MonoBehaviour {
 
     public void SetIsChoppedPiece(bool isChoppedPiece)
     {    
-        GetComponent<FoodCharacteristic>().OnOperationDone(RecipeModule.Action.ActionType.Chop);
+        OnOperationDone(RecipeModule.Action.ActionType.Chop);
         this._isChoppedPiece = isChoppedPiece;
     }
 
     public void SetIsFried(bool flag)
     {
-        GetComponent<FoodCharacteristic>().OnOperationDone(RecipeModule.Action.ActionType.Fry);
+        OnOperationDone(RecipeModule.Action.ActionType.Fry);
         _isFried = flag;
     }
 
@@ -43,7 +58,8 @@ public class FoodStatus : MonoBehaviour {
 
     public void SetIsCooked(bool flag)
     {
-        GetComponent<FoodCharacteristic>().OnOperationDone(RecipeModule.Action.ActionType.Cook);
+        Debug.Log("cooked");
+        OnOperationDone(RecipeModule.Action.ActionType.Cook);
         _isCooked = flag;
     }
 
@@ -69,7 +85,7 @@ public class FoodStatus : MonoBehaviour {
 
     public void SetIsSqueezed(bool isSqueezed)
     {
-        GetComponent<FoodCharacteristic>().OnOperationDone(RecipeModule.Action.ActionType.Squeeze);
+        OnOperationDone(RecipeModule.Action.ActionType.Squeeze);
         this._isSqueezed = isSqueezed;
     }
 
@@ -80,7 +96,7 @@ public class FoodStatus : MonoBehaviour {
 
     public void SetIsPeeled(bool isPeeled)
     {
-        GetComponent<FoodCharacteristic>().OnOperationDone(RecipeModule.Action.ActionType.Peel);
+        OnOperationDone(RecipeModule.Action.ActionType.Peel);
         this._isPeeled = isPeeled;
     }
 
@@ -101,7 +117,7 @@ public class FoodStatus : MonoBehaviour {
 
     public void SetIsSmashed(bool isSmashed)
     {
-        GetComponent<FoodCharacteristic>().OnOperationDone(RecipeModule.Action.ActionType.Smash);
+        OnOperationDone(RecipeModule.Action.ActionType.Smash);
         this._isSmashed = isSmashed;
     }
 
@@ -113,7 +129,7 @@ public class FoodStatus : MonoBehaviour {
 
     public void SetIsBoiled(bool isBoiled)
     {
-        GetComponent<FoodCharacteristic>().OnOperationDone(RecipeModule.Action.ActionType.Boil);
+        OnOperationDone(RecipeModule.Action.ActionType.Boil);
         this._isBoiled = isBoiled;
     }
 

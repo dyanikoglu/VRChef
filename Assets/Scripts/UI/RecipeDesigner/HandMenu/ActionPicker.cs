@@ -23,6 +23,11 @@ public class ActionPicker : MonoBehaviour {
         // Create an action item for each action type in ActionType enum
         foreach (RecipeModule.Action.ActionType actionType in Enum.GetValues(typeof(RecipeModule.Action.ActionType)))
         {
+            if(actionType == RecipeModule.Action.ActionType.PutTogether)
+            {
+                continue;
+            }
+
             GameObject newPickupZone = GameObject.Instantiate(dummyPickupZoneRef);
             newPickupZone.transform.SetParent(viewportContentRef.transform, false);
 

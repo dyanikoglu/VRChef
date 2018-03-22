@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -187,7 +189,8 @@ public class RecipeManager : MonoBehaviour {
 
     public void ParseRecipe()
     {
-        recipe = new RecipeModule.Recipe("test_recipe");
+        var culture = new CultureInfo("de-DE");
+        recipe = new RecipeModule.Recipe("DEMO_RECIPE_" + DateTime.Now.ToString(culture).Replace(":", "_").Replace(" ","_"));
 
         // Reorder steps
         List<Step> orderedSteps = new List<Step>(steps.Count);
@@ -356,7 +359,7 @@ public class RecipeManager : MonoBehaviour {
     }
 
     // Show action settings popup
-    public ActionPopup ShowActionPopup(string actionName, List<string> paramNames, List<int> paramValues)
+    public ActionPopup ShowActionPopup(string actionName, List<string> paramNames, List<int> paramValues, List<int> paramMins, List<int> paramMaxs)
     {
         // Reset action popup first
         HideActionPopup(false);
@@ -376,13 +379,19 @@ public class RecipeManager : MonoBehaviour {
             ActionParameter ap = newParamObj.GetComponent<ActionParameter>();
             ap.SetParamIndex(i);
             ap.paramName = paramNames[i];
-            // TODO Should I do something with slider min-max value, or leave them at some default bound?
+
+            // Set limits of value
+            ap.sliderRef.minValue = paramMins[i];
+            ap.sliderRef.maxValue = paramMaxs[i];
+
+            // Set value and update header
             ap.sliderRef.value = paramValues[i];
             ap.UpdateHeader();
-            // ap.sliderRef.onValueChanged += ap.UpdateHeader;
         }
 
         actionPopupRef.SetActive(true);
+
+        actionPopupRef.AddComponent<VRTK.VRTK_UIGraphicRaycaster>();
 
         return actionPopup;
     }
@@ -403,9 +412,12 @@ public class RecipeManager : MonoBehaviour {
         }
 
         // Reverse iteration, clear parameter objects
-        for (int i = actionPopup.parametersRef.transform.childCount - 1; i >= 0; i--)
+        if (actionPopup.parametersRef.transform.childCount > 0)
         {
-            DestroyItem(actionPopup.parametersRef.transform.GetChild(i).gameObject);
+            for (int i = actionPopup.parametersRef.transform.childCount - 1; i >= 0; i--)
+            {
+                DestroyItem(actionPopup.parametersRef.transform.GetChild(i).gameObject);
+            }
         }
 
         actionPopupRef.SetActive(false);

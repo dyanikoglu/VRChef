@@ -147,14 +147,14 @@ MonoBehaviour:
   myMaterial: {fileID: 0}
   shaderWithBlending: {fileID: 4800000, guid: 073aa28c7c0f1de4bbdc031476b16c3d, type: 3}
   friedTexture: {fileID: 2800000, guid: 9f029069ad821ca4ea0365aa5956950b, type: 3}
-  fryingTimeInSeconds: 5
+  fryingTimeInSeconds: 30
   fryingStarted: 0
   fryingStopped: 0
   onCanFry: 0
   canFryObject: {fileID: 0}
   friedMaterial: {fileID: 2100000, guid: ba8db8d100304094a93141c34487ab8e, type: 2}
   burnedColor: {r: 0, g: 0, b: 0, a: 0}
-  fryingSound: {fileID: 0}
+  fryingSound: {fileID: 8300000, guid: b03e5348a02d6e34eacd0bed542b47b2, type: 3}
 --- !u!114 &114561217806177198
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -166,7 +166,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bb67acb9b2d88a49b40cd6a4cc7738b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  requiredCookTime: 300
+  requiredCookTime: 10
   requiredCookHeat: 150
   cookingUpdateFreq: 0.5
   cookingStartDelay: 0
@@ -211,7 +211,7 @@ MonoBehaviour:
   rootObjectAfterSlice: {fileID: 1585260972204234, guid: 5f8fbf704cd6e0d4a92f39272ea99503,
     type: 2}
   choppingSoundBoard: []
-  maximumChopCount: 2
+  maximumChopCount: 3
   spawnFluid: 0
   spawnFluidColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &114930374344006048
@@ -225,6 +225,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0580f3b8e0fd90441b1e89c39c8d522f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isCooked: 0
   foodIdentifier: ChickenFillet
 --- !u!114 &114948673530446998
 MonoBehaviour:

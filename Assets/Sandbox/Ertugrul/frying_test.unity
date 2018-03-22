@@ -825,6 +825,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24b5cf978ec47dd43a950e6f5c70b2bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentActionIndex: 0
+  choppedObjects: 
+  numChoppedPieces: 0
+  numSlices: 0
+  foodsInRecipe: []
+  foodIndex: 0
+  taskListUI: {fileID: 0}
 --- !u!1 &113891658
 GameObject:
   m_ObjectHideFlags: 0
@@ -2011,7 +2018,7 @@ Prefab:
     - target: {fileID: 224000012623161658, guid: d46cf6b1ad9d84a48ae7548a2a6b41b3,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -70
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224000012623161658, guid: d46cf6b1ad9d84a48ae7548a2a6b41b3,
         type: 2}
@@ -2021,7 +2028,7 @@ Prefab:
     - target: {fileID: 224000012623161658, guid: d46cf6b1ad9d84a48ae7548a2a6b41b3,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 120
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d46cf6b1ad9d84a48ae7548a2a6b41b3, type: 2}
@@ -7671,6 +7678,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   emitter: {fileID: 1725979148}
   pouringSpeed: 0.5
+  isBowl: 0
 --- !u!64 &806077599
 MeshCollider:
   m_ObjectHideFlags: 0

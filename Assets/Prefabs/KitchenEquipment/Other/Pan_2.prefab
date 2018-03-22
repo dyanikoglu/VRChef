@@ -196,6 +196,7 @@ GameObject:
   - component: {fileID: 114822973939790194}
   - component: {fileID: 114271793133682486}
   - component: {fileID: 114193140098629196}
+  - component: {fileID: 82370634072223842}
   m_Layer: 0
   m_Name: pan_v1_base_001
   m_TagString: Untagged
@@ -450,8 +451,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1368718829476668}
-  m_LocalRotation: {x: -0, y: -0, z: 0.9848078, w: 0.17364807}
-  m_LocalPosition: {x: 0.74, y: 2.02, z: -1.45}
+  m_LocalRotation: {x: -0.0000013113021, y: 0.0000011324881, z: 0.77642924, w: -0.63020444}
+  m_LocalPosition: {x: 10.287681, y: -6.1272497, z: -1.4280679}
   m_LocalScale: {x: 0.39370137, y: 0.39370131, z: 0.39370114}
   m_Children:
   - {fileID: 4753612736511408}
@@ -677,8 +678,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1715591781357378}
-  m_LocalRotation: {x: 0, y: 0, z: 0.9848078, w: 0.17364807}
-  m_LocalPosition: {x: 0.75, y: 2.007, z: 0.664}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 10.26, y: -6.14, z: 0.72}
   m_LocalScale: {x: 0.3937009, y: 0.3937009, z: 0.39370072}
   m_Children: []
   m_Father: {fileID: 4924106221939102}
@@ -690,9 +691,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1354495024203016}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0.156, y: 1.884, z: 0.047}
-  m_LocalScale: {x: 0.079947084, y: 0.07994709, z: 0.07994709}
+  m_LocalRotation: {x: 1, y: -0, z: -0, w: 0}
+  m_LocalPosition: {x: -0.784, y: -0.297, z: -0.098}
+  m_LocalScale: {x: 0.079947084, y: 0.07994712, z: 0.07994712}
   m_Children:
   - {fileID: 4243935526849204}
   - {fileID: 4830169510933966}
@@ -1064,6 +1065,86 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.5392482, y: 0.33113012, z: 5.2725697}
   m_Center: {x: -0.057810374, y: 2.8790758, z: 2.905611}
+--- !u!82 &82370634072223842
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1368718829476668}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!114 &114059640140407784
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1111,6 +1192,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canBoil: 0
   hasFluid: 0
+  boilingSound: {fileID: 8300000, guid: 0a0537ea54689fa448171650a666d545, type: 3}
+  isWaterBoiled: 0
 --- !u!114 &114233087370643074
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1248,7 +1331,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1715591781357378}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a3abaf4521bf2344ea21ed3020b98eb2, type: 3}
   m_Name: 
@@ -1263,7 +1346,7 @@ MonoBehaviour:
   validDrop: 1
   grabOverrideButton: 0
   allowedGrabControllers: 0
-  grabAttachMechanicScript: {fileID: 0}
+  grabAttachMechanicScript: {fileID: 114947151602559496}
   secondaryGrabActionScript: {fileID: 0}
   isUsable: 0
   holdButtonToUse: 1
@@ -1352,7 +1435,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1368718829476668}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a3abaf4521bf2344ea21ed3020b98eb2, type: 3}
   m_Name: 
@@ -1367,8 +1450,8 @@ MonoBehaviour:
   validDrop: 1
   grabOverrideButton: 0
   allowedGrabControllers: 0
-  grabAttachMechanicScript: {fileID: 0}
-  secondaryGrabActionScript: {fileID: 0}
+  grabAttachMechanicScript: {fileID: 114193140098629196}
+  secondaryGrabActionScript: {fileID: 114271793133682486}
   isUsable: 0
   holdButtonToUse: 1
   useOnlyIfGrabbed: 0
