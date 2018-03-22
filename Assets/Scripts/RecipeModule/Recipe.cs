@@ -98,32 +98,6 @@ namespace RecipeModule {
             this._actions = newActions;
         }
 
-        public void RemoveAction(Action a)
-        {
-            if(_initialFoods.Contains(a.GetInvolvedFood())) {
-                _initialFoods.Remove(a.GetInvolvedFood());
-            }
-
-            Food f = a.GetInvolvedFood();
-
-            while(f != null)
-            {
-                f = a.GetInvolvedFood().GetNext();
-
-                if (a.GetInvolvedFood().GetNext() != null)
-                {
-                    a.GetInvolvedFood().GetNext().SetPrev(null);
-                }
-
-                if (a.GetInvolvedFood().GetPrev() != null)
-                {
-                    a.GetInvolvedFood().GetPrev().SetNext(null);
-                }
-            }
-
-            _actions.Remove(a);
-        }
-
         public Food DescribeNewChopAction(int stepNumber, GameObject foodObject, int requiredPieceCount)
         {
             Food f = new Food(foodObject.GetComponent<FoodStatus>().foodIdentifier);

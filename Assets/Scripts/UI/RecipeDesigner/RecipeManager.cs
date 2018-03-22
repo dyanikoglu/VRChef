@@ -202,8 +202,8 @@ public class RecipeManager : MonoBehaviour {
             {
                 FoodState inputItem = (FoodState)(s.GetInput());
 
-                // This is init food
-                if (!inputItem.GetComponent<Text>().text.Contains("Output"))
+                // This is initial food
+                if (!inputItem.GetComponent<Text>().text.Contains("Output") && !inputItem.GetComponent<Text>().text.Contains("Group"))
                 {
                     string foodIdentifier = inputItem.GetComponent<Text>().text;
                     PseudoAction action = s.GetPseudoAction();
@@ -243,6 +243,8 @@ public class RecipeManager : MonoBehaviour {
                 }
             }
         }
+
+        recipe.ReorderActions();
 
         foreach(RecipeModule.Action a in recipe.GetActions())
         {
