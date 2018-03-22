@@ -298,7 +298,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0580f3b8e0fd90441b1e89c39c8d522f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  foodIdentifier: 
+  foodIdentifier: Potato
 --- !u!136 &136069890564112384
 CapsuleCollider:
   m_ObjectHideFlags: 1
