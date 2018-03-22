@@ -31,6 +31,12 @@ public class Step : MonoBehaviour {
 
     public void SetStepNumber(int stepNumber)
     {
+        if(stepNumber == -1)
+        {
+            this.stepNumberRef.text = "-";
+            return;
+        }
+
         this.stepNumberRef.text = stepNumber.ToString();
     }
 
@@ -114,15 +120,15 @@ public class Step : MonoBehaviour {
             string stateName = "";
             if(GetPseudoAction().GetActionType() == RecipeModule.Action.ActionType.Empty)
             {
-                stateName = ((FoodState)GetInput()).gameObject.name;
+                stateName = ((FoodState)GetInput()).gameObject.GetComponent<Text>().text;
             }
             else
             {
-                stateName = recipeManager.GetNewOutputName();
+                stateName = "Output_" + recipeManager.GetNewOutputName();
             }
 
-            outputObject.name = "Output_" + stateName;
-            outputObject.GetComponent<Text>().text = "Output_" + stateName;
+            outputObject.name = stateName;
+            outputObject.GetComponent<Text>().text = stateName;
             outputObject.GetComponent<Text>().color = Color.red;
 
             // Remove existing ouput object
@@ -160,15 +166,15 @@ public class Step : MonoBehaviour {
             string stateName;
             if (GetPseudoAction().GetActionType() == RecipeModule.Action.ActionType.Empty)
             {
-                stateName = inputGroup.gameObject.name;
+                stateName = inputGroup.gameObject.GetComponent<Text>().text;
             }
             else
             {
-                stateName = recipeManager.GetNewOutputName();
+                stateName = "Output_" + recipeManager.GetNewOutputName();
             }
 
-            outputObject.name = "Output_" + stateName;
-            outputObject.GetComponent<Text>().text = "Output_" + stateName;
+            outputObject.name = stateName;
+            outputObject.GetComponent<Text>().text = stateName;
             outputObject.GetComponent<Text>().color = Color.red;
 
             // Remove existing ouput object
@@ -189,6 +195,8 @@ public class Step : MonoBehaviour {
 
         outputZoneRef.transform.parent.gameObject.SetActive(true);
 
+        CheckGroupEligibility();
+
         return true;
     }
 
@@ -199,6 +207,12 @@ public class Step : MonoBehaviour {
         {
             // Not eligible for grouping, set toggle as false back.
             SetToggle(false);
+            toggleRef.interactable = false;
+        }
+
+        else
+        {
+            toggleRef.interactable = true;
         }
 
         // Refresh new group button

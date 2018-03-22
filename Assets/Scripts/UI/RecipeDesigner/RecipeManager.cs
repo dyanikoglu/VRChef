@@ -12,10 +12,10 @@ public class RecipeManager : MonoBehaviour {
 
     public RecipeModule.Recipe recipe;
 
-    private List<Step> steps;
-    private List<GroupFromSteps> groups;
+    public List<Step> steps;
+    public List<GroupFromSteps> groups;
 
-    private int totalStepCount = 0;
+    public int totalStepCount = 0;
     private int outputNameSequence = 1;
     private char groupNameSequence = 'A';
 
@@ -81,7 +81,26 @@ public class RecipeManager : MonoBehaviour {
 
     public Step GetNextRelatedStep(Step prevStep)
     {
-        if(prevStep.GetOutput() is FoodState)
+        // Check if this food/foodGroup is used for creating a new group
+        foreach (GroupFromSteps gfs in groups)
+        {
+            if (gfs.boundedSteps.Contains(prevStep))
+            {
+                // Check if this group is used as input in a step
+                foreach (Step s in steps)
+                {
+                    if (s.GetInput() is FoodStateGroup)
+                    {
+                        if ((FoodStateGroup)(s.GetInput()) == gfs.GetFoodStateGroup().clone)
+                        {
+                            return s;
+                        }
+                    }
+                }
+            }
+        }
+
+        if (prevStep.GetOutput() is FoodState)
         {
             FoodState prevFs = (FoodState)prevStep.GetOutput();
 
@@ -93,25 +112,6 @@ public class RecipeManager : MonoBehaviour {
                     if ((FoodState)(s.GetInput()) == prevFs.clone)
                     {
                         return s;
-                    }
-                }
-            }
-
-            // Check if this food is used for creating a new group
-            foreach(GroupFromSteps gfs in groups)
-            {
-                if(gfs.boundedSteps.Contains(prevStep))
-                {
-                    // Check if this group is used as input in a step
-                    foreach (Step s in steps)
-                    {
-                        if (s.GetInput() is FoodStateGroup)
-                        {
-                            if ((FoodStateGroup)(s.GetInput()) == gfs.GetFoodStateGroup().clone)
-                            {
-                                return s;
-                            }
-                        }
                     }
                 }
             }
@@ -244,14 +244,17 @@ public class RecipeManager : MonoBehaviour {
             }
         }
 
+        print("Parsing Completed");
+
         recipe.ReorderActions();
 
-        foreach(RecipeModule.Action a in recipe.GetActions())
+        print("Reordering Completed");
+
+        foreach (RecipeModule.Action a in recipe.GetActions())
         {
-            print("Action Name: " + a.GetActionType());
-            print("Step: " + a.GetStepNumber());
-            print("Input Food: " + a.GetInvolvedFood().GetFoodIdentifier());
-            print("Output Food: " + a.GetResultedFood().GetFoodIdentifier());
+            print(a.GetStepNumber() + ": " + a.GetActionType());
+            print("In: " + a.GetInvolvedFood().GetFoodIdentifier());
+            print("Out: " + a.GetResultedFood().GetFoodIdentifier());
             print("\n");
         }
 
@@ -541,7 +544,7 @@ public class RecipeManager : MonoBehaviour {
         Destroy(s.gameObject);
         totalStepCount--;
 
-        // RegenerateSteps();
+        RegenerateSteps(); // May cause bugs
     }
 
     public void StepChanged(Step s)

@@ -62,6 +62,9 @@ public class ActionPicker : MonoBehaviour {
                 case RecipeModule.Action.ActionType.Squeeze:
                     newPseudoAction.SetAsSqueeze();
                     break;
+                case RecipeModule.Action.ActionType.Empty:
+                    newPseudoAction.SetAsEmptyAction();
+                    break;
                 default:
                     break;
             }

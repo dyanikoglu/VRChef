@@ -5299,6 +5299,9 @@ MonoBehaviour:
   newStepButtonRef: {fileID: 859335506}
   newGroupButtonRef: {fileID: 535999608}
   actionPopupRef: {fileID: 1276708939}
+  steps: []
+  groups: []
+  totalStepCount: 0
   stepIntervalY: -40
   newGroupOffsetX: 220
 --- !u!1 &1557134440

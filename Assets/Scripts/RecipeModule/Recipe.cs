@@ -88,11 +88,68 @@ namespace RecipeModule {
 
         public void ReorderActions()
         {
-            List<Action> newActions = new List<Action>(_actions.Count);
-            
-            foreach(Action a in _actions)
+            int maxStepNumber = -1;
+            foreach (Action a in _actions)
             {
-                newActions.Insert(a.GetStepNumber(), a);
+                if (a.GetStepNumber() > maxStepNumber)
+                {
+                    maxStepNumber = a.GetStepNumber();
+                }
+            }
+
+            Debug.Log("Max: " + maxStepNumber);
+
+
+            bool found = false;
+            for (int i = 1; i <= maxStepNumber; i++)
+            {
+                found = false;
+                foreach (Action a in _actions)
+                {
+                    if (a.GetStepNumber() == i)
+                    {
+                        found = true;
+                        break;
+                    }
+                }
+
+                if(!found)
+                {
+                    foreach (Action a in _actions)
+                    {
+                        if (a.GetStepNumber() > i)
+                        {
+                            Debug.Log("Reduced Step " + a.GetStepNumber());
+                            a.SetStepNumber(a.GetStepNumber() - 1);
+                            Debug.Log("New Step Number: " + a.GetStepNumber());
+                        }
+                    }
+                }
+            }
+
+            Debug.Log("Step reduction completed");
+
+            maxStepNumber = -1;
+            foreach (Action a in _actions)
+            {
+                if (a.GetStepNumber() > maxStepNumber)
+                {
+                    maxStepNumber = a.GetStepNumber();
+                }
+            }
+
+            // Create reordered action list
+            List<Action> newActions = new List<Action>(_actions.Count);
+
+            for(int i=1;i<=maxStepNumber;i++)
+            {
+                foreach(Action a in _actions)
+                {
+                    if(a.GetStepNumber() == i)
+                    {
+                        newActions.Add(a);
+                    }
+                }
             }
 
             this._actions = newActions;

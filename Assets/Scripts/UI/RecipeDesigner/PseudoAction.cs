@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PseudoAction : MonoBehaviour {
-    private RecipeModule.Action.ActionType actionType;
+    public RecipeModule.Action.ActionType actionType;
 
     /* Cook: [0] -> requiredHeat | [1] -> requiredTime
      * Fry: [0] -> requiredTime
@@ -17,10 +17,7 @@ public class PseudoAction : MonoBehaviour {
 
     public List<int> parameterValues;
     
-    private List<string> parameterNames;
-
-    // Indicates that that action won't impact the input, output will be the same with input.
-    private bool emptyAction = false;
+    public List<string> parameterNames;
 
     public void SetAsChop(int pieceCount = 4)
     {
