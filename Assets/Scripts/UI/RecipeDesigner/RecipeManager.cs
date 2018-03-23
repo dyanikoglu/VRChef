@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class RecipeManager : MonoBehaviour {
@@ -71,6 +72,11 @@ public class RecipeManager : MonoBehaviour {
         newStepObject.GetComponent<Step>().toggleRef.enabled = true;
 
         steps.Add(newStep);
+    }
+
+    public void Exit()
+    {
+        SceneManager.LoadScene("MainMenuUI");
     }
 
     // Push step element upwards in UI
