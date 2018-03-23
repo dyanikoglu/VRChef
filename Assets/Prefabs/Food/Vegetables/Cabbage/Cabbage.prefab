@@ -22,8 +22,11 @@ GameObject:
   - component: {fileID: 114535695645087080}
   - component: {fileID: 114566173371167530}
   - component: {fileID: 114935540648169236}
-  - component: {fileID: 65172407806969586}
   - component: {fileID: 54712305801361416}
+  - component: {fileID: 23398513461949480}
+  - component: {fileID: 33921389707194824}
+  - component: {fileID: 114135102289657288}
+  - component: {fileID: 135625515655784154}
   m_Layer: 0
   m_Name: Cabbage
   m_TagString: Untagged
@@ -38,12 +41,53 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1904689801345286}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.273158, y: 1.8111988, z: 1.7844869}
+  m_LocalPosition: {x: -0.1810596, y: 1.26, z: 0.882}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!23 &23398513461949480
+MeshRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1904689801345286}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 2100000, guid: 3ecb66b3865346744bd4ac8294aaa67e, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!33 &33921389707194824
+MeshFilter:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1904689801345286}
+  m_Mesh: {fileID: 4300000, guid: b4c6f55f6a8f47e48a813429d88e4044, type: 3}
 --- !u!54 &54712305801361416
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -59,18 +103,25 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &65172407806969586
-BoxCollider:
+--- !u!114 &114135102289657288
+MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1904689801345286}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8afa0b205791c9f4496bf2814aeac078, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  precisionGrab: 1
+  rightSnapHandle: {fileID: 0}
+  leftSnapHandle: {fileID: 0}
+  throwVelocityWithAttachDistance: 0
+  throwMultiplier: 1
+  onGrabCollisionDelay: 0
+  destroyImmediatelyOnThrow: 1
+  breakForce: 1500
 --- !u!114 &114535695645087080
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -82,6 +133,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0580f3b8e0fd90441b1e89c39c8d522f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isSmashed: 0
+  _isCooked: 0
   foodIdentifier: Cabbage
 --- !u!114 &114566173371167530
 MonoBehaviour:
@@ -94,7 +147,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 245aa739fea004bcaa2da96fef6f8599, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  capMaterial: {fileID: 0}
+  capMaterial: {fileID: 2100000, guid: ef5af310f3d95ca4ea88a2503e2380f9, type: 2}
   sliceTimeout: 0.75
   currentlyChoppable: 1
   colliderSkinWidth: 0.001
@@ -138,3 +191,15 @@ MonoBehaviour:
   objectHighlighter: {fileID: 0}
   touchHighlightColor: {r: 0, g: 0, b: 0, a: 0}
   usingState: 0
+--- !u!135 &135625515655784154
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1904689801345286}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.08313379
+  m_Center: {x: 0, y: 0.0000000037252903, z: 0.0000000037252903}
