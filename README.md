@@ -72,7 +72,18 @@ Unity, Oculus Rift Headset, and Oculus Touch controllers are used in the develop
 
 ## License
 
-Copyright 2018 **UntitledGroup.txt**
+Copyright 2018 **UntitledGroup.txt (**
+
+**- Doğa Can YANIKOĞLU**
+
+**- Seçil USTA**
+
+**- Muhammed Ertuğrul GÜNGÖR**
+
+**- Fatma ASAL**
+
+**)**
+
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
