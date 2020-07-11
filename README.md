@@ -4,7 +4,7 @@
 VRChef is a Unity based cooking simulation game with lots of options available in the kitchen environment, with an advanced recipe system included. 
 
 ## About Project
-Project's aim is creating an unique experience based on VR where possible chef candidates can learn new recipes and improve their cooking skills by praticing on them in a realistic kitchen environment. As the VR headset, Oculus Rift is used in the development.
+Project's aim is providing a unique VR experience where possible chef candidates can learn new recipes and improve their cooking skills by practicing in a realistic kitchen environment.
 
 ## Main Features
 - Food Manipulation
