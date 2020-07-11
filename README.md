@@ -1,22 +1,12 @@
 # VRChef
+![image](https://github.com/dyanikoglu/VRChef/raw/master/Readme_GIF.gif)
 
-Imported from https://bitbucket.org/UntitledGroup-txt/vrchef-development
+VRChef is a Unity based cooking simulation game with lots of options available in the kitchen environment, with an advanced recipe system included. 
 
-## General Information
-
-VRChef is our senior project, developed at **Graphics Lab of TOBB University of Economics & Technology, Turkey**. We developed the project as a team consists of 4 people:
-
-- Doğa Can YANIKOĞLU
-- Muhammed Ertuğrul GÜNGÖR
-- Seçil USTA
-- Fatma ASAL
-
-Project's aim is creating an unique experience based on VR where possible chef candidates can learn new recipes and improve their cooking skills by praticing on them in a realistic kitchen environment. 
-
-Unity, Oculus Rift Headset, and Oculus Touch controllers are used in the development environment.
+## About Project
+Project's aim is creating an unique experience based on VR where possible chef candidates can learn new recipes and improve their cooking skills by praticing on them in a realistic kitchen environment. As the VR headset, Oculus Rift is used in the development.
 
 ## Main Features
-
 - Food Manipulation
     - Chopping
     - Cooking
@@ -39,51 +29,17 @@ Unity, Oculus Rift Headset, and Oculus Touch controllers are used in the develop
     - A VR user interface for player to easily create a recipe step-by-step, and apply them in kitchen scene on-the-go.
     - Created recipes can be saved to/loaded from hard disk.
     - A progress tracking module which shows real time directions to assist player along the cooking process.
-    
-## Trailer
 
-[![VRChef | Trailer](https://img.youtube.com/vi/jr61hF-0TLo/0.jpg)](https://youtu.be/jr61hF-0TLo "VRChef | Trailer")
+## Contributors
+- Doğa Can YANIKOĞLU
+- Muhammed Ertuğrul GÜNGÖR
+- Seçil USTA
+- Fatma ASAL
 
-## Screenshots From Development
-
-![Screenshot](https://www.imageupload.co.uk/images/2018/06/13/Screenshot33.png "Screenshot")
-
-![Screenshot](https://www.imageupload.co.uk/images/2018/06/13/Screenshot18.png "Screenshot")
-
-![Screenshot](https://www.imageupload.co.uk/images/2018/06/13/Screenshot23.png "Screenshot")
-
-![Screenshot](https://www.imageupload.co.uk/images/2018/06/13/Screenshot39.png "Screenshot")
-
-![Screenshot](https://www.imageupload.co.uk/images/2018/06/13/Screenshot7.png "Screenshot")
-
-![Screenshot](https://www.imageupload.co.uk/images/2018/06/13/Screenshot24.png "Screenshot")
-
-![Screenshot](https://www.imageupload.co.uk/images/2018/06/13/Screenshot28.png "Screenshot")
-
-![Screenshot](https://www.imageupload.co.uk/images/2018/06/13/Screenshot17.png "Screenshot")
-
-![Screenshot](https://www.imageupload.co.uk/images/2018/06/13/Screenshot25.png "Screenshot")
-
-![Screenshot](https://www.imageupload.co.uk/images/2018/06/13/Screenshot26.png "Screenshot")
-
-![Screenshot](https://www.imageupload.co.uk/images/2018/06/13/Screenshot9.png "Screenshot")
-
-![Screenshot](https://www.imageupload.co.uk/images/2018/06/13/Screenshot42.png "Screenshot")
+Original repository can be found in [Bitbucket](https://bitbucket.org/UntitledGroup-txt/vrchef-development)
 
 ## License
-
-Copyright 2018 **UntitledGroup.txt (**
-
-**- Doğa Can YANIKOĞLU**
-
-**- Seçil USTA**
-
-**- Muhammed Ertuğrul GÜNGÖR**
-
-**- Fatma ASAL**
-
-**)**
-
+Copyright (C) 2018 Doğa Can YANIKOĞLU, Seçil USTA, Muhammed Ertuğrul GÜNGÖR, Fatma ASAL
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
